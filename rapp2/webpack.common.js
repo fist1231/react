@@ -1,12 +1,20 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 
 module.exports = {
   entry: {
     app: './src/index.js'
   },
   plugins: [
+	    // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
+	    // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+	    new InterpolateHtmlPlugin({
+	      PUBLIC_URL: path.join(__dirname, 'public')
+	      // You can pass any key-value pairs, this was just an example.
+	      // WHATEVER: 42 will replace %WHATEVER% with 42 in index.html.
+	    }),
 	    new HtmlWebpackPlugin({
 	        template: path.join(__dirname, 'public', 'index.html')
 	      })
