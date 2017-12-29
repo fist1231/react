@@ -1,23 +1,56 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Users from './Components/Users'
+import $ from 'jquery';
 
 if (process.env.NODE_ENV !== 'production') {
    console.log('Looks like we are in development mode!');
-}    
+}
+
 
 
 class App extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      users:[]
+    }
+  }
+
+  getUsers() {
+    $.ajax({
+      url: 'http://192.168.1.208:30333/nress/users',
+      dataType:'json',
+      cache: false,
+      success: function(data){
+        this.setState({users: data}, function() {
+          console.log(this.state);
+        });
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+      }
+    });
+  }
+
+  componentWillMount(){
+    this.getUsers();
+  }
+
+  componentDidMount(){
+    // this.getUsers();
+  }
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+        <h1 className="App-title">Users List</h1>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          Users from Mongo DB
         </p>
+        <Users users={this.state.users} />
       </div>
     );
   }
