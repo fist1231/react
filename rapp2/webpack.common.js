@@ -2,6 +2,11 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+var extractPlugin = new ExtractTextPlugin({
+  filename: 'styles.css'
+});
 
 module.exports = {
   entry: {
@@ -16,30 +21,28 @@ module.exports = {
 	      // WHATEVER: 42 will replace %WHATEVER% with 42 in index.html.
 	    }),
 	    new HtmlWebpackPlugin({
-	        template: path.join(__dirname, 'public', 'index.html')
-	      })
+	        template: 'public/index.html',
+          title: 'Production'
+	    }),
+      extractPlugin,
+      new ExtractTextPlugin("styles.css"),
+      new CleanWebpackPlugin(['dist'])
   ],
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js'
+    //publicPath: '/dist'
   },
   module: {
       loaders: [
           {
               test: /\.js$/,
-              loader: 'babel-loader',
-              query: {
-                  presets: ['es2015', 'react']
-              }
-          },
-          {
-              test: /\.jsx?$/,
               exclude: /node_modules/,
               loader: 'babel-loader',
               query: {
                   presets: ['es2015', 'react']
               }
-          },          
+          },
           {
               test: /\.html$/,
               use: [{
@@ -51,8 +54,29 @@ module.exports = {
               use: ['url-loader'],
           },
           {
+              test: /\.(ico)$/,
+              use: [{
+                  loader: 'file-loader',
+                  options: {
+                    name: '[name].[ext]',
+                    outputPath: 'img/',
+                    // publicPath: 'img/'
+                  }
+              }],
+          },
+          {
               test: /\.css$/,
-              use: ['style-loader', 'css-loader'],
+              use: ['style-loader', 'css-loader']
+          },
+          {
+              test: /\.scss$/,
+              use: extractPlugin.extract( {
+                use: ['css-loader', 'sass-loader']
+              })
+          },
+          {
+            test: /\.json$/,
+            loader: 'json-loader'
           }
       ]
   },
