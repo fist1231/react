@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class User extends Component {
-  render() {
-    return (
-      <li className="User">
-        <strong>{this.props.user.name}</strong>
-      </li>
-    );
-  }
-}
+const User = ({ onClick, completed, text }) => (
+  <li className="User"
+    onClick={onClick}
+    style={{
+      textDecoration: disabled ? 'line-through' : 'none'
+    }}
+  >
+    <strong>{name}</strong>
+  </li>
+)
 
 User.propTypes = {
    user: PropTypes.object
