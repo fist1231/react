@@ -6,15 +6,31 @@ const users = (state = [], action) => {
         {
           id: action.id,
           name: action.name,
-          dissabled: false
+          disabled: false
         }
       ]
-    // case 'DISABLE_USER':
-    //   return state.map(user =>
-    //     (user.id === action.id)
-    //       ? {...user, disabled: true}
-    //       : user
-    //   )
+    case 'INIT_USERS':
+      return action.users
+    case 'DISABLE_USER':
+      return state
+      .map(usr => {
+        console.log("%%%%%%%%%%%%% " + JSON.stringify(usr));
+        return usr;
+      })
+      .map(usr =>
+        (usr.id === action.id)
+        ? {...usr, disabled: !usr.disabled}
+        : usr
+      )
+      // .map(usr => {
+      //   if(usr.id === action.id) {
+      //     usr.disabled = !usr.disabled;
+      //     console.log(JSON.stringify(usr));
+      //     return usr;
+      //   } else {
+      //     return usr;
+      //   }
+      // })
     default:
       return state
   }

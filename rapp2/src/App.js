@@ -7,6 +7,7 @@ import Img from 'react-image'
 // import Users from './components/Users'
 import Header from './components/Header'
 import UsersList from './containers/UsersList'
+import UsersTable from './containers/UsersTable'
 
 
 if (process.env.NODE_ENV !== 'production') {
@@ -33,6 +34,7 @@ const App = () => (
   <div>
     <Header />
     <UsersList />
+    <UsersTable />
   </div>
 )
 

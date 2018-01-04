@@ -3,15 +3,22 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+// const RestSpreadPlugin = require("transform-object-rest-spread");
 
 var extractPlugin = new ExtractTextPlugin({
   filename: 'styles.css'
 });
 
+// var webpack = require('webpack');
+
 module.exports = {
-  entry: {
-    app: './src/index.js'
-  },
+  entry: ['babel-polyfill', 'whatwg-fetch', './src/index.js'],
+  // entry: ['babel-polyfill', './src/index.js'],
+  // entry: ['whatwg-fetch', './src/index.js'],
+  // entry: {
+  //   // entry: ['babel-polyfill', './src/index.js']
+  //   app: './src/index.js'
+  // },
   plugins: [
 	    // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
 	    // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
@@ -26,7 +33,17 @@ module.exports = {
 	    }),
       extractPlugin,
       new ExtractTextPlugin("styles.css"),
-      new CleanWebpackPlugin(['dist'])
+      new CleanWebpackPlugin(['dist']),
+      // new webpack.ProvidePlugin({
+      //       'Promise': 'es6-promise', // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
+      //       fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+      // })
+      // new webpack.ProvidePlugin({
+      //     'Promise': 'es6-promise', // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
+      //     'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      // }),
+
+      // new RestSpreadPlugin()
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -40,7 +57,7 @@ module.exports = {
               exclude: /node_modules/,
               loader: 'babel-loader',
               query: {
-                  presets: ['es2015', 'react']
+                  presets: ['es2015', 'react', 'stage-2']
               }
           },
           {

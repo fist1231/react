@@ -4,11 +4,11 @@ export const disableUser = (id) => ({
 })
 
 export const setUsersFilter = (filter) => ({
-  type: 'SET_VISIBILITY_FILTER',
+  type: 'SET_USERS_FILTER',
   filter
 })
 
-export const updateUsers = (users) => ({
-  type: 'UPDATE_USERS',
+export const initUsers = (users) => ({
+  type: 'INIT_USERS',
   users
 })

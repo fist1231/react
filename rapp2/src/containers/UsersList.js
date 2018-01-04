@@ -1,31 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { disableUser } from '../actions'
+import { disableUser, initUsers } from '../actions'
 import Users from '../components/Users'
 
 import $ from 'jquery';
-
-const usrs = () => {
-  let userz = [];
-  console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-  $.ajax({
-    // url: 'http://192.168.1.208:30333/nress/users',
-    url: 'http://ubt-master.nress.io:30333/nress/users',
-    dataType:'json',
-    cache: false,
-    success: function(data){
-      // this.setState({users: data}, function() {
-        // console.log(this.state);
-        this.userz = data;
-      // });
-    }.bind(this),
-    error: function(xhr, status, err) {
-      console.log(err);
-    }
-  });
-  console.log(userz);
-  return {users: userz};
-}
 
 
 const getUsers = (users, filter) => {
@@ -46,9 +24,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  onUserClick: disableUser
+  onUserClick: disableUser,
+  // onButtonClick: initUsers
 }
-
 
 
 const aUsersList = connect(
@@ -58,28 +36,44 @@ const aUsersList = connect(
 
 class UsersList extends Component {
 
-  getUsers() {
-    $.ajax({
-      // url: 'http://192.168.1.208:30333/nress/users',
-      url: 'http://ubt-master.nress.io:30333/nress/users',
-      dataType:'json',
-      cache: false,
-      success: function(data){
-        this.setState({users: data}, function() {
-          console.log(this.state);
-        });
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.log(err);
-      }
-    });
-  }
+  // constructor() {
+  //   super();
+  //   this.state = { users: [] }
+  // }
 
-  componentWillMount(){
-    this.getUsers();
+  // getUsers() {
+  //   $.ajax({
+  //     url: 'http://192.168.1.208:30333/nress/users',
+  //     // url: 'http://ubt-master.nress.io:30333/nress/users',
+  //     dataType:'json',
+  //     cache: false,
+  //     success: function(data){
+  //       this.setState({users: data}, function() {
+  //         console.log(this.state);
+  //       });
+  //     }.bind(this),
+  //     error: function(xhr, status, err) {
+  //       console.log(err);
+  //     }
+  //   });
+  // }
+
+  // componentWillMount(){
+    // this.getUsers();
     // dispatch(setVisibilityFilter('SHOW_ALL'))
-  }
+  // }
 
+  componentDidMount() {
+    // fetch("http://192.168.1.208:30333/nress/users")
+    //   .then(res => res.json())
+    //   .then(uss => {
+    //     console.log('===================> ' + uss);
+    //     this.setState({ uss });
+    //     dispatch(initUsers(uss));
+    //
+    //   })
+
+  }
 
   render() {
     return (
@@ -93,4 +87,4 @@ class UsersList extends Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UsersList);
+)(Users);
