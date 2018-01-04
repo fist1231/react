@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux'
+// import { combineReducers } from 'redux'
 import {
   SELECT_USERS_FILTER, INVALIDATE_USERS_FILTER,
   REQUEST_USERS, RECEIVE_USERS
 } from '../actions/tableActions'
-import usersTable from './table'
+// import usersLst from './table'
 
 
 const selectedUsersFilter = (state = 'SHOW_ALL', action) => {

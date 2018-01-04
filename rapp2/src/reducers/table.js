@@ -3,10 +3,10 @@ import {
   REQUEST_USERS, RECEIVE_USERS
 } from '../actions/tableActions'
 
-const usersTable = (state = {
+const usersLst = (state = {
   isFetching: false,
   didInvalidate: false,
-  users: []
+  usersTable: []
 }, action) => {
   switch (action.type) {
     case INVALIDATE_USERS_FILTER:
@@ -25,7 +25,7 @@ const usersTable = (state = {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        users: action.users,
+        usersTable: action.usersTable,
         lastUpdated: action.receivedAt
       }
     default:
@@ -33,4 +33,4 @@ const usersTable = (state = {
   }
 }
 
-export default usersTable
+export default usersLst

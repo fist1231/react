@@ -19,16 +19,22 @@ export const invalidateUsersFilter = usersFilter => ({
 
 export const requestUsers = (usersFilter) => ({
   type: REQUEST_USERS,
-  usersFilter
+  usersFilter,
+  usersTable: [],
+  receivedAt: undefined
 })
 
 export const receiveUsers = (usersFilter, json) => ({
   type: RECEIVE_USERS,
   usersFilter,
   // usersTable: json.data.children.map(child => child.data),
-  users: Array.from(json),
+  usersTable: json, //[{id:1001, name:"zhoppa-1001"}],
   receivedAt: Date.now()
 })
+
+const buildArray = json => {
+  return [{id:101, name:"zhoppa"}, {id:102, name:"zhoppa-2"}, {id:103, name:"zhoppa-3"}]
+}
 
 const fetchUsers = usersFilter => dispatch => {
   dispatch(requestUsers(usersFilter))
@@ -39,11 +45,11 @@ const fetchUsers = usersFilter => dispatch => {
     //   // console.log(JSON.stringify(response.json()));
     //   return response;
     // })
-    .then(response => {return response.json()})
-    // .then(json => console.log(Array.from(json)))
+    .then(response => response.json())
+    // .then(json => console.log(JSON.parse(JSON.stringify(json))))
     .then(json => dispatch(receiveUsers(usersFilter, json)))
     .catch(err => {
-      console.error(err);
+      console.log('Fetching failed: ' + err);
     })
 }
 

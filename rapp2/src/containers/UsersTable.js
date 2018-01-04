@@ -3,17 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { selectUsersFilter, fetchUsersIfNeeded, invalidateUsersFilter } from '../actions/tableActions'
 import Picker from '../components/Picker'
-import Table from '../components/Table'
+import DisplayTable from '../components/Table'
 
 class UsersTable extends Component {
 
-  static propTypes = {
-    selectedUsersFilter: PropTypes.string.isRequired,
-    users: PropTypes.array.isRequired,
-    isFetching: PropTypes.bool.isRequired,
-    lastUpdated: PropTypes.number,
-    dispatch: PropTypes.func.isRequired
-  }
 
   componentDidMount() {
     const { dispatch, selectedUsersFilter } = this.props
@@ -40,8 +33,9 @@ handleRefreshClick = e => {
 }
 
   render() {
-    const { selectedUsersFilter, users, isFetching, lastUpdated } = this.props
-    const isEmpty = users.length === 0
+    const { selectedUsersFilter, usersTable, isFetching, lastUpdated } = this.props
+    const isEmpty = usersTable.length === 0
+    // const isEmpty = usersLst === undefined
 
     return (
       <div>
@@ -64,7 +58,11 @@ handleRefreshClick = e => {
         {isEmpty
           ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
           : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-              <UsersTable users={users} />
+                <DisplayTable usersLst={usersTable} />
+
+                <ol>
+                  {usersTable.map(usr => <li key={usr._id}>{usr.name} - {usr.id}</li>)}
+                </ol>
             </div>
         }
       </div>
@@ -77,18 +75,27 @@ const mapStateToProps = state => {
   const {
     isFetching,
     lastUpdated,
-    users: users
+    usersTable: usersTable
   } = usersByUsersFilter[selectedUsersFilter] || {
     isFetching: true,
-    users: []
+    usersTable: []
   }
 
   return {
     selectedUsersFilter,
-    users,
+    usersTable,
     isFetching,
     lastUpdated
   }
+}
+
+
+UsersTable.propTypes = {
+  selectedUsersFilter: PropTypes.string.isRequired,
+  usersTable: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  lastUpdated: PropTypes.number,
+  dispatch: PropTypes.func.isRequired
 }
 
 

@@ -4,10 +4,10 @@ import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
 
-const Table = ({ users, onUserClick }) => (
+const DisplayTable = ({ usersLst, onUserClick }) => (
   <div className="table">
     <ReactTable
-      data={users}
+      data={usersLst}
       columns={[
         {
           Header: "Pk",
@@ -34,8 +34,8 @@ const Table = ({ users, onUserClick }) => (
   </div>
 );
 
-Table.propTypes = {
+DisplayTable.propTypes = {
   users: PropTypes.array
 }
 
-export default Table;
+export default DisplayTable;
