@@ -59,7 +59,7 @@ handleRefreshClick = e => {
           ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
           : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
                 <DisplayTable usersLst={usersTable} />
-
+                Test
                 <ol>
                   {usersTable.map(usr => <li key={usr._id}>{usr.name} - {usr.id}</li>)}
                 </ol>
