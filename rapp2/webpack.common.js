@@ -12,13 +12,14 @@ var extractPlugin = new ExtractTextPlugin({
 // var webpack = require('webpack');
 
 module.exports = {
-  entry: ['babel-polyfill', 'whatwg-fetch', './src/index.js'],
+  // entry: ['babel-polyfill', 'whatwg-fetch', './src/index.js'],
+
   // entry: ['babel-polyfill', './src/index.js'],
   // entry: ['whatwg-fetch', './src/index.js'],
-  // entry: {
-  //   // entry: ['babel-polyfill', './src/index.js']
-  //   app: './src/index.js'
-  // },
+  entry: {
+    // entry: ['babel-polyfill', './src/index.js']
+    app: './src/index.js'
+  },
   plugins: [
 	    // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
 	    // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">

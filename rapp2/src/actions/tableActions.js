@@ -1,6 +1,13 @@
-import fetch from 'cross-fetch'
+// import fetch from 'cross-fetch'
 // import 'cross-fetch/polyfill';
 // import 'whatwg-fetch'
+
+// import { Observable } from 'rxjs/Observable'
+import 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+import { map } from 'rxjs/operator/map';
 
 export const REQUEST_USERS = 'REQUEST_USERS'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
@@ -33,9 +40,10 @@ export const receiveUsers = (usersFilter, json) => ({
 })
 
 const buildArray = json => {
-  return [{id:101, name:"zhoppa"}, {id:102, name:"zhoppa-2"}, {id:103, name:"zhoppa-3"}]
+  return [{id:1001, name:"u1001"}, {id:1002, name:"u1002"}, {id:1003, name:"u1003"}]
 }
 
+/*
 const fetchUsers = usersFilter => dispatch => {
   dispatch(requestUsers(usersFilter))
   // return fetch(`https://www.reddit.com/r/${subreddit}.json`)
@@ -52,6 +60,30 @@ const fetchUsers = usersFilter => dispatch => {
       console.log('Fetching failed: ' + err);
     })
 }
+*/
+
+const fetchUsers = usersFilter => dispatch => {
+  dispatch(requestUsers(usersFilter))
+  // return fetch(`https://www.reddit.com/r/${subreddit}.json`)
+  return Observable.ajax('http://192.168.1.208:30333/nress/users')
+    .map(response => {
+      console.log('RESPONSE = ' + response);
+      console.log('response = ' + JSON.stringify(response.response));
+      return response.response;
+      // map(response, 'users');
+    })
+    .map(users => {
+      console.log('users = ' + JSON.stringify(users));
+      return users;
+
+    })
+    .subscribe(users => {
+      console.log(JSON.stringify(users));
+      dispatch(receiveUsers(usersFilter, users));
+    })
+}
+
+
 
 const shouldFetchUsers = (state, usersFilter) => {
   const table = state.usersByUsersFilter[usersFilter]

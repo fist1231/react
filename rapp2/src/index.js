@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const store = createStore(
   reducer,
-  {users:[{id:101, name:"zhoppa"}, {id:102, name:"zhoppa-2"}, {id:103, name:"zhoppa-3"}], usersFilter: "SHOW_ALL"},
+  {users:[{id:101, name:"user-101"}, {id:102, name:"user-102"}, {id:103, name:"user-103"}], usersFilter: "SHOW_ALL"},
   applyMiddleware(...middleware)
 )
 
