@@ -7,6 +7,7 @@ var usrs = [];
 
 const fetchUsers = () => {
 fetch("http://192.168.1.208:30333/nress/users")
+// fetch("http://192.168.56.1:30333/nress/users")
   .then(res => res.json())
   .then(uss => {
     console.log('wtf ' + uss);

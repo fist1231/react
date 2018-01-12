@@ -15,6 +15,8 @@ import thunk from 'redux-thunk'
 
 import { createLogger } from 'redux-logger'
 
+import { BrowserRouter } from 'react-router-dom'
+
 const middleware = [ thunk ]
 if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger())
@@ -36,10 +38,12 @@ const store = createStore(
 )
 
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+ReactDOM.render((
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
+), document.getElementById('root')
 );
 registerServiceWorker();

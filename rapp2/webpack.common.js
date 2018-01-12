@@ -48,8 +48,12 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
     //publicPath: '/dist'
+    publicPath: '/'
+  },
+  devServer: {
+    historyApiFallback: true, // Fixes the 404/Cannot-GET errors on refresh/back/forward, but only for a single level of nested route
   },
   module: {
       loaders: [
