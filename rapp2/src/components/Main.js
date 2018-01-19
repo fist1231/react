@@ -15,17 +15,10 @@ const Main = () => (
     <Switch>
       <Route path='/users' component={UsersList}/>
       <Route path='/usersTable' component={UsersTable}/>
-      <Route path='/solicitations'><Solicitations solicitations={SOLICITATIONS} /></Route>
+{/*      <Route path='/solicitations'><Solicitations solicitations={SOLICITATIONS} /></Route> */}
+      <Route path='/solicitations'><Solicitations /></Route>
     </Switch>
   </main>
 )
 
 export default Main
-
-const SOLICITATIONS = [
-  {id: '1111', acronym: 'Acronym-1', title: 'Solicitation 1'},
-  {id: '2222', acronym: 'Acronym-2', title: 'Solicitation 2'},
-  {id: '3333', acronym: 'Acronym-3', title: 'Solicitation 3'},
-  {id: '4444', acronym: 'Acronym-4', title: 'Solicitation 4'},
-  {id: '5555', acronym: 'Acronym-5', title: 'Solicitation 5'}
-];
