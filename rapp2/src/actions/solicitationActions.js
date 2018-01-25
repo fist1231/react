@@ -36,8 +36,8 @@ export const receiveSolicitations = (solicitationsFilter, json) => ({
 const fetchSolicitations = solicitationsFilter => dispatch => {
   dispatch(requestSolicitations(solicitationsFilter))
   // return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-  // return Observable.ajax('http://192.168.1.208:30333/nress/solicitations')
-  return Observable.ajax('http://192.168.56.1:30333/nress/users')
+  return Observable.ajax('http://192.168.1.208:30334/nress/solicitations')
+  //return Observable.ajax('http://192.168.56.1:30334/nress/solicitations')
     .map(response => {
       console.log('RESPONSE = ' + response);
       console.log('response = ' + JSON.stringify(response.response));
