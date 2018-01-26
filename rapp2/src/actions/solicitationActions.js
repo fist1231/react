@@ -2,6 +2,7 @@ import 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operator/map';
+import config from '../../config/config.json'
 
 export const REQUEST_SOLICITATIONS = 'REQUEST_SOLICITATIONS'
 export const RECEIVE_SOLICITATIONS = 'RECEIVE_SOLICITATIONS'
@@ -36,8 +37,30 @@ export const receiveSolicitations = (solicitationsFilter, json) => ({
 const fetchSolicitations = solicitationsFilter => dispatch => {
   dispatch(requestSolicitations(solicitationsFilter))
   // return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-  return Observable.ajax('http://192.168.1.208:30334/nress/solicitations')
-  //return Observable.ajax('http://192.168.56.1:30334/nress/solicitations')
+  //return Observable.ajax('http://192.168.1.208:30334/nress/solicitations')
+
+//  fetch('http://192.168.56.1:30334/graphql', {
+  fetch(`${config.server_address}graphql`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: '{ solicitations { id, acronym, title } }' }),
+  })
+  // .then(res => res.json())
+  // .then(res => console.log(res.data));
+    .then(res => {
+      const jsn = res.json();
+
+      // console.log('res.json() = ' + jsn);
+      return jsn;
+    })
+    .then(res => {
+      // console.log('res JSON = ' + JSON.stringify(res));
+      // console.log('res.data = ' + JSON.stringify(res.data.solicitations));
+      dispatch(receiveSolicitations(solicitationsFilter, res.data.solicitations));
+    });
+
+/*
+  return Observable.ajax('http://192.168.56.1:30334/nress/solicitations')
     .map(response => {
       console.log('RESPONSE = ' + response);
       console.log('response = ' + JSON.stringify(response.response));
@@ -52,6 +75,7 @@ const fetchSolicitations = solicitationsFilter => dispatch => {
       console.log(JSON.stringify(solicitations));
       dispatch(receiveSolicitations(solicitationsFilter, solicitations));
     })
+*/
 }
 
 const shouldFetchSolicitations = (state, solicitationsFilter) => {
