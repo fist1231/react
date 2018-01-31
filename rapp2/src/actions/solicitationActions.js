@@ -10,7 +10,7 @@ export const RECEIVE_SOLICITATIONS = 'RECEIVE_SOLICITATIONS'
 export const SELECT_SOLICITATIONS_FILTER = 'SELECT_SOLICITATIONS_FILTER'
 export const INVALIDATE_SOLICITATIONS_FILTER = 'INVALIDATE_SOLICITATIONS_FILTER'
 
-export const selectSolicitationsFilter = usolicitationsFilter => ({
+export const selectSolicitationsFilter = solicitationsFilter => ({
   type: SELECT_SOLICITATIONS_FILTER,
   solicitationsFilter
 })
@@ -80,6 +80,8 @@ const fetchSolicitations = solicitationsFilter => dispatch => {
 
 const shouldFetchSolicitations = (state, solicitationsFilter) => {
   const table = state.solicitationsByFilter[solicitationsFilter]
+  return true
+  console.log('%%%%%%%%%%%%%%% table=' + JSON.stringify(table))
   if (!table) {
     return true
   }

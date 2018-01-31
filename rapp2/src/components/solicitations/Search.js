@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
-const Search = () => (
+const Search = ({ searchFilter, onChange }) => (
   <div>
     <h2>Search</h2>
     <form>
-        <input type="text" placeholder="Search..." />
+        <input type="text"
+               placeholder="Search..."
+               onChange={e => onChange({searchText: e.target.value, isOpenOnly:searchFilter?searchFilter.isOpenOnly:false})}
+        />
         <p>
-          <input type="checkbox" />
+          <input type="checkbox" 
+                 onChange={e => onChange({searchText: (searchFilter?searchFilter.searchText:''), isOpenOnly:e.target.checked})}
+          />
           {' '}
           Only show open solicitations
         </p>
@@ -14,5 +20,10 @@ const Search = () => (
 
   </div>
 )
+
+Search.propTypes = {
+  searchFilter: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired
+}
 
 export default Search;

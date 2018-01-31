@@ -14,11 +14,11 @@ class UsersTable extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-  if (nextProps.selectedUsersFilter !== this.props.selectedUsersFilter) {
-    const { dispatch, selectedUsersFilter } = nextProps
-    dispatch(fetchUsersIfNeeded(selectedUsersFilter))
+    if (nextProps.selectedUsersFilter !== this.props.selectedUsersFilter) {
+      const { dispatch, selectedUsersFilter } = nextProps
+      dispatch(fetchUsersIfNeeded(selectedUsersFilter))
+    }
   }
-}
 
 handleChange = nextUsersFilter => {
   this.props.dispatch(selectUsersFilter(nextUsersFilter))

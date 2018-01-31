@@ -8,10 +8,24 @@ import { selectSolicitationsFilter, fetchSolicitationsIfNeeded, invalidateSolici
 class Solicitations extends React.Component {
 
   componentDidMount() {
+    //const selectedSolicitationsFilter = {searchText: , isOpenOnly: false}
+    // const {searchText, isOpenOnly} = selectedSolicitationsFilter
     const { dispatch, selectedSolicitationsFilter } = this.props
     dispatch(fetchSolicitationsIfNeeded(selectedSolicitationsFilter))
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedSolicitationsFilter !== this.props.selectedSolicitationsFilter) {
+      const { dispatch, selectedSolicitationsFilter } = nextProps
+      dispatch(fetchSolicitationsIfNeeded(selectedSolicitationsFilter))
+    }
+  }
+
+
+
+  handleChange = nextSolicitationsFilter => {
+    this.props.dispatch(selectSolicitationsFilter(nextSolicitationsFilter))
+  }
 
   render() {
 
@@ -21,7 +35,7 @@ class Solicitations extends React.Component {
     return (
       <div>
         <h1>Solicitations</h1>
-        <Search />
+        <Search value={selectedSolicitationsFilter} onChange={this.handleChange}  />
         <Table solicitations={solicitationsTable} />
       </div>
     );

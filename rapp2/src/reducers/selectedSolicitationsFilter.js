@@ -4,10 +4,12 @@ import {
 } from '../actions/solicitationActions'
 
 
-const selectedSolicitationsFilter = (state = 'SHOW_ALL', action) => {
+const selectedSolicitationsFilter = (state = {searchText: '', isChecked: false}, action) => {
   switch (action.type) {
-    case SELECT_SOLICITATIONS_FILTER:
+    case SELECT_SOLICITATIONS_FILTER: {
+      console.log('============== returning: ' + JSON.stringify(action.solicitationsFilter))
       return action.solicitationsFilter
+    }
     default:
       return state
   }

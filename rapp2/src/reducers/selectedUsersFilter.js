@@ -8,8 +8,10 @@ import {
 
 const selectedUsersFilter = (state = 'SHOW_ALL', action) => {
   switch (action.type) {
-    case SELECT_USERS_FILTER:
+    case SELECT_USERS_FILTER: {
+      console.log('============== returning: ' + action.usersFilter)
       return action.usersFilter
+    }
     default:
       return state
   }
