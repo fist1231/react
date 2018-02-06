@@ -7,11 +7,17 @@ import config from '../../config/config.json'
 export const REQUEST_SOLICITATIONS = 'REQUEST_SOLICITATIONS'
 export const RECEIVE_SOLICITATIONS = 'RECEIVE_SOLICITATIONS'
 
-export const SELECT_SOLICITATIONS_FILTER = 'SELECT_SOLICITATIONS_FILTER'
+export const SEARCH_SOLICITATIONS_FILTER = 'SEARCH_SOLICITATIONS_FILTER'
+export const CB_SOLICITATIONS_FILTER = 'CB_SOLICITATIONS_FILTER'
 export const INVALIDATE_SOLICITATIONS_FILTER = 'INVALIDATE_SOLICITATIONS_FILTER'
 
-export const selectSolicitationsFilter = solicitationsFilter => ({
-  type: SELECT_SOLICITATIONS_FILTER,
+export const searchSolicitationsFilter = solicitationsFilter => ({
+  type: SEARCH_SOLICITATIONS_FILTER,
+  solicitationsFilter
+})
+
+export const cbSolicitationsFilter = solicitationsFilter => ({
+  type: CB_SOLICITATIONS_FILTER,
   solicitationsFilter
 })
 
@@ -23,6 +29,7 @@ export const invalidateSolicitationsFilter = solicitationsFilter => ({
 
 export const requestSolicitations = (solicitationsFilter) => ({
   type: REQUEST_SOLICITATIONS,
+  solicitationsFilter,
   solicitationsTable: [],
   receivedAt: undefined
 })

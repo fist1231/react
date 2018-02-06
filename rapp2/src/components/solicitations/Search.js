@@ -7,10 +7,10 @@ const Search = ({ searchFilter, onChange }) => (
     <form>
         <input type="text"
                placeholder="Search..."
-               onChange={e => onChange({searchText: e.target.value, isOpenOnly:searchFilter?searchFilter.isOpenOnly:false})}
+               onChange={e => onChange({searchText: e.target.value, isOpenOnly:searchFilter?cbFilter.isOpenOnly:false})}
         />
         <p>
-          <input type="checkbox" 
+          <input type="checkbox"
                  onChange={e => onChange({searchText: (searchFilter?searchFilter.searchText:''), isOpenOnly:e.target.checked})}
           />
           {' '}

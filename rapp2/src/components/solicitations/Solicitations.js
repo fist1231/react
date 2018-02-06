@@ -3,39 +3,39 @@ import PropTypes from 'prop-types';
 import Search from './Search'
 import Table from './Table'
 import { connect } from 'react-redux'
-import { selectSolicitationsFilter, fetchSolicitationsIfNeeded, invalidateSolicitationsFilter } from '../../actions/solicitationActions'
+import { searchSolicitationsFilter, fetchSolicitationsIfNeeded, invalidateSolicitationsFilter } from '../../actions/solicitationActions'
 
 class Solicitations extends React.Component {
 
   componentDidMount() {
     //const selectedSolicitationsFilter = {searchText: , isOpenOnly: false}
     // const {searchText, isOpenOnly} = selectedSolicitationsFilter
-    const { dispatch, selectedSolicitationsFilter } = this.props
-    dispatch(fetchSolicitationsIfNeeded(selectedSolicitationsFilter))
+    const { dispatch, foundSolicitationsFilter } = this.props
+    dispatch(fetchSolicitationsIfNeeded(foundSolicitationsFilter, cbedSolicitationsFilter))
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedSolicitationsFilter !== this.props.selectedSolicitationsFilter) {
-      const { dispatch, selectedSolicitationsFilter } = nextProps
-      dispatch(fetchSolicitationsIfNeeded(selectedSolicitationsFilter))
+    if (nextProps.foundSolicitationsFilter !== this.props.foundSolicitationsFilter) {
+      const { dispatch, foundSolicitationsFilter } = nextProps
+      dispatch(fetchSolicitationsIfNeeded(foundSolicitationsFilter, cbedSolicitationsFilter))
     }
   }
 
 
 
-  handleChange = nextSolicitationsFilter => {
-    this.props.dispatch(selectSolicitationsFilter(nextSolicitationsFilter))
+  handleChange = (nextSolicitationsFilter) => {
+    this.props.dispatch(fetchSolicitationsIfNeeded(nextSolicitationsFilter))
   }
 
   render() {
 
-    const { selectedSolicitationsFilter, solicitationsTable, isFetching, lastUpdated } = this.props
+    const { foundSolicitationsFilter, solicitationsTable, isFetching, lastUpdated } = this.props
 
 
     return (
       <div>
         <h1>Solicitations</h1>
-        <Search value={selectedSolicitationsFilter} onChange={this.handleChange}  />
+        <Search value={foundSolicitationsFilter} onChange={this.handleChange}  />
         <Table solicitations={solicitationsTable} />
       </div>
     );
@@ -43,18 +43,18 @@ class Solicitations extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { selectedSolicitationsFilter, solicitationsByFilter } = state
+  const { foundSolicitationsFilter, solicitationsByFilter } = state
   const {
     isFetching,
     lastUpdated,
     solicitationsTable: solicitationsTable
-  } = solicitationsByFilter[selectedSolicitationsFilter] || {
+  } = solicitationsByFilter[foundSolicitationsFilter] || {
     isFetching: true,
     solicitationsTable: []
   }
 
   return {
-    selectedSolicitationsFilter,
+    foundSolicitationsFilter,
     solicitationsTable,
     isFetching,
     lastUpdated
