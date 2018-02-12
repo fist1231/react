@@ -44,6 +44,7 @@ const solicitationsByFilter = (state = { }, action) => {
       return {
         ...state,
         [action.solicitationsFilter]: solicitationsTable(state[action.solicitationsFilter], action)
+        // [action.solicitationsFilter.searchText+'-'+action.solicitationsFilter.isOpenOnly]: solicitationsTable(state[action.solicitationsFilter], action)
       }
     default:
       return state
@@ -58,7 +59,7 @@ expect(
 
 expect(
   solicitationsByFilter( { }, requestSolicitations({searchText:'a', isOpenOnly:false}) )
-).toEqual( {"isFetching": true, "didInvalidate": false, "solicitationsTable": []} );
+).toEqual( {[requestSolicitations({searchText:'a', isOpenOnly:false})]: {"isFetching": true, "didInvalidate": false, "solicitationsTable": []}} );
 
 
 expect(

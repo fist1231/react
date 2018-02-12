@@ -11,13 +11,13 @@ class Solicitations extends React.Component {
     //const selectedSolicitationsFilter = {searchText: , isOpenOnly: false}
     // const {searchText, isOpenOnly} = selectedSolicitationsFilter
     const { dispatch, foundSolicitationsFilter } = this.props
-    dispatch(fetchSolicitationsIfNeeded(foundSolicitationsFilter, cbedSolicitationsFilter))
+    dispatch(fetchSolicitationsIfNeeded(foundSolicitationsFilter))
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.foundSolicitationsFilter !== this.props.foundSolicitationsFilter) {
       const { dispatch, foundSolicitationsFilter } = nextProps
-      dispatch(fetchSolicitationsIfNeeded(foundSolicitationsFilter, cbedSolicitationsFilter))
+      dispatch(fetchSolicitationsIfNeeded(foundSolicitationsFilter))
     }
   }
 
