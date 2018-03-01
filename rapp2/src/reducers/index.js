@@ -3,7 +3,7 @@ import users from './users'
 import usersFilter from './usersFilter'
 import selectedUsersFilter from './selectedUsersFilter'
 import usersByUsersFilter from './usersByUsersFilter'
-//import foundSolicitationsFilter from './foundSolicitationsFilter'
+import foundSolicitationsFilter from './foundSolicitationsFilter'
 //import cbSolicitationsFilter from './cbSolicitationsFilter'
 import solicitationsByFilter from './solicitationsByFilter'
 // import usersLst from './table'
@@ -13,7 +13,7 @@ const usersApp = combineReducers({
   usersFilter,
   selectedUsersFilter,
   usersByUsersFilter,
-//  foundSolicitationsFilter,
+  foundSolicitationsFilter,
 //  cbSolicitationsFilter,
   solicitationsByFilter,
   // usersLst

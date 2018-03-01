@@ -5,7 +5,7 @@ class Table extends React.Component {
 
     const rows = [];
     let lastSearch = null;
-
+console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.length);
     this.props.solicitations.forEach((solicitation) => {
       if (solicitation.acronym !== lastSearch) {
         rows.push(

@@ -59,7 +59,7 @@ expect(
 
 expect(
   solicitationsByFilter( { }, requestSolicitations({searchText:'a', isOpenOnly:false}) )
-).toEqual( {[requestSolicitations({searchText:'a', isOpenOnly:false})]: {"isFetching": true, "didInvalidate": false, "solicitationsTable": []}} );
+).toEqual( {[requestSolicitations({searchText:'a', isOpenOnly:false})]:{"isFetching": true, "didInvalidate": false, "solicitationsTable": []}} );
 
 
 expect(
