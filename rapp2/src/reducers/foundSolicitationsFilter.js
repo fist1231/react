@@ -3,7 +3,7 @@ import {
 } from '../actions/solicitationActions'
 
 
-const foundSolicitationsFilter = (state = {}, action) => {
+const foundSolicitationsFilter = (state = {searchText:'', isOpenOnly:false}, action) => {
   switch (action.type) {
     case SEARCH_SOLICITATIONS_FILTER: {
       console.log('============== returning: ' + JSON.stringify(action.solicitationsFilter))
