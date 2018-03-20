@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import UsersList from '../containers/UsersList'
 import UsersTable from '../containers/UsersTable'
 import Solicitations from '../components/solicitations/Solicitations'
+import ReviewProposals from '../components/reviewProposals/ReviewProposals'
 
 
 // The Main component renders one of the three provided
@@ -17,6 +18,7 @@ const Main = () => (
       <Route path='/usersTable' component={UsersTable}/>
 {/*      <Route path='/solicitations'><Solicitations solicitations={SOLICITATIONS} /></Route> */}
       <Route path='/solicitations'><Solicitations /></Route>
+      <Route path='/reviewProposals'><ReviewProposals /></Route>
     </Switch>
   </main>
 )

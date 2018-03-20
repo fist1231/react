@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import $ from 'jquery';
+//import $ from 'jquery';
 import Img from 'react-image'
 import Nav from './components/Nav'
 import Main from './components/Main'
@@ -33,11 +33,9 @@ function deleteUser(state, action) {
 
 const App = () => (
   <div>
+    <Header />
     <Nav />
     <Main />
-    <Header />
-    <UsersList />
-    <UsersTable />
   </div>
 )
 

@@ -66,4 +66,4 @@ expect(
   solicitationsByFilter( { }, requestSolicitations(['a', false]) )
 ).toEqual( {"a,false":{"isFetching": true, "didInvalidate": false, "solicitationsTable": []}} );
 
-console.log('Tests passed');
+console.log('Solicitations tests passed');

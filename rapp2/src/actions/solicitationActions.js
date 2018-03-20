@@ -152,7 +152,7 @@ const getObservableResult = solicitationsFilter => dispatch => {
 
 const shouldFetchSolicitations = (state, solicitationsFilter) => {
   const table = state.solicitationsByFilter[solicitationsFilter]
-  console.log('%%%%%%%%%%%%%%% table=' + JSON.stringify(table))
+  //console.log('%%%%%%%%%%%%%%% table=' + JSON.stringify(table))
   return true
   if (!table) {
     return true

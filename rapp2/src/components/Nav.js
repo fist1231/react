@@ -8,7 +8,9 @@ const Nav = () => (
         <li><Link to='/users'>Users</Link></li>
         <li><Link to='/usersTable'>Users table</Link></li>
         <li><Link to='/solicitations'>Solicitations</Link></li>
+        <li><Link to='/reviewProposals'>Review Proposals</Link></li>
       </ul>
+      <hr />
     </nav>
   </header>
 )

@@ -49,26 +49,26 @@ class Table extends React.Component {
 
     const rows = [];
     let lastSearch = null;
-console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.length);
-    this.props.solicitations.forEach((solicitation) => {
-      if (solicitation.acronym !== lastSearch) {
+console.log('%%%%%%%%%%%%%%% reviewProposalsActions.length = ' + this.props.reviewProposals.length);
+    this.props.reviewProposals.forEach((reviewProposal) => {
+      if (reviewProposal.ASSIGNED_RESPONSE_ID !== lastSearch) {
         rows.push(
-          <tr key={solicitation.id}>
-            <td>{solicitation.id}</td>
-            <td>{solicitation.acronym}</td>
-            <td>{solicitation.title}</td>
+          <tr key={reviewProposal.ASSIGNED_RESPONSE_ID}>
+            <td>{reviewProposal.ASSIGNED_RESPONSE_ID}</td>
+            <td>{reviewProposal.UPLOADED_BY}</td>
+            <td>{reviewProposal.UPLOADED_DATE}</td>
           </tr>
         );
       } else {
         rows.push(
-          <tr key={solicitation.id}>
-            <td>{solicitation.id}</td>
-            <td>{solicitation.acronym}</td>
-            <td>{solicitation.title}</td>
+          <tr key={reviewProposal.ASSIGNED_RESPONSE_ID}>
+            <td>{reviewProposal.ASSIGNED_RESPONSE_ID}</td>
+            <td>{reviewProposal.UPLOADED_BY}</td>
+            <td>{reviewProposal.UPLOADED_DATE}</td>
           </tr>
         );
       }
-      lastSearch = solicitation.acronym;
+      lastSearch = reviewProposal.ASSIGNED_RESPONSE_ID;
     });
 
     {/*
@@ -88,7 +88,7 @@ console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.
         </table>
         <hr/>
         <button onClick={this.handleAddSolicitationClick}>
-          Add Solicitation
+          Add Review Proposal
         </button>
         <Modal
           isOpen={this.state.modalIsOpen}
@@ -98,7 +98,7 @@ console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.
           contentLabel="Add Solicitation"
         >
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Add Solicitation</h2>
+          <h2 ref={subtitle => this.subtitle = subtitle}>Add Proposal</h2>
           <div>Enter Solicitation Info</div>
           <form onSubmit={this.handleSubmit}>
             <div class="form-group">

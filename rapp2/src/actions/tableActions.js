@@ -31,7 +31,7 @@ export const requestUsers = (usersFilter) => ({
   receivedAt: undefined
 })
 
-export const receiveUsers = (usersFilter, json) => ({
+export const receiveUsers = (usersFilter="SHOW_ALL", json) => ({
   type: RECEIVE_USERS,
   usersFilter,
   // usersTable: json.data.children.map(child => child.data),
@@ -62,24 +62,24 @@ const fetchUsers = usersFilter => dispatch => {
 }
 */
 
-const fetchUsers = usersFilter => dispatch => {
+const fetchUsers = (usersFilter="SHOW_ALL") => dispatch => {
   dispatch(requestUsers(usersFilter))
   // return fetch(`https://www.reddit.com/r/${subreddit}.json`)
   //return Observable.ajax('http://192.168.1.208:30333/nress/users')
-   return Observable.ajax('http://192.168.56.1:30333/nress/users')
+   return Observable.ajax('http://192.168.56.1:30334/nress/solicitations')
     .map(response => {
-      console.log('RESPONSE = ' + response);
-      console.log('response = ' + JSON.stringify(response.response));
+//      console.log('RESPONSE = ' + response);
+//      console.log('response = ' + JSON.stringify(response.response));
       return response.response;
       // map(response, 'users');
     })
     .map(users => {
-      console.log('users = ' + JSON.stringify(users));
+//      console.log('users = ' + JSON.stringify(users));
       return users;
 
     })
     .subscribe(users => {
-      console.log(JSON.stringify(users));
+//      console.log(JSON.stringify(users));
       dispatch(receiveUsers(usersFilter, users));
     })
 }
@@ -88,6 +88,8 @@ const fetchUsers = usersFilter => dispatch => {
 
 const shouldFetchUsers = (state, usersFilter) => {
   const table = state.usersByUsersFilter[usersFilter]
+  //console.log('%%%%%%%%%%%%%%% table=' + JSON.stringify(table))
+  return true
   if (!table) {
     return true
   }
