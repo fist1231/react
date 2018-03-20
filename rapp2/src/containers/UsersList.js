@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { disableUser, initUsers } from '../actions'
 import Users from '../components/Users'
 
-import $ from 'jquery';
+//import $ from 'jquery';
 
 
 const getUsers = (users, filter) => {

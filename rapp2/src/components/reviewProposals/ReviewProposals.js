@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import Search from './Search'
 import Table from './Table'
+import DTable from './DTable'
 import { connect } from 'react-redux'
 import { searchReviewProposalsFilter, fetchReviewProposalsIfNeeded, invalidateReviewProposalsFilter } from '../../actions/reviewProposalsActions'
 
@@ -27,6 +28,7 @@ class ReviewProposals extends React.Component {
     this.props.dispatch(fetchReviewProposalsIfNeeded(nextReviewProposalsFilter))
   }
 
+
   render() {
 
     const { foundReviewProposalsFilter, reviewProposalsTable, isFetching, lastUpdated } = this.props
@@ -34,9 +36,8 @@ class ReviewProposals extends React.Component {
 
     return (
       <div>
-        <h1>Review Proposals</h1>
-        <Search value={foundReviewProposalsFilter} onChange={this.handleChange}  />
-        <Table reviewProposals={reviewProposalsTable} />
+        <Search value={foundReviewProposalsFilter} onChange={this.handleChange} />
+        <DTable reviewProposals={reviewProposalsTable} value={foundReviewProposalsFilter} onChange={this.handleChange} />
       </div>
     );
   }
@@ -76,7 +77,7 @@ const ReviewProposals = () => (
     <Table reviewProposals={this.props.reviewProposals} />
   </div>
 )
-
+ropo
 export default ReviewProposals;
 */}
 

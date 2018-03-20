@@ -12,6 +12,7 @@ import ReviewProposals from '../components/reviewProposals/ReviewProposals'
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
 const Main = () => (
+  <div>
   <main>
     <Switch>
       <Route path='/users' component={UsersList}/>
@@ -21,6 +22,7 @@ const Main = () => (
       <Route path='/reviewProposals'><ReviewProposals /></Route>
     </Switch>
   </main>
+  </div>
 )
 
 export default Main

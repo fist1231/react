@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const Search = ({ searchFilter, onChange }) => (
   <div>
+{/*
     <h2>Search</h2>
     <form>
         <input type="text"
@@ -14,10 +15,10 @@ const Search = ({ searchFilter, onChange }) => (
                  onChange={e => onChange({searchText: (searchFilter?searchFilter.searchText:''), isOpenOnly:e.target.checked})}
           />
           {' '}
-          Only show open review proposals
+          Only show open review
         </p>
       </form>
-
+*/}
   </div>
 )
 

@@ -13,30 +13,30 @@ export const INVALIDATE_REVIEW_PROPOSALS_FILTER = 'INVALIDATE_REVIEW_PROPOSALS_F
 
 export const searchReviewProposalsFilter = reviewProposalsFilter => ({
   type: SEARCH_REVIEW_PROPOSALS_FILTER,
-  reviewProposalsFilter
+  reviewProposalsFilter: {searchText:'a', isOpenOnly:false}
 })
 
 export const cbReviewProposalsFilter = reviewProposalsFilter => ({
   type: CB_REVIEW_PROPOSALS_FILTER,
-  reviewProposalsFilter
+  reviewProposalsFilter: {searchText:'a', isOpenOnly:false}
 })
 
 export const invalidateReviewProposalsFilter = reviewProposalsFilter => ({
   type: INVALIDATE_REVIEW_PROPOSALS_FILTER,
-  reviewProposalsFilter
+  reviewProposalsFilter: {searchText:'a', isOpenOnly:false}
 })
 
 
 export const requestReviewProposals = (reviewProposalsFilter) => ({
   type: REQUEST_REVIEW_PROPOSALS,
-  reviewProposalsFilter,
+  reviewProposalsFilter: {searchText:'a', isOpenOnly:false},
   reviewProposalsTable: [],
   receivedAt: undefined
 })
 
 export const receiveReviewProposals = (reviewProposalsFilter="{searchText:'a', isOpenOnly:false}", json) => ({
   type: RECEIVE_REVIEW_PROPOSALS,
-  reviewProposalsFilter,
+  reviewProposalsFilter: {searchText:'a', isOpenOnly:false},
   reviewProposalsTable: json, //[{id:1001, name:"zhoppa-1001"}],
   receivedAt: Date.now()
 })
@@ -117,15 +117,15 @@ const getGraphQLResult = reviewProposalsFilter => dispatch => {
       return jsn;
     })
     .then(res => {
-      console.log('res JSON = ' + JSON.stringify(res));
-      console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
+      //console.log('res JSON = ' + JSON.stringify(res));
+      //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
 //      return res.data.reviewProposals;
       return res.data.reviewProposalsById;
     })
     .then(res => {
       // console.log('res JSON = ' + JSON.stringify(res));
       //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
-      console.log('*********************** = ' + res );
+      //console.log('*********************** = ' + res );
       dispatch(receiveReviewProposals(reviewProposalsFilter, res));
       return res;
     });
@@ -135,16 +135,16 @@ const getGraphQLResult = reviewProposalsFilter => dispatch => {
 const getObservableResult = reviewProposalsFilter => dispatch => {
   return Observable.ajax('http://192.168.56.1:3335/nress/reviewProposals')
     .map(response => {
-      console.log('RESPONSE = ' + response);
-      console.log('response = ' + JSON.stringify(response.response));
+      //console.log('RESPONSE = ' + response);
+      //console.log('response = ' + JSON.stringify(response.response));
       return response.response;
     })
     .map(reviewProposals => {
-      console.log('reviewProposals = ' + JSON.stringify(reviewProposals));
+      //console.log('reviewProposals = ' + JSON.stringify(reviewProposals));
       return reviewProposals;
     })
     .subscribe(reviewProposals => {
-      console.log(JSON.stringify(reviewProposals));
+      //console.log(JSON.stringify(reviewProposals));
       dispatch(receiveReviewProposals(reviewProposalsFilter, reviewProposals));
     })
 }
