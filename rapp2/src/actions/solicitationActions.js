@@ -16,11 +16,6 @@ export const searchSolicitationsFilter = solicitationsFilter => ({
   solicitationsFilter
 })
 
-export const cbSolicitationsFilter = solicitationsFilter => ({
-  type: CB_SOLICITATIONS_FILTER,
-  solicitationsFilter
-})
-
 export const invalidateSolicitationsFilter = solicitationsFilter => ({
   type: INVALIDATE_SOLICITATIONS_FILTER,
   solicitationsFilter

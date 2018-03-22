@@ -7,8 +7,10 @@ import foundSolicitationsFilter from './foundSolicitationsFilter'
 //import cbSolicitationsFilter from './cbSolicitationsFilter'
 import solicitationsByFilter from './solicitationsByFilter'
 // import usersLst from './table'
-import foundReviewProposalsFilter from './reviewProposals/foundReviewProposalsFilter'
-import reviewProposalsByFilter from './reviewProposals/reviewProposalsByFilter'
+//import foundReviewProposalsFilter from './reviewProposals/foundReviewProposalsFilter'
+//import reviewProposalsByFilter from './reviewProposals/reviewProposalsByFilter'
+import searchFilter from './reviewProposals/searchFilter'
+import reviewProposals from './reviewProposals/reviewProposals'
 
 const usersApp = combineReducers({
   users,
@@ -18,8 +20,10 @@ const usersApp = combineReducers({
   foundSolicitationsFilter,
 //  cbSolicitationsFilter,
   solicitationsByFilter,
-  foundReviewProposalsFilter,
-  reviewProposalsByFilter
+  //foundReviewProposalsFilter,
+  //reviewProposalsByFilter
+  searchFilter,
+  reviewProposals
 })
 
 export default usersApp

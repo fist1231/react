@@ -29,10 +29,6 @@ const mapDispatchToProps = {
 }
 
 
-const aUsersList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Users)
 
 class UsersList extends Component {
 

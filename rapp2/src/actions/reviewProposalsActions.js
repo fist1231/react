@@ -13,35 +13,30 @@ export const INVALIDATE_REVIEW_PROPOSALS_FILTER = 'INVALIDATE_REVIEW_PROPOSALS_F
 
 export const searchReviewProposalsFilter = reviewProposalsFilter => ({
   type: SEARCH_REVIEW_PROPOSALS_FILTER,
-  reviewProposalsFilter: {searchText:'a', isOpenOnly:false}
-})
-
-export const cbReviewProposalsFilter = reviewProposalsFilter => ({
-  type: CB_REVIEW_PROPOSALS_FILTER,
-  reviewProposalsFilter: {searchText:'a', isOpenOnly:false}
+  reviewProposalsFilter
 })
 
 export const invalidateReviewProposalsFilter = reviewProposalsFilter => ({
   type: INVALIDATE_REVIEW_PROPOSALS_FILTER,
-  reviewProposalsFilter: {searchText:'a', isOpenOnly:false}
+  reviewProposalsFilter
 })
 
 
-export const requestReviewProposals = (reviewProposalsFilter) => ({
+export const requestReviewProposals = reviewProposalsFilter => ({
   type: REQUEST_REVIEW_PROPOSALS,
-  reviewProposalsFilter: {searchText:'a', isOpenOnly:false},
+  reviewProposalsFilter,
   reviewProposalsTable: [],
   receivedAt: undefined
 })
 
-export const receiveReviewProposals = (reviewProposalsFilter="{searchText:'a', isOpenOnly:false}", json) => ({
+export const receiveReviewProposals = (reviewProposalsFilter, json) => ({
   type: RECEIVE_REVIEW_PROPOSALS,
-  reviewProposalsFilter: {searchText:'a', isOpenOnly:false},
+  reviewProposalsFilter,
   reviewProposalsTable: json, //[{id:1001, name:"zhoppa-1001"}],
   receivedAt: Date.now()
 })
 
-const fetchReviewProposals = (reviewProposalsFilter={searchText:'a', isOpenOnly:false}) => dispatch => {
+const fetchReviewProposals = reviewProposalsFilter => dispatch => {
   dispatch(requestReviewProposals(reviewProposalsFilter))
   // return fetch(`https://www.reddit.com/r/${subreddit}.json`)
   //return Observable.ajax('http://192.168.1.208:30334/nress/solicitations')
@@ -106,7 +101,7 @@ const getGraphQLResult = reviewProposalsFilter => dispatch => {
   fetch(`${config.review_proposals_address}graphql`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: `{ reviewProposalsById (filter: "${reviewProposalsFilter.searchText}") { ASSIGNED_RESPONSE_ID, UPLOADED_BY, UPLOADED_DATE } }` }),
+    body: JSON.stringify({ query: `{ reviewProposalsById (filter: "${reviewProposalsFilter.searchText}") { ASSIGNED_RESPONSE_ID, FIRST_NAME, LAST_NAME, RESPONSE_NUMBER, RESPONSE_SEQ_NUMBER, PSTATE } }` }),
     //body: JSON.stringify({ query: '{ solicitations { id, acronym, title } }' }),
   })
   // .then(res => res.json())
@@ -151,7 +146,7 @@ const getObservableResult = reviewProposalsFilter => dispatch => {
 
 
 const shouldFetchReviewProposals = (state, reviewProposalsFilter) => {
-  const table = state.reviewProposalsByFilter[reviewProposalsFilter]
+  const table = state.searchFilter[reviewProposalsFilter]
   //console.log('%%%%%%%%%%%%%%% table=' + JSON.stringify(table))
   return true
   if (!table) {

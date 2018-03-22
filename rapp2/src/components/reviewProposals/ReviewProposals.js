@@ -31,7 +31,7 @@ class ReviewProposals extends React.Component {
 
   render() {
 
-    const { foundReviewProposalsFilter, reviewProposalsTable, isFetching, lastUpdated } = this.props
+    {/*const { foundReviewProposalsFilter, reviewProposalsTable, isFetching, lastUpdated } = this.props&*/}
 
 
     return (

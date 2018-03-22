@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import UsersList from '../containers/UsersList'
 import UsersTable from '../containers/UsersTable'
 import Solicitations from '../components/solicitations/Solicitations'
-import ReviewProposals from '../components/reviewProposals/ReviewProposals'
+import ReviewProposals from '../containers/reviewProposals/ReviewProposalsView'
 
 
 // The Main component renders one of the three provided

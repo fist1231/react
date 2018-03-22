@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 
-const Search = ({ searchFilter, onChange }) => (
+const Search = ({ searchFilter }) => (
   <div>
 {/*
     <h2>Search</h2>
@@ -24,7 +24,7 @@ const Search = ({ searchFilter, onChange }) => (
 
 Search.propTypes = {
   searchFilter: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired
+  //onChange: PropTypes.func.isRequired
 }
 
 export default Search;

@@ -3,19 +3,15 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-
 import reducer from './reducers'
 import thunk from 'redux-thunk'
-
 import { createLogger } from 'redux-logger'
-
 import { BrowserRouter } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 const middleware = [ thunk ]
 if (process.env.NODE_ENV !== 'production') {
@@ -41,7 +37,7 @@ const store = createStore(
 ReactDOM.render((
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <Route path="/" component={App} />
     </Provider>
   </BrowserRouter>
 ), document.getElementById('root')

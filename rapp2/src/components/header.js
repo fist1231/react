@@ -17,15 +17,17 @@ const items=[
             {label: 'Organization', icon: 'fas fa-building'},
             {label: 'Proposals/NOI', icon: 'fal fa-table'},
             {label: 'Reviews', icon: 'fas fa-eye'},
-            {label: 'Selections', icon: 'fas fa-hand-pointer'}
+            {label: 'Selections', icon: 'fas fa-check'}
         ];
 
 const Header = () => (
   <div>
+  {/*
       <Menubar model={items}>
           <InputText placeholder="Search" type="text"/>
           <Button label="Logout" icon="fa-sign-out" style={{marginLeft:4}}/>
       </Menubar>
+*/}      
 
     <div className="mt-1 text-center">
       <div className="text-center">
