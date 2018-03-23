@@ -128,7 +128,7 @@ const getGraphQLResult = reviewProposalsFilter => dispatch => {
 }
 
 const getObservableResult = reviewProposalsFilter => dispatch => {
-  return Observable.ajax('http://192.168.56.1:3335/nress/reviewProposals')
+  return Observable.ajax('http://localhost:3335/nress/reviewProposals')
     .map(response => {
       //console.log('RESPONSE = ' + response);
       //console.log('response = ' + JSON.stringify(response.response));
