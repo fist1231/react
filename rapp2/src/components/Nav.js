@@ -9,11 +9,11 @@ import { Redirect } from 'react-router';
 
 
 const items= (history) => ([
-            {label: 'Home', icon: 'fa-home', command:()=>{ history.push('/'); }},
-            {label: 'Users', icon: 'fa-user', command:()=>{ history.push('/users'); }},
-            {label: 'Users Table', icon: 'fa-users', command:()=>{ history.push('/usersTable'); }},
-            {label: 'Solicitations', icon: 'fa-file', command:()=>{ history.push('/solicitations'); }},
-            {label: 'Review Proposals', icon: 'fa-folder', command:()=>{ history.push('/reviewProposals'); }}
+            {label: '', icon: 'fa-home', command:()=>{ history.push('/'); }},
+            {label: 'Users', command:()=>{ history.push('/users'); }},
+            {label: 'Users Table', command:()=>{ history.push('/usersTable'); }},
+            {label: 'Solicitations', command:()=>{ history.push('/solicitations'); }},
+            {label: 'Review Proposals', command:()=>{ history.push('/reviewProposals'); }}
         ]);
 
 const Cmp1 = ({ title, history }) => (
@@ -23,7 +23,8 @@ const Cmp1 = ({ title, history }) => (
 );
 
 const Nav = () => (
-        <header>
+        <nav>
+        <div className="container-fluid">
         {/*
               <nav>
                 <ul>
@@ -40,8 +41,8 @@ const Nav = () => (
           <div>
             <Route path="/" render={(props) => <Cmp1 {...props} title="Navigate elsewhere" />} />
           </div>
-        </header>
-
+      </div>
+</nav>
 )
 
 

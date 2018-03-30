@@ -1,16 +1,9 @@
 import React from 'react'
 import ico from '../../public/favicon.ico'
-
 import {TabMenu} from 'primereact/components/tabmenu/TabMenu';
-
 import {Menubar} from 'primereact/components/menubar/Menubar';
 import {InputText} from 'primereact/components/inputtext/InputText';
 import {Button} from 'primereact/components/button/Button';
-
-import 'primereact/resources/primereact.min.css';
-import 'primereact/resources/themes/omega/theme.css';
-import 'font-awesome/css/font-awesome.css';
-
 
 const items=[
             {label: 'Accounts', icon: 'fal fa-user'},
@@ -27,9 +20,20 @@ const Header = () => (
           <InputText placeholder="Search" type="text"/>
           <Button label="Logout" icon="fa-sign-out" style={{marginLeft:4}}/>
       </Menubar>
-*/}      
+*/}
+  <div className="navbar navbar-expand-md nspiresHeader">
+    <div className="container-fluid">
+      <div className="row w-100">
+        <div className="col nspiresLogoContainer">
+            <a className="navbar-brand" href="#"></a>
+        </div>
+        <div className="col"></div>
+        <div className="col-auto float-right nasaLogo"></div>
+      </div>
+    </div>
+  </div>
 
-    <div className="mt-1 text-center">
+      {/*<div className="mt-1 text-center">
       <div className="text-center">
       <div className="text-right float-right">
         <img src={ico} style={{marginRight:22}} />
@@ -39,7 +43,9 @@ const Header = () => (
           Live Data (Mongo and Oracle)
         </p>
       </div>
-    </div>
+    </div>*/}
+
+
   </div>
 )
 

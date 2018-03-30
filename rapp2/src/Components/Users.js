@@ -18,7 +18,10 @@ fetch("http://192.168.1.208:30333/nress/users")
 
 const Users = ({ users, onUserClick }) => (
   <div>
-    <ul>
+  <h1>Users</h1>
+  <div className="form-row">
+    <div className="form-group col">
+    <ul className="list-group">
       {users
         .map(u => {
           // u.disabled = false;
@@ -43,7 +46,11 @@ const Users = ({ users, onUserClick }) => (
         )
       }
     </ul>
-    <button type="button">Click me</button>
+    </div>
+    <div className="form-group col"></div>
+    </div>
+
+    <button type="button" class="btn btn-primary">Click me</button>
   </div>
 
 )

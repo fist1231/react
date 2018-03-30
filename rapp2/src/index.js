@@ -12,6 +12,11 @@ import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { BrowserRouter } from 'react-router-dom'
 import { Switch, Route } from 'react-router-dom'
+import 'primereact/resources/primereact.min.css';
+import 'primereact/resources/themes/omega/theme.css';
+import 'font-awesome/css/font-awesome.css';
+import './styles/nspires.css';
+
 
 const middleware = [ thunk ]
 if (process.env.NODE_ENV !== 'production') {

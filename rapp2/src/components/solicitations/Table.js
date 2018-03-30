@@ -76,18 +76,18 @@ console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.
     */}
     return (
       <div>
-        <table>
+        <table className="table nspiresTable">
           <thead>
             <tr>
-              <th>Id</th>
-              <th>Acronym</th>
-              <th>title</th>
+               <th scope="col">Id</th>
+               <th scope="col">Acronym</th>
+               <th scope="col">title</th>
             </tr>
           </thead>
           <tbody>{rows}</tbody>
         </table>
         <hr/>
-        <button onClick={this.handleAddSolicitationClick}>
+        <button class="btn btn-primary" onClick={this.handleAddSolicitationClick}>
           Add Solicitation
         </button>
         <Modal
@@ -97,29 +97,52 @@ console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.
           style={customStyles}
           contentLabel="Add Solicitation"
         >
+<div className="modal-header">
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Add Solicitation</h2>
-          <div>Enter Solicitation Info</div>
+          <h3 className="modal-title w-100" ref={subtitle => this.subtitle = subtitle}>Add Solicitation</h3>
+
+
+          </div>
           <form onSubmit={this.handleSubmit}>
-            <div class="form-group">
-              <label>Id</label>
-      				<input id="id" ref="id" class="form-control" />
+
+<div className="modal-body">
+<p>Enter Solicitation Info</p>
+<div className="container-fluid">
+
+            <div className="form-group row">
+              <label className="col-sm-2 col-form-label">Id</label>
+              <div classname="col-sm-10">
+      				<input id="id" ref="id" className="form-control" size="50" />
+              </div>
+
       			</div>
-            <div class="form-group">
-              <label>Acronym</label>
-      				<input id="acronym" ref="acronym" class="form-control" />
+            <div className="form-group row">
+              <label className="col-sm-2 col-form-label">Acronym</label>
+                <div classname="col-sm-10">
+      				<input id="acronym" ref="acronym" className="form-control" size="50"/>
+                	</div>
+
+            </div>
+            <div className="form-group row">
+              <label className="col-auto mr-auto col-form-label">Title</label>
+                <div classname="col-sm-10">
+      				<input id="title" ref="title" className="form-control" size="50" />
+              	</div>
+
       			</div>
-            <div class="form-group">
-              <label>Title</label>
-      				<input id="title" ref="title" class="form-control" />
-      			</div>
-            <div class="form-group">
-          		<button class="btn btn-primary w-100" icon="fa-close">Save</button>
-          	</div>
-          	<div class="form-group">
-          		<button type="reset" class="btn btn-secondary w-100" icon="fa-close" onClick={this.closeModal.bind(this)}>Cancel</button>
-          	</div>
+            </div>
+            </div>
+              <div className="modal-footer">
+<div className="btnContainer">
+
+
+          		<button type="reset" className="btn btn-secondary" icon="fa-close" onClick={this.closeModal.bind(this)}>Cancel</button>
+              		<button className="btn btn-primary " icon="fa-close">Save</button>
+</div>
+</div>
+
           </form>
+
         </Modal>
 
       </div>
