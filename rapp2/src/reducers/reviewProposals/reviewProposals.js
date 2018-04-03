@@ -4,8 +4,6 @@ import {
   requestReviewProposals
 } from '../../actions/reviewProposalsActions'
 
-import expect, { createSpy, spyOn, isSpy } from 'expect'
-
 const reviewProposalsTable = (state = {
   isFetching: false,
   didInvalidate: false,
@@ -52,18 +50,3 @@ const reviewProposals = (state = { }, action) => {
 }
 
 export default reviewProposals
-
-expect(
-  reviewProposals( { }, { } )
-).toEqual( { } );
-
-expect(
-  reviewProposals( { }, requestReviewProposals({searchText:'a', isOpenOnly:false}) )
-).toEqual( {[requestReviewProposals({searchText:'a', isOpenOnly:false})]:{"isFetching": true, "didInvalidate": false, "reviewProposalsTable": []}} );
-
-
-expect(
-  reviewProposals( { }, requestReviewProposals(['a', false]) )
-).toEqual( {"a,false":{"isFetching": true, "didInvalidate": false, "reviewProposalsTable": []}} );
-
-console.log('Review Proposal tests passed');
