@@ -1,0 +1,197 @@
+/*html global*******************************************************************/
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f9fafb;
+  font: 100% "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+}
+h1{
+  font-size: 1.5em;
+  color: #2D5A96;
+  padding-top: 10px;
+}
+h2{
+  font-size: 1.4em;
+  color: #2D5A96;
+  padding-top: 10px;
+}
+h3{
+  font-size: 1.3em;
+  color: #2D5A96;
+  padding-top: 10px;
+}
+/*Layout style*/
+.container-fluid {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+.ui-widget {
+  font-size: 0.9em;
+}
+.ReactModal__Content {
+  padding:0 !important;
+}
+.ReactModal__Overlay{
+  z-index:3;
+}
+.modal-header {
+  background-color: #eee;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+.modal-body,.modal-footer{
+  padding: 20px;
+}
+.modal-body{
+  background-color: #fff;
+}
+.modal-footer{
+  background-color: #f6f6f6;
+}
+.modal-title{
+  color:#222;
+  font-weight:600;
+  font-size:1.2em;
+}
+/*Header style*/
+.nspiresHeader {
+  background-color: #2d5a96;
+  padding: .15rem 1rem;
+}
+.navbar-brand {
+  background: url(../images/nspiresLogo.png) no-repeat transparent;
+  width: 520px;
+  height:50px;
+  padding-top:0;
+  margin-top: 6px;
+}
+@media (max-width: 767px) {
+  .navbar-brand {
+    background: url(../images/nspiresLogoSmall.png) no-repeat transparent;
+    width: 110px;
+  }
+}
+.nasaLogo{
+  background: url(../images/nasaLogo.png) no-repeat transparent;
+  width: 56px;
+  height:48px;
+  margin-top: 6px;
+}
+/*Basic form style*/
+label{
+  font-weight: 600;
+  font-size: 0.9em;
+}
+.btn{
+  font-size:0.85em;
+  cursor: pointer;
+  padding: 5px 20px;
+  border-radius: 4px;
+}
+.btn-primary {
+  background-color: #3566a7;
+  border-color: #3566a7;
+}
+.btnContainer button{
+  margin-right:5px;
+}
+.field-icon { font-family: 'Open Sans', FontAwesome, sans-serif;
+font-size: 1em;
+}
+.search {
+  position: relative;
+  color: #aaa;
+  font-size: 1.1em;
+}
+.search input {
+  border-radius: 5px;
+}
+.search input {
+  padding-left:32px !important;
+}
+.search .fa-search {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+/*Data table style*/
+.ui-datatable th.ui-state-default {
+    background: #dbdfe4;
+    border-color: #cacaca;
+    font: 600 1em 'Open Sans',sans-serif !important;
+    padding: .4em .5em;
+}
+.ui-datatable th.ui-sortable-column:not(.ui-state-active):hover {
+    background: #c6d6ea;
+    border-color: #cacaca;
+}
+.ui-datatable th.ui-state-active {
+    background-color: #535e6c;
+    color: #ffffff;
+}
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td {
+    padding: .4em .5em;
+    border-color: #cacaca;
+}
+.searchfilter{
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+.ui-datatable tbody > tr.ui-widget-content.ui-datatable-odd {
+    background-color: #fafafb !important;
+}
+.ui-datatable tbody > tr.ui-widget-content.ui-datatable-even {
+    background-color: #F6F6F6 !important;
+}
+.ui-datatable{
+    margin-bottom:20px;
+}
+.searchfilter input {
+    width: 100%;
+    padding: .4em .5em;
+    border-radius: 0.3em;
+}
+.ui-paginator .ui-paginator-page.ui-state-active {
+    background: #535e6c;
+}
+.table td, .table th {
+  padding: .4em .5em;
+  font-size: 0.9em;
+  border: 1px solid #cacaca;
+}
+.nspiresTable th{
+    background: #dbdfe4;
+    border-color: #cacaca;
+    border-bottom: 0 !important;
+    color:#555;
+}
+/*Main menu*/
+nav {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+}
+.ui-tabmenu .ui-tabmenu-nav{
+  border:0;
+}
+.ui-widget-content{
+      background-color: transparent !important;
+}
+.ui-tabmenu .ui-tabmenu-nav > li.ui-state-default {
+  border:none;
+  background-color:transparent !important;
+  color:#01364f;
+}
+.ui-menuitem-link {
+  border-bottom: 2px solid transparent;
+  font: 600 1em 'Open Sans',sans-serif;
+  text-transform: uppercase;
+}
+.ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem a{
+  cursor:pointer;
+    float: left;
+    padding: .55em 0.9em;
+    text-decoration: none;
+}
+.ui-tabmenu .ui-tabmenu-nav {
+    padding: 0 .5em 0 .25em !important;
+}

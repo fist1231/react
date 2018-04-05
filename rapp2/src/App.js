@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 //import $ from 'jquery';
 import Img from 'react-image'
-import Nav from './components/Nav'
+import MainNav from './components/MainNav'
 import Main from './components/Main'
 
 // import Users from './components/Users'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import UsersList from './containers/UsersList'
 import UsersTable from './containers/UsersTable'
 
@@ -34,8 +35,9 @@ function deleteUser(state, action) {
 const App = () => (
   <div>
     <Header />
-    <Nav />
+    <MainNav />
     <Main />
+    <Footer />
   </div>
 )
 
