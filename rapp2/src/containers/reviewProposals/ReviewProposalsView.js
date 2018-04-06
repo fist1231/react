@@ -29,12 +29,20 @@ class ReviewProposalsView extends Component {
     dispatch(fetchReviewProposalsIfNeeded(searchFilter))
   }
 
+  nTemplate(rowData, column) {
+    return <div>
+        <button className="btn btn-primary " icon="fa-close">Edit</button>
+        <button className="btn btn-primary " icon="fa-close">Delete</button>
+    </div>;
+  }
+
+
   render() {
     const { searchFilter, reviewProposalsTable, isFetching, lastUpdated } = this.props
     const isEmpty = reviewProposalsTable.length === 0
     return (
       <div>
-        <ReviewProposalsList reviewProposals={reviewProposalsTable} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} />
+        <ReviewProposalsList reviewProposals={reviewProposalsTable} templ={this.props.numberTemplate} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} />
         {/*}
         {
           isEmpty ?
@@ -68,7 +76,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  onSearchChange:filter => dispatch(searchReviewProposalsFilter(filter))
+  onSearchChange:filter => dispatch(searchReviewProposalsFilter(filter)),
+  numberTemplate:(rowData, column) => dispatch(nTemplate(rowData, column))
 })
 
 

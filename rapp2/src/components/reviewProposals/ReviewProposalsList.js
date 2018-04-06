@@ -4,10 +4,10 @@ import Table from './ReviewProposalsTable'
 import Search from './Search'
 
 
-const ReviewProposalsList = ({reviewProposals, searchFilter, onSearchChange}) => (
+const ReviewProposalsList = ({reviewProposals, searchFilter, onSearchChange, numberTemplate}) => (
     <div>
       <Search searchFilter={searchFilter} />
-      <Table list={reviewProposals} filter={searchFilter} onSearch={onSearchChange} />
+      <Table list={reviewProposals} filter={searchFilter} onSearch={onSearchChange}  templ={numberTemplate} />
     </div>
 );
 
