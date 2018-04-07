@@ -16,7 +16,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/omega/theme.css';
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/nspires.css';
+//import './styles/nspires.css';
 
 
 const middleware = [ thunk ]
