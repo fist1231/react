@@ -4,6 +4,8 @@ import ReviewProposalsList from '../../components/reviewProposals/ReviewProposal
 import { connect } from 'react-redux'
 import { searchReviewProposalsFilter, fetchReviewProposalsIfNeeded, invalidateReviewProposalsFilter } from '../../actions/reviewProposalsActions'
 import wait from '../../../public/wait2.gif'
+import config from '../../../config/config.json'
+import { reviewProposalsMock } from '../../../config/MockData.js'
 
 class ReviewProposalsView extends Component {
 
@@ -38,11 +40,16 @@ class ReviewProposalsView extends Component {
 
 
   render() {
+
     const { searchFilter, reviewProposalsTable, isFetching, lastUpdated } = this.props
     const isEmpty = reviewProposalsTable.length === 0
+    const isLiveData = config.live_data;
+    const dataSource = isLiveData?reviewProposalsTable:reviewProposalsMock;
+
     return (
       <div>
-        <ReviewProposalsList reviewProposals={reviewProposalsTable} templ={this.props.numberTemplate} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} />
+          <ReviewProposalsList reviewProposals={dataSource} templ={this.props.numberTemplate} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} />
+
         {/*}
         {
           isEmpty ?

@@ -3,7 +3,6 @@ import './App.css';
 //import $ from 'jquery';
 import Img from 'react-image'
 import MainNav from './components/MainNav'
-import Nav from './components/Nav'
 import Main from './components/Main'
 
 // import Users from './components/Users'
@@ -37,7 +36,6 @@ const App = () => (
   <div>
     <Header />
     <MainNav />
-    <Nav />
     <Main />
     <Footer />
   </div>

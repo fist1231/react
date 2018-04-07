@@ -15,16 +15,21 @@ var nT = (rowData, column) => {
   </div>;
 }
 
-const onLinkClicked = (num) => {
-  console.log('clicked number: ' + JSON.stringify(num));
+const onEditClicked = (e, rd) => {
+  console.log('Edit: ' + rd);
+}
+
+const onDeleteClicked = (e, rd) => {
+  console.log('Delete: ' + rd);
 }
 
 var actionsTemplate = (rowData, column) => {
   console.log('------> rowData = ' + JSON.stringify(rowData));
   var rn = rowData.RESPONSE_NUMBER;
   return <div>
-      <button className="fa-home" onClick={(rn, rowData) => onLinkClicked(rowData)}>Edit</button>
-      <button className="fas fa-trash" icon="fas fa-trash">Delete</button>
+    <button onClick={(e) => onEditClicked(e, rowData.RESPONSE_NUMBER)}><i className='fa fa-edit'></i></button>
+    <span>&nbsp;&nbsp;</span>
+    <button onClick={(e) => onDeleteClicked(e, rowData.RESPONSE_NUMBER)}><i className='fa fa-trash'></i></button>
   </div>;
 }
 
