@@ -15,26 +15,27 @@ var nT = (rowData, column) => {
   </div>;
 }
 
-const onEditClicked = (e, rd) => {
-  console.log('Edit: ' + rd);
+const onEditClicked = (e, rowData, onEdit) => {
+  console.log('Edit: ' + JSON.stringify(rowData));
+  onEdit(rowData.ASSIGNED_RESPONSE_ID)
 }
 
-const onDeleteClicked = (e, rd) => {
-  console.log('Delete: ' + rd);
+const onDeleteClicked = (e, rowData) => {
+  console.log('Delete: ' + rowData.ASSIGNED_RESPONSE_ID);
 }
 
-var actionsTemplate = (rowData, column) => {
-  console.log('------> rowData = ' + JSON.stringify(rowData));
+var actionsTemplate = (rowData, column, onEdit, filter) => {
+  console.log('------> onEdit = ' + onEdit);
   var rn = rowData.RESPONSE_NUMBER;
   return <div>
-    <button onClick={(e) => onEditClicked(e, rowData.RESPONSE_NUMBER)}><i className='fa fa-edit'></i></button>
+    <button onClick={(e) => onEditClicked(e, rowData, onEdit)}><i className='fa fa-edit'></i></button>
     <span>&nbsp;&nbsp;</span>
     <button onClick={(e) => onDeleteClicked(e, rowData.RESPONSE_NUMBER)}><i className='fa fa-trash'></i></button>
   </div>;
 }
 
 
-const reviewProposalsTable = ({list, filter, onSearch, numberTemplate}) => (
+const reviewProposalsTable = ({list, filter, onSearch, onEdit}) => (
 
 <div>
   <h1>Review Proposals</h1>
@@ -55,7 +56,7 @@ const reviewProposalsTable = ({list, filter, onSearch, numberTemplate}) => (
           <Column field="PSTATE" header="Status" sortable={true} />
           <Column field="FIRST_NAME" header="First name" sortable={true} />
           <Column field="LAST_NAME" header="Last name" sortable={true} />
-          <Column body={actionsTemplate} header="Actions" sortable={false} />
+          <Column body={() => actionsTemplate(onEdit)} header="Actions" sortable={false} />
         </DataTable>
 
     </div>

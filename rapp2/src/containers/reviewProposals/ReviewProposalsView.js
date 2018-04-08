@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReviewProposalsList from '../../components/reviewProposals/ReviewProposalsList'
 import { connect } from 'react-redux'
 import { searchReviewProposalsFilter, fetchReviewProposalsIfNeeded, invalidateReviewProposalsFilter } from '../../actions/reviewProposalsActions'
+import { editProposal, hideModal } from '../../actions/modal/modalActions'
 import wait from '../../../public/wait2.gif'
 import config from '../../../config/config.json'
 import { reviewProposalsMock } from '../../../config/MockData.js'
@@ -11,6 +12,7 @@ class ReviewProposalsView extends Component {
 
   componentDidMount() {
     const { dispatch, searchFilter } = this.props
+
     console.log('searchFilter=' + JSON.stringify(searchFilter))
     console.log('this.onSearchChange=' + this.props.onSearchChange)
     dispatch(fetchReviewProposalsIfNeeded(searchFilter))
@@ -31,14 +33,6 @@ class ReviewProposalsView extends Component {
     dispatch(fetchReviewProposalsIfNeeded(searchFilter))
   }
 
-  nTemplate(rowData, column) {
-    return <div>
-        <button className="btn btn-primary " icon="fa-close">Edit</button>
-        <button className="btn btn-primary " icon="fa-close">Delete</button>
-    </div>;
-  }
-
-
   render() {
 
     const { searchFilter, reviewProposalsTable, isFetching, lastUpdated } = this.props
@@ -48,7 +42,7 @@ class ReviewProposalsView extends Component {
 
     return (
       <div>
-          <ReviewProposalsList reviewProposals={dataSource} templ={this.props.numberTemplate} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} />
+          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} />
 
         {/*}
         {
@@ -84,12 +78,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   dispatch,
   onSearchChange:filter => dispatch(searchReviewProposalsFilter(filter)),
-  numberTemplate:(rowData, column) => dispatch(nTemplate(rowData, column))
+  onEditProposal:proposalId => dispatch(editProposal(proposalId))
 })
 
 
 //export default ReviewProposals;
-export default connect(mapStateToProps ,mapDispatchToProps)(ReviewProposalsView)
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewProposalsView)
 
 
 ReviewProposalsView.propTypes = {
