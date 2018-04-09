@@ -14,7 +14,7 @@ import ReviewProposals from '../containers/reviewProposals/ReviewProposalsView'
 const Main = () => (
   <div>
   <main>
-  <div className="container-fluid">
+  <div className="container-fluid ">
     <Switch>
       <Route path='/users' component={UsersList}/>
       <Route path='/usersTable' component={UsersTable}/>

@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom'
 //import { BrowserRouter as Router } from 'react-router-dom'
 //import { Redirect } from 'react-router';
 import { Nav, NavItem, NavLink } from 'reactstrap';
+import './mainNav.css'
 
 
 {/*
@@ -30,7 +31,7 @@ const items= (history) => ([
 
 
 const MainNav = (propsy, location) => (
-        <div className="container-fluid">
+        <div className="container-fluid mainNavContainer">
         {/*
               <nav>
                 <ul>
@@ -47,15 +48,15 @@ const MainNav = (propsy, location) => (
         */}
 
 
-          <Nav tabs>
+          <Nav tabs className="mainNav">
             <NavItem>
-              <NavLink className='fa fa-home fa-spin' activeclassname='active' tag={RRNavLink} to="/" exact>Home</NavLink>
+              <NavLink activeclassname='active' tag={RRNavLink} to="/" exact>Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className='fa fa-user' activeclassname='active' tag={RRNavLink} to="/users">Users</NavLink>
+              <NavLink activeclassname='active' tag={RRNavLink} to="/users">Users</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className='fa fa-users' activeclassname='active' tag={RRNavLink} to="/usersTable">Users Table</NavLink>
+              <NavLink activeclassname='active' tag={RRNavLink} to="/usersTable">Users Table</NavLink>
             </NavItem>
             <NavItem>
               <NavLink activeclassname='active' tag={RRNavLink} to="/solicitations">Solicitations</NavLink>
@@ -67,7 +68,9 @@ const MainNav = (propsy, location) => (
               <NavLink activeclassname='active' disabled href="#">Disabled</NavLink>
             </NavItem>
           </Nav>
-      </div>
+</div>
+
+
 )
 
 

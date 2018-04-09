@@ -34,9 +34,11 @@ function deleteUser(state, action) {
 
 const App = () => (
   <div>
+    <div className="pageWrapper">
     <Header />
     <MainNav />
     <Main />
+    </div>
     <Footer />
   </div>
 )

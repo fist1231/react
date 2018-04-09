@@ -1,0 +1,54 @@
+
+.footer {
+  width: 100%;
+  margin-top: 40px;
+  background-color: #ededed;
+  height: 105px;
+}
+
+.footerLinks {
+  list-style-type: none;
+  list-style-image: none;
+  padding-left: 0;
+  padding-top: 10px;
+  float: left;
+  margin-bottom: 0;
+}
+
+.footerLinks {
+     list-style-type: none;
+     list-style-image: none;
+     padding-left: 0;
+     padding-top:10px;
+     float:left;
+     margin-bottom: 0;
+}
+.footerLinks ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    float:right;
+}
+.footerLinks li {
+    float: left;
+    padding-right: 5px;
+   	font-size: 12px;
+   	margin-left:0;
+}
+.footerLinks li a:link, .footerLinks li a:visited {
+	color: #2D5A96;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.footerLinks li:not(:first-child):before {
+    content: " | ";
+    color: #2D5A96;
+}
+.nspiresLogo {
+    background: url("../images/nspiresFooter.png") no-repeat transparent;
+    float: right;
+    width: 104px;
+    height: 31px;
+    margin-top: 20px;
+}
