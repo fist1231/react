@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import ReviewProposalsList from '../../components/reviewProposals/ReviewProposalsList'
 import { connect } from 'react-redux'
 import { searchReviewProposalsFilter, fetchReviewProposalsIfNeeded, invalidateReviewProposalsFilter } from '../../actions/reviewProposalsActions'
+import { editProposal, hideModal } from '../../actions/modal/modalActions'
 import wait from '../../../public/wait2.gif'
+import config from '../../../config/config.json'
+import { reviewProposalsMock } from '../../../config/MockData.js'
 
 class ReviewProposalsView extends Component {
 
   componentDidMount() {
     const { dispatch, searchFilter } = this.props
+
     console.log('searchFilter=' + JSON.stringify(searchFilter))
     console.log('this.onSearchChange=' + this.props.onSearchChange)
     dispatch(fetchReviewProposalsIfNeeded(searchFilter))
@@ -30,11 +34,16 @@ class ReviewProposalsView extends Component {
   }
 
   render() {
+
     const { searchFilter, reviewProposalsTable, isFetching, lastUpdated } = this.props
     const isEmpty = reviewProposalsTable.length === 0
+    const isLiveData = config.live_data;
+    const dataSource = isLiveData?reviewProposalsTable:reviewProposalsMock;
+
     return (
       <div>
-        <ReviewProposalsList reviewProposals={reviewProposalsTable} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} />
+          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} />
+
         {/*}
         {
           isEmpty ?
@@ -42,6 +51,7 @@ class ReviewProposalsView extends Component {
             : <ReviewProposalsList reviewProposals={reviewProposalsTable} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} />
         }
         */}
+
       </div>
     );
   }
@@ -68,12 +78,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  onSearchChange:filter => dispatch(searchReviewProposalsFilter(filter))
+  onSearchChange:filter => dispatch(searchReviewProposalsFilter(filter)),
+  onEditProposal:proposal => dispatch(editProposal(proposal))
 })
 
 
 //export default ReviewProposals;
-export default connect(mapStateToProps ,mapDispatchToProps)(ReviewProposalsView)
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewProposalsView)
 
 
 ReviewProposalsView.propTypes = {
