@@ -51,6 +51,7 @@ class ReviewProposalsView extends Component {
             : <ReviewProposalsList reviewProposals={reviewProposalsTable} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} />
         }
         */}
+
       </div>
     );
   }
@@ -78,7 +79,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   dispatch,
   onSearchChange:filter => dispatch(searchReviewProposalsFilter(filter)),
-  onEditProposal:proposalId => dispatch(editProposal(proposalId))
+  onEditProposal:proposal => dispatch(editProposal(proposal))
 })
 
 

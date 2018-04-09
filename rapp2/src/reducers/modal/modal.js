@@ -6,12 +6,17 @@ const initialState = {
 }
 
 const modal = (state = initialState, action) => {
+  console.log('called modal reducer');
   switch (action.type) {
-    case SHOW_MODAL:
+    case SHOW_MODAL:{
+      console.log('show_modal reducer triggered');
       return {
+        ...state,
         modalType: action.modalType,
-        modalProps: action.modalProps
+        modalProps: action.modalProps,
+        modalIsOpen: true
       }
+    }
     case HIDE_MODAL:
       return initialState
     default:

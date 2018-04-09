@@ -3,9 +3,8 @@ import Modal from 'react-modal';
 import {DataTable} from 'primereact/components/datatable/DataTable';
 import {Column} from 'primereact/components/column/Column';
 import {InputText} from 'primereact/components/inputtext/InputText';
-import EditModal from './EditModal'
+// import EditModal from './EditModal'
 import { NavLink as RRNavLink, Link } from 'react-router-dom'
-
 
 var nT = (rowData, column) => {
   // console.log('------> rowData = ' + JSON.stringify(rowData));
@@ -15,28 +14,29 @@ var nT = (rowData, column) => {
   </div>;
 }
 
-const onEditClicked = (e, rowData, onEdit) => {
-  console.log('Edit: ' + JSON.stringify(rowData));
-  onEdit(rowData.ASSIGNED_RESPONSE_ID)
-}
-
-const onDeleteClicked = (e, rowData) => {
-  console.log('Delete: ' + rowData.ASSIGNED_RESPONSE_ID);
-}
-
-var actionsTemplate = (rowData, column, onEdit, filter) => {
-  console.log('------> onEdit = ' + onEdit);
-  var rn = rowData.RESPONSE_NUMBER;
-  return <div>
-    <button onClick={(e) => onEditClicked(e, rowData, onEdit)}><i className='fa fa-edit'></i></button>
-    <span>&nbsp;&nbsp;</span>
-    <button onClick={(e) => onDeleteClicked(e, rowData.RESPONSE_NUMBER)}><i className='fa fa-trash'></i></button>
-  </div>;
-}
 
 
-const reviewProposalsTable = ({list, filter, onSearch, onEdit}) => (
+const reviewProposalsTable = ({list, filter, onSearch, onEdit}) => {
 
+  const onEditClicked = (e, rowData) => {
+    console.log('Edit: ' + JSON.stringify(rowData));
+    onEdit(rowData)
+  }
+
+  const onDeleteClicked = (e, rowData) => {
+    console.log('Delete: ' + rowData.ASSIGNED_RESPONSE_ID);
+  }
+
+  var actionsTemplate = (rowData, column) => {
+    var rn = rowData.RESPONSE_NUMBER;
+    return <div>
+      <button onClick={(e) => onEditClicked(e, rowData)}><i className='fa fa-edit'></i></button>
+      <span>&nbsp;&nbsp;</span>
+      <button onClick={(e) => onDeleteClicked(e, rowData.RESPONSE_NUMBER)}><i className='fa fa-trash'></i></button>
+    </div>;
+  }
+
+return (
 <div>
   <h1>Review Proposals</h1>
       <div className="row">
@@ -56,11 +56,11 @@ const reviewProposalsTable = ({list, filter, onSearch, onEdit}) => (
           <Column field="PSTATE" header="Status" sortable={true} />
           <Column field="FIRST_NAME" header="First name" sortable={true} />
           <Column field="LAST_NAME" header="Last name" sortable={true} />
-          <Column body={() => actionsTemplate(onEdit)} header="Actions" sortable={false} />
+          <Column body={actionsTemplate} header="Actions" sortable={false} />
         </DataTable>
-
     </div>
+  )
 
-);
+};
 
 export default reviewProposalsTable;

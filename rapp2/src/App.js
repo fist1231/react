@@ -6,10 +6,11 @@ import MainNav from './components/MainNav'
 import Main from './components/Main'
 
 // import Users from './components/Users'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './Components/header'
+import Footer from './Components/footer'
 import UsersList from './containers/UsersList'
 import UsersTable from './containers/UsersTable'
+import ModalRoot from './Components/modals/ModalRoot'
 
 
 if (process.env.NODE_ENV !== 'production') {
@@ -38,6 +39,7 @@ const App = () => (
     <MainNav />
     <Main />
     <Footer />
+    <ModalRoot />
   </div>
 )
 
