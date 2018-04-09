@@ -40,7 +40,7 @@ handleRefreshClick = e => {
 
     const isLiveData = config.live_data;
 
-    const dataSource = isLiveData?usersTable:usersMock;
+    const dataSource = isLiveData?usersTable:usersMock();
 
 //    const isEmpty = usersTable.length === 0
     const isEmpty = dataSource.length === 0
@@ -75,8 +75,10 @@ handleRefreshClick = e => {
 
                 <hr />
                 <table border='1'>
-                  {/*{usersTable.map(usr => <tr key={usr._id}><td>{usr.name}</td><td>{usr.id}</td><td>usr.status</td><td>usr.date</td></tr>)}*/}
-                  {dataSource.map(usr => <tr key={usr._id}><td>{usr.name}</td><td>{usr.id}</td><td>{usr.status}</td><td>{usr.created_date}</td></tr>)}
+                  <tbody>
+                    {/*{usersTable.map(usr => <tr key={usr._id}><td>{usr.name}</td><td>{usr.id}</td><td>usr.status</td><td>usr.date</td></tr>)}*/}
+                    {dataSource.map(usr => <tr key={usr._id}><td>{usr.name}</td><td>{usr.id}</td><td>{usr.status}</td><td>{usr.created_date}</td></tr>)}
+                  </tbody>
                 </table>
             </div>
         }

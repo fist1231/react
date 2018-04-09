@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 const customStyles = {
   content : {
@@ -49,7 +51,7 @@ class Table extends React.Component {
 
     const rows = [];
     let lastSearch = null;
-console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.length);
+    console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.length);
     this.props.solicitations.forEach((solicitation) => {
       if (solicitation.acronym !== lastSearch) {
         rows.push(
@@ -76,16 +78,16 @@ console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.
     */}
     return (
       <div>
-        <table className="table nspiresTable">
-          <thead>
-            <tr>
-               <th scope="col">Id</th>
-               <th scope="col">Acronym</th>
-               <th scope="col">title</th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </table>
+
+        <BootstrapTable className="table nspiresTable"
+          data={ this.props.solicitations }
+          pagination striped hover search multiColumnSearch>
+          <TableHeaderColumn dataField='id' isKey dataSort>Solicitation ID</TableHeaderColumn>
+          <TableHeaderColumn dataField='acronym' dataSort>Acronym</TableHeaderColumn>
+          <TableHeaderColumn dataField='title' dataSort>Title</TableHeaderColumn>
+        </BootstrapTable>
+
+
         <hr/>
         <button className="btn btn-primary" onClick={this.handleAddSolicitationClick}>
           Add Solicitation
@@ -150,7 +152,7 @@ console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.
               </div>
             </div>
           </form>
-        </Modal>;
+        </Modal>
 
       </div>
 
