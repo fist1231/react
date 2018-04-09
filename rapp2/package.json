@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "webpack-dev-server --open --config webpack.dev.js --port 3000 --host 0.0.0.0",
+    "dev": "webpack-dev-server --open --config webpack.dev.js --port 3000",
     "build": "webpack --config webpack.prod.js -p",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

@@ -72,9 +72,6 @@ const onDialogClick = (event) => {
 
 const EditProposalModal = ({ proposal, oprops, dispatch }) => {
 
-  console.log('############# proposal = ' + JSON.stringify(proposal));
-  console.log('############# oprops = ' + JSON.stringify(oprops.proposal));
-
   const reviewProposal = oprops.proposal;
 
   const handleConfirm = (isConfirmed) => () => {
@@ -200,6 +197,9 @@ const MyInnerForm = props => {
               touched.lname && <div>{errors.lname}</div>}
           </div>
         </div>
+        <button className="btn btn-primary " icon="fa-close" disabled={isSubmitting}>
+          Save
+        </button>
         <button
           type="reset"
           className="btn btn-secondary"
@@ -207,10 +207,6 @@ const MyInnerForm = props => {
           onClick={() => dispatch(hideModal())}
         >
           Cancel
-        </button>
-
-        <button className="btn btn-primary " icon="fa-close" disabled={isSubmitting}>
-          Save
         </button>
       </div>
     </form>
@@ -229,7 +225,7 @@ const EnhancedForm = withFormik({
     lname: Yup.string().required('Last Name is required!'),
   }),
   handleSubmit: (values, { setSubmitting }, dispatch) => {
-    console.log('^^^^^^^^^^^dispatch='+dispatch);
+    // console.log('^^^^^^^^^^^dispatch='+dispatch);
 
     doSubmit(values);
     setSubmitting(false);
@@ -257,6 +253,7 @@ const EnhancedForm = withFormik({
             </Header>
             <Body>
 
+{/*
               <form onSubmit={e => handleSubmit(e, dispatch)}>
                 <div className="modal-body">
                   <div className="container-fluid">
@@ -319,6 +316,7 @@ const EnhancedForm = withFormik({
                   </div>
                 </div>
               </form>
+*/}
 
               <EnhancedForm />
 
