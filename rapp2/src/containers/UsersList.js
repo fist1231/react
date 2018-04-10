@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { disableUser, initUsers } from '../actions'
 import Users from '../components/Users'
+import { withRouter } from 'react-router-dom'
 
 //import $ from 'jquery';
 
@@ -80,7 +81,7 @@ class UsersList extends Component {
 }
 
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Users);
+)(Users));

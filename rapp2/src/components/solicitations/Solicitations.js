@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { searchSolicitationsFilter, fetchSolicitationsIfNeeded, invalidateSolicitationsFilter } from '../../actions/solicitationActions'
 import config from '../../../config/config.json'
 import { solicitationsMock } from '../../../config/MockData.js'
+import { withRouter } from 'react-router-dom'
 
 class Solicitations extends React.Component {
 
@@ -70,7 +71,7 @@ Solicitations.propTypes = {
 }
 
 //export default Solicitations;
-export default connect(mapStateToProps)(Solicitations);
+export default withRouter(connect(mapStateToProps)(Solicitations));
 
 {/*
 const Solicitations = () => (

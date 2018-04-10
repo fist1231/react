@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { editProposal, hideModal } from '../../actions/modal/modalActions'
 import ModalX from './ModalX';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom'
 
 import { withFormik } from 'formik';
 import Yup from 'yup';
@@ -343,9 +344,9 @@ const EnhancedForm = withFormik({
 
 
 
-export default connect(
+export default withRouter(connect(
   (state, ownProps) => ({
     proposal: {"ASSIGNED_RESPONSE_ID": "1234567", "RESPONSE_NUMBER": "Number 1", "RESPONSE_SEQ_NUMBER": "Sequ-1", "STATE": "Critical"},
     oprops: ownProps
   })
-)(EditProposalModal)
+)(EditProposalModal))

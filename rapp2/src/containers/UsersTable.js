@@ -6,6 +6,7 @@ import Picker from '../components/Picker'
 import DisplayTable from '../components/Table'
 import config from '../../config/config.json'
 import { usersMock } from '../../config/MockData.js'
+import { withRouter } from 'react-router-dom'
 
 class UsersTable extends Component {
 
@@ -116,4 +117,4 @@ UsersTable.propTypes = {
 }
 
 
-export default connect(mapStateToProps)(UsersTable);
+export default withRouter(connect(mapStateToProps)(UsersTable));

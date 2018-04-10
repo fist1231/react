@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import editProposalModal from './EditProposalModal'
 // import deleteProposalModal from './DeleteProposalModal'
@@ -25,6 +26,6 @@ const ModalRoot = ({ modalType, modalProps }) => {
   return <SpecificModal {...modalProps} />;
 }
 
-export default connect(
+export default withRouter(connect(
   state => state.modal
-)(ModalRoot)
+)(ModalRoot))

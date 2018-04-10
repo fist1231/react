@@ -6,7 +6,6 @@ var dte = new Date();
 
 export const usersMock = () => {
   var rows = [];
-
   for(var i=0; i<numrows; i++) {
     rows.push({ _id: `0000${i}`, id: `0000${i}`, name: `User name-${i}`, status: `Confirmed${i}`, created_date: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}` });
   }

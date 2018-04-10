@@ -7,6 +7,7 @@ import { editProposal, hideModal } from '../../actions/modal/modalActions'
 import wait from '../../../public/wait2.gif'
 import config from '../../../config/config.json'
 import { reviewProposalsMock } from '../../../config/MockData.js'
+import { withRouter } from 'react-router-dom'
 
 class ReviewProposalsView extends Component {
 
@@ -86,7 +87,7 @@ const mapDispatchToProps = dispatch => ({
 
 
 //export default ReviewProposals;
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewProposalsView)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReviewProposalsView))
 
 
 ReviewProposalsView.propTypes = {
