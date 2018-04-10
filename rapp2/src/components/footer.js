@@ -20,9 +20,9 @@ const Footer = () => (
         						<a href="http://www.nasa.gov/home/index.html" target="_blank" title="NASA"></a>
         					</div>
 
-        <ul class="footerInfo">
+        <ul className="footerInfo">
         <li>Curator: NASA Research and Education Support Services</li>
-        <li>NASA Official: <a href="mailto:andrew.garza@nasa.gov" onclick="NewWindow('mailMessage.html','name','600','380','yes',2,2);return false">Drew Garza</a></li>
+        <li>NASA Official: Darth Vader</li>
       </ul>
         </div>
         <div className="col-3">

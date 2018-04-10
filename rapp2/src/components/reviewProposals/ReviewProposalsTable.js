@@ -63,7 +63,7 @@ const reviewProposalsTable = ({list, filter, onSearch, onEdit, onPreview, previe
 return (
   <div>
 <div>
-  <h1>Review Proposals !!!!!!!{previewFlag?((previewFlag.previewDetails).toString()):'empty'}!!!!!!!</h1>
+  <h1>Review Proposals</h1>
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <div className="search searchfilter">
