@@ -33,7 +33,7 @@ class Solicitations extends React.Component {
 
     const { foundSolicitationsFilter, solicitationsTable, isFetching, lastUpdated } = this.props
     const isLiveData = config.live_data;
-    const dataSource = isLiveData?solicitationsTable:solicitationsMock;
+    const dataSource = isLiveData?solicitationsTable:solicitationsMock();
 
 
     return (

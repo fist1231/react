@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import ReviewProposalsList from '../../components/reviewProposals/ReviewProposalsList'
 import { connect } from 'react-redux'
-import { searchReviewProposalsFilter, fetchReviewProposalsIfNeeded, invalidateReviewProposalsFilter } from '../../actions/reviewProposalsActions'
+import { searchReviewProposalsFilter, fetchReviewProposalsIfNeeded, invalidateReviewProposalsFilter, getReviewProposalDetails } from '../../actions/reviewProposalsActions'
 import { editProposal, hideModal } from '../../actions/modal/modalActions'
 import wait from '../../../public/wait2.gif'
 import config from '../../../config/config.json'
@@ -35,14 +35,14 @@ class ReviewProposalsView extends Component {
 
   render() {
 
-    const { searchFilter, reviewProposalsTable, isFetching, lastUpdated } = this.props
+    const { searchFilter, reviewProposalsTable, isFetching, lastUpdated, previewDetails } = this.props
+      console.log('^^^^^^^^^^^^previewDetails='+previewDetails.previewDetails)
     const isEmpty = reviewProposalsTable.length === 0
     const isLiveData = config.live_data;
-    const dataSource = isLiveData?reviewProposalsTable:reviewProposalsMock;
-
+    const dataSource = isLiveData?reviewProposalsTable:reviewProposalsMock();
     return (
       <div>
-          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} />
+          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} />
 
         {/*}
         {
@@ -58,28 +58,30 @@ class ReviewProposalsView extends Component {
 }
 
 const mapStateToProps = state => {
-  const { searchFilter, reviewProposals } = state
+  const { searchFilter, reviewProposals, previewDetails } = state
   const {
     isFetching,
     lastUpdated,
-    reviewProposalsTable
+    reviewProposalsTable,
   } = reviewProposals[searchFilter] || {
     isFetching: true,
-    reviewProposalsTable: []
+    reviewProposalsTable: [],
   }
 
   return {
     searchFilter,
     reviewProposalsTable,
     isFetching,
-    lastUpdated
+    lastUpdated,
+    previewDetails
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
   onSearchChange:filter => dispatch(searchReviewProposalsFilter(filter)),
-  onEditProposal:proposal => dispatch(editProposal(proposal))
+  onEditProposal:proposal => dispatch(editProposal(proposal)),
+  onPreview:flag => dispatch(getReviewProposalDetails(flag))
 })
 
 

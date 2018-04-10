@@ -266,6 +266,7 @@ const EnhancedForm = withFormik({
                 <h3 className="modal-title">Edit Proposal {reviewProposal.RESPONSE_NUMBER}-{reviewProposal.RESPONSE_SEQ_NUMBER}</h3>
             </div>
 
+
 {/*
               <form onSubmit={e => handleSubmit(e, dispatch)}>
                 <div className="modal-body">

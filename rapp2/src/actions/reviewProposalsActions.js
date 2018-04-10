@@ -11,6 +11,8 @@ export const SEARCH_REVIEW_PROPOSALS_FILTER = 'SEARCH_REVIEW_PROPOSALS_FILTER'
 export const CB_REVIEW_PROPOSALS_FILTER = 'CB_REVIEW_PROPOSALS_FILTER'
 export const INVALIDATE_REVIEW_PROPOSALS_FILTER = 'INVALIDATE_REVIEW_PROPOSALS_FILTER'
 
+export const GET_DETAILS = 'GET_DETAILS'
+
 export const searchReviewProposalsFilter = reviewProposalsFilter => ({
   type: SEARCH_REVIEW_PROPOSALS_FILTER,
   reviewProposalsFilter
@@ -36,9 +38,15 @@ export const receiveReviewProposals = (reviewProposalsFilter, json) => ({
   receivedAt: Date.now()
 })
 
+export const getReviewProposalDetails = preview => ({
+  type: GET_DETAILS,
+  previewFlag: preview
+})
+
+
 const fetchReviewProposals = reviewProposalsFilter => dispatch => {
   dispatch(requestReviewProposals(reviewProposalsFilter))
-  // return fetch(`https://www.reddit.com/r/${subreddit}.json`)
+  // return fetch(`https://www.reddit.com/r/${sol}.json`)
   //return Observable.ajax('http://192.168.1.208:30334/nress/solicitations')
 
 //  fetch('http://192.168.56.1:30334/graphql', {
