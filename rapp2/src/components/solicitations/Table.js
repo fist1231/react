@@ -82,9 +82,12 @@ class Table extends React.Component {
         <BootstrapTable className="table nspiresTable"
           data={ this.props.solicitations }
           pagination striped hover search multiColumnSearch>
-          <TableHeaderColumn dataField='id' isKey dataSort>Solicitation ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='acronym' dataSort>Acronym</TableHeaderColumn>
-          <TableHeaderColumn dataField='title' dataSort>Title</TableHeaderColumn>
+          <TableHeaderColumn dataField='SOLICITATION_NUMBER' isKey dataSort>Solicitation Number</TableHeaderColumn>
+          <TableHeaderColumn dataField='FISCAL_YEAR' dataSort>FISCAL YEAR</TableHeaderColumn>
+          <TableHeaderColumn dataField='TITLE' dataSort>Title</TableHeaderColumn>
+          <TableHeaderColumn dataField='SELECTION_DATE' dataSort>SELECTION DATE</TableHeaderColumn>
+          <TableHeaderColumn dataField='RELEASE_DATE' dataSort>RELEASE DATE</TableHeaderColumn>
+          <TableHeaderColumn dataField='CLOSE_DATE' dataSort>CLOSE DATE</TableHeaderColumn>
         </BootstrapTable>
 
 
