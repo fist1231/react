@@ -30,9 +30,9 @@ const reviewProposalsTable = ({list, filter, onSearch, onEdit}) => {
   var actionsTemplate = (rowData, column) => {
     var rn = rowData.RESPONSE_NUMBER;
     return <div>
-      <button onClick={(e) => onEditClicked(e, rowData)}><i className='fa fa-edit'></i></button>
+      <a className="tableAction" onClick={(e) => onEditClicked(e, rowData)}><i className='fa fa-edit'></i></a>
       <span>&nbsp;&nbsp;</span>
-      <button onClick={(e) => onDeleteClicked(e, rowData.RESPONSE_NUMBER)}><i className='fa fa-trash'></i></button>
+      <a className="tableAction" onClick={(e) => onDeleteClicked(e, rowData.RESPONSE_NUMBER)}><i className='fa fa-trash'></i></a>
     </div>;
   }
 
@@ -49,7 +49,7 @@ return (
       </div>
 
         <DataTable className="test1" value={list} paginator={true} rows={20} rowsPerPageOptions={[10,20,50,100,1000]}
-          resizableColumns={true} columnResizeMode="fit" responsive={true} reorderableColumns={true} globalFilter={filter?filter.searchText:''}>
+          resizableColumns={true} columnResizeMode="expand" responsive={true} reorderableColumns={true} globalFilter={filter?filter.searchText:''}>
           <Column field="ASSIGNED_RESPONSE_ID" header="Id" sortable={true} />
           <Column body={nT} header="Response" sortable={true} />
           <Column field="RESPONSE_SEQ_NUMBER" header="Response Sequence" sortable={true} />

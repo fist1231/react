@@ -107,27 +107,30 @@ const MyInnerForm = props => {
   } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <div className="container-fluid">
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label" htmlFor="id">Id</label>
-          <div className="col-sm-10">
+    <div className="modal-body">
+      <div className="container-fluid text-left">
+        <div className="form-group">
+          <label htmlFor="id">Id</label>
+
             <input
               type="text"
               name="id"
+              className="form-control"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.id}
               size="20"
             />
             {errors.id && touched.id && <div>{errors.id}</div>}
-          </div>
+
         </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label" htmlFor="id">Proposal Number</label>
-          <div className="col-sm-10">
+        <div className="form-group">
+          <label htmlFor="id">Proposal Number</label>
+
             <input
               type="text"
               name="pnumber"
+              className="form-control"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.pnumber}
@@ -135,14 +138,15 @@ const MyInnerForm = props => {
             />
             {errors.pnumber &&
               touched.pnumber && <div>{errors.pnumber}</div>}
-          </div>
+
         </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label" htmlFor="id">Sequence Number</label>
-          <div className="col-sm-10">
+        <div className="form-group">
+          <label htmlFor="id">Sequence Number</label>
+
             <input
               type="text"
               name="seq"
+              className="form-control"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.seq}
@@ -150,14 +154,15 @@ const MyInnerForm = props => {
             />
             {errors.seq &&
               touched.seq && <div>{errors.seq}</div>}
-          </div>
+
         </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label" htmlFor="id">State</label>
-          <div className="col-sm-10">
+        <div className="form-group">
+          <label htmlFor="id">State</label>
+
             <input
               type="text"
               name="pstate"
+              className="form-control"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.pstate}
@@ -165,14 +170,15 @@ const MyInnerForm = props => {
             />
             {errors.pstate &&
               touched.pstate && <div>{errors.pstate}</div>}
-          </div>
+
         </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label" htmlFor="id">First Name</label>
-          <div className="col-sm-10">
+        <div className="form-group">
+          <label htmlFor="id">First Name</label>
+
             <input
               type="text"
               name="fname"
+              className="form-control"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.fname}
@@ -180,13 +186,14 @@ const MyInnerForm = props => {
             />
             {errors.fname &&
               touched.fname && <div>{errors.fname}</div>}
-          </div>
+
         </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label" htmlFor="id">Last Name</label>
-          <div className="col-sm-10">
+        <div className="form-group">
+          <label htmlFor="id">Last Name</label>
+
             <input
               type="text"
+              className="form-control"
               name="lname"
               onChange={handleChange}
               onBlur={handleBlur}
@@ -195,11 +202,13 @@ const MyInnerForm = props => {
             />
             {errors.lname &&
               touched.lname && <div>{errors.lname}</div>}
-          </div>
+
         </div>
-        <button className="btn btn-primary " icon="fa-close" disabled={isSubmitting}>
-          Save
-        </button>
+          </div>
+          </div>
+<div class="modal-footer"><div class="btnContainer">
+
+
         <button
           type="reset"
           className="btn btn-secondary"
@@ -208,7 +217,12 @@ const MyInnerForm = props => {
         >
           Cancel
         </button>
-      </div>
+        <button className="btn btn-primary " icon="fa-close" disabled={isSubmitting}>
+          Save
+        </button>
+        </div>
+        </div>
+
     </form>
   );
 };
@@ -248,10 +262,9 @@ const EnhancedForm = withFormik({
         <Overlay />
         <Content onClick={() => dispatch(hideModal())}>
           <Dialog onClick={onDialogClick}>
-            <Header>
-                <p>Edit Proposal {reviewProposal.RESPONSE_NUMBER}-{reviewProposal.RESPONSE_SEQ_NUMBER}</p>
-            </Header>
-            <Body>
+            <div className="modal-header">
+                <h3 className="modal-title">Edit Proposal {reviewProposal.RESPONSE_NUMBER}-{reviewProposal.RESPONSE_SEQ_NUMBER}</h3>
+            </div>
 
 {/*
               <form onSubmit={e => handleSubmit(e, dispatch)}>
@@ -320,7 +333,7 @@ const EnhancedForm = withFormik({
 
               <EnhancedForm />
 
-            </Body>
+
           </Dialog>
         </Content>
       </div>

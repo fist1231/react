@@ -91,6 +91,7 @@ class ModalX extends Component {
               </div>
             </div>
           </div>
+
           <div className="modal-footer">
             <div className="btnContainer">
               <button

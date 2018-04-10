@@ -13,15 +13,19 @@ import './footer.css'
 
 const Footer = () => (
     <div className="footer">
-      <div className="container-fluid">
-      <div className="row">
-        <div className="col">
+      <div className="container-fluid footerContainer">
+      <div className="row footerContent">
+        <div className="col-9">
+        <div className="nasaFooterLogo">
+        						<a href="http://www.nasa.gov/home/index.html" target="_blank" title="NASA"></a>
+        					</div>
 
+        <ul class="footerInfo">
+        <li>Curator: NASA Research and Education Support Services</li>
+        <li>NASA Official: <a href="mailto:andrew.garza@nasa.gov" onclick="NewWindow('mailMessage.html','name','600','380','yes',2,2);return false">Drew Garza</a></li>
+      </ul>
         </div>
-        <div className="col">
-
-        </div>
-        <div className="col">
+        <div className="col-3">
           <div className="nspiresLogo">
            </div>
         </div>

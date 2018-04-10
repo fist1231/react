@@ -109,28 +109,28 @@ console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.
             <div className="modal-body">
               <p>Enter Solicitation Info</p>
               <div className="container-fluid">
-                <div className="form-group row">
-                  <label className="col-sm-2 col-form-label">Id</label>
-                  <div className="col-sm-10">
+                <div className="form-group">
+                  <label className="">Id</label>
+
                     <input id="id" ref="id" className="form-control" size="50" />
-                  </div>
+
                 </div>
-                <div className="form-group row">
-                  <label className="col-sm-2 col-form-label">Acronym</label>
-                  <div classname="col-sm-10">
+                <div className="form-group">
+                  <label className="">Acronym</label>
+
                     <input
                       id="acronym"
                       ref="acronym"
                       className="form-control"
                       size="50"
                     />
-                  </div>
+
                 </div>
-                <div className="form-group row">
-                  <label className="col-auto mr-auto col-form-label">Title</label>
-                  <div classname="col-sm-10">
+                <div className="form-group">
+                  <label className="">Title</label>
+
                     <input id="title" ref="title" className="form-control" size="50" />
-                  </div>
+    
                 </div>
               </div>
             </div>
