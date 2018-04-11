@@ -5,6 +5,7 @@ import {Menubar} from 'primereact/components/menubar/Menubar';
 import {InputText} from 'primereact/components/inputtext/InputText';
 import {Button} from 'primereact/components/button/Button';
 import './header.css'
+import Login from '../Login'
 
 const items=[
             {label: 'Accounts', icon: 'fal fa-user'},
@@ -30,6 +31,9 @@ const Header = () => (
         </div>
         <div className="col">
           <div className="nasaLogo float-right">
+          </div>
+          <div className="float-right">
+            <Login />
           </div>
         </div>
       </div>

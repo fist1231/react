@@ -11,9 +11,11 @@ import Footer from './components/footer'
 import UsersList from './containers/UsersList'
 import UsersTable from './containers/UsersTable'
 import ModalRoot from './components/modals/ModalRoot'
+import Home from './components/Home'
 import NoMatch from './NoMatch';
 
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 if (process.env.NODE_ENV !== 'production') {
    console.log('Looks like we are in development mode!');
@@ -35,17 +37,46 @@ function deleteUser(state, action) {
     return newArray;
 }
 
-const App = () => (
+class AppPub extends Component {
+
+  componentDidMount() {
+    const { dispatch, loggedIn } = this.props
+  }
+
+
+  render() {
+    const { dispatch, loggedIn } = this.props
+
+    console.log('apppub------------> loggedIn? ' + loggedIn);
+    return (
   <div>
-    {console.log('~~~~~~~~~~~~ in da App ~~~~~~~~~~~~')}
+    {console.log('~~~~~~~~~~~~ ### in da AppPub ### ~~~~~~~~~~~~')}
     <div className="pageWrapper">
       <Header />
-      <MainNav />
-      <Main />
+      { loggedIn ?
+        (
+          <div>
+            <MainNav />
+            <Main />
+          </div>
+        ) : (
+          <Home />
+        )
+      }
     </div>
     <Footer />
     <ModalRoot />
   </div>
-)
+);
+}
+}
 
-export default App;
+const mapStateToProps = state => {
+  const { loggedIn } = state
+  return {
+    loggedIn
+  }
+}
+
+
+export default withRouter(connect(mapStateToProps)(AppPub))

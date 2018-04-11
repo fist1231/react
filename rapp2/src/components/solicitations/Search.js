@@ -24,10 +24,10 @@ const Search = ({ searchFilter, onChange }) => (
                 />
               </div>
             </div>
-            <div class="form-check mb-2 mr-sm-2 mb-sm-0">
-              <label class="form-check-label">
+            <div className="form-check mb-2 mr-sm-2 mb-sm-0">
+              <label className="form-check-label">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="checkbox"
                   onChange={e =>
                     onChange({
