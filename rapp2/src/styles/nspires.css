@@ -59,11 +59,11 @@ h3 {
 }
 
 .modal-body {
-  background-color: #fff;
+  background-color: #f9fafb;
 }
 
 .modal-footer {
-  background-color: #f6f6f6;
+  background-color: #eee;
   border-top: 1px solid #ccc;
 }
 
@@ -73,6 +73,11 @@ h3 {
   font-size: 1.1em;
   line-height: 1;
 }
+
+h3.modal-title{
+  padding-top: 5px;
+}
+
 
 /*Basic form style*/
 
@@ -123,6 +128,12 @@ label {
   left: 10px;
 }
 
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .4rem .75rem;
+    font-size: 0.95em;
+}
 /*Data table style*/
 
 .ui-datatable th.ui-state-default {
@@ -168,7 +179,50 @@ label {
 .ui-datatable {
   margin-bottom: 20px;
 }
-
+/*React table style*/
+.ReactTable{
+  font-size: 0.9em;
+}
+.ReactTable .rt-tr .-odd{
+  background-color: #F6F6F6 !important;
+}
+.ReactTable .rt-thead.-header{
+  background-color: #ddd;
+  box-shadow: none;
+}
+.ReactTable .rt-thead .rt-resizable-header-content {
+  font-weight: 600;
+}
+.table-hover tbody tr:hover {
+    background-color: #eaf0f8 !important;
+}
+.react-bs-table .table-bordered>thead>tr:first-child>td, .react-bs-table .table-bordered>thead>tr:first-child>th {
+    border-bottom-width: 0;
+}
+.dropup, .dropdown {
+    position: relative;
+}
+.dropup, .dropdown {
+    position: relative;
+}
+.dropup .caret, .navbar-fixed-bottom .dropdown .caret {
+    border-top: 0;
+    border-bottom: 4px dashed;
+    border-bottom: 4px solid \9;
+    content: "";
+}
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid \9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    color:#999 !important;
+}
 .ui-inputtext::placeholder {
   color: #999 !important;
   opacity: 1;
@@ -183,12 +237,15 @@ label {
   font-size: 0.9em;
   border: 1px solid #cacaca;
 }
-
-.nspiresTable th {
+.nspiresTable{
   background: #ddd;
   border-color: #cacaca;
   border-bottom: 0 !important;
   color: #555;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f6f6f6;
 }
 
 .ui-widget-content .ui-cell-data a {
@@ -210,3 +267,15 @@ label {
   word-wrap: break-word;
   white-space: normal;
 }
+.invalid-feedback {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+input.error{
+  border-color:#dc3545;
+}
+label.error{
+color: #dc3545;
+  }

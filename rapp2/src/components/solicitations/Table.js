@@ -76,12 +76,13 @@ class Table extends React.Component {
     {/*
     const Table = () => (
     */}
+
     return (
       <div>
 
-        <BootstrapTable className="table nspiresTable"
+        <BootstrapTable
           data={ this.props.solicitations }
-          pagination striped hover search multiColumnSearch>
+          pagination striped hover search multiColumnSearch tableHeaderClass='nspiresTable'>
           <TableHeaderColumn dataField='SOLICITATION_NUMBER' isKey dataSort>Solicitation Number</TableHeaderColumn>
           <TableHeaderColumn dataField='FISCAL_YEAR' dataSort>FISCAL YEAR</TableHeaderColumn>
           <TableHeaderColumn dataField='TITLE' dataSort>Title</TableHeaderColumn>
@@ -135,7 +136,7 @@ class Table extends React.Component {
                   <label className="">Title</label>
 
                     <input id="title" ref="title" className="form-control" size="50" />
-    
+
                 </div>
               </div>
             </div>
