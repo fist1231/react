@@ -7,9 +7,10 @@ import {InputText} from 'primereact/components/inputtext/InputText';
 import { NavLink as RRNavLink, Link } from 'react-router-dom'
 import styled from 'styled-components';
 import {OverlayPanel} from 'primereact/components/overlaypanel/OverlayPanel';
+import {ContextMenu} from 'primereact/components/contextmenu/ContextMenu';
 
 
-const reviewProposalsTable = ({list, filter, onSearch, onEdit, onPreview, previewFlag}) => {
+const reviewProposalsTable = ({...props, list, filter, onSearch, onEdit, onPreview, previewFlag, onDelete}) => {
 
 
   const handleMouseHoverEnter = (event, rowData) => {
@@ -38,6 +39,7 @@ const reviewProposalsTable = ({list, filter, onSearch, onEdit, onPreview, previe
 
   const onDeleteClicked = (e, rowData) => {
     console.log('Delete: ' + rowData.ASSIGNED_RESPONSE_ID);
+    onDelete(rowData)
   }
 
   var actionsTemplate = (rowData, column) => {
@@ -45,7 +47,7 @@ const reviewProposalsTable = ({list, filter, onSearch, onEdit, onPreview, previe
     return <div>
       <a className="tableAction" onClick={(e) => onEditClicked(e, rowData)}><i className='fa fa-edit'></i></a>
       <span>&nbsp;&nbsp;</span>
-      <a className="tableAction" onClick={(e) => onDeleteClicked(e, rowData.RESPONSE_NUMBER)}><i className='fa fa-trash'></i></a>
+      <a className="tableAction" onClick={(e) => onDeleteClicked(e, rowData)}><i className='fa fa-trash'></i></a>
     </div>;
   }
 
@@ -60,8 +62,16 @@ const reviewProposalsTable = ({list, filter, onSearch, onEdit, onPreview, previe
     border: 1px;
   `
 
+  const items = [
+      {label: 'View', icon: 'fa-search', command: (event) => onEditClicked(props.selectedCar)},
+      {label: 'Delete', icon: 'fa-close', command: (event) => onDeleteClicked(props.selectedCar)}
+  ];
+
 return (
   <div>
+    { props.wth = 'whaaaaat?' }
+    { console.log('------> props = ' + JSON.stringify(props.wth)) }
+
 <div>
   <h1>Review Proposals</h1>
       <div className="row">
@@ -73,8 +83,11 @@ return (
         </div>
       </div>
 
+        <ContextMenu model={items} ref={el => props.cm = el}/>
+
         <DataTable className="test1" value={list} paginator={true} rows={20} rowsPerPageOptions={[10,20,50,100,1000]}
-          resizableColumns={true} columnResizeMode="expand" responsive={true} reorderableColumns={true} globalFilter={filter?filter.searchText:''}>
+          resizableColumns={true} columnResizeMode="expand" responsive={true} reorderableColumns={true} globalFilter={filter?filter.searchText:''}
+          contextMenu={props} selection={props.selectedCar} onSelectionChange={(e) => (props.selectedCar=e.data)} >
           <Column field="ASSIGNED_RESPONSE_ID" header="Id" sortable={true} />
           <Column body={nT} header="Response" sortable={true} />
           <Column field="RESPONSE_SEQ_NUMBER" header="Response Sequence" sortable={true} />
@@ -90,19 +103,19 @@ return (
         <label className="col-sm-2 col-form-label">Id</label>
         <div className="col-sm-10">
           { console.log('previewFlag12345=' + JSON.stringify(previewFlag)) }
-          <label className="col-sm-2 col-form-label">{previewFlag.previewDetails?previewFlag.previewDetails.ASSIGNED_RESPONSE_ID:'ooooooooooooooo'}</label>
+          <label className="col-sm-2 col-form-label">{previewFlag.previewDetails?previewFlag.previewDetails.ASSIGNED_RESPONSE_ID:''}</label>
         </div>
       </div>
       <div className="form-group row">
         <label className="col-sm-2 col-form-label">Number</label>
         <div className="col-sm-10">
-          <label className="col-sm-2 col-form-label">{previewFlag.previewDetails?previewFlag.previewDetails.RESPONSE_NUMBER:'oooooooooooo'}</label>
+          <label className="col-sm-2 col-form-label">{previewFlag.previewDetails?previewFlag.previewDetails.RESPONSE_NUMBER:''}</label>
         </div>
       </div>
       <div className="form-group row">
         <label className="col-sm-2 col-form-label">Seq Number</label>
         <div className="col-sm-10">
-          <label className="col-sm-2 col-form-label">{previewFlag.previewDetails?previewFlag.previewDetails.RESPONSE_SEQ_NUMBER:'oooooooooooo'}</label>
+          <label className="col-sm-2 col-form-label">{previewFlag.previewDetails?previewFlag.previewDetails.RESPONSE_SEQ_NUMBER:''}</label>
         </div>
       </div>
     </div>

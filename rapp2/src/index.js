@@ -32,20 +32,36 @@ const store = createStore(
   applyMiddleware(...middleware)
 )
 
+const isLoggedIn = () => {
+  console.log('************* isLoggedIn =' + (localStorage.getItem('loggedIn') === 'true') );
+  return (localStorage.getItem('loggedIn') === 'true') ;
+}
 
 ReactDOM.render((
   <div>
+    {console.log('************* isLoggedIn??? =' + isLoggedIn() )}
     <BrowserRouter>
       <Provider store={store}>
         {/* <Route path="/" component={App} /> */}
         <Route path="/" render={ ({location}) => (
-            store.getState().auth.loggedIn ? (
-              <App />
+            isLoggedIn() ? (
+              <Route path="/" component={App} />
             ) : (
-              <AppPub />
+              <Route path="/" component={AppPub} />
             )
           )}
         />
+
+{/*
+        <Route path="/" render={ ({location}) => (
+            store.getState().auth.loggedIn ? (
+              <Route path="/" component={App} />
+            ) : (
+              <Route path="/" component={AppPub} />
+            )
+          )}
+        />
+ */}
       </Provider>
     </BrowserRouter>
   </div>

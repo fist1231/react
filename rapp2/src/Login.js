@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect, withRouter } from "react-router-dom";
+import { Route, Redirect, withRouter, Link } from "react-router-dom";
 // import PrivateRoute, { fakeAuth } from './PrivateRoute';
 import { connect } from 'react-redux';
 import { setAuthOn, setAuthOff } from './actions/authActions';
@@ -31,6 +31,10 @@ class Login extends Component {
 
   login = () => {
     const { dispatch, auth, history } = this.props
+    const authen = {'loggedIn': 'true', 'username': 'Local'};
+    localStorage.setItem('loggedIn', true);
+    localStorage.setItem('username', 'Local');
+
     dispatch(setAuthOn());
     history.push("/");
     // fakeAuth.authenticate(() => {
@@ -44,6 +48,9 @@ class Login extends Component {
 
   logout = () => {
     const { dispatch, auth, history } = this.props
+    const authen = {'loggedIn': 'false', 'username': ''};
+    localStorage.setItem('loggedIn', false);
+    localStorage.setItem('username', '');
     dispatch(setAuthOff());
     history.push("/");
     // const { dispatch, loggedIn, history } = this.props
@@ -61,7 +68,7 @@ class Login extends Component {
     // const { redirectToReferrer } = this.state;
     const { dispatch, auth } = this.props
 
-    console.log('_________login auth? ' + JSON.stringify(auth));
+    // console.log('_________login auth? ' + JSON.stringify(auth));
     // console.log('!!!!!!!!!!!!! loggedIn = ' + loggedIn?loggedIn:'undeffin');
 
 {/*
@@ -89,11 +96,13 @@ class Login extends Component {
           <div>
             {/* <p>You must log in to view the page at {from.pathname}</p> */}
             <button onClick={this.login}>Log in</button>
+            <Link to=' ' onClick={this.login}>Login</Link>
         </div>
         ) : (
           <div>
-            <p>Welcome!</p>
-            <button onClick={this.logout}>Logot</button>
+            <p>Welcome, {auth.username}!</p>
+            <button onClick={this.logout}>Logout</button>
+            <Link to='/' onClick={this.logout}>Logout</Link>
         </div>
         )}
       </div>

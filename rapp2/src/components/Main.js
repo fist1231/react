@@ -24,7 +24,7 @@ const Main = () => (
 {/*      <Route path='/solicitations'><Solicitations solicitations={SOLICITATIONS} /></Route> */}
       <Route path='/solicitations'><Solicitations /></Route>
       <Route path='/reviewProposals'><ReviewProposals /></Route>
-{/*      <Route component={NoMatch} /> */}
+      <Route component={NoMatch} /> 
     </Switch>
     </div>
   </main>

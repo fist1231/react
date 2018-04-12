@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReviewProposalsList from '../../components/reviewProposals/ReviewProposalsList'
 import { connect } from 'react-redux'
 import { searchReviewProposalsFilter, fetchReviewProposalsIfNeeded, invalidateReviewProposalsFilter, getReviewProposalDetails } from '../../actions/reviewProposalsActions'
-import { editProposal, hideModal } from '../../actions/modal/modalActions'
+import { editProposal, hideModal, deleteProposal } from '../../actions/modal/modalActions'
 import wait from '../../../public/wait2.gif'
 import config from '../../../config/config.json'
 import { reviewProposalsMock } from '../../../config/MockData.js'
@@ -37,13 +37,13 @@ class ReviewProposalsView extends Component {
   render() {
 
     const { searchFilter, reviewProposalsTable, isFetching, lastUpdated, previewDetails } = this.props
-      console.log('^^^^^^^^^^^^previewDetails='+previewDetails.previewDetails)
+      // console.log('^^^^^^^^^^^^previewDetails='+previewDetails.previewDetails)
     const isEmpty = reviewProposalsTable.length === 0
     const isLiveData = config.live_data;
     const dataSource = isLiveData?reviewProposalsTable:reviewProposalsMock();
     return (
       <div>
-          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} />
+          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} />
 
         {/*}
         {
@@ -82,7 +82,8 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
   onSearchChange:filter => dispatch(searchReviewProposalsFilter(filter)),
   onEditProposal:proposal => dispatch(editProposal(proposal)),
-  onPreview:flag => dispatch(getReviewProposalDetails(flag))
+  onPreview:flag => dispatch(getReviewProposalDetails(flag)),
+  onDelete:proposal => dispatch(deleteProposal(proposal)),
 })
 
 
