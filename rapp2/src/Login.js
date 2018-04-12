@@ -92,7 +92,7 @@ class Login extends Component {
 
     return (
       <div>
-        {!auth.loggedIn ? (
+        {!(localStorage.getItem('loggedIn') === 'true') ? (
           <div>
             {/* <p>You must log in to view the page at {from.pathname}</p> */}
             <button onClick={this.login}>Log in</button>
