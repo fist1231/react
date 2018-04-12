@@ -16,7 +16,7 @@ const Overlay = styled.div`
   height: 100%;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(0, 0, 0, .65);
+  background-color: rgba(0, 0, 0, 0.65);
 `;
 
 const Content = styled.div`
@@ -36,8 +36,8 @@ const Content = styled.div`
     vertical-align: middle;
     display: inline-block;
     height: 100%;
-    margin-left: -.05em;
-    content: '';
+    margin-left: -0.05em;
+    content: "";
   }
 `;
 
@@ -53,20 +53,19 @@ const Dialog = styled.div`
   cursor: default;
 `;
 
-
 const Header = styled.div`
-  padding: 16px 8px 8px 8px
+  padding: 16px 8px 8px 8px;
 `;
 
 const Body = styled.div`
-  padding-bottom: 16px
+  padding-bottom: 16px;
 `;
 
 const onOverlayClick = () => {
   hideModal();
 };
 
-const onDialogClick = (event) => {
+const onDialogClick = event => {
   event.stopPropagation();
 };
 

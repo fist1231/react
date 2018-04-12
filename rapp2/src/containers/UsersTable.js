@@ -70,12 +70,12 @@ handleRefreshClick = e => {
         </p>
         {isEmpty
           ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-          : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+          : <div>
 
                 <DisplayTable usersLst={dataSource} />
 
                 <hr />
-                <table border='1'>
+                <table className="table">
                   <tbody>
                     {/*{usersTable.map(usr => <tr key={usr._id}><td>{usr.name}</td><td>{usr.id}</td><td>usr.status</td><td>usr.date</td></tr>)}*/}
                     {dataSource.map(usr => <tr key={usr._id}><td>{usr.name}</td><td>{usr.id}</td><td>{usr.status}</td><td>{usr.created_date}</td></tr>)}

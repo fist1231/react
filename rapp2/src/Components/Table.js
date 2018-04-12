@@ -6,8 +6,9 @@ import 'react-table/react-table.css'
 
 
 const DisplayTable = ({ usersLst, onUserClick }) => (
-  <div className="table">
+  <div>
     <ReactTable
+className="-striped -highlight"
       data={usersLst}
       columns={[
         {
