@@ -30,7 +30,7 @@ export const solicitationsMock = () => {
     CONTAINER_TYPE: `Container type-${i}`,
     AUTHORIZED_BY: `Authorized by ${i}`,
     WITHDRAWAL_REASON: `TReason number ${i}`,
-    OMNIBUS_NUMBER: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
+    WITHDRAWAL_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
     WITHDRAWN_BY: `Withdrawer ${i}` });
   }
   return rows;
