@@ -6,7 +6,10 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+
+import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
+
 
 const customStyles = {
   content : {
@@ -102,7 +105,8 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
       }, {
         dataField: 'TITLE',
         text: 'Solicitation Title',
-        sort: true
+        sort: true,
+        filter: textFilter()
       }, {
         dataField: '',
         text: 'Actions',
@@ -122,7 +126,7 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
             Add Solicitation
           </button>
         </div>
-        <BootstrapTable keyField='SOLICITATION_NUMBER' data={ solicitations } columns={ columns } pagination={ paginationFactory() } striped hover condensed />
+        <BootstrapTable keyField='SOLICITATION_NUMBER' data={ solicitations } columns={ columns } pagination={ paginationFactory() }  filter={ filterFactory() } striped hover condensed />
       </div>
     );
 }
