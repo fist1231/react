@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import './App.css';
 //import $ from 'jquery';
 import Img from 'react-image'
-import Nav from './components/Nav'
+import MainNav from './components/MainNav'
 import Main from './components/Main'
 
 // import Users from './components/Users'
-import Header from './components/Header'
+import Header from './components/header'
+import Footer from './components/footer'
 import UsersList from './containers/UsersList'
 import UsersTable from './containers/UsersTable'
+import ModalRoot from './components/modals/ModalRoot'
+import NoMatch from './NoMatch';
 
+import { Switch, Route } from 'react-router-dom'
 
 if (process.env.NODE_ENV !== 'production') {
    console.log('Looks like we are in development mode!');
@@ -33,9 +37,14 @@ function deleteUser(state, action) {
 
 const App = () => (
   <div>
-    <Header />
-    <Nav />
-    <Main />
+    {console.log('~~~~~~~~~~~~ in da App ~~~~~~~~~~~~')}
+    <div className="pageWrapper">
+      <Header />
+      <MainNav />
+      <Main />
+    </div>
+    <Footer />
+    <ModalRoot />
   </div>
 )
 

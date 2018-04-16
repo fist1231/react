@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import { selectUsersFilter, fetchUsersIfNeeded, invalidateUsersFilter } from '../actions/tableActions'
 import Picker from '../components/Picker'
 import DisplayTable from '../components/Table'
+import config from '../../config/config.json'
+import { usersMock } from '../../config/MockData.js'
+import { withRouter } from 'react-router-dom'
 
 class UsersTable extends Component {
 
@@ -33,9 +36,19 @@ handleRefreshClick = e => {
 }
 
   render() {
+
     const { selectedUsersFilter, usersTable, isFetching, lastUpdated } = this.props
-    const isEmpty = usersTable.length === 0
+
+    const isLiveData = config.live_data;
+
+    const dataSource = isLiveData?usersTable:usersMock();
+
+//    const isEmpty = usersTable.length === 0
+    const isEmpty = dataSource.length === 0
     // const isEmpty = usersLst === undefined
+
+
+
 
     return (
       <div>
@@ -57,12 +70,17 @@ handleRefreshClick = e => {
         </p>
         {isEmpty
           ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-          : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                <DisplayTable usersLst={usersTable} />
-                Test
-                <ol>
-                  {usersTable.map(usr => <li key={usr._id}>{usr.name} - {usr.id}</li>)}
-                </ol>
+          : <div>
+
+                <DisplayTable usersLst={dataSource} />
+
+                <hr />
+                <table className="table">
+                  <tbody>
+                    {/*{usersTable.map(usr => <tr key={usr._id}><td>{usr.name}</td><td>{usr.id}</td><td>usr.status</td><td>usr.date</td></tr>)}*/}
+                    {dataSource.map(usr => <tr key={usr._id}><td>{usr.name}</td><td>{usr.id}</td><td>{usr.status}</td><td>{usr.created_date}</td></tr>)}
+                  </tbody>
+                </table>
             </div>
         }
       </div>
@@ -99,4 +117,4 @@ UsersTable.propTypes = {
 }
 
 
-export default connect(mapStateToProps)(UsersTable);
+export default withRouter(connect(mapStateToProps)(UsersTable));

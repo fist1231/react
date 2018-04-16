@@ -4,7 +4,6 @@ import {
   requestSolicitations
 } from '../actions/solicitationActions'
 
-import expect, { createSpy, spyOn, isSpy } from 'expect'
 
 const solicitationsTable = (state = {
   isFetching: false,
@@ -52,18 +51,3 @@ const solicitationsByFilter = (state = { }, action) => {
 }
 
 export default solicitationsByFilter
-
-expect(
-  solicitationsByFilter( { }, { } )
-).toEqual( { } );
-
-expect(
-  solicitationsByFilter( { }, requestSolicitations({searchText:'a', isOpenOnly:false}) )
-).toEqual( {[requestSolicitations({searchText:'a', isOpenOnly:false})]:{"isFetching": true, "didInvalidate": false, "solicitationsTable": []}} );
-
-
-expect(
-  solicitationsByFilter( { }, requestSolicitations(['a', false]) )
-).toEqual( {"a,false":{"isFetching": true, "didInvalidate": false, "solicitationsTable": []}} );
-
-console.log('Solicitations tests passed');

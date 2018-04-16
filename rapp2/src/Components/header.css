@@ -1,0 +1,24 @@
+.nspiresHeader {
+  background-color: #2d5a96;
+  padding: .15rem 1rem;
+}
+.navbar-brand {
+  background: url(../images/nspiresLogo.png) no-repeat transparent;
+  width: 520px;
+  height:50px;
+  padding-top:0;
+  margin-top: 6px;
+}
+.nasaLogo{
+  background: url(../images/nasaLogo.png) no-repeat transparent;
+  width: 56px;
+  height:48px;
+  margin-top: 6px;
+}
+
+@media (max-width: 767px) {
+  .navbar-brand {
+    background: url(../images/nspiresLogoSmall.png) no-repeat transparent;
+    width: 110px;
+  }
+}

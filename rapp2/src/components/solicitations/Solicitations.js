@@ -4,6 +4,9 @@ import Search from './Search'
 import Table from './Table'
 import { connect } from 'react-redux'
 import { searchSolicitationsFilter, fetchSolicitationsIfNeeded, invalidateSolicitationsFilter } from '../../actions/solicitationActions'
+import config from '../../../config/config.json'
+import { solicitationsMock } from '../../../config/MockData.js'
+import { withRouter } from 'react-router-dom'
 
 class Solicitations extends React.Component {
 
@@ -30,13 +33,15 @@ class Solicitations extends React.Component {
   render() {
 
     const { foundSolicitationsFilter, solicitationsTable, isFetching, lastUpdated } = this.props
+    const isLiveData = config.live_data;
+    const dataSource = isLiveData?solicitationsTable:solicitationsMock();
 
 
     return (
       <div>
         <h1>Solicitations</h1>
         <Search value={foundSolicitationsFilter} onChange={this.handleChange}  />
-        <Table solicitations={solicitationsTable} />
+        <Table solicitations={dataSource} />
       </div>
     );
   }
@@ -66,7 +71,7 @@ Solicitations.propTypes = {
 }
 
 //export default Solicitations;
-export default connect(mapStateToProps)(Solicitations);
+export default withRouter(connect(mapStateToProps)(Solicitations));
 
 {/*
 const Solicitations = () => (

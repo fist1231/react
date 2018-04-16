@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 const customStyles = {
   content : {
@@ -49,7 +51,7 @@ class Table extends React.Component {
 
     const rows = [];
     let lastSearch = null;
-console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.length);
+    console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.length);
     this.props.solicitations.forEach((solicitation) => {
       if (solicitation.acronym !== lastSearch) {
         rows.push(
@@ -74,20 +76,24 @@ console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.
     {/*
     const Table = () => (
     */}
+
     return (
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Acronym</th>
-              <th>title</th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </table>
+
+        <BootstrapTable
+          data={ this.props.solicitations }
+          pagination striped hover search multiColumnSearch tableHeaderClass='nspiresTable'>
+          <TableHeaderColumn dataField='SOLICITATION_NUMBER' isKey dataSort>Solicitation Number</TableHeaderColumn>
+          <TableHeaderColumn dataField='FISCAL_YEAR' dataSort>FISCAL YEAR</TableHeaderColumn>
+          <TableHeaderColumn dataField='TITLE' dataSort>Title</TableHeaderColumn>
+          <TableHeaderColumn dataField='SELECTION_DATE' dataSort>SELECTION DATE</TableHeaderColumn>
+          <TableHeaderColumn dataField='RELEASE_DATE' dataSort>RELEASE DATE</TableHeaderColumn>
+          <TableHeaderColumn dataField='CLOSE_DATE' dataSort>CLOSE DATE</TableHeaderColumn>
+        </BootstrapTable>
+
+
         <hr/>
-        <button onClick={this.handleAddSolicitationClick}>
+        <button className="btn btn-primary" onClick={this.handleAddSolicitationClick}>
           Add Solicitation
         </button>
         <Modal
@@ -97,28 +103,58 @@ console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + this.props.solicitations.
           style={customStyles}
           contentLabel="Add Solicitation"
         >
-
-          <h2 ref={subtitle => this.subtitle = subtitle}>Add Solicitation</h2>
-          <div>Enter Solicitation Info</div>
+          <div className="modal-header">
+            <h3
+              className="modal-title w-100"
+              ref={subtitle => (this.subtitle = subtitle)}
+            >
+              Add Solicitation
+            </h3>
+          </div>
           <form onSubmit={this.handleSubmit}>
-            <div class="form-group">
-              <label>Id</label>
-      				<input id="id" ref="id" class="form-control" />
-      			</div>
-            <div class="form-group">
-              <label>Acronym</label>
-      				<input id="acronym" ref="acronym" class="form-control" />
-      			</div>
-            <div class="form-group">
-              <label>Title</label>
-      				<input id="title" ref="title" class="form-control" />
-      			</div>
-            <div class="form-group">
-          		<button class="btn btn-primary w-100" icon="fa-close">Save</button>
-          	</div>
-          	<div class="form-group">
-          		<button type="reset" class="btn btn-secondary w-100" icon="fa-close" onClick={this.closeModal.bind(this)}>Cancel</button>
-          	</div>
+            <div className="modal-body">
+              <p>Enter Solicitation Info</p>
+              <div className="container-fluid">
+                <div className="form-group">
+                  <label className="">Id</label>
+
+                    <input id="id" ref="id" className="form-control" size="50" />
+
+                </div>
+                <div className="form-group">
+                  <label className="">Acronym</label>
+
+                    <input
+                      id="acronym"
+                      ref="acronym"
+                      className="form-control"
+                      size="50"
+                    />
+
+                </div>
+                <div className="form-group">
+                  <label className="">Title</label>
+
+                    <input id="title" ref="title" className="form-control" size="50" />
+
+                </div>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <div className="btnContainer">
+                <button
+                  type="reset"
+                  className="btn btn-secondary"
+                  icon="fa-close"
+                  onClick={this.closeModal.bind(this)}
+                >
+                  Cancel
+                </button>
+                <button className="btn btn-primary " icon="fa-close">
+                  Save
+                </button>
+              </div>
+            </div>
           </form>
         </Modal>
 

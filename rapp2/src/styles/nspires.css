@@ -1,0 +1,281 @@
+/*html global*******************************************************************/
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f9fafb;
+  font: 100% "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+}
+
+h1 {
+  font-size: 1.5em;
+  color: #2D5A96;
+  padding-top: 10px;
+}
+
+h2 {
+  font-size: 1.4em;
+  color: #2D5A96;
+  padding-top: 10px;
+}
+
+h3 {
+  font-size: 1.3em;
+  color: #2D5A96;
+  padding-top: 10px;
+}
+
+/*Layout style*/
+
+.pageWrapper {
+  min-height: calc(100vh - 160px);
+}
+
+.container-fluid {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.ui-widget {
+  font-size: 0.9em;
+}
+/*Modal Window style*/
+.ReactModal__Content {
+  padding: 0 !important;
+}
+
+.ReactModal__Overlay {
+  z-index: 3;
+}
+
+.modal-header {
+  background-color: #2d5a96;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.modal-body, .modal-footer {
+  padding: 20px;
+}
+
+.modal-body {
+  background-color: #f9fafb;
+}
+
+.modal-footer {
+  background-color: #eee;
+  border-top: 1px solid #ccc;
+}
+
+.modal-title {
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+h3.modal-title{
+  padding-top: 5px;
+}
+
+
+/*Basic form style*/
+
+label {
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.btn {
+  font-size: 0.85em;
+  cursor: pointer;
+  padding: 5px 20px;
+  border-radius: 4px;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+}
+
+.btn-primary {
+  background-color: #3566a7;
+  border-color: #3566a7;
+}
+
+.btnContainer button {
+  margin-right: 5px;
+}
+
+.field-icon {
+  font-family: 'Open Sans', FontAwesome, sans-serif;
+  font-size: 1em;
+}
+
+.search {
+  position: relative;
+  color: #aaa;
+  font-size: 1.1em;
+}
+
+.search input {
+  border-radius: 5px;
+}
+
+.search input {
+  padding-left: 32px !important;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 13px;
+  left: 10px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .4rem .75rem;
+    font-size: 0.95em;
+}
+/*Data table style*/
+
+.ui-datatable th.ui-state-default {
+  background-color: #ddd;
+  border-color: #cacaca;
+  font: 600 0.95em 'Open Sans', sans-serif !important;
+  padding: .4em .5em;
+}
+
+.ui-datatable th.ui-sortable-column:not(.ui-state-active):hover {
+  background: #c6d6ea;
+  border-color: #cacaca;
+}
+
+.ui-datatable th.ui-state-active {
+  background-color: #535e6c;
+  color: #ffffff;
+}
+
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td {
+  padding: .4em .5em;
+  border-color: #cacaca;
+}
+
+.searchfilter {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+.searchfilter input {
+  width: 100%;
+  padding: .6em .5em;
+  border-radius: 5px;
+}
+
+.ui-datatable tbody>tr.ui-widget-content.ui-datatable-odd {
+  background-color: #fafafb !important;
+}
+
+.ui-datatable tbody>tr.ui-widget-content.ui-datatable-even {
+  background-color: #F6F6F6 !important;
+}
+
+.ui-datatable {
+  margin-bottom: 20px;
+}
+/*React table style*/
+.ReactTable{
+  font-size: 0.9em;
+}
+.ReactTable .rt-tr .-odd{
+  background-color: #F6F6F6 !important;
+}
+.ReactTable .rt-thead.-header{
+  background-color: #ddd;
+  box-shadow: none;
+}
+.ReactTable .rt-thead .rt-resizable-header-content {
+  font-weight: 600;
+}
+.table-hover tbody tr:hover {
+    background-color: #eaf0f8 !important;
+}
+.react-bs-table .table-bordered>thead>tr:first-child>td, .react-bs-table .table-bordered>thead>tr:first-child>th {
+    border-bottom-width: 0;
+}
+.dropup, .dropdown {
+    position: relative;
+}
+.dropup, .dropdown {
+    position: relative;
+}
+.dropup .caret, .navbar-fixed-bottom .dropdown .caret {
+    border-top: 0;
+    border-bottom: 4px dashed;
+    border-bottom: 4px solid \9;
+    content: "";
+}
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid \9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    color:#999 !important;
+}
+.ui-inputtext::placeholder {
+  color: #999 !important;
+  opacity: 1;
+}
+
+.ui-paginator .ui-paginator-page.ui-state-active {
+  background: #535e6c;
+}
+
+.table td, .table th {
+  padding: .4em .5em;
+  font-size: 0.9em;
+  border: 1px solid #cacaca;
+}
+.nspiresTable{
+  background: #ddd;
+  border-color: #cacaca;
+  border-bottom: 0 !important;
+  color: #555;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f6f6f6;
+}
+
+.ui-widget-content .ui-cell-data a {
+  color: #2D5A96;
+  text-decoration: underline;
+}
+
+.ui-widget-content .ui-cell-data a:hover {
+  text-decoration: normal;
+}
+
+.ui-widget-content .ui-cell-data a.tableAction {
+  color: #535e6c;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.ui-cell-data {
+  word-wrap: break-word;
+  white-space: normal;
+}
+.invalid-feedback {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+input.error{
+  border-color:#dc3545;
+}
+label.error{
+color: #dc3545;
+  }

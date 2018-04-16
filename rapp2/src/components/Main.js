@@ -4,6 +4,8 @@ import UsersList from '../containers/UsersList'
 import UsersTable from '../containers/UsersTable'
 import Solicitations from '../components/solicitations/Solicitations'
 import ReviewProposals from '../containers/reviewProposals/ReviewProposalsView'
+import HomePriv from './HomePriv'
+import NoMatch from '../NoMatch'
 
 
 // The Main component renders one of the three provided
@@ -14,13 +16,17 @@ import ReviewProposals from '../containers/reviewProposals/ReviewProposalsView'
 const Main = () => (
   <div>
   <main>
+  <div className="container-fluid ">
     <Switch>
+      <Route path='/' exact component={HomePriv} />
       <Route path='/users' component={UsersList}/>
       <Route path='/usersTable' component={UsersTable}/>
 {/*      <Route path='/solicitations'><Solicitations solicitations={SOLICITATIONS} /></Route> */}
       <Route path='/solicitations'><Solicitations /></Route>
       <Route path='/reviewProposals'><ReviewProposals /></Route>
+      <Route component={NoMatch} /> 
     </Switch>
+    </div>
   </main>
   </div>
 )

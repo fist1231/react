@@ -43,8 +43,8 @@ module.exports = {
       //     'Promise': 'es6-promise', // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
       //     'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
       // }),
-
       // new RestSpreadPlugin()
+
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -54,6 +54,9 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true, // Fixes the 404/Cannot-GET errors on refresh/back/forward, but only for a single level of nested route
+    contentBase: './',
+    // hot: true,
+    // inline: true
   },
   module: {
       loaders: [

@@ -11,6 +11,9 @@ import solicitationsByFilter from './solicitationsByFilter'
 //import reviewProposalsByFilter from './reviewProposals/reviewProposalsByFilter'
 import searchFilter from './reviewProposals/searchFilter'
 import reviewProposals from './reviewProposals/reviewProposals'
+import previewDetails from './reviewProposals/previewDetails'
+import modal from './modal/modal'
+import auth from './auth'
 
 const usersApp = combineReducers({
   users,
@@ -23,7 +26,10 @@ const usersApp = combineReducers({
   //foundReviewProposalsFilter,
   //reviewProposalsByFilter
   searchFilter,
-  reviewProposals
+  reviewProposals,
+  previewDetails,
+  modal,
+  auth
 })
 
 export default usersApp
