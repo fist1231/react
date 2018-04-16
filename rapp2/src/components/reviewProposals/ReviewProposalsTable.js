@@ -33,12 +33,12 @@ const reviewProposalsTable = ({...props, list, filter, onSearch, onEdit, onPrevi
   }
 
   const onEditClicked = (e, rowData) => {
-    console.log('Edit: ' + JSON.stringify(rowData));
+    // console.log('Edit: ' + JSON.stringify(rowData));
     onEdit(rowData)
   }
 
   const onDeleteClicked = (e, rowData) => {
-    console.log('Delete: ' + rowData.ASSIGNED_RESPONSE_ID);
+    // console.log('Delete: ' + rowData.ASSIGNED_RESPONSE_ID);
     onDelete(rowData)
   }
 
@@ -69,8 +69,8 @@ const reviewProposalsTable = ({...props, list, filter, onSearch, onEdit, onPrevi
 
 return (
   <div>
-    { props.wth = 'whaaaaat?' }
-    { console.log('------> props = ' + JSON.stringify(props.wth)) }
+    {/* props.wth = 'whaaaaat?' }
+    { console.log('------> props = ' + JSON.stringify(props.wth)) */}
 
 <div>
   <h1>Review Proposals</h1>

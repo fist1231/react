@@ -1,9 +1,33 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import { Link } from "react-router-dom";
+
+import img1 from "../images/1.jpg";
+import img2 from "../images/2.jpg";
+import img3 from "../images/3.jpg";
+
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Home = () => (
   <div>
     <div className="container-fluid ">
+
+      <Carousel autoPlay interval={3000} infiniteLoop style={{height:'200px'}}>
+          <div style={{height:'200px'}}>
+              <img src={img1} />
+              <p className="legend">Nspires 1</p>
+          </div>
+          <div style={{height:'200px'}}>
+              <img src={img2} />
+              <p className="legend">Nasa 2</p>
+          </div>
+          <div style={{height:'200px'}}>
+              <img src={img3} />
+              <p className="legend">NRESS 3</p>
+          </div>
+      </Carousel>
+
       <div className="pubHome">
         <h2>NASA Research Opportunities</h2>
         <p>

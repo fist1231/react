@@ -65,7 +65,7 @@ const MainNav = (propsy, location) => (
               <NavLink activeclassname='active' tag={RRNavLink} to="/reviewProposals">Review Proposals</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink activeclassname='active' disabled href="#">Disabled</NavLink>
+              <NavLink activeclassname='active' disabled href="#">Selections</NavLink>
             </NavItem>
           </Nav>
 </div>
