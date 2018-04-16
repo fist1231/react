@@ -1,16 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { EDIT_PROPOSAL, DELETE_PROPOSAL } from '../../actions/modal/modalActions'
+import { EDIT_PROPOSAL, DELETE_PROPOSAL, ADD_SOLICITATION, EDIT_SOLICITATION, DELETE_SOLICITATION } from '../../actions/modal/modalActions'
 
 import editProposalModal from './EditProposalModal'
 import deleteProposalModal from './DeleteProposalModal'
+import addSolicitationModal from './AddSolicitationModal'
+import editSolicitationModal from './EditSolicitationModal'
+import deleteSolicitationModal from './DeleteSolicitationModal'
 // import deleteProposalModal from './DeleteProposalModal'
 // import confirmLogoutModal from './ConfirmLogoutModal'
 
 const MODAL_COMPONENTS = {
   EDIT_PROPOSAL: editProposalModal,
-  DELETE_PROPOSAL: deleteProposalModal
+  DELETE_PROPOSAL: deleteProposalModal,
+  ADD_SOLICITATION: addSolicitationModal,
+  EDIT_SOLICITATION: editSolicitationModal,
+  DELETE_SOLICITATION: deleteSolicitationModal,
   // 'DELETE_PROPOSAL': deleteProposalModal,
   // 'CONFIRM_LOGOUT': confirmLogoutModal,
   /* other modals */

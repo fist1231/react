@@ -48,7 +48,8 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
+    // filename: '[name].bundle.js',
+    filename: '[name].[chunkhash].js',
     //publicPath: '/dist'
     publicPath: '/'
   },
@@ -91,7 +92,11 @@ module.exports = {
           },
           {
               test: /\.css$/,
-              use: ['style-loader', 'css-loader']
+              use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: "css-loader"
+              })
+              // use: ['style-loader', 'css-loader']
           },
           {
               test: /\.scss$/,
