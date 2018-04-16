@@ -22,3 +22,32 @@
     width: 110px;
   }
 }
+
+.loginContainer {
+  margin-top: 13px;
+}
+.loginContainer a{
+  color:#f6f6f6;
+}
+.loginContainer a:hover{
+  color: #5eb3ce
+}
+ul.loginLinks{
+  list-style-type: none;
+  list-style-image: none;
+  padding-left: 0;
+  padding-top: 10px;
+  float: left;
+  margin-bottom: 0;
+  color:#f6f6f6;
+  font-size:0.8em;
+}
+.loginLinks li {
+    float: right;
+    padding-right: 5px;
+    margin-left: 0;
+}
+.loginLinks li:not(:first-child):after {
+  content: " | ";
+    color: #fff;
+}

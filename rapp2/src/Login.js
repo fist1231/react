@@ -93,16 +93,18 @@ class Login extends Component {
     return (
       <div>
         {!(localStorage.getItem('loggedIn') === 'true') ? (
-          <div>
+          <div className="row loginContainer float-right mt-3">
             {/* <p>You must log in to view the page at {from.pathname}</p> */}
-            <button onClick={this.login}>Log in</button>
-            <Link to=' ' onClick={this.login}>Login</Link>
+            <button className="btn btn-secondary btn-lg" onClick={this.login}>Log in</button>
         </div>
         ) : (
-          <div>
-            <p>Welcome, {auth.username}!</p>
-            <button onClick={this.logout}>Logout</button>
-            <Link to='/' onClick={this.logout}>Logout</Link>
+          <div className="row loginContainer float-right">
+        <ul className="loginLinks">
+  <li><Link to='/' onClick={this.logout}>Logout</Link></li>
+        <li><i className="fa fa-user-circle"></i> Welcome, John D.</li>
+
+
+            </ul>
         </div>
         )}
       </div>

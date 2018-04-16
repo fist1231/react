@@ -7,20 +7,19 @@
   flex-wrap: wrap;
   border-bottom: 0;
 }
-.nav-tabs .nav-link:hover {
+.mainNav .nav-link:hover {
     background-color: #15418c;
     border: 1px solid transparent !important;
     border-bottom: 0 !important;
 }
-.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+.mainNav .nav-link:focus, .mainNav .nav-link:hover {
     border-bottom: 0 !important;
 }
-
 .mainNav li a.nav-link  {
     border-top-right-radius: 3px ;
     border-top-left-radius: 3px;
     padding-top: 5px;
-    padding-bottom: 9px;
+    padding-bottom: 10px;
     border-bottom: 0;
 }
 .mainNav li a.nav-link.active  {
@@ -29,12 +28,12 @@
 .mainNav li a.active  {
     font-weight:600;
 }
-.nav-tabs .nav-item a{
+.mainNav .nav-item a{
   font: 400 0.9em 'Open Sans',sans-serif;
   color:#fff
 }
 
 .mainNavContainer .nav-tabs{
   border-bottom: 0;
-  padding-top: 5px;
+  padding-top: 8px;
 }

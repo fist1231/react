@@ -29,12 +29,15 @@ const Header = () => (
         <div className="col nspiresLogoContainer">
             <a className="navbar-brand" href="#"></a>
         </div>
-        <div className="col">
+        <div className="col ">
+        <div className="">
+          <Login />
+</div>
+          </div>
+        <div className="col col-auto">
           <div className="nasaLogo float-right">
           </div>
-          <div className="float-right">
-            <Login />
-          </div>
+
         </div>
       </div>
     </div>

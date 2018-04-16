@@ -46,8 +46,8 @@ const MainNav = (propsy, location) => (
 
               <Menubar model={items}/>
         */}
-
-
+    <div className="row">
+  <div className="col-md-9">
           <Nav tabs className="mainNav">
             <NavItem>
               <NavLink activeclassname='active' tag={RRNavLink} to="/" exact>Home</NavLink>
@@ -68,9 +68,22 @@ const MainNav = (propsy, location) => (
               <NavLink activeclassname='active' disabled href="#">Disabled</NavLink>
             </NavItem>
           </Nav>
+          </div>
+  <div className="col-md-3">
+
+         <div className="input-group stylish-input-group mt-2">
+             <input type="text" className="form-control"  placeholder="Search"/>
+             <span className="input-group-addon">
+                 <button type="submit">
+                  <i class="fa fa-search"></i>
+                 </button>
+             </span>
+         </div>
+     </div>
+        </div>
+
+
 </div>
-
-
 )
 
 
