@@ -1,35 +1,72 @@
 import React, { Component } from 'react'
 import { usersMock, solicitationsMock, reviewProposalsMock } from '../../config/MockData.js'
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+// import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+// import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import BootstrapTable from 'react-bootstrap-table-next';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+
 import { RingLoader, GridLoader, FadeLoader } from 'react-spinners';
 import { Link } from 'react-router-dom'
 import HomeCalendar from './calendar/HomeCalendar'
 
 const Users = (props) => {
+
+      const columns = [{
+        dataField: '_id',
+          text: 'Id',
+          sort: true
+        }, {
+          dataField: 'name',
+          text: 'Name',
+          sort: true
+        }, {
+          dataField: 'status',
+          text: 'Status',
+          sort: true
+      }];
+
       return (
           props.data.length ? (
-          <BootstrapTable className="table nspiresTable"
-            data={props.data}
-            striped hover>
-            <TableHeaderColumn dataField='_id' isKey dataSort>User</TableHeaderColumn>
-            <TableHeaderColumn dataField='name' dataSort>Name</TableHeaderColumn>
-            <TableHeaderColumn dataField='status' dataSort>Status</TableHeaderColumn>
-          </BootstrapTable>
-      ) : (
-        <div>
-          <GridLoader
-            color={'#123abc'}
-            loading={true}
-          />
-        </div>
+            <BootstrapTable keyField='_id' data={ props.data } columns={ columns } striped hover condensed />
+/*
+            <BootstrapTable className="table nspiresTable"
+              data={props.data}
+              striped hover>
+              <TableHeaderColumn dataField='_id' isKey dataSort>User</TableHeaderColumn>
+              <TableHeaderColumn dataField='name' dataSort>Name</TableHeaderColumn>
+              <TableHeaderColumn dataField='status' dataSort>Status</TableHeaderColumn>
+            </BootstrapTable>
+*/
+        ) : (
+          <div>
+            <GridLoader
+              color={'#123abc'}
+              loading={true}
+            />
+          </div>
+        )
       )
-    )
 }
 
 const Solicitations = (props) => {
+      const columns = [{
+        dataField: 'SOLICITATION_NUMBER',
+          text: 'Number',
+          sort: true
+        }, {
+          dataField: 'RELEASE_DATE',
+          text: 'Release',
+          sort: true
+        }, {
+          dataField: 'CLOSE_DATE',
+          text: 'Close',
+          sort: true
+      }];
       return (
           props.data.length ? (
+            <BootstrapTable keyField='SOLICITATION_ID' data={ props.data } columns={ columns } striped hover condensed />
+/*
+
           <BootstrapTable className="table nspiresTable"
             data={props.data}
             striped hover>
@@ -37,6 +74,7 @@ const Solicitations = (props) => {
             <TableHeaderColumn dataField='RELEASE_DATE' dataSort>Release</TableHeaderColumn>
             <TableHeaderColumn dataField='CLOSE_DATE' dataSort>Close</TableHeaderColumn>
           </BootstrapTable>
+*/
       ) : (
         <div>
           <RingLoader
@@ -49,8 +87,23 @@ const Solicitations = (props) => {
 }
 
 const Proposals = (props) => {
+      const columns = [{
+        dataField: 'RESPONSE_NUMBER',
+          text: 'Number',
+          sort: true
+        }, {
+          dataField: 'PSTATE',
+          text: 'Status',
+          sort: true
+        }, {
+          dataField: 'LAST_NAME',
+          text: 'PI',
+          sort: true
+      }];
       return (
           props.data.length ? (
+            <BootstrapTable keyField='ASSIGNED_RESPONSE_ID' data={ props.data } columns={ columns } striped hover condensed />
+/*
           <BootstrapTable className="table nspiresTable"
             data={props.data}
             striped hover>
@@ -58,6 +111,7 @@ const Proposals = (props) => {
             <TableHeaderColumn dataField='PSTATE' dataSort>Status</TableHeaderColumn>
             <TableHeaderColumn dataField='LAST_NAME' dataSort>PI</TableHeaderColumn>
           </BootstrapTable>
+*/
       ) : (
         <div>
           <FadeLoader

@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+// import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+// import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 
 const customStyles = {
   content : {
@@ -17,16 +22,19 @@ const customStyles = {
 
 class Table extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props, onEditSolicitation) {
+    super(props);
     this.state = {
       modalIsOpen: false
     };
-
+    console.log('____________ props=' + JSON.stringify(props));
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleAddSolicitationClick = this.handleAddSolicitationClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.onEditSolicitation = this.props.onEditSolicitation.bind(this);
+    console.log('____________ onEditSolicitation=' + JSON.stringify(onEditSolicitation));
+    // this.onEditSolicitation = this.onEditSolicitation.bind(this);
   }
 
   openModal() {
@@ -46,6 +54,30 @@ class Table extends React.Component {
     this.closeModal();
     e.preventDefault();
   }
+
+
+  actionsFormatter(cell, row, rowIndex, formatExtraData) {
+
+    const onEditClicked = (rowData) => {
+      console.log('Edit: ' + JSON.stringify(rowData));
+      this.onEditSolicitation(rowData);
+      // return onEdit(rowData);
+    }
+
+    const onDeleteClicked = (rowData) => {
+      console.log('Delete: ' + rowData.ASSIGNED_RESPONSE_ID);
+      this.props.onDeleteSolicitation(rowData);
+      // return onDelete(rowData);
+    }
+    return (
+      <div>
+        <a className="tableAction" onClick={() => onEditClicked(row)}><i className='fa fa-edit'></i></a>
+        <span>&nbsp;&nbsp;</span>
+        <a className="tableAction" onClick={() => onDeleteClicked(row)}><i className='fa fa-trash'></i></a>
+      </div>
+    );
+  }
+
 
   render() {
 
@@ -77,9 +109,30 @@ class Table extends React.Component {
     const Table = () => (
     */}
 
+    const columns = [{
+      dataField: 'SOLICITATION_NUMBER',
+        text: 'Solicitation Number',
+        sort: true
+      }, {
+        dataField: 'FISCAL_YEAR',
+        text: 'Fiscal Year',
+        sort: true
+      }, {
+        dataField: 'TITLE',
+        text: 'Solicitation Title',
+        sort: true
+      }, {
+        text: 'Actions',
+        formatter: this.actionsFormatter,
+        formatExtraData: {
+        }
+    }];
+
     return (
       <div>
+        <BootstrapTable keyField='SOLICITATION_ID' data={ this.props.solicitations } columns={ columns } pagination={ paginationFactory() } striped hover condensed />
 
+{/*
         <BootstrapTable
           data={ this.props.solicitations }
           pagination striped hover search multiColumnSearch tableHeaderClass='nspiresTable'>
@@ -90,9 +143,10 @@ class Table extends React.Component {
           <TableHeaderColumn dataField='RELEASE_DATE' dataSort>RELEASE DATE</TableHeaderColumn>
           <TableHeaderColumn dataField='CLOSE_DATE' dataSort>CLOSE DATE</TableHeaderColumn>
         </BootstrapTable>
-
-
+*/}
+{/*
         <hr/>
+
         <button className="btn btn-primary" onClick={this.handleAddSolicitationClick}>
           Add Solicitation
         </button>
@@ -157,6 +211,7 @@ class Table extends React.Component {
             </div>
           </form>
         </Modal>
+*/}
 
       </div>
 

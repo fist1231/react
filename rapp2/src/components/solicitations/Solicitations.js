@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import Search from './Search'
-import Table from './Table'
+import SolicitationTable from './SolicitationTable'
 import { connect } from 'react-redux'
 import { searchSolicitationsFilter, fetchSolicitationsIfNeeded, invalidateSolicitationsFilter } from '../../actions/solicitationActions'
+import { addSolicitation, editSolicitation, deleteSolicitation, hideModal } from '../../actions/modal/modalActions'
 import config from '../../../config/config.json'
 import { solicitationsMock } from '../../../config/MockData.js'
 import { withRouter } from 'react-router-dom'
@@ -41,7 +42,7 @@ class Solicitations extends React.Component {
       <div>
         <h1>Solicitations</h1>
         <Search value={foundSolicitationsFilter} onChange={this.handleChange}  />
-        <Table solicitations={dataSource} />
+        <SolicitationTable solicitations={dataSource} onAddSolicitation={this.props.onAddSolicitation} onEditSolicitation={this.props.onEditSolicitation} onDeleteSolicitation={this.props.onDeleteSolicitation} />
       </div>
     );
   }
@@ -66,12 +67,20 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+  onAddSolicitation:solicitation => dispatch(addSolicitation()),
+  onEditSolicitation:solicitation => dispatch(editSolicitation(solicitation)),
+  onDeleteSolicitation:solicitation => dispatch(deleteSolicitation(solicitation)),
+})
+
+
 Solicitations.propTypes = {
    solicitations: PropTypes.array
 }
 
 //export default Solicitations;
-export default withRouter(connect(mapStateToProps)(Solicitations));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Solicitations));
 
 {/*
 const Solicitations = () => (
