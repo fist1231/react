@@ -22,7 +22,8 @@ export const solicitationsMock = () => {
     rows.push({ SOLICITATION_ID: `0000${i}`, SOLICITATION_NUMBER: `Number-${i}`, PUBLICATION_APPROVAL: 1, FISCAL_YEAR: `${1990+i}`,
     OMNIBUS_NUMBER: `OmniNumber ${i}`,
     TITLE: `Title ${i}`,
-    REVIEW_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
+    REVIEW_DATE: '',
+    // REVIEW_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
     SELECTION_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
     RELEASE_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
     CLOSE_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
@@ -30,7 +31,8 @@ export const solicitationsMock = () => {
     CONTAINER_TYPE: `Container type-${i}`,
     AUTHORIZED_BY: `Authorized by ${i}`,
     WITHDRAWAL_REASON: `TReason number ${i}`,
-    WITHDRAWAL_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
+    // WITHDRAWAL_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
+    WITHDRAWAL_DATE: '',
     WITHDRAWN_BY: `Withdrawer ${i}` });
   }
   return rows;

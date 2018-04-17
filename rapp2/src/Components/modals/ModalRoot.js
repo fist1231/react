@@ -23,15 +23,15 @@ const MODAL_COMPONENTS = {
 }
 
 const ModalRoot = ({ modalType, modalProps }) => {
-  console.log('modalType=' + modalType);
-  console.log('modalProps=' + JSON.stringify(modalProps));
+  // console.log('modalType=' + modalType);
+  // console.log('modalProps=' + JSON.stringify(modalProps));
   if (!modalType) {
     //return <span /> // after React v15 you can return null here
     return null // after React v15 you can return null here
   }
 
   const SpecificModal = MODAL_COMPONENTS[modalType];
-  console.log('*********** modalProps = ' + JSON.stringify(modalProps));
+  // console.log('*********** modalProps = ' + JSON.stringify(modalProps));
   return <SpecificModal {...modalProps} />;
 }
 

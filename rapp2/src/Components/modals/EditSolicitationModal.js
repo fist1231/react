@@ -49,7 +49,7 @@ const Dialog = styled.div`
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
-  max-width: 520px;
+  max-width: 760px;
   cursor: default;
 `;
 
@@ -73,14 +73,14 @@ class EditSolicitationModal extends Component {
 
   componentDidMount() {
     const { dispatch, modal } = this.props
-    console.log('### modalProps=' + JSON.stringify(modal.modalProps))
+    // console.log('### modalProps=' + JSON.stringify(modal.modalProps))
   }
 
 
 render() {
 
   const { dispatch, modal } = this.props
-  console.log('###---### modal=' + JSON.stringify(modal))
+  // console.log('###---### modal=' + JSON.stringify(modal))
   const solicitation = modal.modalProps.solicitation
 
   // const handleConfirm = (isConfirmed) => () => {
@@ -107,7 +107,7 @@ render() {
         <Content onClick={() => dispatch(hideModal())}>
           <Dialog onClick={onDialogClick}>
             <div className="modal-header">
-                <h3 className="modal-title">Edit Solicitation {solicitation.SOLICITATION_NUMBER}</h3>
+                <h3 className="modal-title">Edit Solicitation: {solicitation.TITLE}</h3>
             </div>
             <EditSolicitationForm solicitation={solicitation} hideModal={this.props.onFormSubmit} />
           </Dialog>
