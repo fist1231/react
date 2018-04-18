@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import { setAuthOn, setAuthOff } from './actions/authActions';
 import App from './App';
 
+import LoginModal from './containers/modal/LoginModal';
+
+
+
 
 export const fakeAuth = () => {
   // isAuthenticated: false,
@@ -19,6 +23,32 @@ export const fakeAuth = () => {
 };
 
 class Login extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+        modalIsOpen: false
+    };
+
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({modalIsOpen: true});
+    console.log('000000000 openModal = ' + this.state.modalIsOpen)
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // this.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
 
   componentDidMount() {
     const { dispatch, auth } = this.props
@@ -37,6 +67,30 @@ class Login extends Component {
 
     dispatch(setAuthOn());
     history.push("/");
+
+    // this.openModal;
+
+    // fakeAuth.authenticate(() => {
+    //    this.setState({ redirectToReferrer: true });
+    //    dispatch(setAuthOn());
+    //    history.push("/");
+    //   // return <Redirect to={{ pathname: "/AppPrivate" }} />
+    // });
+  };
+
+  authenticate = (username, pwd) => {
+
+    console.log('######### authenticate: ' + username + "; " + pwd)
+
+    const { dispatch, auth, history } = this.props
+    const authen = {'loggedIn': 'true', 'username': 'Local'};
+    localStorage.setItem('loggedIn', true);
+    localStorage.setItem('username', 'Local');
+
+    dispatch(setAuthOn());
+    history.push("/");
+    this.closeModal;
+
     // fakeAuth.authenticate(() => {
     //    this.setState({ redirectToReferrer: true });
     //    dispatch(setAuthOn());
@@ -95,7 +149,7 @@ class Login extends Component {
         {!(localStorage.getItem('loggedIn') === 'true') ? (
           <div className="row loginContainer float-right mt-3">
             {/* <p>You must log in to view the page at {from.pathname}</p> */}
-            <button className="btn btn-secondary btn-lg" onClick={this.login}>Log in</button>
+            <button className="btn btn-secondary btn-lg" onClick={this.openModal}>Log in</button>
         </div>
         ) : (
           <div className="row loginContainer float-right">
@@ -107,6 +161,15 @@ class Login extends Component {
             </ul>
         </div>
         )}
+
+        <LoginModal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          contentLabel="Example Modal"
+          closeModal={this.closeModal}
+          authenticate={this.authenticate}
+        />
       </div>
     );
   }

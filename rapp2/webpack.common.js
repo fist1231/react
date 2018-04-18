@@ -75,12 +75,13 @@ module.exports = {
                   loader: 'html-loader',
               }],
           },
+          // {
+          //     test: /\.(png|jpg|svg|cur|gif|eot|svg|ttf|woff|woff2)$/,
+          //     use: ['url-loader'],
+          // },
           {
-              test: /\.(png|jpg|svg|cur|gif|eot|svg|ttf|woff|woff2)$/,
-              use: ['url-loader'],
-          },
-          {
-              test: /\.(ico)$/,
+              // test: /\.(ico)$/,
+              test: /\.(ico|png|jpg|svg|cur|gif|eot|svg|ttf|woff|woff2)$/,
               use: [{
                   loader: 'file-loader',
                   options: {
