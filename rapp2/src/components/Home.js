@@ -9,14 +9,27 @@ import img3 from "../images/3.jpg";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
+const styles = {
+    paperContainer: {
+        backgroundImage: `url(${img1})`,
+        height:'200px'
+    }
+};
+
 const Home = () => (
   <div>
     <div className="container-fluid ">
 
       <Carousel autoPlay interval={3000} infiniteLoop style={{height:'200px'}}>
-          <div style={{height:'200px'}}>
-              <img src={img1} />
-              <p className="legend">Nspires 1</p>
+          <div style={styles.paperContainer}>
+              <p>Text goes here</p>
+              <p>Height, font, size and color can be adjusted accordingly</p>
+              <p>
+                Supporting research in science and technology is an important part of
+                NASA's overall mission. NASA solicits this research through the
+                release of various research announcements in a wide range of science
+                and technology disciplines.
+              </p>
           </div>
           <div style={{height:'200px'}}>
               <img src={img2} />
