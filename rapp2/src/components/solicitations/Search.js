@@ -24,6 +24,7 @@ const Search = ({ searchFilter, onChange }) => (
                 />
               </div>
             </div>
+{/*
             <div className="form-check mb-2 mr-sm-2 mb-sm-0">
               <label className="form-check-label">
                 <input
@@ -39,6 +40,7 @@ const Search = ({ searchFilter, onChange }) => (
                 Only show open solicitations
               </label>
             </div>
+*/}            
           </div>
         </div>
       </div>

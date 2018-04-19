@@ -12,14 +12,6 @@ className="-striped -highlight"
       data={usersLst}
       columns={[
         {
-          Header: "Pk",
-          accessor: "_id"
-        },
-        {
-          Header: "Id",
-          accessor: "id"
-        },
-        {
           Header: "Name",
           accessor: "name"
         },

@@ -28,7 +28,7 @@ const reviewProposalsTable = ({...props, list, filter, onSearch, onEdit, onPrevi
     // console.log('------> rowData = ' + JSON.stringify(rowData));
   //  console.log('------> column = ' + JSON.stringify(column));
     return <div>
-        <Link to='' onMouseEnter={(e) => handleMouseHoverEnter(e, rowData)} onMouseLeave={handleMouseHoverLeave}>{rowData.RESPONSE_NUMBER}</Link>
+        <Link to='' onMouseEnter={(e) => handleMouseHoverEnter(e, rowData)} onMouseLeave={handleMouseHoverLeave}>{rowData.RESPONSE_NUMBER}-{rowData.RESPONSE_SEQ_NUMBER}</Link>
     </div>;
   }
 
@@ -88,10 +88,8 @@ return (
         <DataTable className="test1" value={list} paginator={true} rows={20} rowsPerPageOptions={[10,20,50,100,1000]}
           resizableColumns={true} columnResizeMode="expand" responsive={true} reorderableColumns={true} globalFilter={filter?filter.searchText:''}
           contextMenu={props} selection={props.selectedCar} onSelectionChange={(e) => (props.selectedCar=e.data)} >
-          <Column field="ASSIGNED_RESPONSE_ID" header="Id" sortable={true} />
-          <Column body={nT} header="Response" sortable={true} />
+          <Column body={nT} header="Response Number" sortable={true} />
           <Column field="RESPONSE_SEQ_NUMBER" header="Response Sequence" sortable={true} />
-          <Column field="PSTATE" header="Status" sortable={true} />
           <Column field="FIRST_NAME" header="First name" sortable={true} />
           <Column field="LAST_NAME" header="Last name" sortable={true} />
           <Column body={actionsTemplate} header="Actions" sortable={false} />

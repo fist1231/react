@@ -53,10 +53,7 @@ const MainNav = (propsy, location) => (
               <NavLink activeclassname='active' tag={RRNavLink} to="/" exact>Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink activeclassname='active' tag={RRNavLink} to="/users">Users</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink activeclassname='active' tag={RRNavLink} to="/usersTable">Users Table</NavLink>
+              <NavLink activeclassname='active' tag={RRNavLink} to="/usersTable">Users</NavLink>
             </NavItem>
             <NavItem>
               <NavLink activeclassname='active' tag={RRNavLink} to="/solicitations">Solicitations</NavLink>
@@ -75,7 +72,7 @@ const MainNav = (propsy, location) => (
              <input type="text" className="form-control"  placeholder="Search"/>
              <span className="input-group-addon">
                  <button type="submit">
-                  <i class="fa fa-search"></i>
+                  <i className="fa fa-search"></i>
                  </button>
              </span>
          </div>

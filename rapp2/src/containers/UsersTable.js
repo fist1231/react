@@ -52,6 +52,7 @@ handleRefreshClick = e => {
 
     return (
       <div>
+{/*
         <Picker value={selectedUsersFilter}
                 onChange={this.handleChange}
                 options={[ 'SHOW_ALL', 'SHOW_ACTIVE', 'SHOW_DISABLED' ]} />
@@ -68,19 +69,21 @@ handleRefreshClick = e => {
             </button>
           }
         </p>
+*/}
         {isEmpty
           ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
           : <div>
 
                 <DisplayTable usersLst={dataSource} />
+{/*
 
                 <hr />
                 <table className="table">
                   <tbody>
-                    {/*{usersTable.map(usr => <tr key={usr._id}><td>{usr.name}</td><td>{usr.id}</td><td>usr.status</td><td>usr.date</td></tr>)}*/}
                     {dataSource.map(usr => <tr key={usr._id}><td>{usr.name}</td><td>{usr.id}</td><td>{usr.status}</td><td>{usr.created_date}</td></tr>)}
                   </tbody>
                 </table>
+                */}
             </div>
         }
       </div>

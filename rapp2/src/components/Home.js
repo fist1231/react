@@ -9,6 +9,8 @@ import img3 from "../images/3.jpg";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
+import FlipCardB from '../containers/flipCard/FlipCardB';
+
 const styles = {
     paperContainer: {
         backgroundImage: `url(${img1})`,
@@ -42,6 +44,21 @@ const Home = () => (
       </Carousel>
 
       <div className="pubHome">
+
+        <div className="dataDisplayRow">
+          <div className="row">
+            <div className="col">
+              <FlipCardB />
+            </div>
+            <div className="col">
+              <FlipCardB />
+            </div>
+            <div className="col">
+              <FlipCardB />
+            </div>
+          </div>
+        </div>
+
         <h2>NASA Research Opportunities</h2>
         <p>
           Supporting research in science and technology is an important part of
