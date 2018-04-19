@@ -33,7 +33,7 @@ export default class HomeTabs extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="homeTabsContainer">
         <Nav tabs>
           <NavItem>
             <NavLink
@@ -67,63 +67,74 @@ export default class HomeTabs extends React.Component {
                     className="list-group-item list-group-item-action flex-column align-items-start active"
                   >
                     <div className="d-flex w-100 justify-content-between">
-                    <span>3 Affiliation Requests are pending</span>
-                    </div></a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action flex-column align-items-start"
-                  >
-
-                    <p className="mb-1">
-                      <span className="mr-3">Need Program Manager Confirmation for proposal: Test_075. For solicitation: NEWTEST0013FC</span>
-                        <span class="badge badge-light">03/20/2018</span>
-                    </p>
-
+                      <span>3 Affiliation Requests are pending</span>
+                    </div>
                   </a>
                   <a
                     href="#"
                     className="list-group-item list-group-item-action flex-column align-items-start"
                   >
-                  <small className="text-muted">
-                    03/10/2018
-                  </small>
                     <p className="mb-1">
-                      <a href="#">Need Collaborator Confirmation for proposal:Studies of the Dynamics, Control, and Evaporation of Three-Dimensional Droplet Arrays</a>
+                      <span className="mr-3">
+                        Need Program Manager Confirmation for proposal:
+                        Test_075. For solicitation: NEWTEST0013FC
+                      </span>
+                      <span className="badge badge-light">03/20/2018</span>
                     </p>
-
+                  </a>
+                  <a
+                    href="#"
+                    className="list-group-item list-group-item-action flex-column align-items-start"
+                  >
+                    <p className="mb-1">
+                      <span className="mr-3">
+                        Need Collaborator Confirmation for
+                        proposal:Micropropulsion and Control Technologies for
+                        On-Orbit NanoSat Positioning
+                      </span>
+                      <span className="badge badge-light">02/25/2018</span>
+                    </p>
                   </a>
 
                   <a
                     href="#"
                     className="list-group-item list-group-item-action flex-column align-items-start"
                   >
-                  <small className="text-muted">
-                    02/05/2018
-                  </small>
                     <p className="mb-1">
-                      <a href="#">Need Collaborator Confirmation for proposal:Micropropulsion and Control Technologies for On-Orbit NanoSat Positioning</a>
+                      <span className="mr-3">
+                        Need Collaborator Confirmation for proposal:Integrated
+                        strategies for the human exploration of the Moon and
+                        Mars
+                      </span>
+                      <span className="badge badge-light">02/21/2018</span>
                     </p>
-
                   </a>
-
-
-
                 </div>
               </Col>
             </Row>
           </TabPane>
           <TabPane tabId="2">
             <Row>
-<Col sm="12">
-<div className="media">
+              <Col sm="12">
+                <div className="media">
+                  <div className="media-body">
+                    <h5 className="mt-0">News Title 1</h5>
+                    <p>NSPIRES is the new system for preparing and submitting
+                    research proposals directly to NASA. NSPIRES is expected to
+                    become operational in early 2013. Check back here for news
+                    updates and more information.</p>
+                    <span className="float-right"><a href="#"><i className="fa fa-arrow-circle-right"></i>Continue</a></span>
+                  </div>
+                </div>
 
-  <div className="media-body">
-    <h5 className="mt-0">Media heading</h5>
-    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-  </div>
-</div>
-
-  </Col>
+                <div className="media">
+                  <div className="media-body">
+                    <h5 className="mt-0">News Title 2</h5>
+                    <p>This is a test for Iteration 6.5 </p>
+                    <span className="float-right"><a href="#"><i className="fa fa-arrow-circle-right"></i>Continue</a></span>
+                  </div>
+                </div>
+              </Col>
             </Row>
           </TabPane>
         </TabContent>

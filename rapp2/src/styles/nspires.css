@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f9fafb;
-  font: 100% "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
 }
 
 h1 {
@@ -80,8 +80,8 @@ a {
 
 .modal-title {
   color: #fff;
-  font-weight: 400;
   font-size: 1.1em;
+  font-weight: 400;
   line-height: 1;
 }
 
@@ -94,12 +94,88 @@ h3.modal-title {
   margin-right:auto;
   margin-top: 25px;
 
+}
+.firstSlide{
+  width: 100%;
+  background: #000 url(../images/image1.png) no-repeat center center;
+}
+
+/*Member home style*/
+.carouselContainer{
+  position:relative;
+  background-color: #000;
+  z-index:0;
+}
+.puTabsWrapper{
+  z-index:3;
+  position:relative;
+}
+.overall{
+  position:relative;
+  z-index:3;
 
 }
-/*Member home style*/
+@media only screen and (min-width: 768px) {
+  .puTabsContainer{
+    position: absolute;
+    width: 400px;
+    top: 1.5rem;
+    left: 3rem;
+
+  }
+}
+.bgLight{
+  background-color: rgba(255, 255, 255, .9) !important;
+}
+.bgBlue a{
+  background-color: transparent !important;
+  color: #fff !important;
+  font-weight: 400 !important;
+}
+.bgBlue{
+  background-color: #3566a7 !important;
+
+}
+.carousel .slide .legend{
+  margin-left: 0;
+    width: 500px;
+    font-size: 2.2em;
+    text-align: left;
+    background-color: transparent;
+    opacity: 1;
+    top: 10%;
+    left: 55%;
+  }
+.legend span{
+  display:block;
+  font-size:0.4em;
+  text-align:left;
+}
+.carouselContainer .container-fluid {
+   padding-left: 0;
+   padding-right: 0;
+}
+
+.sectionPub {
+    min-height: 320px;
+    padding: 20px 30px 20px 30px;
+}
+.greyBg {
+    background-color: #3e4651;
+}
+.features-icons {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+}
+.warningInfo h5{
+  font-size: 0.9em;
+}
 
 .list-group-item.active {
   font-size: 0.9em;
+  background-color: #d6e9f9;
+  border-color: #d6e9f9;
+  color:#222;
 }
 
 .homePanel h4 {
@@ -113,6 +189,12 @@ h3.modal-title {
   border-left: 0;
   border-right: 0;
   padding: .5rem 1.25rem;
+}
+.homePanelLink {
+  font-size: 0.7em;
+}
+.homePanelLink a{
+  color:#014c8c;
 }
 .badge{
   background-color: #0275d8;
@@ -140,6 +222,57 @@ h3.modal-title {
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     font-weight: 600;
 }
+.homeTabsContainer ul li a:hover {
+  background-color: #eee;
+  border: 1px solid #ddd !important;
+}
+
+
+.cardHome {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  margin: -150px;
+  float: left;
+  perspective: 500px;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.cardHome:hover .content {
+  transform: rotateY( 180deg ) ;
+  transition: transform 0.5s;
+}
+
+.front,
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  line-height: 300px;
+  color: #03446A;
+  text-align: center;
+  font-size: 60px;
+  border-radius: 5px;
+  backface-visibility: hidden;
+}
+
+.back {
+  background: #03446A;
+  color: white;
+  transform: rotateY( 180deg );
+}
+
 
 .fa {
   margin-right: 2px;
@@ -185,6 +318,16 @@ h3.modal-title {
   border-top-right-radius:0;
 }
 
+.media-body h5{
+  font-size: 1em;
+  font-weight: 600;
+}
+.media-body a{
+  font-size: 0.9em;
+}
+.media-body p{
+  margin-bottom:0.3rem;
+}
 /*Basic form style*/
 
 label {
@@ -198,7 +341,9 @@ label {
   padding: 5px 20px;
   border-radius: 4px;
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  color:#fff !important;
 }
+
 
 .btn-primary {
   background-color: #3566a7;
@@ -279,6 +424,10 @@ label {
 
 .list-group-flush {
   padding-left: 0;
+}
+
+.list-group a {
+  font-size: 0.9em;
 }
 
 .calendarContainer {
@@ -432,7 +581,65 @@ label {
   border-bottom: 0 !important;
   color: #555;
 }
+.slideStyle{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 350px;
+  position: relative;
+}
+.slideText{
+  text-align: left;
+    margin-left: 3rem;
+    margin-right: 2rem;
+}
 
+.slideText h2{
+  color:#fff;
+  font-size: 2.2em;
+  text-shadow: 3px 3px 16px rgba(1, 0, 1, 0.5);
+}
+.slideText p{
+  color:#fff;
+  font-size: 1em;
+  text-shadow: 3px 3px 16px rgba(1, 0, 1, 0.5);
+}
+@media (max-width: 768px){
+  .slideStyle{
+    height: 250px !important;
+}
+}
+.banner{
+  background: url(../images/image1.png) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 400px;
+}
+.bannerConatiner{
+  height:400px;
+  width:100%;
+}
+.welcomeText{
+  font-size: 2em;
+  color: #fff;
+  text-shadow: 3px 3px 16px rgba(1, 0, 1, 0.5);
+}
+.bannerConatiner p{
+  font-size: 1.1em;
+    color: #fff;
+    text-shadow: 1px 1px 16px rgba(1, 0, 1, 0.5);
+}
+
+
+@media (min-width: 768px){
+.textContainer {
+    padding-left: 32%;
+    padding-right: 20px;
+    padding-top: 10%;
+}
+}
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #f6f6f6;
 }
