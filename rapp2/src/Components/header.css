@@ -10,9 +10,11 @@
   margin-top: 6px;
 }
 .nasaLogo{
-  background: url(../images/nasaLogo.png) no-repeat transparent;
-  width: 56px;
-  height:48px;
+  width: 60px;
+  height: 50px;
+  background: url(../images/nasa-logo.svg) no-repeat transparent;
+  background-size: auto auto;
+  background-size: 60px 50px;
   margin-top: 6px;
 }
 
