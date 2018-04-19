@@ -12,16 +12,20 @@ className="-striped -highlight"
       data={usersLst}
       columns={[
         {
-          Header: "Name",
-          accessor: "name"
+          Header: "Last Name",
+          accessor: "LAST_NAME"
         },
         {
-          Header: "status",
-          accessor: "status"
+          Header: "First name",
+          accessor: "FIRST_NAME"
         },
         {
-          Header: "Date Created",
-          accessor: "created_date"
+          Header: "Username",
+          accessor: "USERNAME"
+        },
+        {
+          Header: "Date Registered",
+          accessor: "REGISTRATION_DATE"
         }
       ]}
     />

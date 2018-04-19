@@ -8,6 +8,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { map } from 'rxjs/operator/map';
+import config from '../../config/config.json'
+
 
 export const REQUEST_USERS = 'REQUEST_USERS'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
@@ -64,9 +66,10 @@ const fetchUsers = usersFilter => dispatch => {
 
 const fetchUsers = (usersFilter="SHOW_ALL") => dispatch => {
   dispatch(requestUsers(usersFilter))
-  // return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-  //return Observable.ajax('http://192.168.1.208:30333/nress/users')
-   return Observable.ajax('http://192.168.56.1:30334/nress/solicitations')
+  // return fetch(`${config.users_address}nress/users`)
+  //return Observable.ajax(`${config.users_address}nress/users`)
+   // return Observable.ajax(`${config.users_address}nress/users`)
+   return Observable.ajax(`${config.users_gateway_address}nress/users`)
     .map(response => {
 //      console.log('RESPONSE = ' + response);
 //      console.log('response = ' + JSON.stringify(response.response));
