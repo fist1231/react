@@ -588,21 +588,27 @@ label {
   height: 350px;
   position: relative;
 }
+@media (max-width: 768px){
+  .slideText{
+    margin-top: 1rem !important
+  }
+}
 .slideText{
   text-align: left;
     margin-left: 3rem;
-    margin-right: 2rem;
+    margin-right: 5rem;
+    margin-top: 4rem;
 }
 
 .slideText h2{
   color:#fff;
-  font-size: 2.2em;
-  text-shadow: 3px 3px 16px rgba(1, 0, 1, 0.5);
+  font-size: 2.3em;
+  text-shadow: 2px 2px 4px #333;
 }
 .slideText p{
   color:#fff;
   font-size: 1em;
-  text-shadow: 3px 3px 16px rgba(1, 0, 1, 0.5);
+  text-shadow: 2px 2px 4px #333;
 }
 @media (max-width: 768px){
   .slideStyle{

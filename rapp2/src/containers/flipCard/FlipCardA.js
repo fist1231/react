@@ -7,7 +7,7 @@ const flipStyle= {
   height: '150px'
 }
 
-class FlipCardB extends Component {
+class FlipCardA extends Component {
 
   constructor() {
     super();
@@ -26,7 +26,7 @@ class FlipCardB extends Component {
     return (
       <ReactCardFlip isFlipped={this.state.isFlipped}>
         <div style={flipStyle} key="front" onMouseEnter={this.handleClick}>
-          Getting Started
+          Solicitations
           {/*<button onClick={this.handleClick}>Click to flip</button>-->*/}
         </div>
 
@@ -38,4 +38,4 @@ class FlipCardB extends Component {
     )
   }
 }
-export default FlipCardB;
+export default FlipCardA;

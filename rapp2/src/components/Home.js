@@ -13,17 +13,20 @@ import PubTabs from "./pubTabs";
 const styles = {
   slideContainer: {
     backgroundImage: `url(${img1})`,
-    height: "350px"
+    height: "400px"
   },
   slideContainer2: {
-    backgroundImage: `url(${img2})`
+    backgroundImage: `url(${img2})`,
+    height: "400px"
   },
   slideContainer3: {
-    backgroundImage: `url(${img3})`
+    backgroundImage: `url(${img3})`,
+    height: "400px"
   }
 };
 
 import FlipCardB from '../containers/flipCard/FlipCardB';
+import FlipCardA from '../containers/flipCard/FlipCardA';
 
 const Home = () => (
   <div>
@@ -31,9 +34,9 @@ const Home = () => (
       <Carousel interval={5000} showThumbs={false} infiniteLoop>
         <div style={styles.slideContainer} className="slideStyle">
           <div className="row no-gutters">
-            <div className="col-md-6" />
-            <div className="col-md-6">
-              <div className="slideText mt-5">
+            <div className="col-md-5" />
+            <div className="col-md-7">
+              <div className="slideText">
                 <h2>Welcome to NSPIRES</h2>
                 <p>
                   Supporting research in science and technology is an important
@@ -41,16 +44,16 @@ const Home = () => (
                   research through the release of various research announcements
                   in a wide range of science and technology disciplines.
                 </p>
-                <a className="shadow-lg btn btn-primary">Search Now</a>
+                <a className="shadow-lg btn btn-primary">Learn More</a>
               </div>
             </div>
           </div>
         </div>
         <div style={styles.slideContainer2} className="slideStyle">
           <div className="row no-gutters">
-            <div className="col-md-6" />
-            <div className="col-md-6">
-              <div className="slideText mt-5">
+            <div className="col-md-5" />
+            <div className="col-md-7">
+              <div className="slideText">
                 <h2>Solicitations</h2>
                 <p>
                   Search for and view open, closed, past, and future NASA
@@ -68,9 +71,9 @@ const Home = () => (
         </div>
         <div style={styles.slideContainer3} className="slideStyle">
           <div className="row no-gutters">
-            <div className="col-md-6" />
-            <div className="col-md-6">
-              <div className="slideText mt-4">
+            <div className="col-md-5" />
+            <div className="col-md-7">
+              <div className="slideText">
                 <h2>Getting Started</h2>
                 <p>
                   To submit a research proposal to NASA, individuals and the
@@ -90,57 +93,32 @@ const Home = () => (
         </div>
       </Carousel>
 
-      <div className="dataDisplayRow">
-        <div className="row">
-          <div className="col">
-            <FlipCardB />
-          </div>
-          <div className="col">
-            <FlipCardB />
-          </div>
-          <div className="col">
-            <FlipCardB />
-          </div>
-        </div>
-      </div>
 
-      <div className="puTabsContainer">
+
+      <div className="puTabsContainer mt-3">
         <PubTabs />
       </div>
 <div className="container-fluid">
-<section class="features-icons bg-light text-center">
+<section class="features-icons text-center">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4">
+          <div class="col-md-4">
             <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="cardHome">
-<div class="content">
-  <div class="front">
-    Front
-  </div>
-  <div class="back">
-    Back!
-  </div>
-</div>
-</div>
+          <FlipCardA/>
             </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-md-4">
             <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="icon-layers m-auto text-primary"></i>
-              </div>
-              <h3>Bootstrap 4 Ready</h3>
-              <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
+
+              <FlipCardB />
             </div>
           </div>
-          <div class="col-lg-4">
+
+
+          <div class="col-md-4">
             <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="icon-check m-auto text-primary"></i>
-              </div>
-              <h3>Easy to Use</h3>
-              <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+  <FlipCardB />
+
             </div>
           </div>
         </div>
