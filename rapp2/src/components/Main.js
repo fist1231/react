@@ -16,7 +16,7 @@ import NoMatch from '../NoMatch'
 const Main = () => (
   <div>
   <main>
-  <div className="container-fluid ">
+  <div className="">
     <Switch>
       <Route path='/' exact component={HomePriv} />
       <Route path='/users' component={UsersList}/>
@@ -24,7 +24,7 @@ const Main = () => (
 {/*      <Route path='/solicitations'><Solicitations solicitations={SOLICITATIONS} /></Route> */}
       <Route path='/solicitations'><Solicitations /></Route>
       <Route path='/reviewProposals'><ReviewProposals /></Route>
-      <Route component={NoMatch} /> 
+      <Route component={NoMatch} />
     </Switch>
     </div>
   </main>
