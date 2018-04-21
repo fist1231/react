@@ -99,24 +99,24 @@ const Home = () => (
         <PubTabs />
       </div>
 <div className="container-fluid">
-<section class="features-icons text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+<section className="features-icons text-center">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <div className="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
           <FlipCardA/>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div className="col-md-4">
+            <div className="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
 
               <FlipCardB />
             </div>
           </div>
 
 
-          <div class="col-md-4">
-            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+          <div className="col-md-4">
+            <div className="features-icons-item mx-auto mb-0 mb-lg-3">
   <FlipCardB />
 
             </div>

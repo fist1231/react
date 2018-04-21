@@ -42,7 +42,7 @@ export default class HomeTabs extends React.Component {
                 this.toggle("1");
               }}
             >
-              Reminders/Notifications <span class="badge badge-primary">3</span>
+              Reminders/Notifications <span className="badge badge-primary">3</span>
             </NavLink>
           </NavItem>
           <NavItem>

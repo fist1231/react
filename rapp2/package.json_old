@@ -28,7 +28,6 @@
     "react-redux": "^5.0.7",
     "react-responsive-carousel": "^3.1.36",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
     "react-spinners": "^0.3.2",
     "react-table": "^6.8.2",
     "react-transition-group": "^2.3.1",
@@ -39,10 +38,9 @@
     "yup": "^0.24.1"
   },
   "scripts": {
-    "watch": "webpack --watch",
     "start": "react-scripts start",
-    "dev": "webpack-dev-server --config webpack.dev.js --mode development --port 3000 --host 0.0.0.0",
-    "build": "webpack --config webpack.prod.js --mode production -p",
+    "dev": "webpack-dev-server --config webpack.dev.js --port 3000 --host 0.0.0.0",
+    "build": "webpack --config webpack.prod.js -p",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .jsx --ext .js",
@@ -64,14 +62,13 @@
     "es6-promise": "^4.2.4",
     "expect": "^22.4.3",
     "exports-loader": "^0.7.0",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "imports-loader": "^0.8.0",
     "interpolate-html-plugin": "^3.0.0",
     "json-loader": "^0.5.7",
-    "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.8.3",
     "preload-webpack-plugin": "^2.3.0",
     "react-scripts": "^1.1.4",
@@ -99,9 +96,8 @@
   },
   "babel": {
     "presets": [
-      "es2015",
-      "react",
-      "stage-2"
+      "env",
+      "react"
     ]
   }
 }

@@ -59,7 +59,7 @@ const LoginForm = ( { history,  hideModal, authenticate }) => {
                         floatingLabelText="Username"
                         name="username"
                         className=""
-                        floatingLabelFocusStyle="home"
+                        floatingLabelFocusStyle={{color: 'blue'}}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.username}

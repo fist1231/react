@@ -96,19 +96,19 @@ export default class PubTabs extends React.Component {
           <Row>
             <Col sm="11">
 
-            <div class="bannerLoginContainer">
+            <div className="bannerLoginContainer">
                 <h3>Member Login</h3>
-                <div class="inputGroup">
+                <div className="inputGroup">
                   <input required="" type="text"/> <label>Username</label>
                 </div>
-                <div class="inputGroup">
+                <div className="inputGroup">
                   <input required="" type="password"/> <label>Password</label>
                 </div>
-                <div class="loginBtnContainer">
-                  <button onclick="parent.location='members.html'" type="button" class="mainBtn" name="" title="Login" value="Login">Login</button>
+                <div className="loginBtnContainer">
+                  <button onClick={() => parent.location='members.html'} type="button" className="mainBtn" name="" title="Login" value="Login">Login</button>
                 </div>
                 <p>
-                  <a class="login" href="login_forgot_email.html" title="Forgot Password">Forgot password?</a> <a class="login" href="about_registration_pub.html" title="Register Now"> Register Now!</a>
+                  <a className="login" href="login_forgot_email.html" title="Forgot Password">Forgot password?</a> <a className="login" href="about_registration_pub.html" title="Register Now"> Register Now!</a>
                 </p>
               </div>
             </Col>

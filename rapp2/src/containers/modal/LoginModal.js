@@ -10,7 +10,16 @@ const customStyles = {
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
+    position: 'relative',
+    outline: '0',
+    width: '100%',
+    background: 'white',
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    boxSizing: 'border-box',
+    maxWidth: '350px',
+    cursor: 'default'
   }
 };
 
