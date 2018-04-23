@@ -12,6 +12,7 @@ import solicitationsByFilter from './solicitationsByFilter'
 import searchFilter from './reviewProposals/searchFilter'
 import reviewProposals from './reviewProposals/reviewProposals'
 import previewDetails from './reviewProposals/previewDetails'
+import reviewProposalDetails from './reviewProposals/reviewProposalDetails'
 import modal from './modal/modal'
 import auth from './auth'
 
@@ -27,6 +28,7 @@ const usersApp = combineReducers({
   //reviewProposalsByFilter
   searchFilter,
   reviewProposals,
+  reviewProposalDetails,
   previewDetails,
   modal,
   auth

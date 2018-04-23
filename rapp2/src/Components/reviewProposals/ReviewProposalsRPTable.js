@@ -6,8 +6,12 @@ import {Column} from 'primereact/components/column/Column';
 import {InputText} from 'primereact/components/inputtext/InputText';
 import {OverlayPanel} from 'primereact/components/overlaypanel/OverlayPanel';
 import {ContextMenu} from 'primereact/components/contextmenu/ContextMenu';
+import {Button} from 'primereact/components/button/Button';
 
 import styled from 'styled-components';
+import { Route } from 'react-router-dom'
+
+import ReactTooltip from 'react-tooltip'
 
 
 class ReviewProposalsRPTable extends Component {
@@ -23,6 +27,7 @@ class ReviewProposalsRPTable extends Component {
       this.handleMouseHoverLeave = this.handleMouseHoverLeave.bind(this);
       this.onEditClicked = this.onEditClicked.bind(this);
       this.onDeleteClicked = this.onDeleteClicked.bind(this);
+      this.export = this.export.bind(this);
 
 
       this.state = {
@@ -69,8 +74,15 @@ class ReviewProposalsRPTable extends Component {
     this.props.onDelete(rowData)
   }
 
+
+  export() {
+      this.dt.exportCSV();
+  }
+
+
   render() {
 
+    var header = <div style={{textAlign:'left'}}><Button type="button" icon="fa-file-o" iconPos="left" label="Excel" onClick={this.export} data-tip="Export table to CSV format for Excel"></Button></div>;
 
     const Square = styled.div`
       position: absolute;
@@ -87,8 +99,9 @@ class ReviewProposalsRPTable extends Component {
     var nT = (rowData, column) => {
       // console.log('------> rowData = ' + JSON.stringify(rowData));
     //  console.log('------> column = ' + JSON.stringify(column));
+      const lnk = `/reviewProposals/proposal/${rowData.ASSIGNED_RESPONSE_ID}`;
       return <div>
-          <Link to=''>{rowData.RESPONSE_NUMBER}-{rowData.RESPONSE_SEQ_NUMBER}</Link>
+          <Link to={lnk}>{rowData.RESPONSE_NUMBER}-{rowData.RESPONSE_SEQ_NUMBER}</Link>
       </div>;
     }
 
@@ -96,9 +109,9 @@ class ReviewProposalsRPTable extends Component {
     var actionsTemplate = (rowData, column) => {
       var rn = rowData.RESPONSE_NUMBER;
       return <div>
-        <a className="tableAction" onClick={(e) => this.onEditClicked(e, rowData)}><i className='fa fa-edit'></i></a>
+        <a className="tableAction" onClick={(e) => this.onEditClicked(e, rowData)}><i className='fa fa-edit' data-tip="Edit proposal"></i></a>
         <span>&nbsp;&nbsp;</span>
-        <a className="tableAction" onClick={(e) => this.onDeleteClicked(e, rowData)}><i className='fa fa-trash'></i></a>
+        <a className="tableAction" onClick={(e) => this.onDeleteClicked(e, rowData)}><i className='fa fa-trash' data-tip="Remove proposal"></i></a>
         <span>&nbsp;&nbsp;</span>
         <a className="tableAction" onMouseEnter={(e) => this.handleMouseHoverEnter(e, rowData)} onMouseLeave={this.handleMouseHoverLeave}><i className='fa fa-eye'></i></a>
       </div>;
@@ -116,7 +129,7 @@ class ReviewProposalsRPTable extends Component {
         <div>
           <div className="row">
             <div className="col-md-6 offset-md-3">
-              <p>Info: Drag icon on the left to reorder rows. Drag column header to rearrange columns. Right-click on a row for a context menu.</p>
+              <p data-tip="You can resize and reorder columns by dragging column's header. Right-click on a row for a context menu. Drag and Drop icon on the left to rearrange rows" className="fa fa-question-circle-o"> Usage tips</p>
             </div>
           </div>
           <div className="row">
@@ -130,6 +143,7 @@ class ReviewProposalsRPTable extends Component {
           <ContextMenu model={items} ref={el => this.cm = el}/>
 
           <DataTable
+            header={header}
             className=""
             value={this.state.proposals}
             paginator={true}
@@ -142,6 +156,7 @@ class ReviewProposalsRPTable extends Component {
             reorderableRows={true} onRowReorder={(e) => this.setState({proposals: e.value})}
             globalFilter={this.props.globalFilter}
             contextMenu={this.cm}
+            ref={(el) => { this.dt = el; }}
             selectionMode="single"
             selection={this.state.selectedProposal}
             onSelectionChange={(e) => this.setState({selectedProposal: e.data})}
@@ -160,7 +175,6 @@ class ReviewProposalsRPTable extends Component {
             <div className="form-group row">
               <label className="col-sm-2 col-form-label">Id</label>
               <div className="col-sm-10">
-                { console.log('previewFlag12345=' + JSON.stringify(this.props.previewFlag)) }
                 <label className="col-sm-2 col-form-label">{this.props.previewFlag.previewDetails?this.props.previewFlag.previewDetails.ASSIGNED_RESPONSE_ID:''}</label>
               </div>
             </div>
@@ -178,8 +192,7 @@ class ReviewProposalsRPTable extends Component {
             </div>
           </div>
         </OverlayPanel>
-
-
+        <ReactTooltip />
       </div>
 
     );

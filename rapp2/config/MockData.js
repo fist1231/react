@@ -55,6 +55,15 @@ export const reviewProposalsMock = () => {
 // ]
 }
 
+export const reviewProposalDetailsMock = () => {
+
+  return { ASSIGNED_RESPONSE_ID: "11111", FIRST_NAME: "First1", LAST_NAME: "Last1", RESPONSE_NUMBER: "Number1", "RESPONSE_SEQ_NUMBER": "Sqe1", PSTATE: "Submitted"}
+
+}
+
+
+
+
 const MockData = () => {
 }
 

@@ -38,7 +38,7 @@ class ReviewProposalsView extends Component {
 
     const { searchFilter, reviewProposalsTable, isFetching, lastUpdated, previewDetails } = this.props
       // console.log('^^^^^^^^^^^^previewDetails='+previewDetails.previewDetails)
-    const isEmpty = reviewProposalsTable.length === 0
+    const isEmpty = reviewProposalsTable?(reviewProposalsTable.length === 0):true;
     const isLiveData = config.live_data;
     const dataSource = isLiveData?reviewProposalsTable:reviewProposalsMock();
     return (

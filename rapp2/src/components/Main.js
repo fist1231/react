@@ -4,6 +4,7 @@ import UsersList from '../containers/UsersList'
 import UsersTable from '../containers/UsersTable'
 import Solicitations from '../components/solicitations/Solicitations'
 import ReviewProposals from '../containers/reviewProposals/ReviewProposalsView'
+import ReviewProposalDetailsView from '../containers/reviewProposals/ReviewProposalDetailsView';
 import HomePriv from './HomePriv'
 import NoMatch from '../NoMatch'
 
@@ -23,7 +24,8 @@ const Main = () => (
       <Route path='/usersTable' component={UsersTable}/>
 {/*      <Route path='/solicitations'><Solicitations solicitations={SOLICITATIONS} /></Route> */}
       <Route path='/solicitations'><Solicitations /></Route>
-      <Route path='/reviewProposals'><ReviewProposals /></Route>
+      <Route exact path='/reviewProposals'><ReviewProposals /></Route>
+      <Route path='/reviewProposals/proposal/:id'><ReviewProposalDetailsView /></Route>
       <Route component={NoMatch} />
     </Switch>
     </div>
