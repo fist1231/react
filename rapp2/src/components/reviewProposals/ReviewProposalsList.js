@@ -4,10 +4,10 @@ import Table from './ReviewProposalsTable'
 import Search from './Search'
 
 
-const ReviewProposalsList = ({reviewProposals, searchFilter, onSearchChange, onEditProposal, onPreview, previewFlag, onDeleteProposal, isLoading}) => (
+const ReviewProposalsList = ({reviewProposals, searchFilter, onSearchChange, onEditProposal, onPreview, previewFlag, onDeleteProposal}) => (
     <div>
       <Search searchFilter={searchFilter} />
-      <Table list={reviewProposals} filter={searchFilter} onSearch={onSearchChange} onEdit={onEditProposal} onPreview={onPreview} previewFlag={previewFlag} onDelete={onDeleteProposal} isLoading={isLoading} />
+      <Table list={reviewProposals} filter={searchFilter} onSearch={onSearchChange} onEdit={onEditProposal} onPreview={onPreview} previewFlag={previewFlag} onDelete={onDeleteProposal} />
     </div>
 );
 

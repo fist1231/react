@@ -39,8 +39,9 @@ class ReviewProposalsRPTable extends Component {
 
 
   componentDidMount() {
-    console.log('------------ isLoading? ' + this.props.isLoading);
-    this.props.isLoading?null:this.setState({proposals: this.props.value});
+    // console.log('------------ isLoading? ' + this.props.isLoading);
+    // this.props.isLoading?null:this.setState({proposals: this.props.value});
+    this.setState({proposals: this.props.value});
   }
 
   // componentDidUpdate() {
@@ -106,7 +107,9 @@ class ReviewProposalsRPTable extends Component {
     //  console.log('------> column = ' + JSON.stringify(column));
       const lnk = `/reviewProposals/proposal/${rowData.ASSIGNED_RESPONSE_ID}`;
       return <div>
-          <Link to={lnk}>{rowData.RESPONSE_NUMBER}-{rowData.RESPONSE_SEQ_NUMBER}</Link>
+        <a className="tableAction" onMouseEnter={(e) => this.handleMouseHoverEnter(e, rowData)} onMouseLeave={this.handleMouseHoverLeave}><i className='fa fa-eye'></i></a>
+        <span>&nbsp;&nbsp;</span>
+        <Link to={lnk}>{rowData.RESPONSE_NUMBER}-{rowData.RESPONSE_SEQ_NUMBER}</Link>
       </div>;
     }
 
@@ -117,8 +120,6 @@ class ReviewProposalsRPTable extends Component {
         <a className="tableAction" onClick={(e) => this.onEditClicked(e, rowData)}><i className='fa fa-edit' data-tip="Edit proposal"></i></a>
         <span>&nbsp;&nbsp;</span>
         <a className="tableAction" onClick={(e) => this.onDeleteClicked(e, rowData)}><i className='fa fa-trash' data-tip="Remove proposal"></i></a>
-        <span>&nbsp;&nbsp;</span>
-        <a className="tableAction" onMouseEnter={(e) => this.handleMouseHoverEnter(e, rowData)} onMouseLeave={this.handleMouseHoverLeave}><i className='fa fa-eye'></i></a>
       </div>;
     }
 

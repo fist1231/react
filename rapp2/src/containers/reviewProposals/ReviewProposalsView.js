@@ -55,7 +55,7 @@ class ReviewProposalsView extends Component {
     return (
       <div>
           {dataSource .length > 0 ? (
-          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} isLoading={isFetching} />
+          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} />
         ) : (
           <h2>Wait ...</h2>
         )}

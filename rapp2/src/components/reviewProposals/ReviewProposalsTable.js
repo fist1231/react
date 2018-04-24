@@ -10,7 +10,7 @@ import {ContextMenu} from 'primereact/components/contextmenu/ContextMenu';
 import ReviewProposalsRPTable from './ReviewProposalsRPTable'
 
 
-const reviewProposalsTable = ({...props, list, filter, onSearch, onEdit, onPreview, previewFlag, onDelete, isLoading}) => {
+const reviewProposalsTable = ({...props, list, filter, onSearch, onEdit, onPreview, previewFlag, onDelete}) => {
 
 
 
@@ -29,7 +29,6 @@ return (
             previewFlag={previewFlag}
             onDelete={onDelete}
             onSearch={onSearch}
-            isLoading={isLoading}
           />
       </div>
     </div>
