@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Route, Redirect, withRouter, Link } from "react-router-dom";
 // import PrivateRoute, { fakeAuth } from './PrivateRoute';
-import { connect } from 'react-redux';
-import { setAuthOn, setAuthOff } from './actions/authActions';
-import App from './App';
+import { connect } from "react-redux";
+import { setAuthOn, setAuthOff } from "./actions/authActions";
+import App from "./App";
 
-import LoginModal from './containers/modal/LoginModal';
-
-
-
+import LoginModal from "./containers/modal/LoginModal";
 
 export const fakeAuth = () => {
   // isAuthenticated: false,
@@ -23,11 +20,10 @@ export const fakeAuth = () => {
 };
 
 class Login extends Component {
-
   constructor() {
     super();
     this.state = {
-        modalIsOpen: false
+      modalIsOpen: false
     };
 
     this.openModal = this.openModal.bind(this);
@@ -36,8 +32,8 @@ class Login extends Component {
   }
 
   openModal() {
-    this.setState({modalIsOpen: true});
-    console.log('000000000 openModal = ' + this.state.modalIsOpen)
+    this.setState({ modalIsOpen: true });
+    console.log("000000000 openModal = " + this.state.modalIsOpen);
   }
 
   afterOpenModal() {
@@ -46,24 +42,22 @@ class Login extends Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({ modalIsOpen: false });
   }
-
 
   componentDidMount() {
-    const { dispatch, auth } = this.props
+    const { dispatch, auth } = this.props;
   }
-
 
   // state = {
   //   redirectToReferrer: false
   // };
 
   login = () => {
-    const { dispatch, auth, history } = this.props
-    const authen = {'loggedIn': 'true', 'username': 'Local'};
-    localStorage.setItem('loggedIn', true);
-    localStorage.setItem('username', 'Local');
+    const { dispatch, auth, history } = this.props;
+    const authen = { loggedIn: "true", username: "Local" };
+    localStorage.setItem("loggedIn", true);
+    localStorage.setItem("username", "Local");
 
     dispatch(setAuthOn());
     history.push("/");
@@ -79,13 +73,12 @@ class Login extends Component {
   };
 
   authenticate = (username, pwd) => {
+    console.log("######### authenticate: " + username + "; " + pwd);
 
-    console.log('######### authenticate: ' + username + "; " + pwd)
-
-    const { dispatch, auth, history } = this.props
-    const authen = {'loggedIn': 'true', 'username': 'Local'};
-    localStorage.setItem('loggedIn', true);
-    localStorage.setItem('username', 'Local');
+    const { dispatch, auth, history } = this.props;
+    const authen = { loggedIn: "true", username: "Local" };
+    localStorage.setItem("loggedIn", true);
+    localStorage.setItem("username", "Local");
 
     dispatch(setAuthOn());
     history.push("/");
@@ -99,12 +92,11 @@ class Login extends Component {
     // });
   };
 
-
   logout = () => {
-    const { dispatch, auth, history } = this.props
-    const authen = {'loggedIn': 'false', 'username': ''};
-    localStorage.setItem('loggedIn', false);
-    localStorage.setItem('username', '');
+    const { dispatch, auth, history } = this.props;
+    const authen = { loggedIn: "false", username: "" };
+    localStorage.setItem("loggedIn", false);
+    localStorage.setItem("username", "");
     dispatch(setAuthOff());
     history.push("/");
     // const { dispatch, loggedIn, history } = this.props
@@ -116,16 +108,16 @@ class Login extends Component {
     // });
   };
 
-
   render() {
     const { from } = this.props.location.state || { from: { pathname: "/" } };
     // const { redirectToReferrer } = this.state;
-    const { dispatch, auth } = this.props
+    const { dispatch, auth } = this.props;
 
     // console.log('_________login auth? ' + JSON.stringify(auth));
     // console.log('!!!!!!!!!!!!! loggedIn = ' + loggedIn?loggedIn:'undeffin');
 
-{/*
+    {
+      /*
     if (redirectToReferrer) {
 
       <Route path="/" render={({location}) => (
@@ -142,24 +134,47 @@ class Login extends Component {
 
       return <Redirect to={from} />;
     }
-*/}
+*/
+    }
 
     return (
       <div>
-        {!(localStorage.getItem('loggedIn') === 'true') ? (
+        {!(localStorage.getItem("loggedIn") === "true") ? (
           <div className="row loginContainer float-right mt-3">
             {/* <p>You must log in to view the page at {from.pathname}</p> */}
-            <button className="btn btn-secondary btn-lg" onClick={this.openModal}>Log in</button>
-        </div>
+            <ul className="loginLinks">
+              <li>
+                <a onClick={this.openModal}>Log in</a>
+              </li>
+              <li>Sign up</li>
+              <li>
+                <div className="expandSearch">
+<form>
+                  <input
+                    type="search"
+                    placeholder="Search"
+                    className="searchPub"
+                  />
+                  </form>
+                </div>
+              </li>
+            </ul>
+
+            {/*  <button className="btn btn-secondary btn-lg" onClick={this.openModal}>Log in</button>*/}
+          </div>
         ) : (
           <div className="row loginContainer float-right">
-        <ul className="loginLinks">
-  <li><Link to='/' onClick={this.logout}>Logout</Link></li>
-        <li><i className="fa fa-user-circle"></i> Welcome, John D.</li>
-
-
+            <ul className="loginLinks">
+              <li>
+                <Link to="/" onClick={this.logout}>
+                  Logout
+                </Link>
+              </li>
+              <li>
+                <i className="fa fa-user-circle" /> Welcome, John D.
+              </li>
             </ul>
-        </div>
+          </div>
         )}
 
         <LoginModal
@@ -176,10 +191,10 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-  const { auth } = state
+  const { auth } = state;
   return {
     auth
-  }
-}
+  };
+};
 
-export default withRouter(connect(mapStateToProps)(Login))
+export default withRouter(connect(mapStateToProps)(Login));

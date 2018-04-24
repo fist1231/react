@@ -53,6 +53,8 @@ a {
 
 .ReactModal__Content {
   padding: 0 !important;
+  box-shadow: 0 5px 15px rgba(0,0,0,.5);
+  border: 0 !important;
 }
 
 .ReactModal__Overlay {
@@ -124,9 +126,16 @@ h3.modal-title {
 
   }
 }
-.bgLight{
-  background-color: rgba(255, 255, 255, .9) !important;
+.puTabsContainer .tab-content{
+  box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.2);
 }
+.loginPop{
+  max-width:350px
+}
+.bgLight{
+  background-color: rgba(255, 255, 255, .85) !important;
+}
+
 .bgBlue a{
   background-color: transparent !important;
   color: #fff !important;
@@ -170,12 +179,24 @@ h3.modal-title {
 .warningInfo h5{
   font-size: 0.9em;
 }
-
+.featureContainer {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
 .list-group-item.active {
   font-size: 0.9em;
   background-color: #d6e9f9;
   border-color: #d6e9f9;
   color:#222;
+}
+.backFlip{
+  background-color: #2d5a96;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
+    font-size: 0.8em;
+
 }
 
 .homePanel h4 {
@@ -219,14 +240,49 @@ h3.modal-title {
   color: #666;
   font-size: 0.9em;
 }
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-    font-weight: 600;
+
+.homeTabs .nav-link{
+  background-color: #666;
+  border-color: #c5c5c5 #c5c5c5 #ddd;
+  font-size: 0.95em;
+  color:#ccc !important;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-top-right-radius: .1rem;
+  border-top-left-radius: .1rem;
+}
+.homeTabs .nav-link:focus, .homeTabs .nav-link:hover {
+    color: #fff !important;
+    background: #333;
+    border-left: 0 !important;
+    border-top: 0 !important;
+    border-right: 0 !important;
 }
 .homeTabsContainer ul li a:hover {
   background-color: #eee;
-  border: 1px solid #ddd !important;
 }
-
+.homeTabs .nav-item.show .nav-link, .homeTabs .nav-link.active {
+    font-weight: 600;
+    background-color: #025aa5;
+    color: #fff !important;
+    border-color: #c5c5c5 #c5c5c5 #ddd;
+}
+.bannerLoginContainer{
+  background-color: rgba(255, 255, 255, .8) !important;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+}
+.bannerLoginContainer h3{
+  font-size: 1em;
+  font-weight: 600;
+}
+.bannerLoginContainer small p{
+  margin-bottom: 5px;
+}
+.RPTableContainer{
+}
 
 .cardHome {
   position: absolute;
@@ -247,35 +303,8 @@ h3.modal-title {
   transition: transform 1s;
   transform-style: preserve-3d;
 }
-
-.cardHome:hover .content {
-  transform: rotateY( 180deg ) ;
-  transition: transform 0.5s;
-}
-
-.front,
-.back {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: white;
-  line-height: 300px;
-  color: #03446A;
-  text-align: center;
-  font-size: 60px;
-  border-radius: 5px;
-  backface-visibility: hidden;
-}
-
-.back {
-  background: #03446A;
-  color: white;
-  transform: rotateY( 180deg );
-}
-
-
 .fa {
-  margin-right: 2px;
+  margin-right: 3px;
 }
 .homePanel{
   margin-bottom: 1.5em;
@@ -336,18 +365,22 @@ label {
 }
 
 .btn {
-  font-size: 0.85em;
+  font-size: 0.9em;
   cursor: pointer;
   padding: 5px 20px;
   border-radius: 4px;
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-  color:#fff !important;
 }
-
 
 .btn-primary {
   background-color: #3566a7;
   border-color: #3566a7;
+  color: #fff !important;
+}
+.bannerBtn{
+  box-shadow: 2px 2px 4px #333;
+  border: 1px solid #547eb6;
+  font-size: 0.95em;
 }
 
 .btnContainer button {
@@ -408,20 +441,6 @@ label {
   background: transparent;
   background-color: #f3f3f3;
 }
-
-.btn-secondary {
-  color: #fff;
-  background-color: #252931;
-  border-color: #6c757d;
-  border: 1px solid #777;
-}
-
-.btn-secondary:hover {
-  color: #fff;
-  background-color: #000;
-  border: 1px solid #777;
-}
-
 .list-group-flush {
   padding-left: 0;
 }
@@ -572,7 +591,6 @@ label {
 .table td, .table th {
   padding: .4em .5em;
   font-size: 0.9em;
-  border: 1px solid #cacaca;
 }
 
 .nspiresTable {
@@ -614,6 +632,26 @@ label {
   .slideStyle{
     height: 250px !important;
 }
+}
+.puTable th{
+  color:#fff;
+  font-weight:400;
+}
+.puTable td{
+  color:#000;
+}
+.puTable td, .puTable th {
+    border-top: 1px solid #ddd;
+}
+.tableContainer h3{
+  font-size: 1.5em;
+}
+.tableContainer {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+.puTable thead.bg-primary{
+  background-color: #555 !important;
 }
 .banner{
   background: url(../images/image1.png) no-repeat center center;
@@ -684,3 +722,65 @@ input.error {
 label.error {
   color: #dc3545;
 }
+/* flip */
+
+.flip-container, .front, .back {
+  width: 100%;
+  height: 160px;
+}
+.flipper h3{
+  font-size: 1.5em;
+  color: #2D5A96;
+  padding-top: 10px;
+}
+.flipper p{
+  color: #222;
+  font-size: 1.1em;
+}
+.flipper a{
+  color: #5de6eb;
+}
+
+.flip-container {perspective: 1000px; transform-style: preserve-3d; padding:10px;}
+.flip-container:hover .back {transform: rotateY(0deg);}
+.flip-container:hover .front {transform: rotateY(180deg);}
+
+.flipper {transition: 0.6s; transform-style: preserve-3d;	position: relative;}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: absolute;
+	top: 0;
+	left: 0;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+}
+
+.front {z-index: 2;	transform: rotateY(0deg);}
+.back {
+	transform: rotateY(-180deg);
+  text-align:center;
+  border-radius: .25rem;
+  background-color: #025aa5;
+}
+.back ul {
+  list-style: none;
+  text-align: center;
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 30px;
+}
+.back ul li{
+  color:#fff;
+  font-size: 0.9em;
+  padding-bottom: 10px;
+}
+
+.back p{
+	font-size:0.9em;
+  color: #fff;
+}
+.front {color:#fff; text-align:center; }

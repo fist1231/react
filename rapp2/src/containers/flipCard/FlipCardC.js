@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import ReactCardFlip from 'react-card-flip';
 
 const flipStyle= {
-  height: '200px',
-
+  height: '150px'
 }
 
-class FlipCardB extends Component {
+class FlipCardC extends Component {
 
   constructor() {
     super();
@@ -26,17 +25,17 @@ class FlipCardB extends Component {
     return (
       <ReactCardFlip isFlipped={this.state.isFlipped}>
         <div style={flipStyle} key="front" onMouseEnter={this.handleClick}>
-          <h3><i class="fa fa-power-off" aria-hidden="true"></i> Getting Started</h3>
-          <p>Individuals and the organizations with which they are affiliated must be registered in NSPIRES.</p>
+          <h3><i class="fa fa-question-circle" aria-hidden="true"></i> NSPIRES Help Desk</h3>
+          <p>If you need help or have any questions regarding the NSPIRES website, please contact us.</p>
           {/*<button onClick={this.handleClick}>Click to flip</button>-->*/}
         </div>
 
         <div style={flipStyle} key="back" onMouseLeave={this.handleClick}>
-          This is the back of the card.
+          <p>If you need help or have any questions regarding the NSPIRES website, please contact us.</p>
             {/*<button onClick={this.handleClick}>Click to flip</button>-->*/}
         </div>
       </ReactCardFlip>
     )
   }
 }
-export default FlipCardB;
+export default FlipCardC;

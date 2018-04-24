@@ -228,7 +228,7 @@ class HomePriv extends Component {
   render() {
     // console.log('~~~~state=' + JSON.stringify(this.state));
     return (
-      <div>
+      <div className="container-fluid">
         <div className="row">
           <div className="col">
             <h1>Welcome to NSPIRES Doe, John</h1>

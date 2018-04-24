@@ -3,33 +3,32 @@ import { withFormik } from "formik";
 import Yup from "yup";
 import { withRouter, Redirect } from "react-router-dom";
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import TextField from "material-ui/TextField";
 
-const LoginForm = ( { history,  hideModal, authenticate }) => {
-
+const LoginForm = ({ history, hideModal, authenticate }) => {
   const styles = {
     block: {
-      maxWidth: 250,
+      maxWidth: 250
     },
     toggle: {
-      marginBottom: 16,
+      marginBottom: 16
     },
     thumbOff: {
-      backgroundColor: '#ffcccc',
+      backgroundColor: "#ffcccc"
     },
     trackOff: {
-      backgroundColor: '#ff9d9d',
+      backgroundColor: "#ff9d9d"
     },
     thumbSwitched: {
-      backgroundColor: 'red',
+      backgroundColor: "red"
     },
     trackSwitched: {
-      backgroundColor: '#ff9d9d',
+      backgroundColor: "#ff9d9d"
     },
     labelStyle: {
-      color: 'red',
-    },
+      color: "red"
+    }
   };
 
   const innerForm = (props, hdMod) => {
@@ -47,65 +46,72 @@ const LoginForm = ( { history,  hideModal, authenticate }) => {
     } = props;
 
     return (
-    <MuiThemeProvider>
-      <form onSubmit={handleSubmit}>
-        <div className="modal-body">
-          <div className="row">
-            <div className="col">
-              <div className="container-fluid text-left">
-                <div className="form-group">
-                  <TextField
-                        hintText="nress"
-                        floatingLabelText="Username"
-                        name="username"
-                        className=""
-                        floatingLabelFocusStyle="home"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.username}
-                        errorText={errors.username && touched.username && <div>{errors.username}</div>}
+      <MuiThemeProvider>
+        <form onSubmit={handleSubmit} className="loginPop">
+          <div className="modal-body">
+            <div className="row">
+              <div className="col">
+                <div className="container-fluid text-left">
+                  <div className="form-group">
+                    <TextField
+                      hintText="nress"
+                      floatingLabelText="Username"
+                      name="username"
+                      className=""
+                      floatingLabelFocusStyle="home"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.username}
+                      errorText={
+                        errors.username &&
+                        touched.username && <div>{errors.username}</div>
+                      }
                     />
-                </div>
-                <div className="form-group">
-                  <TextField
-                        hintText="nress"
-                        floatingLabelText="Password"
-                        name="pwd"
-                        type="password"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.pwd}
-                        errorText={errors.pwd && touched.pwd && <div>{errors.pwd}</div>}
+                  </div>
+                  <div className="form-group">
+                    <TextField
+                      hintText="nress"
+                      floatingLabelText="Password"
+                      name="pwd"
+                      type="password"
+                      className=""
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.pwd}
+                      errorText={
+                        errors.pwd && touched.pwd && <div>{errors.pwd}</div>
+                      }
                     />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="modal-footer">
-          <div className="btnContainer">
-            <button
-              type="reset"
-              className="btn btn-secondary"
-              icon="fa-close"
-              onClick={() => hideModal()}
-            >
-              Cancel
-            </button>
-            <button
-              className="btn btn-primary "
-              icon="fa-close"
-              disabled={isSubmitting}
-            >
-              Log In
-            </button>
+          <div className="modal-footer">
+          <button
+            type="reset"
+            className="btn btn-secondary"
+            icon="fa-close"
+            onClick={() => hideModal()}
+          >
+            Cancel
+          </button>
+
+                  <button
+                    className="btn btn-primary "
+                    icon="fa-close"
+                    disabled={isSubmitting}
+                  >
+                    Log In
+                  </button>
+
+
+
+
           </div>
-        </div>
-
-      </form>
-    </MuiThemeProvider>
+        </form>
+      </MuiThemeProvider>
     );
   };
 
@@ -116,32 +122,32 @@ const LoginForm = ( { history,  hideModal, authenticate }) => {
         JSON.stringify(values, null, 2)
     );
 
-    if(values.username == 'nress' && values.pwd == 'nress') {
-
+    if (values.username == "nress" && values.pwd == "nress") {
       authenticate(values.username, values.pwd);
-
 
       // localStorage.setItem('loggedIn', true);
       // localStorage.setItem('username', 'Nress');
       // history.push("/");
       // hideModal();
     } else {
-      setErrors({ username: 'Invalid Username or Password', pwd: 'Invalid Username or Password' });
+      setErrors({
+        username: "Invalid Username or Password",
+        pwd: "Invalid Username or Password"
+      });
     }
     // e.preventDefault();
   };
 
   const Login = withFormik({
     mapPropsToValues: props => ({
-      username: '',
-      pwd: ''
+      username: "",
+      pwd: ""
     }),
     validationSchema: Yup.object().shape({
       username: Yup.string().required("Username is required!"),
       pwd: Yup.string().required("Password is required!")
     }),
     handleSubmit: (values, { setSubmitting, setErrors }) => {
-
       doSubmit(values, hideModal, setErrors);
       setSubmitting(false);
       // {
@@ -153,7 +159,7 @@ const LoginForm = ( { history,  hideModal, authenticate }) => {
     // handleChange: (values, { setSubmitting }) => {
     //   console.log('^^^^^^^^^^^values='+values);
     // },
-    displayName: "SolicitationEdit"// helps with React DevTools
+    displayName: "SolicitationEdit" // helps with React DevTools
   })(innerForm);
 
   return <Login />;

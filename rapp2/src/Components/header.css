@@ -38,7 +38,7 @@ ul.loginLinks{
   list-style-type: none;
   list-style-image: none;
   padding-left: 0;
-  padding-top: 10px;
+  padding-top: 7px;
   float: left;
   margin-bottom: 0;
   color:#f6f6f6;
@@ -46,10 +46,83 @@ ul.loginLinks{
 }
 .loginLinks li {
     float: right;
-    padding-right: 5px;
+    padding-right: 7px;
     margin-left: 0;
 }
 .loginLinks li:not(:first-child):after {
   content: " | ";
     color: #fff;
+    margin-left: 5px;
+}
+.loginLinks li a{
+  cursor: pointer;
+}
+input.searchPub {
+	outline: none;
+}
+input.searchPub[type=search] {
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	font-family: inherit;
+	font-size: 100%;
+}
+input.searchPub::-webkit-search-decoration,
+input.searchPub::-webkit-search-cancel-button {
+	display: none;
+}
+
+input.searchPub[type=search] {
+	background: transparent url(../images/searchIcon.svg) no-repeat 9px center;
+	border: 0;
+  background-size: 15px 15px;
+	padding: 0 0 2px 32px;
+	width: 55px;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	border-radius: 1em;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;
+}
+input.searchPub[type=search]:focus {
+  background: transparent url(../images/searchIcon_focus.svg) no-repeat 9px center;
+  background-size: 15px 15px;
+	width: 130px;
+	background-color: #fff;
+	border-color: #66CC75;
+	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	box-shadow: 0 0 5px rgba(109,207,246,.5);
+}
+
+input.searchPub:-moz-placeholder {
+	color: #999;
+}
+input.searchPub::-webkit-input-placeholder {
+	color: #999;
+}
+div.expandSearch{
+  display: inline-block;
+}
+.expandSearch input.searchPub[type=search] {
+	width: 15px;
+	padding-left: 10px;
+	color: transparent;
+	cursor: pointer;
+}
+.expandSearch input.searchPub[type=search]:hover {
+	background-color: transparnt;
+}
+.expandSearch input.searchPub[type=search]:focus {
+	width: 150px;
+	padding-left: 32px;
+	color: #000;
+	background-color: #fff;
+	cursor: auto;
+}
+.expandSearch input.searchPub:-moz-placeholder {
+	color: transparent;
+}
+.expandSearch input.searchPub::-webkit-input-placeholder {
+	color: transparent;
 }

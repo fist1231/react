@@ -28,7 +28,7 @@ class ReviewProposalsView extends Component {
 
   handleRefreshClick(e) {
     e.preventDefault()
- 
+
     const { dispatch, searchFilter } = this.props
     dispatch(invalidateReviewProposalsFilter(searchFilter))
     dispatch(fetchReviewProposalsIfNeeded(searchFilter))
@@ -42,7 +42,7 @@ class ReviewProposalsView extends Component {
     const isLiveData = config.live_data;
     const dataSource = isLiveData?reviewProposalsTable:reviewProposalsMock();
     return (
-      <div>
+      <div className="">
           <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} />
 
         {/*}

@@ -112,7 +112,7 @@ class ReviewProposalsRPTable extends Component {
 
 
     return (
-      <div>
+      <div className="container-fluid RPTableContaine">
         <div>
           <div className="row">
             <div className="col-md-6 offset-md-3">
@@ -127,6 +127,7 @@ class ReviewProposalsRPTable extends Component {
               </div>
             </div>
           </div>
+
           <ContextMenu model={items} ref={el => this.cm = el}/>
 
           <DataTable
@@ -154,7 +155,7 @@ class ReviewProposalsRPTable extends Component {
             <Column field="" body={actionsTemplate} header="Actions" sortable={false} />
           </DataTable>
 
-        </div>
+
         <OverlayPanel ref={(el) => {this.state.preView = {op: el, rData: null};}}>
           <div className="container-fluid" style={{backgroundColor:'#fff'}}>
             <div className="form-group row">
@@ -179,7 +180,7 @@ class ReviewProposalsRPTable extends Component {
           </div>
         </OverlayPanel>
 
-
+    </div>
       </div>
 
     );

@@ -34,20 +34,16 @@ export default class PubTabs extends React.Component {
   render() {
     return (
       <div className="container-fluid homeTabsContainer pl-0">
-        <Nav tabs>
-
+        <Nav tabs className="homeTabs">
           <NavItem>
-          <div className="bgBlue">
             <NavLink
               className={classnames({ active: this.state.activeTab === "1" })}
               onClick={() => {
                 this.toggle("1");
               }}
             >
-            Site News
-
+              Announcements
             </NavLink>
-            </div>
           </NavItem>
           <NavItem>
             <NavLink
@@ -63,57 +59,85 @@ export default class PubTabs extends React.Component {
 
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
-
-
-          <Row>
-            <Col sm="12">
-              <div className="media">
-                <div className="media-body bgLight">
-                  <h5 className="mt-0">News Title 1</h5>
-                  <p>NSPIRES is the new system for preparing and submitting
-                  research proposals directly to NASA. NSPIRES is expected to
-                  become operational in early 2013. Check back here for news
-                  updates and more information.</p>
-                  <span className="float-right"><a href="#"><i className="fa fa-arrow-circle-right"></i>Continue</a></span>
+            <Row>
+              <Col sm="12">
+                <div className="media">
+                  <div className="media-body bgLight">
+                    <h5 className="mt-0">News Title 1</h5>
+                    <p>
+                      NSPIRES is the new system for preparing and submitting
+                      research proposals directly to NASA. NSPIRES is expected
+                      to become operational in early 2013. Check back here for
+                      news updates and more information.
+                    </p>
+                    <span className="float-right">
+                      <a href="#">
+                        <i className="fa fa-arrow-circle-right" />Continue
+                      </a>
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="media">
-                <div className="media-body bgLight">
-                  <h5 className="mt-0">News Title 2</h5>
-                  <p>This is a test for Iteration 6.5 </p>
-                  <span className="float-right"><a href="#"><i className="fa fa-arrow-circle-right"></i>Continue</a></span>
+                <div className="media">
+                  <div className="media-body bgLight">
+                    <h5 className="mt-0">News Title 2</h5>
+                    <p>This is a test for Iteration 6.5 </p>
+                    <span className="float-right">
+                      <a href="#">
+                        <i className="fa fa-arrow-circle-right" />Continue
+                      </a>
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </Col>
-          </Row>
-
-
+              </Col>
+            </Row>
           </TabPane>
           <TabPane tabId="2">
+            <Row>
+              <Col sm="12">
+                <div className="bannerLoginContainer">
+                  <h3 className="text-center" >Member Login</h3>
+                  <form className="container form-horizontal" action="">
+                    <div className="form-group">
+                      <div className="col-sm-12">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="text"
+                          placeholder="Username"
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <div className="col-sm-12">
+                        <input
+                          type="password"
+                          className="form-control"
+                          id="pwd"
+                          placeholder="Enter password"
+                        />
+                      </div>
+                    </div>
 
-
-          <Row>
-            <Col sm="11">
-
-            <div class="bannerLoginContainer">
-                <h3>Member Login</h3>
-                <div class="inputGroup">
-                  <input required="" type="text"/> <label>Username</label>
+                    <div className="form-group text-right">
+                      <div className="col-sm-offset-2 col-sm-12">
+                        <button type="submit" className="btn btn-primary w-100">
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <small className="text-center">
+                    <p>
+                      forgot your password? <a href="#">click here</a>
+                    </p>
+                    <p>
+                      new user? <a href="#">create new account</a>
+                    </p>
+                  </small>
                 </div>
-                <div class="inputGroup">
-                  <input required="" type="password"/> <label>Password</label>
-                </div>
-                <div class="loginBtnContainer">
-                  <button onclick="parent.location='members.html'" type="button" class="mainBtn" name="" title="Login" value="Login">Login</button>
-                </div>
-                <p>
-                  <a class="login" href="login_forgot_email.html" title="Forgot Password">Forgot password?</a> <a class="login" href="about_registration_pub.html" title="Register Now"> Register Now!</a>
-                </p>
-              </div>
-            </Col>
-          </Row>
-
+              </Col>
+            </Row>
           </TabPane>
         </TabContent>
       </div>
