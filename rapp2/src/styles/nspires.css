@@ -121,7 +121,7 @@ h3.modal-title {
   .puTabsContainer{
     position: absolute;
     width: 400px;
-    top: 1.5rem;
+    top: 5.5rem;
     left: 3rem;
 
   }
@@ -412,7 +412,9 @@ label {
   top: 13px;
   left: 10px;
 }
-
+.floatInput{
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+}
 .form-control {
   display: block;
   width: 100%;
@@ -513,14 +515,6 @@ label {
   border-radius: 5px;
 }
 
-.ui-datatable tbody>tr.ui-widget-content.ui-datatable-odd {
-  background-color: #fafafb !important;
-}
-
-.ui-datatable tbody>tr.ui-widget-content.ui-datatable-even {
-  background-color: #F6F6F6 !important;
-}
-
 .ui-datatable {
   margin-bottom: 20px;
 }
@@ -529,6 +523,7 @@ label {
 
 .ReactTable {
   font-size: 0.9em;
+  border: 1px solid #ccc;
 }
 
 .ReactTable .rt-tr .-odd {
@@ -536,20 +531,44 @@ label {
 }
 
 .ReactTable .rt-thead.-header {
-  background-color: #ddd;
+  background-color: #c4cedc;
   box-shadow: none;
 }
-
+.ReactTable .rt-thead .rt-th, .ReactTable .rt-thead .rt-td {
+  border-right: 1px solid #bbb;
+}
+.ReactTable .rt-tbody .rt-tr-group {
+    border-bottom: 1px solid #cccc;
+}
+.ReactTable .rt-tbody .rt-td {
+    border-right: 1px solid #ccc;
+}
 .ReactTable .rt-thead .rt-resizable-header-content {
   font-weight: 600;
+}
+.ReactTable.-highlight .rt-tbody .rt-tr:not(.-padRow):hover {
+    background: #e7f2f7;
+    background: rgba(209,222,234,0.6);
+}
+.userDetail{
+  background-color: #eee;
+}
+.react-bs-table .table-bordered>thead>tr:first-child>td, .react-bs-table .table-bordered>thead>tr:first-child>th {
+  border-bottom-width: 0;
 }
 
 .table-hover tbody tr:hover {
   background-color: #eaf0f8 !important;
 }
-
-.react-bs-table .table-bordered>thead>tr:first-child>td, .react-bs-table .table-bordered>thead>tr:first-child>th {
-  border-bottom-width: 0;
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #dee2e6;
+}
+.table .thead-light th {
+    color: #fff;
+    background-color: #7d8a96;
+    border-color: #dee2e6;
+    font-weight: 600;
 }
 
 .dropup, .dropdown {
@@ -560,25 +579,6 @@ label {
   position: relative;
 }
 
-.dropup .caret, .navbar-fixed-bottom .dropdown .caret {
-  border-top: 0;
-  border-bottom: 4px dashed;
-  border-bottom: 4px solid \9;
-  content: "";
-}
-
-.caret {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px;
-  vertical-align: middle;
-  border-top: 4px dashed;
-  border-top: 4px solid \9;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
-  color: #999 !important;
-}
 
 .ui-inputtext::placeholder {
   color: #999 !important;
@@ -785,3 +785,38 @@ label.error {
   color: #fff;
 }
 .front {color:#fff; text-align:center; }
+
+#custom-search-input{
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+    width: 100%;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}
+#custom-search-input .form-control {
+    padding: .2rem .75rem;
+}

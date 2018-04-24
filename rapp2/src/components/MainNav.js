@@ -68,13 +68,18 @@ const MainNav = (propsy, location) => (
           </div>
   <div className="col-md-3">
 
-         <div className="input-group stylish-input-group mt-2">
-             <input type="text" className="form-control"  placeholder="Search"/>
-             <span className="input-group-addon">
-                 <button type="submit">
-                  <i className="fa fa-search"></i>
-                 </button>
-             </span>
+         <div className="input-group mt-2">
+
+         <div id="custom-search-input">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" />
+                <span class="input-group-btn">
+                    <button class="btn btn-info" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
          </div>
      </div>
         </div>

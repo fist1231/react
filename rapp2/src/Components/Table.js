@@ -13,49 +13,40 @@ const DisplayTable = ({ usersLst, onUserClick }) => (
       defaultPageSize={10}
       SubComponent={(row) => {
         // console.log('+++++++ row='+JSON.stringify(row)) ;
-        return <div style={{padding: '10px'}}>
-          <table>
-            <thead>
+        return <div className="userDetail">
+
+          <div className="pl-3 mt-2">
+
+
+            <table className="table">
+              <thead className="thead-light">
               <tr>
-                <th>Param</th>
-                <th>Value</th>
+                <th>Full name:</th>
+                <th>Id:</th>
+                <th>User ID:</th>
+                  <th>Created by:</th>
+                    <th>Activated on:</th>
+                    <th>Challenge question:</th>
+                    <th>Sysefus id:</th>
+                    <th>Demographics data id:</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Full name:</td>
+
                 <td>{row.original.SALUTATION} {row.original.FIRST_NAME} {row.original.MIDDLE_INITIAL} {row.original.LAST_NAME} {row.original.SUFFIX}</td>
+                  <td>{row.original._id}</td>
+                  <td>{row.original.NSPIRES_USER_ID}</td>
+                  <td>{row.original.CREATION_PATH}</td>
+                  <td>{row.original.ACTIVATIONTIME}</td>
+                    <td>{row.original.CHALLENGE_QUESTION}</td>
+                    <td>{row.original.SYSEFUS_ID}</td>
+                    <td>{row.original.DEM_DATA_ID}</td>
               </tr>
-              <tr>
-                <td>Id:</td>
-                <td>{row.original._id}</td>
-              </tr>
-              <tr>
-                <td>User ID:</td>
-                <td>{row.original.NSPIRES_USER_ID}</td>
-              </tr>
-              <tr>
-                <td>Created by:</td>
-                <td>{row.original.CREATION_PATH}</td>
-              </tr>
-              <tr>
-                <td>Activated on:</td>
-                <td>{row.original.ACTIVATIONTIME}</td>
-              </tr>
-              <tr>
-                <td>Challenge question:</td>
-                <td>{row.original.CHALLENGE_QUESTION}</td>
-              </tr>
-              <tr>
-                <td>Sysefus id:</td>
-                <td>{row.original.SYSEFUS_ID}</td>
-              </tr>
-              <tr>
-                <td>Demographics data id:</td>
-                <td>{row.original.DEM_DATA_ID}</td>
-              </tr>
+
             </tbody>
           </table>
+          </div>
         </div>}
       }
       columns={[

@@ -113,20 +113,24 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
         formatter: actionsFormatter,
         formatExtraData: {
         }
+        
     }];
+    const defaultSorted = [{
+    dataField: 'name',
+    order: 'desc'
+}];
+
 
     return (
       <div>
-        <div>
-          <button
-            className="btn btn-primary "
-            icon="fa-add"
-            onClick={() => onAddClicked()}
-          >
-            Add Solicitation
+        <div className="row mb-3">
+          <div className="col text-right">
+          <button className="btn btn-primary" onClick={() => onAddClicked()} >
+            <i class="fa fa-plus" aria-hidden="true"></i> Add Solicitation
           </button>
         </div>
-        <BootstrapTable keyField='SOLICITATION_NUMBER' data={ solicitations } columns={ columns } pagination={ paginationFactory() }  filter={ filterFactory() } striped hover condensed />
+        </div>
+        <BootstrapTable keyField='SOLICITATION_NUMBER' data={ solicitations } defaultSorted={ defaultSorted }  columns={ columns } pagination={ paginationFactory() }  filter={ filterFactory() } striped hover condensed />
       </div>
     );
 }

@@ -8,6 +8,10 @@ import TextField from "material-ui/TextField";
 
 const LoginForm = ({ history, hideModal, authenticate }) => {
   const styles = {
+    errorStyle: {
+   color: "#333"
+
+ },
     block: {
       maxWidth: 250
     },
@@ -17,6 +21,16 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
     thumbOff: {
       backgroundColor: "#ffcccc"
     },
+    underlineStyle: {
+  borderColor: "#000",
+},
+    underlineFocusStyle: {
+    borderColor: "#000",
+    },
+    floatingLabelFocusStyle: {
+   color: "red",
+   fontSize:"2em"
+ },
     trackOff: {
       backgroundColor: "#ff9d9d"
     },
@@ -29,6 +43,7 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
     labelStyle: {
       color: "red"
     }
+
   };
 
   const innerForm = (props, hdMod) => {
@@ -51,16 +66,19 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
         <div className="modal-body">
           <div className="row">
             <div className="col">
-              <div className="container-fluid text-left">
+              <div className="container text-left">
                 <div className="form-group">
                   <TextField
                         hintText="nress"
                         floatingLabelText="Username"
+                        underlineStyle={styles.underlineStyle}
+                        underlineFocusStyle={styles.underlineFocusStyle}
                         name="username"
-                        className=""
-                        floatingLabelFocusStyle={{color: 'blue'}}
+                        className="floatInput"
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         onChange={handleChange}
                         onBlur={handleBlur}
+                         errorStyle={styles.errorStyle}
                         value={values.username}
                         errorText={errors.username && touched.username && <div>{errors.username}</div>}
                     />
