@@ -19,7 +19,7 @@ return (
     {/* props.wth = 'whaaaaat?' }
     { console.log('------> props = ' + JSON.stringify(props.wth)) */}
 
-    <div>
+    <div className="container-fluid RPTableContainer">
       <h1>Review Proposals</h1>
           <ReviewProposalsRPTable
             value={list}

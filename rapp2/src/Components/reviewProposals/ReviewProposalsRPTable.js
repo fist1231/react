@@ -112,7 +112,7 @@ class ReviewProposalsRPTable extends Component {
 
 
     return (
-      <div className="container-fluid RPTableContaine">
+      <div>
         <div>
           <div className="row">
             <div className="col-md-6 offset-md-3">
@@ -137,7 +137,7 @@ class ReviewProposalsRPTable extends Component {
             rows={20}
             rowsPerPageOptions={[10,20,50]}
             resizableColumns={true}
-            columnResizeMode="expand"
+            columnResizeMode="fit"
             responsive={true}
             reorderableColumns={true}
             reorderableRows={true} onRowReorder={(e) => this.setState({proposals: e.value})}

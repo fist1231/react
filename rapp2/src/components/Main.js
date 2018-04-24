@@ -16,7 +16,7 @@ import NoMatch from '../NoMatch'
 const Main = () => (
   <div>
   <main>
-  <div className="">
+  <div>
     <Switch>
       <Route path='/' exact component={HomePriv} />
       <Route path='/users' component={UsersList}/>

@@ -282,6 +282,7 @@ h3.modal-title {
   margin-bottom: 5px;
 }
 .RPTableContainer{
+  position: inherit;
 }
 
 .cardHome {

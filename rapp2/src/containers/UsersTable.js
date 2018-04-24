@@ -51,7 +51,8 @@ handleRefreshClick = e => {
 
 
     return (
-      <div>
+      <div className="container-fluid">
+      <h1>Users</h1>
 {/*
         <Picker value={selectedUsersFilter}
                 onChange={this.handleChange}
