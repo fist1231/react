@@ -7,6 +7,7 @@ import 'react-table/react-table.css'
 
 const DisplayTable = ({ usersLst, onUserClick }) => (
   <div>
+    Total number of Records: {usersLst.length}
     <ReactTable
       className="-striped -highlight"
       data={usersLst}

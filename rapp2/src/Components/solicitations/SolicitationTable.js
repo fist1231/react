@@ -68,7 +68,7 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
 
     const rows = [];
     var lastSearch = null;
-    console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + solicitations.length);
+    // console.log('%%%%%%%%%%%%%%% solicitaions.length = ' + solicitations.length);
     solicitations.forEach((solicitation) => {
       if (solicitation.TITLE !== lastSearch) {
         rows.push(
@@ -97,11 +97,17 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
     const columns = [{
       dataField: 'SOLICITATION_NUMBER',
         text: 'Solicitation Number',
-        sort: true
+        sort: true,
+        headerStyle: {
+           width: '260px'
+        }
       }, {
         dataField: 'FISCAL_YEAR',
         text: 'Fiscal Year',
-        sort: true
+        sort: true,
+        headerStyle: {
+           width: '80px'
+        }
       }, {
         dataField: 'TITLE',
         text: 'Solicitation Title',
@@ -112,8 +118,38 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
         text: 'Actions',
         formatter: actionsFormatter,
         formatExtraData: {
+        },
+        headerStyle: {
+           width: '5em'
         }
     }];
+
+    const options = {
+      paginationSize: 5,
+      pageStartIndex: 1,
+      // alwaysShowAllBtns: true, // Always show next and previous button
+       withFirstAndLast: true, // Hide the going to First and Last page button
+      // hideSizePerPage: true, // Hide the sizePerPage dropdown always
+       hidePageListOnlyOnePage: true, // Hide the pagination list when only one page
+      firstPageText: 'First',
+      prePageText: 'Back',
+      nextPageText: 'Next',
+      lastPageText: 'Last',
+      nextPageTitle: 'First page',
+      prePageTitle: 'Pre page',
+      firstPageTitle: 'Next page',
+      lastPageTitle: 'Last page',
+      sizePerPageList: [{
+        text: '10', value: 10
+      }, {
+        text: '20', value: 20
+      }, {
+        text: '50', value: 50
+      }, {
+        text: '1000', value: 1000
+      }]
+    };
+
 
     return (
       <div>
@@ -125,8 +161,9 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
           >
             Add Solicitation
           </button>
+          Total number of Records: {solicitations.length}
         </div>
-        <BootstrapTable keyField='SOLICITATION_NUMBER' data={ solicitations } columns={ columns } pagination={ paginationFactory() }  filter={ filterFactory() } striped hover condensed />
+        <BootstrapTable keyField='SOLICITATION_ID' data={ solicitations } columns={ columns } pagination={ paginationFactory(options) }  filter={ filterFactory() } striped hover condensed />
       </div>
     );
 }
