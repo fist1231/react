@@ -46,26 +46,23 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
     } = props;
 
     return (
-      <MuiThemeProvider>
-        <form onSubmit={handleSubmit} className="loginPop">
-          <div className="modal-body">
-            <div className="row">
-              <div className="col">
-                <div className="container-fluid text-left">
-                  <div className="form-group">
-                    <TextField
-                      hintText="nress"
-                      floatingLabelText="Username"
-                      name="username"
-                      className=""
-                      floatingLabelFocusStyle="home"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.username}
-                      errorText={
-                        errors.username &&
-                        touched.username && <div>{errors.username}</div>
-                      }
+    <MuiThemeProvider>
+      <form onSubmit={handleSubmit}>
+        <div className="modal-body">
+          <div className="row">
+            <div className="col">
+              <div className="container-fluid text-left">
+                <div className="form-group">
+                  <TextField
+                        hintText="nress"
+                        floatingLabelText="Username"
+                        name="username"
+                        className=""
+                        floatingLabelFocusStyle={{color: 'blue'}}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.username}
+                        errorText={errors.username && touched.username && <div>{errors.username}</div>}
                     />
                   </div>
                   <div className="form-group">

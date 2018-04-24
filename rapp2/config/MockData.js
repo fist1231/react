@@ -7,7 +7,7 @@ var dte = new Date();
 export const usersMock = () => {
   var rows = [];
   for(var i=0; i<numrows; i++) {
-    rows.push({ _id: `0000${i}`, id: `0000${i}`, name: `User name-${i}`, status: `Confirmed${i}`, created_date: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}` });
+    rows.push({ _id: `0000${i}`, NSPIRES_USER_ID: `0000${i}`, USERNAME: `User name-${i}`, FIRST_NAME: `Firstname${i}`, LAST_NAME: `Lastname${i}`, REGISTRATION_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}` });
   }
   return rows;
 
@@ -54,6 +54,15 @@ export const reviewProposalsMock = () => {
 //   { ASSIGNED_RESPONSE_ID: "11111", FIRST_NAME: "First1", LAST_NAME: "Last1", RESPONSE_NUMBER: "Number1", "RESPONSE_SEQ_NUMBER": "Sqe1", PSTATE: "Submitted"},
 // ]
 }
+
+export const reviewProposalDetailsMock = () => {
+
+  return { ASSIGNED_RESPONSE_ID: "11111", FIRST_NAME: "First1", LAST_NAME: "Last1", RESPONSE_NUMBER: "Number1", "RESPONSE_SEQ_NUMBER": "Sqe1", PSTATE: "Submitted"}
+
+}
+
+
+
 
 const MockData = () => {
 }

@@ -109,7 +109,7 @@ const getGraphQLResult = reviewProposalsFilter => dispatch => {
   fetch(`${config.review_proposals_address}graphql`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: `{ reviewProposalsById (filter: "${reviewProposalsFilter.searchText}") { ASSIGNED_RESPONSE_ID, FIRST_NAME, LAST_NAME, RESPONSE_NUMBER, RESPONSE_SEQ_NUMBER, PSTATE } }` }),
+    body: JSON.stringify({ query: `{ reviewProposalsSearch (filter: "${reviewProposalsFilter.searchText}") { ASSIGNED_RESPONSE_ID, FIRST_NAME, LAST_NAME, RESPONSE_NUMBER, RESPONSE_SEQ_NUMBER, PSTATE } }` }),
     //body: JSON.stringify({ query: '{ solicitations { id, acronym, title } }' }),
   })
   // .then(res => res.json())
@@ -123,7 +123,7 @@ const getGraphQLResult = reviewProposalsFilter => dispatch => {
       //console.log('res JSON = ' + JSON.stringify(res));
       //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
 //      return res.data.reviewProposals;
-      return res.data.reviewProposalsById;
+      return res.data.reviewProposalsSearch;
     })
     .then(res => {
       // console.log('res JSON = ' + JSON.stringify(res));

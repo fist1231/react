@@ -13,6 +13,7 @@ class ReviewProposalsView extends Component {
 
   componentDidMount() {
     const { dispatch, searchFilter } = this.props
+    console.log('^^^^^^^^^^^^ReviewProposalsView componentDidMount');
 
     console.log('searchFilter=' + JSON.stringify(searchFilter))
     console.log('this.onSearchChange=' + this.props.onSearchChange)
@@ -20,15 +21,25 @@ class ReviewProposalsView extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('^^^^^^^^^^^^ReviewProposalsView componentWillReceiveProps');
     if (nextProps.searchFilter !== this.props.searchFilter) {
       const { dispatch, searchFilter } = nextProps
       dispatch(fetchReviewProposalsIfNeeded(searchFilter))
     }
   }
 
-  handleRefreshClick(e) {
-    e.preventDefault()
+  componentWillUpdate(nextProps) {
+    console.log('^^^^^^^^^^^^ReviewProposalsView componentWillUpdate');
+  }
 
+  componentDidUpdate(nextProps) {
+    console.log('^^^^^^^^^^^^ReviewProposalsView componentDidUpdate');
+  }
+
+
+  handleRefreshClick(e) {
+    e.preventDefault();
+    console.log('^^^^^^^^^^^^handleRefreshClick ReviewProposalView');
     const { dispatch, searchFilter } = this.props
     dispatch(invalidateReviewProposalsFilter(searchFilter))
     dispatch(fetchReviewProposalsIfNeeded(searchFilter))
@@ -38,13 +49,16 @@ class ReviewProposalsView extends Component {
 
     const { searchFilter, reviewProposalsTable, isFetching, lastUpdated, previewDetails } = this.props
       // console.log('^^^^^^^^^^^^previewDetails='+previewDetails.previewDetails)
-    const isEmpty = reviewProposalsTable.length === 0
+    const isEmpty = reviewProposalsTable?(reviewProposalsTable.length === 0):true;
     const isLiveData = config.live_data;
     const dataSource = isLiveData?reviewProposalsTable:reviewProposalsMock();
     return (
-      <div className="">
+      <div>
+          {dataSource .length > 0 ? (
           <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} />
-
+        ) : (
+          <h2>Wait ...</h2>
+        )}
         {/*}
         {
           isEmpty ?
