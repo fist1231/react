@@ -7,19 +7,21 @@ import {InputText} from 'primereact/components/inputtext/InputText';
 import {OverlayPanel} from 'primereact/components/overlaypanel/OverlayPanel';
 import {ContextMenu} from 'primereact/components/contextmenu/ContextMenu';
 import {Button} from 'primereact/components/button/Button';
+import {Dropdown} from 'primereact/components/dropdown/Dropdown';
+
+// primereact/components/autocomplete/AutoComplete.css
+
+
 
 import styled from 'styled-components';
 import { Route } from 'react-router-dom'
 
 import ReactTooltip from 'react-tooltip'
 
-
 class ReviewProposalsRPTable extends Component {
 
   constructor(props) {
       super(props);
-      console.log('--------------- props = '+ JSON.stringify(props))
-      console.log('**  view props.previewFlag = ' + JSON.stringify(props.previewFlag));
       this.state = {};
       this.viewProposal = this.viewProposal.bind(this);
       this.deleteProposal = this.deleteProposal.bind(this);
@@ -28,6 +30,12 @@ class ReviewProposalsRPTable extends Component {
       this.onEditClicked = this.onEditClicked.bind(this);
       this.onDeleteClicked = this.onDeleteClicked.bind(this);
       this.export = this.export.bind(this);
+
+      this.firstNameEditor = this.firstNameEditor.bind(this);
+      this.lastNameEditor = this.lastNameEditor.bind(this);
+      this.statusEditor = this.statusEditor.bind(this);
+      this.requiredValidator = this.requiredValidator.bind(this);
+
 
 
       this.state = {
@@ -50,12 +58,12 @@ class ReviewProposalsRPTable extends Component {
 
 
   viewProposal(proposal) {
-    console.log('**  view proposal = ' + JSON.stringify(proposal));
+    // console.log('**  view proposal = ' + JSON.stringify(proposal));
     this.props.onEdit(proposal)
   }
 
   deleteProposal(proposal) {
-    console.log('**  delete proposal = ' + JSON.stringify(proposal));
+    // console.log('**  delete proposal = ' + JSON.stringify(proposal));
     this.props.onDelete(proposal)
   }
 
@@ -86,9 +94,57 @@ class ReviewProposalsRPTable extends Component {
   }
 
 
+  onEditorValueChange(props, value) {
+      let updatedCars = [...props.value];
+      updatedCars[props.rowIndex][props.field] = value;
+      this.setState({cars: updatedCars});
+  }
+
+  inputTextEditor(props, field) {
+      return <InputText required="true" type="text" value={props.rowData.year} onChange={(e) => this.onEditorValueChange(props, e.target.value)} />;
+  }
+
+  firstNameEditor(props) {
+      return this.inputTextEditor(props, 'FIRST_NAME');
+  }
+
+  lastNameEditor(props) {
+      return this.inputTextEditor(props, 'LAST_NAME');
+  }
+
+  statusEditor(props) {
+      let dd = React.createRef();
+      let statuses = [
+          {label: 'Pending', value: 'PENDING_STATUS'},
+          {label: 'Submitted', value: 'SUBMITTED_STATUS'},
+          {label: 'Withdrawn', value: 'WITHDRAWN_STATUS'},
+          {label: 'Returned', value: 'RETURNED_STATUS'},
+          {label: 'Declined', value: 'DECLINED_STATUS'},
+          {label: 'Selected', value: 'SELECTED_STATUS'},
+      ];
+
+      return (
+          <Dropdown appendTo={document.body} value={props.value[props.rowIndex].PSTATE} options={statuses}
+                  onChange={(e) => this.onEditorValueChange(props, e.value)} style={{width:'100%'}} placeholder="Select Status"/>
+      );
+  }
+
+  requiredValidator(props) {
+      let value = props.rowData[props.field];
+      return value && value.length > 0;
+  }
+
+
+
   render() {
 
-    var header = <div style={{textAlign:'left'}}><Button type="button" icon="fa-file-o" iconPos="left" label="Excel" onClick={this.export} data-tip="Export table to CSV format for Excel"></Button></div>;
+    var header = <div style={{textAlign:'left'}}>
+      <Button type="button" icon="fa-file-o" iconPos="left" label="Excel" onClick={this.export} data-tip="Export table to CSV format for Excel"></Button>
+      Total number of Records: {this.state.proposals.length}
+      <div style={{float:'right'}}>
+        <p style={{textAlign:'right'}} data-tip="You can resize and reorder columns by dragging column's header. Right-click on a row for a context menu. Drag and Drop icon on the left to rearrange rows" className="fa fa-question-circle-o"> Usage tips</p>
+      </div>
+    </div>;
 
     const Square = styled.div`
       position: absolute;
@@ -135,11 +191,6 @@ class ReviewProposalsRPTable extends Component {
         <div>
           <div className="row">
             <div className="col-md-6 offset-md-3">
-              <p data-tip="You can resize and reorder columns by dragging column's header. Right-click on a row for a context menu. Drag and Drop icon on the left to rearrange rows" className="fa fa-question-circle-o"> Usage tips</p>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-6 offset-md-3">
               <div className="search searchfilter">
                 <span className="fa fa-search"></span>
                 <InputText className="form-control" type="search" onInput={e => this.props.onSearch({searchText: e.target.value, isOpenOnly:this.props.globalFilter?this.props.globalFilter.isOpenOnly:false}) } placeholder="Search Proposals" size="50"/>
@@ -148,7 +199,6 @@ class ReviewProposalsRPTable extends Component {
           </div>
 
           <ContextMenu model={items} ref={el => this.cm = el}/>
-
           <DataTable
             header={header}
             className=""
@@ -168,12 +218,12 @@ class ReviewProposalsRPTable extends Component {
             selection={this.state.selectedProposal}
             onSelectionChange={(e) => this.setState({selectedProposal: e.data})}
           >
-            <Column field="a" rowReorder={true} />
+            <Column field="a" rowReorder={true} style={{width: '2em'}} />
             <Column field="RESPONSE_NUMBER" body={nT} header="Response Number" sortable={true} />
-            <Column field="PSTATE" header="Response Status" sortable={true} />
-            <Column field="FIRST_NAME" header="First name" sortable={true} />
-            <Column field="LAST_NAME" header="Last name" sortable={true} />
-            <Column field="" body={actionsTemplate} header="Actions" sortable={false} />
+            <Column field="PSTATE" header="Response Status" sortable={true} editor={this.statusEditor} editorValidator={this.requiredValidator} />
+            <Column field="FIRST_NAME" header="First name" sortable={true} editor={this.firstNameEditor} editorValidator={this.requiredValidator} />
+            <Column field="LAST_NAME" header="Last name" sortable={true}  editor={this.lastNameEditor} editorValidator={this.requiredValidator} />
+            <Column field="" body={actionsTemplate} header="" sortable={false} style={{width: '5em'}} />
           </DataTable>
 
 

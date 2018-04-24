@@ -20,7 +20,6 @@ return (
     { console.log('------> props = ' + JSON.stringify(props.wth)) */}
 
     <div className="container-fluid RPTableContainer">
-      <h1>Review Proposals</h1>
           <ReviewProposalsRPTable
             value={list}
             globalFilter={filter?filter.searchText:''}

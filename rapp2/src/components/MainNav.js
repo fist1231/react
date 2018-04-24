@@ -71,11 +71,11 @@ const MainNav = (propsy, location) => (
          <div className="input-group mt-2">
 
          <div id="custom-search-input">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" />
-                <span class="input-group-btn">
-                    <button class="btn btn-info" type="button">
-                        <i class="fa fa-search"></i>
+            <div className="input-group">
+                <input type="text" className="form-control" placeholder="Search" />
+                <span className="input-group-btn">
+                    <button className="btn btn-info" type="button">
+                        <i className="fa fa-search"></i>
                     </button>
                 </span>
             </div>

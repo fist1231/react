@@ -11,7 +11,7 @@ const customStyles = {
     bottom                : 'auto',
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
-    position: 'relative',
+    // position: 'relative',
     outline: '0',
     width: '100%',
     background: 'white',
