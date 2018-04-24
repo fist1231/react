@@ -31,7 +31,7 @@ class ReviewProposalsRPTable extends Component {
 
 
       this.state = {
-          propsosals: []
+          proposals: []
       };
 
 
@@ -39,8 +39,13 @@ class ReviewProposalsRPTable extends Component {
 
 
   componentDidMount() {
-      this.setState({proposals: this.props.value});
+    console.log('------------ isLoading? ' + this.props.isLoading);
+    this.props.isLoading?null:this.setState({proposals: this.props.value});
   }
+
+  // componentDidUpdate() {
+  //     this.setState({proposals: this.props.value});
+  // }
 
 
   viewProposal(proposal) {

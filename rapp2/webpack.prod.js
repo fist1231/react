@@ -15,13 +15,53 @@ module.exports = merge(common, {
                   test: /[\\/]node_modules[\\/]/,
                   name: "vendors",
                   filename: 'vendors.[chunkhash].js',
-                  chunks: "all"
+                  chunks: "all",
               }
           }
       }
   },
+
+
+  // optimization: {
+  //   splitChunks: {
+  //       chunks: "async",
+  //       minSize: 30000,
+  //       minChunks: 1,
+  //       maxAsyncRequests: 5,
+  //       maxInitialRequests: 3,
+  //       automaticNameDelimiter: '~',
+  //       name: true,
+  //       cacheGroups: {
+  //           commons: {
+  //               name: "commons",
+  //               filename: 'commons.[chunkhash].js',
+  //               chunks: "initial",
+  //               minChunks: 2
+  //           }
+  //       },
+  //       cacheGroups: {
+  //           vendors: {
+  //               test: /[\\/]node_modules[\\/](?!(lodash|rxjs|material-ui|primereact|chart.js)[\\/].*)/,
+  //               priority: -10,
+  //               name: "vendors",
+  //               filename: 'vendors.[chunkhash].js',
+  //               chunks: "all"
+  //       },
+  //       default: {
+  //               minChunks: 2,
+  //               priority: -20,
+  //               reuseExistingChunk: true
+  //           }
+  //       }
+  //   }
+  // },
+
   // devtool: 'source-map',
   plugins: [
+    // new webpack.optimize.AggressiveSplittingPlugin({
+    //     minSize: 10000,
+    //     maxSize: 200000,
+    // }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')

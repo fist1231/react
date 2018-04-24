@@ -13,6 +13,7 @@ class ReviewProposalsView extends Component {
 
   componentDidMount() {
     const { dispatch, searchFilter } = this.props
+    console.log('^^^^^^^^^^^^ReviewProposalsView componentDidMount');
 
     console.log('searchFilter=' + JSON.stringify(searchFilter))
     console.log('this.onSearchChange=' + this.props.onSearchChange)
@@ -20,15 +21,25 @@ class ReviewProposalsView extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('^^^^^^^^^^^^ReviewProposalsView componentWillReceiveProps');
     if (nextProps.searchFilter !== this.props.searchFilter) {
       const { dispatch, searchFilter } = nextProps
       dispatch(fetchReviewProposalsIfNeeded(searchFilter))
     }
   }
 
+  componentWillUpdate(nextProps) {
+    console.log('^^^^^^^^^^^^ReviewProposalsView componentWillUpdate');
+  }
+
+  componentDidUpdate(nextProps) {
+    console.log('^^^^^^^^^^^^ReviewProposalsView componentDidUpdate');
+  }
+
+
   handleRefreshClick(e) {
-    e.preventDefault()
- 
+    e.preventDefault();
+    console.log('^^^^^^^^^^^^handleRefreshClick ReviewProposalView');
     const { dispatch, searchFilter } = this.props
     dispatch(invalidateReviewProposalsFilter(searchFilter))
     dispatch(fetchReviewProposalsIfNeeded(searchFilter))
@@ -43,8 +54,11 @@ class ReviewProposalsView extends Component {
     const dataSource = isLiveData?reviewProposalsTable:reviewProposalsMock();
     return (
       <div>
-          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} />
-
+          {dataSource .length > 0 ? (
+          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} isLoading={isFetching} />
+        ) : (
+          <h2>Wait ...</h2>
+        )}
         {/*}
         {
           isEmpty ?
