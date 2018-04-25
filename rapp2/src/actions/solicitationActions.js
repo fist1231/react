@@ -7,6 +7,10 @@ import config from '../../config/config.json'
 export const REQUEST_SOLICITATIONS = 'REQUEST_SOLICITATIONS'
 export const RECEIVE_SOLICITATIONS = 'RECEIVE_SOLICITATIONS'
 
+export const REQUEST_UPDATE_SOLICITATION = 'REQUEST_UPDATE_SOLICITATION'
+export const RECEIVE_UPDATE_SOLICITATION = 'RECEIVE_UPDATE_SOLICITATION'
+
+
 export const SEARCH_SOLICITATIONS_FILTER = 'SEARCH_SOLICITATIONS_FILTER'
 export const CB_SOLICITATIONS_FILTER = 'CB_SOLICITATIONS_FILTER'
 export const INVALIDATE_SOLICITATIONS_FILTER = 'INVALIDATE_SOLICITATIONS_FILTER'
@@ -33,6 +37,20 @@ export const receiveSolicitations = (solicitationsFilter="{searchText:'a', isOpe
   type: RECEIVE_SOLICITATIONS,
   solicitationsFilter,
   solicitationsTable: json, //[{id:1001, name:"zhoppa-1001"}],
+  receivedAt: Date.now()
+})
+
+export const requestUpdateSolicitation = (solicitation) => ({
+  type: REQUEST_UPDATE_SOLICITATION,
+  solicitation,
+  result: undefined,
+  receivedAt: undefined
+})
+
+export const receiveUpdateSolicitation = (solicitation="{}", json) => ({
+  type: RECEIVE_UPDATE_SOLICITATION,
+  solicitation,
+  result: json, //[{solicitation_id:1001, ...}]
   receivedAt: Date.now()
 })
 
@@ -163,4 +181,58 @@ export const fetchSolicitationsIfNeeded = solicitationsFilter => (dispatch, getS
     console.log('fetching solicitations')
     return dispatch(fetchSolicitations(solicitationsFilter))
   }
+}
+
+const updateGraphQLSolicitation = solicitation => dispatch => {
+  fetch(`${config.solicitations_address}graphql`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    // body: JSON.stringify({ query: `{ solicitationsById (filter: "${solicitationsFilter.searchText}") { SOLICITATION_ID, SOLICITATION_NUMBER, PUBLICATION_APPROVAL, FISCAL_YEAR, OMNIBUS_NUMBER, TITLE, REVIEW_DATE, SELECTION_DATE, RELEASE_DATE, CLOSE_DATE, ANNOUNCEMENT_TYPE, CONTAINER_TYPE, AUTHORIZED_BY, WITHDRAWAL_REASON, WITHDRAWAL_DATE, WITHDRAWN_BY } }` }),
+
+    body: JSON.stringify({ query: `{ mutation ( solId: "${solicitation._id}", title: : "${solicitation.TITLE}")
+        {
+         solId
+         title
+        }
+        =>
+        {
+          "data": {
+            {
+              "solId": "${solicitation._id}",
+              "title": "${solicitation.TITLE}"
+            }
+          }
+        }`
+    }),
+  })
+    .then(res => {
+      const jsn = res.json();
+      // console.log('res.json() = ' + jsn);
+      return jsn;
+    })
+    .then(res => {
+      // console.log('res JSON = ' + JSON.stringify(res));
+      //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
+//      return res.data.solicitations;
+      return res.data.solicitationsById;
+    })
+    .then(res => {
+      // console.log('res JSON = ' + JSON.stringify(res));
+      //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
+      console.log('*********************** = ' + res );
+      dispatch(receiveSolicitations(solicitationsFilter, res));
+      return res;
+    });
+
+}
+
+
+const updateSolicitation = (solicitation) => dispatch => {
+  dispatch(requestUpdateSolicitation(solicitation))
+  return dispatch(updateGraphQLSolicitation(solicitation));
+}
+
+export const updateSolicitationData = solicitation => (dispatch) => {
+  console.log('xxxxxxx => starting updateSolicitationData')
+  return dispatch(updateSolicitation(solicitation))
 }
