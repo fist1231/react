@@ -10,7 +10,7 @@ import DatePicker from 'material-ui/DatePicker';
 
 import AutoCompleteField from '../html/AutoCompleteField';
 
-const EditSolicitationForm = ({ solicitation, hideModal }) => {
+const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, filter }) => {
 
   const styles = {
     block: {
@@ -364,12 +364,15 @@ const EditSolicitationForm = ({ solicitation, hideModal }) => {
       "...........submitted modal with values: " +
         JSON.stringify(values, null, 2)
     );
+    console.log('+++++++ doSubmit EditSolicitationForm filter = ' + JSON.stringify(filter));
+    updateSolicitation(values, filter);
     hideModal();
     // e.preventDefault();
   };
 
   const EditSolicitation = withFormik({
     mapPropsToValues: props => ({
+      _id: solicitation._id,
       id: solicitation.SOLICITATION_ID,
       solNumber: solicitation.SOLICITATION_NUMBER,
       pubApproval: solicitation.PUBLICATION_APPROVAL,

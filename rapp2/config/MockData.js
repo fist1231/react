@@ -19,7 +19,7 @@ export const usersMock = () => {
 export const solicitationsMock = () => {
   var rows = [];
   for(var i=0; i<numrows; i++) {
-    rows.push({ SOLICITATION_ID: `0000${i}`, SOLICITATION_NUMBER: `Number-${i}`, PUBLICATION_APPROVAL: 1, FISCAL_YEAR: `${1990+i}`,
+    rows.push({ _id: `9000${i}`, SOLICITATION_ID: `0000${i}`, SOLICITATION_NUMBER: `Number-${i}`, PUBLICATION_APPROVAL: 1, FISCAL_YEAR: `${1990+i}`,
     OMNIBUS_NUMBER: `OmniNumber ${i}`,
     TITLE: `Title ${i}`,
     REVIEW_DATE: '',

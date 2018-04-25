@@ -13,8 +13,8 @@ const Search = ({ searchFilter, onChange }) => (
                 <input
                   className="form-control w-100"
                   type="search"
-                  id="searchSol"
-                  placeholder="Enter Solicitations"
+                  id="search"
+                  placeholder="search text"
                   onChange={e =>
                     onChange({
                       searchText: e.target.value,
@@ -40,7 +40,7 @@ const Search = ({ searchFilter, onChange }) => (
                 Only show open solicitations
               </label>
             </div>
-*/}            
+*/}
           </div>
         </div>
       </div>

@@ -36,11 +36,12 @@ export const addSolicitation = () => ({
   }
 })
 
-export const editSolicitation = solicitationData => ({
+export const editSolicitation = (solicitationData, solicitationsFilter) => ({
   type: SHOW_MODAL,
   modalType: EDIT_SOLICITATION,
   modalProps: {
-    solicitation: solicitationData
+    solicitation: solicitationData,
+    filter: solicitationsFilter
   }
 })
 

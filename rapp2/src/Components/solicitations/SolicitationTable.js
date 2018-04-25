@@ -23,7 +23,7 @@ const customStyles = {
 };
 
 
-const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation, onDeleteSolicitation}) =>  {
+const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation, onDeleteSolicitation, solicitationsFilter}) =>  {
 
   // const handleAddSolicitationClick = () => {
   //   this.setState({modalIsOpen: true});
@@ -46,7 +46,8 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
 
     const onEditClicked = (rowData) => {
       console.log('Edit: ' + JSON.stringify(rowData));
-      onEditSolicitation(rowData);
+      console.log('s^^^^^^^^^^^^^^^ SolicitationTable solicitationsFilter: ' + JSON.stringify(solicitationsFilter));
+      onEditSolicitation(rowData, solicitationsFilter);
       // return onEdit(rowData);
     }
 
@@ -145,8 +146,10 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
       prePageTitle: 'Pre page',
       firstPageTitle: 'Next page',
       lastPageTitle: 'Last page',
+      sizePerPage: 15,
+      hideSizePerPage: true, //Hide size per page dropdown until bootstrap4 issues resolved in react-bootstrap-table-next
       sizePerPageList: [{
-        text: '10', value: 10
+        text: '15', value: 15
       }, {
         text: '20', value: 20
       }, {
@@ -162,7 +165,7 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
         <div className="row mb-3">
           <div className="col text-right">
           <button className="btn btn-primary" onClick={() => onAddClicked()} >
-            <i class="fa fa-plus" aria-hidden="true"></i> Add Solicitation
+            <i className="fa fa-plus" aria-hidden="true"></i> Add Solicitation
           </button>
           Total number of Records: {solicitations.length}
         </div>
