@@ -138,13 +138,7 @@ class ReviewProposalsRPTable extends Component {
 
   render() {
 
-    var header = <div style={{textAlign:'left'}}>
-      <Button type="button" icon="fa-file-o" iconPos="left" label="Excel" onClick={this.export} data-tip="Export table to CSV format for Excel"></Button>
-      Total number of Records: {this.state.proposals.length}
-      <div style={{float:'right'}}>
-        <p style={{textAlign:'right'}} data-tip="You can resize and reorder columns by dragging column's header. Right-click on a row for a context menu. Drag and Drop icon on the left to rearrange rows" className="fa fa-question-circle-o"> Usage tips</p>
-      </div>
-    </div>;
+
 
     const Square = styled.div`
       position: absolute;
@@ -173,9 +167,9 @@ class ReviewProposalsRPTable extends Component {
     var actionsTemplate = (rowData, column) => {
       var rn = rowData.RESPONSE_NUMBER;
       return <div>
-        <a className="tableAction" onClick={(e) => this.onEditClicked(e, rowData)}><i className='fa fa-edit' data-tip="Edit proposal"></i></a>
+        <a className="tableActionEdit" onClick={(e) => this.onEditClicked(e, rowData)}><i className='fa fa-pencil' data-tip="Edit proposal"></i></a>
         <span>&nbsp;&nbsp;</span>
-        <a className="tableAction" onClick={(e) => this.onDeleteClicked(e, rowData)}><i className='fa fa-trash' data-tip="Remove proposal"></i></a>
+        <a className="tableActionDelete" onClick={(e) => this.onDeleteClicked(e, rowData)}><i className='fa fa-times' data-tip="Remove proposal"></i></a>
       </div>;
     }
 
@@ -188,9 +182,10 @@ class ReviewProposalsRPTable extends Component {
 
     return (
       <div>
-        <div>
-          <div className="row">
-            <div className="col-md-6 offset-md-3">
+      <div>
+
+          <div className="form-row mt-2">
+            <div className="col-md-8 offset-md-2">
               <div className="search searchfilter">
                 <span className="fa fa-search"></span>
                 <InputText className="form-control" type="search" onInput={e => this.props.onSearch({searchText: e.target.value, isOpenOnly:this.props.globalFilter?this.props.globalFilter.isOpenOnly:false}) } placeholder="Search Proposals" size="50"/>
@@ -198,10 +193,30 @@ class ReviewProposalsRPTable extends Component {
             </div>
           </div>
 
+
+          <div className="tableHeader">
+          <div className="row">
+          <div className="col pt-1">
+<span className="totalNumber">Total number of Records: {this.state.proposals.length}</span></div>
+          <div className="col text-right">
+          <a className="btn btn-link" onClick={this.export} data-tip="Export table to CSV format for Excel"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a></div>
+
+
+
+               {/*<div className="col">
+               <p data-tip="You can resize and reorder columns by dragging column's header. Right-click on a row for a context menu. Drag and Drop icon on the left to rearrange rows" className="fa fa-question-circle-o"> Usage tips</p>
+               </div>*/}
+
+
+
+</div>
+          </div>
+
+
           <ContextMenu model={items} ref={el => this.cm = el}/>
+
           <DataTable
-            header={header}
-            className=""
+            className="dataTableContainer"
             value={this.state.proposals}
             paginator={true}
             rows={20}
@@ -220,10 +235,10 @@ class ReviewProposalsRPTable extends Component {
           >
             <Column field="a" rowReorder={true} style={{width: '2em'}} />
             <Column field="RESPONSE_NUMBER" body={nT} header="Response Number" sortable={true} />
-            <Column field="PSTATE" header="Response Status" sortable={true} editor={this.statusEditor} editorValidator={this.requiredValidator} />
+            <Column field="PSTATE" header="Response Status" sortable={true} editor={this.statusEditor} editorValidator={this.requiredValidator} className="statusCol" />
             <Column field="FIRST_NAME" header="First name" sortable={true} editor={this.firstNameEditor} editorValidator={this.requiredValidator} />
             <Column field="LAST_NAME" header="Last name" sortable={true}  editor={this.lastNameEditor} editorValidator={this.requiredValidator} />
-            <Column field="" body={actionsTemplate} header="" sortable={false} style={{width: '5em'}} />
+            <Column field="" body={actionsTemplate} header="" sortable={false} style={{width: '6em'}} />
           </DataTable>
 
 
@@ -250,7 +265,7 @@ class ReviewProposalsRPTable extends Component {
           </div>
         </OverlayPanel>
         <ReactTooltip />
-      </div>
+        </div>
     </div>
 
     );

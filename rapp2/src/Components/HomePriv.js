@@ -257,7 +257,7 @@ class HomePriv extends Component {
                     </span>
                   </h4>
 
-                  <div>
+                  <div className="memberTableContainer">
                     <Solicitations data={this.state.solicitationsData} />
                   </div>
                 </div>
@@ -275,7 +275,7 @@ class HomePriv extends Component {
                       </Link>
                     </span>
                   </h4>
-                  <div>
+                  <div className="memberTableContainer">
                     <Proposals data={this.state.proposalsData} />
                   </div>
                 </div>

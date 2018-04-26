@@ -19,6 +19,7 @@ fetch("http://192.168.1.208:30333/nress/users")
 const Users = ({ users, onUserClick }) => (
   <div>
   <h1>Users</h1>
+
   <div className="form-row">
     <div className="form-group col">
     <ul className="list-group">

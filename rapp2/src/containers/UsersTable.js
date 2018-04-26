@@ -52,7 +52,11 @@ handleRefreshClick = e => {
 
     return (
       <div className="container-fluid">
+      <div className="row">
+      <div className="col">
       <h1>Users</h1>
+      </div>
+      </div>
 {/*
         <Picker value={selectedUsersFilter}
                 onChange={this.handleChange}
@@ -73,7 +77,8 @@ handleRefreshClick = e => {
 */}
         {isEmpty
           ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-          : <div>
+          : <div className="row">
+          <div className="col">
 
                 <DisplayTable usersLst={dataSource} />
 {/*
@@ -85,6 +90,7 @@ handleRefreshClick = e => {
                   </tbody>
                 </table>
                 */}
+                </div>
             </div>
         }
       </div>

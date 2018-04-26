@@ -7,47 +7,74 @@ import 'react-table/react-table.css'
 
 const DisplayTable = ({ usersLst, onUserClick }) => (
   <div>
-    Total number of Records: {usersLst.length}
+
+    <div className="tableHeader">
+    <div className="row">
+    <div className="col">
+  Total number of Records: {usersLst.length}
+    </div>
+</div>
+    </div>
+
     <ReactTable
       className="-striped -highlight"
       data={usersLst}
       defaultPageSize={10}
       SubComponent={(row) => {
         // console.log('+++++++ row='+JSON.stringify(row)) ;
-        return <div className="userDetail">
+        return <div  style={{ padding: "10px" }} className="userDetail">
 
-          <div className="pl-3 mt-2">
+          <table className="table table-bordered dataTable">
+  <thead>
+    <tr>
+      <th scope="col" width="20%">Label</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td className="rowLabel">Full name:</td>
+      <td>{row.original.SALUTATION} {row.original.FIRST_NAME} {row.original.MIDDLE_INITIAL} {row.original.LAST_NAME} {row.original.SUFFIX}</td>
+    </tr>
+    <tr>
+      <td className="rowLabel">ID:</td>
+      <td>{row.original._id}</td>
+    </tr>
+    <tr>
+      <td className="rowLabel">User ID:</td>
+      <td>{row.original.NSPIRES_USER_ID}</td>
+    </tr>
+
+    <tr>
+      <td className="rowLabel">Created by:</td>
+      <td>{row.original.CREATION_PATH}</td>
+    </tr>
+    <tr>
+      <td className="rowLabel">Activated on:</td>
+      <td>{row.original.ACTIVATIONTIME}</td>
+    </tr>
+
+    <tr>
+      <td className="rowLabel">Challenge question:</td>
+      <td>{row.original.CHALLENGE_QUESTION}</td>
+    </tr>
+
+    <tr>
+      <td className="rowLabel">Sysefus id:</td>
+      <td>{row.original.SYSEFUS_ID}</td>
+    </tr>
+
+    <tr>
+      <td className="rowLabel">Demographics data id:</td>
+      <td>{row.original.DEM_DATA_ID}</td>
+    </tr>
 
 
-            <table className="table">
-              <thead className="thead-light">
-              <tr>
-                <th>Full name:</th>
-                <th>Id:</th>
-                <th>User ID:</th>
-                  <th>Created by:</th>
-                    <th>Activated on:</th>
-                    <th>Challenge question:</th>
-                    <th>Sysefus id:</th>
-                    <th>Demographics data id:</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
+  </tbody>
+</table>
 
-                <td>{row.original.SALUTATION} {row.original.FIRST_NAME} {row.original.MIDDLE_INITIAL} {row.original.LAST_NAME} {row.original.SUFFIX}</td>
-                  <td>{row.original._id}</td>
-                  <td>{row.original.NSPIRES_USER_ID}</td>
-                  <td>{row.original.CREATION_PATH}</td>
-                  <td>{row.original.ACTIVATIONTIME}</td>
-                    <td>{row.original.CHALLENGE_QUESTION}</td>
-                    <td>{row.original.SYSEFUS_ID}</td>
-                    <td>{row.original.DEM_DATA_ID}</td>
-              </tr>
 
-            </tbody>
-          </table>
-          </div>
+
         </div>}
       }
       columns={[

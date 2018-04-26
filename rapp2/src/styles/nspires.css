@@ -327,6 +327,13 @@ h3.modal-title {
 .homePanelBox h4{
   font-size:1.2em;
 }
+.memberTableContainer table thead th {
+  background-color: #e9eaea;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #ddd !important;
+  font-size: .9em;
+}
 .list-group-item{
   padding: .5rem 1.25rem;
 }
@@ -396,17 +403,27 @@ label {
 .search {
   position: relative;
   color: #aaa;
-  font-size: 1.1em;
 }
 
 .search input {
   border-radius: 5px;
+  font-family: "Open Sans";
+  font-size: 1em;
 }
 
 .search input {
   padding-left: 32px !important;
 }
-
+.search input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #bbb !important;;
+    opacity: 1 !important;; /* Firefox */
+}
+.search input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #bbb !important;;
+}
+.search input::-ms-input-placeholder { /* Microsoft Edge */
+    color: #bbb !important;;
+}
 .search .fa-search {
   position: absolute;
   top: 13px;
@@ -511,8 +528,11 @@ label {
 
 .searchfilter input {
   width: 100%;
-  padding: .6em .5em;
+  padding: .5em .5em;
   border-radius: 5px;
+  box-shadow: 1px 1px 1px #e2e2e2;
+  background-color: white;
+  border: 1px solid #ccc;
 }
 
 .ui-datatable {
@@ -531,11 +551,16 @@ label {
 }
 
 .ReactTable .rt-thead.-header {
-  background-color: #c4cedc;
+  background-color: #c4cfde;
   box-shadow: none;
+  color: #000;
 }
 .ReactTable .rt-thead .rt-th, .ReactTable .rt-thead .rt-td {
   border-right: 1px solid #bbb;
+  color: #000;
+}
+.ReactTable .rt-thead .rt-th {
+  color: #002648;
 }
 .ReactTable .rt-tbody .rt-tr-group {
     border-bottom: 1px solid #cccc;
@@ -547,22 +572,108 @@ label {
   font-weight: 600;
 }
 .ReactTable.-highlight .rt-tbody .rt-tr:not(.-padRow):hover {
-    background: #e7f2f7;
     background: rgba(209,222,234,0.6);
 }
+.ReactTable .rt-thead .rt-th.-sort-asc, .ReactTable .rt-thead .rt-td.-sort-asc {
+    box-shadow: inset 0 3px 0 0 #2d5a96;
+}
+.ReactTable .rt-thead .rt-th.-sort-desc, .ReactTable .rt-thead .rt-td.-sort-desc {
+    box-shadow: inset 0 -3px 0 0 #2d5a96;
+}
+.ReactTable .rt-expander:after {
+    border-top: 7px solid #2d5a96;
+}
+.ReactTable .-pagination .-btn {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid #bbb;
+  color: #333;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 2.9rem;
+  min-width: 155px;
+}
+.-next .-btn{
+  float:right;
+}
+.totalRecord{
+  font-weight: 600;
+  margin-bottom: .5rem;
+  font-size: 0.9em;
+}
 .userDetail{
-  background-color: #eee;
+  background-color: #fbfbfb;
+  box-shadow: inset 1px 2px 2px #ccc;
+}
+.dataTable{
+  background-color: #fff;
+}
+
+.dataTable thead th{
+  background-color: #e9eaea;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #ddd !important;
+}
+
+.dataTable .rowLabel{
+  background-color: #f9fafb;
+  text-align: right;
+  font-weight: 600;
+}
+.dataTableContainer table th{
+  background-color: #c4cfde;
+  color: #002648;
+  font-weight: 600;
+  text-align: center;
+}
+.dataTableContainer table thead.ui-datatable-thead th{
+  background-color: #c4cfde;
+  color: #002648;
+  font-weight: 600;
+  text-align: center;
+  border-right: 1px solid #bbb;
+}
+.dataTableContainer table thead.ui-datatable-thead th.ui-state-active {
+    background-color: #535e6c;
+    color: #ffffff;
+}
+.ui-datatable tbody > tr.ui-widget-content.ui-datatable-even{
+  background-color: rgba(0,0,0,0.03);
+}
+.ui-datatable tbody > tr.ui-widget-content.ui-datatable-odd {
+  background-color: #fff ;
+}
+.ui-datatable tbody > tr.ui-widget-content.ui-state-highlight {
+    background-color: #dbeee9;
+    color: #000;
+}
+
+.dataTableContainer tbody.ui-datatable-hoverable-rows > tr.ui-widget-content:not(.ui-state-highlight):hover {
+    cursor: pointer;
+    background: rgba(209,222,234,0.6);
+}
+.colorBg{
+  color: #2d5a96;
 }
 .react-bs-table .table-bordered>thead>tr:first-child>td, .react-bs-table .table-bordered>thead>tr:first-child>th {
   border-bottom-width: 0;
 }
 
 .table-hover tbody tr:hover {
-  background-color: #eaf0f8 !important;
+  background-color: rgba(209,222,234,0.6) !important;
 }
 .table thead th {
     vertical-align: bottom;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #bbb;
+}
+.table-bordered td, .table-bordered th {
+    border: 1px solid #ddd;
+}
+.table-bordered th {
+    border: 1px solid #bbb;
+}
+.table .form-control {
+    border: 1px solid #bbb;
 }
 .table .thead-light th {
     color: #fff;
@@ -592,6 +703,15 @@ label {
 .table td, .table th {
   padding: .4em .5em;
   font-size: 0.9em;
+}
+.tableHeader{
+  background-color: #546c8b;
+  padding: .4em .5em;
+  color: #fff;
+  font-size: .9em;
+}
+.totalNumber{
+  padding-left:15px;
 }
 
 .nspiresTable {
@@ -686,7 +806,7 @@ label {
 }
 }
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: #f6f6f6;
+  background: rgba(0,0,0,0.03);
 }
 
 .ui-widget-content .ui-cell-data a {
@@ -703,7 +823,15 @@ label {
   cursor: pointer;
   font-size: 1.2em;
 }
-
+.ui-widget-content .ui-cell-data a.tableActionDelete {
+    color: #666;
+}
+.ui-widget-content .ui-cell-data a.tableActionDelete:hover{
+  color: #f96062;
+}
+.ui-widget-content .ui-cell-data a.tableActionEdit {
+    color: #666;
+}
 .ui-cell-data {
   word-wrap: break-word;
   white-space: normal;
