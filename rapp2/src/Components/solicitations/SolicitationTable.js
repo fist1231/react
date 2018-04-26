@@ -164,6 +164,7 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
       <div>
         <div className="row mb-3">
           <div className="col text-right">
+            Total records: {solicitations?solicitations.length:'0'}
           <button className="btn btn-primary" onClick={() => onAddClicked()} >
             <i className="fa fa-plus" aria-hidden="true"></i> Add Solicitation
           </button>
