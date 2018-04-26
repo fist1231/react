@@ -188,7 +188,7 @@ class ReviewProposalsRPTable extends Component {
             <div className="col-md-8 offset-md-2">
               <div className="search searchfilter">
                 <span className="fa fa-search"></span>
-                <InputText className="form-control" type="search" onInput={e => this.props.onSearch({searchText: e.target.value, isOpenOnly:this.props.globalFilter?this.props.globalFilter.isOpenOnly:false}) } placeholder="Search Proposals" size="50"/>
+                <InputText className="form-control" value={this.props.globalFilter} type="search" onInput={e => this.props.onSearch({searchText: e.target.value, isOpenOnly:this.props.globalFilter?this.props.globalFilter.isOpenOnly:false}) } placeholder="Search Proposals" size="50"/>
               </div>
             </div>
           </div>

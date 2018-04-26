@@ -6,6 +6,7 @@ import { editProposal, hideModal } from '../../actions/modal/modalActions'
 import ModalX from './ModalX';
 import styled from 'styled-components';
 import DeleteSolicitationForm from '../forms/formik/DeleteSolicitationForm';
+import { deleteSolicitationData } from '../../actions/solicitationActions'
 
 const Overlay = styled.div`
   position: fixed;
@@ -82,6 +83,7 @@ render() {
   const { dispatch, modal } = this.props
   console.log('###---### modal=' + JSON.stringify(modal))
   const solicitation = modal.modalProps.solicitation
+  const filter = modal.modalProps.filter
 
   // const handleConfirm = (isConfirmed) => () => {
   //   // hideModal();
@@ -109,7 +111,7 @@ render() {
             <div className="modal-header">
                 <h3 className="modal-title">Delete Solicitation {solicitation.SOLICITATION_NUMBER}?</h3>
             </div>
-            <DeleteSolicitationForm solicitation={solicitation} hideModal={this.props.onFormSubmit} />
+            <DeleteSolicitationForm solicitation={solicitation} hideModal={this.props.onFormSubmit} filter={filter} deleteSolicitation={this.props.onSolicitationDelete} />
           </Dialog>
         </Content>
       </div>
@@ -126,7 +128,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  onFormSubmit:values => dispatch(hideModal())
+  onFormSubmit:values => dispatch(hideModal()),
+  onSolicitationDelete:(solicitation, filter) => dispatch(deleteSolicitationData(solicitation, filter))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DeleteSolicitationModal))

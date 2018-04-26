@@ -7,6 +7,7 @@ import DisplayTable from '../components/Table'
 import config from '../../config/config.json'
 import { usersMock } from '../../config/MockData.js'
 import { withRouter } from 'react-router-dom'
+import Search from '../components/solicitations/Search'
 
 class UsersTable extends Component {
 
@@ -80,6 +81,7 @@ handleRefreshClick = e => {
           : <div className="row">
           <div className="col">
 
+                {/*<Search value={selectedUsersFilter} onChange={this.props.onSearchChange}  />*/}
                 <DisplayTable usersLst={dataSource} />
 {/*
 
@@ -117,6 +119,10 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+  onSearchChange:filter => dispatch(selectUsersFilter(filter)),
+})
 
 UsersTable.propTypes = {
   selectedUsersFilter: PropTypes.string.isRequired,
@@ -127,4 +133,4 @@ UsersTable.propTypes = {
 }
 
 
-export default withRouter(connect(mapStateToProps)(UsersTable));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersTable));

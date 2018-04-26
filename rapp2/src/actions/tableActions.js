@@ -33,7 +33,7 @@ export const requestUsers = (usersFilter) => ({
   receivedAt: undefined
 })
 
-export const receiveUsers = (usersFilter="SHOW_ALL", json) => ({
+export const receiveUsers = (usersFilter="{searchText:'', isOpenOnly:false}", json) => ({
   type: RECEIVE_USERS,
   usersFilter,
   // usersTable: json.data.children.map(child => child.data),
@@ -64,7 +64,7 @@ const fetchUsers = usersFilter => dispatch => {
 }
 */
 
-const fetchUsers = (usersFilter="SHOW_ALL") => dispatch => {
+const fetchUsers = (usersFilter="{searchText:'', isOpenOnly:false}") => dispatch => {
   dispatch(requestUsers(usersFilter))
   // return fetch(`${config.users_address}nress/users`)
   //return Observable.ajax(`${config.users_address}nress/users`)

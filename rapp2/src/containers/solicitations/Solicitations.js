@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import Search from './Search'
-import SolicitationTable from './SolicitationTable'
+import Search from '../../components/solicitations/Search'
+import SolicitationTable from '../../components/solicitations/SolicitationTable'
 import { connect } from 'react-redux'
 import { searchSolicitationsFilter, fetchSolicitationsIfNeeded, invalidateSolicitationsFilter } from '../../actions/solicitationActions'
 import { addSolicitation, editSolicitation, deleteSolicitation, hideModal } from '../../actions/modal/modalActions'
@@ -27,9 +27,9 @@ class Solicitations extends React.Component {
 
 
 
-  handleChange = (nextSolicitationsFilter) => {
-    this.props.dispatch(fetchSolicitationsIfNeeded(nextSolicitationsFilter))
-  }
+  // handleChange = (nextSolicitationsFilter) => {
+  //   this.props.dispatch(fetchSolicitationsIfNeeded(nextSolicitationsFilter))
+  // }
 
   render() {
 
@@ -40,8 +40,9 @@ class Solicitations extends React.Component {
 
     return (
       <div className="container-fluid">
-        <Search value={foundSolicitationsFilter} onChange={this.handleChange}  />
-        <SolicitationTable solicitations={dataSource} onAddSolicitation={this.props.onAddSolicitation} onEditSolicitation={this.props.onEditSolicitation} onDeleteSolicitation={this.props.onDeleteSolicitation} />
+        {/*<Search value={foundSolicitationsFilter} onChange={this.handleChange}  />*/}
+        <Search searchFilter={foundSolicitationsFilter} onChange={this.props.onSearchChange}  />
+        <SolicitationTable solicitations={dataSource} onAddSolicitation={this.props.onAddSolicitation} onEditSolicitation={this.props.onEditSolicitation} onDeleteSolicitation={this.props.onDeleteSolicitation} solicitationsFilter={foundSolicitationsFilter} />
       </div>
     );
   }
@@ -69,8 +70,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   dispatch,
   onAddSolicitation:solicitation => dispatch(addSolicitation()),
-  onEditSolicitation:solicitation => dispatch(editSolicitation(solicitation)),
+  onEditSolicitation:(solicitation, filter) => dispatch(editSolicitation(solicitation, filter)),
   onDeleteSolicitation:solicitation => dispatch(deleteSolicitation(solicitation)),
+  onSearchChange:filter => dispatch(searchSolicitationsFilter(filter)),
 })
 
 

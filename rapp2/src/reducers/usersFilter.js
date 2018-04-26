@@ -1,7 +1,13 @@
-const usersFilter = (state = 'SHOW_ALL', action) => {
+import {
+  SELECT_USERS_FILTER
+} from '../actions/tableActions'
+
+
+const usersFilter = (state = {searchText:'', isOpenOnly:false}, action) => {
   switch (action.type) {
-    case 'SET_USERS_FILTER':
-      return action.filter
+    case SELECT_USERS_FILTER:
+    console.log('============== returning: ' + JSON.stringify(action.usersFilter))
+      return action.usersFilter
     default:
       return state
   }

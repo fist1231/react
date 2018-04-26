@@ -10,7 +10,7 @@ import DatePicker from 'material-ui/DatePicker';
 
 import AutoCompleteField from '../html/AutoCompleteField';
 
-const EditSolicitationForm = ({ solicitation, hideModal }) => {
+const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, filter }) => {
 
   const styles = {
     block: {
@@ -118,6 +118,7 @@ const EditSolicitationForm = ({ solicitation, hideModal }) => {
                     // onChange={(event) => {console.log('ello r: '+ event.target.value); this.setState(name: event.target.value);}}
                     onBlur={handleBlur}
                     style={styles.toggle}
+                    errorText={errors.pubApproval && touched.pubApproval && <div>{errors.pubApproval}</div>}
                     // valueLink={values.pubApproval}
                   />
 
@@ -133,7 +134,8 @@ const EditSolicitationForm = ({ solicitation, hideModal }) => {
                     onChange={_handleYearChange}
                     onBlur={handleBlur}
                     // value={values.year}
-                    value={moment(`${values.year}-01.01`).toDate()}
+                    value={values.year?moment(`${values.year}-01.01`).toDate():undefined}
+                    errorText={errors.year && touched.year && <div>{errors.year}</div>}
                   />
                 </div>
                 <div className="form-group">
@@ -170,7 +172,7 @@ const EditSolicitationForm = ({ solicitation, hideModal }) => {
                     // onChange={_handleYearChange}
                     onBlur={handleBlur}
                     // value={values.year}
-                    value={values.reviewDate?moment(`${values.reviewDate}`).toDate():null}
+                    value={values.reviewDate?moment(`${values.reviewDate}`).toDate():undefined}
                   />
                 </div>
                 <div className="form-group">
@@ -184,7 +186,7 @@ const EditSolicitationForm = ({ solicitation, hideModal }) => {
                     // onChange={_handleYearChange}
                     onBlur={handleBlur}
                     // value={values.year}
-                    value={values.selectionDate?moment(`${values.selectionDate}`).toDate():null}
+                    value={values.selectionDate?moment(`${values.selectionDate}`).toDate():undefined}
                     errorText={errors.selectionDate && touched.selectionDate && <div>{errors.selectionDate}</div>}
                   />
 
@@ -207,7 +209,7 @@ const EditSolicitationForm = ({ solicitation, hideModal }) => {
                     // onChange={_handleYearChange}
                     onBlur={handleBlur}
                     // value={values.year}
-                    value={values.releaseDate?moment(`${values.releaseDate}`).toDate():''}
+                    value={values.releaseDate?moment(`${values.releaseDate}`).toDate():undefined}
                     errorText={errors.releaseDate && touched.releaseDate && <div>{errors.releaseDate}</div>}
                   />
 
@@ -223,7 +225,7 @@ const EditSolicitationForm = ({ solicitation, hideModal }) => {
                     // onChange={_handleYearChange}
                     onBlur={handleBlur}
                     // value={values.year}
-                    value={values.closeDate?moment(`${values.closeDate}`).toDate():''}
+                    value={values.closeDate?moment(`${values.closeDate}`).toDate():undefined}
                     errorText={errors.closeDate && touched.closeDate && <div>{errors.closeDate}</div>}
                   />
 
@@ -313,7 +315,7 @@ const EditSolicitationForm = ({ solicitation, hideModal }) => {
                     // onChange={_handleYearChange}
                     onBlur={handleBlur}
                     // value={values.year}
-                    value={values.withdrawalDate?moment(`${values.withdrawalDate}`).toDate():null}
+                    value={values.withdrawalDate?moment(`${values.withdrawalDate}`).toDate():undefined}
                     errorText={errors.withdrawalDate && touched.withdrawalDate && <div>{errors.withdrawalDate}</div>}
                   />
                 </div>
@@ -364,35 +366,39 @@ const EditSolicitationForm = ({ solicitation, hideModal }) => {
       "...........submitted modal with values: " +
         JSON.stringify(values, null, 2)
     );
+    console.log('+++++++ doSubmit EditSolicitationForm filter = ' + JSON.stringify(filter));
+    updateSolicitation(values, filter);
     hideModal();
     // e.preventDefault();
   };
 
   const EditSolicitation = withFormik({
     mapPropsToValues: props => ({
+      _id: solicitation._id,
       id: solicitation.SOLICITATION_ID,
       solNumber: solicitation.SOLICITATION_NUMBER,
       pubApproval: solicitation.PUBLICATION_APPROVAL,
-      year: solicitation.FISCAL_YEAR,
-      omnibus: solicitation.OMNIBUS_NUMBER,
+      year: solicitation.FISCAL_YEAR?solicitation.FISCAL_YEAR:undefined,
+      omnibus: solicitation.OMNIBUS_NUMBER?solicitation.OMNIBUS_NUMBER:undefined,
       title: solicitation.TITLE,
-      reviewDate: solicitation.REVIEW_DATE,
-      selectionDate: solicitation.SELECTION_DATE,
-      releaseDate: solicitation.RELEASE_DATE,
-      closeDate: solicitation.CLOSE_DATE,
+      reviewDate: solicitation.REVIEW_DATE?solicitation.REVIEW_DATE:undefined,
+      selectionDate: solicitation.SELECTION_DATE?solicitation.SELECTION_DATE:undefined,
+      releaseDate: solicitation.RELEASE_DATE?solicitation.RELEASE_DATE:undefined,
+      closeDate: solicitation.CLOSE_DATE?solicitation.CLOSE_DATE:undefined,
       announcementType: solicitation.ANNOUNCEMENT_TYPE,
       containerType: solicitation.CONTAINER_TYPE,
-      authorizedBy: solicitation.AUTHORIZED_BY,
-      withdrawalReason: solicitation.WITHDRAWAL_REASON,
-      withdrawalDate: solicitation.WITHDRAWAL_DATE,
-      withdrawnBy: solicitation.WITHDRAWN_BY
+      authorizedBy: solicitation.AUTHORIZED_BY?solicitation.AUTHORIZED_BY:undefined,
+      withdrawalReason: solicitation.WITHDRAWAL_REASON?solicitation.WITHDRAWAL_REASON:undefined,
+      withdrawalDate: solicitation.WITHDRAWAL_DATE?solicitation.WITHDRAWAL_DATE:undefined,
+      withdrawnBy: solicitation.WITHDRAWN_BY?solicitation.WITHDRAWN_BY:undefined
     }),
     validationSchema: Yup.object().shape({
       id: Yup.string().required("Solicitation Id is required!"),
+      solNumber: Yup.string().required("Solicitation Number is required!"),
       pubApproval: Yup.string().required("Publication Approval is required!"),
       year: Yup.string().required("Fiscal Year is required!"),
       title: Yup.string().required("Title is required!"),
-      reviewDate: Yup.string().required("Last Name is required!"),
+      closeDate: Yup.string().required("Close Date is required!"),
       releaseDate: Yup.string().required("Release Date is required!"),
       announcementType: Yup.string().required("Announcement Type is required!"),
       containerType: Yup.string().required("Container Type is required!")

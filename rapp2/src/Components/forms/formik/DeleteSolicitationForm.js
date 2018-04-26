@@ -2,7 +2,7 @@ import React from "react";
 import { withFormik } from "formik";
 import Yup from "yup";
 
-const DeletSolicitationForm = ({ solicitation, hideModal }) => {
+const DeletSolicitationForm = ({ solicitation, hideModal, deleteSolicitation, filter }) => {
   const innerForm = (props, hdMod) => {
     const {
       values,
@@ -111,12 +111,15 @@ const DeletSolicitationForm = ({ solicitation, hideModal }) => {
       "...........submitted modal with values: " +
         JSON.stringify(values, null, 2)
     );
+    console.log("...........submitted modal with filter: " + JSON.stringify(filter));
+    deleteSolicitation(values, filter);
     hideModal();
     // e.preventDefault();
   };
 
   const DeleteSolicitation = withFormik({
     mapPropsToValues: props => ({
+      _id: solicitation._id,
       id: solicitation.SOLICITATION_ID,
       solNumber: solicitation.SOLICITATION_NUMBER,
       pubApproval: solicitation.PUBLICATION_APPROVAL,
@@ -135,14 +138,6 @@ const DeletSolicitationForm = ({ solicitation, hideModal }) => {
       withdrawnBy: solicitation.WITHDRAWN_BY
     }),
     validationSchema: Yup.object().shape({
-      id: Yup.string().required("Id is required!"),
-      pubApproval: Yup.string().required("Publication Approval is required!"),
-      year: Yup.string().required("Fiscal Year is required!"),
-      title: Yup.string().required("Title is required!"),
-      reviewDate: Yup.string().required("Last Name is required!"),
-      releaseDate: Yup.string().required("Release Date is required!"),
-      announcementType: Yup.string().required("Announcement Type is required!"),
-      containerType: Yup.string().required("Container Type is required!")
     }),
     handleSubmit: (values, { setSubmitting }) => {
       // console.log('^^^^^^^^^^^dispatch='+dispatch);

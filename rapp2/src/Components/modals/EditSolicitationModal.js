@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import { editProposal, hideModal } from '../../actions/modal/modalActions'
+import { updateSolicitationData } from '../../actions/solicitationActions'
+
 import ModalX from './ModalX';
 import styled from 'styled-components';
 import EditSolicitationForm from '../forms/formik/EditSolicitationForm';
@@ -82,6 +84,7 @@ render() {
   const { dispatch, modal } = this.props
   // console.log('###---### modal=' + JSON.stringify(modal))
   const solicitation = modal.modalProps.solicitation
+  const filter = modal.modalProps.filter
 
   // const handleConfirm = (isConfirmed) => () => {
   //   // hideModal();
@@ -109,7 +112,7 @@ render() {
             <div className="modal-header">
                 <h3 className="modal-title">Edit Solicitation: {solicitation.TITLE}</h3>
             </div>
-            <EditSolicitationForm solicitation={solicitation} hideModal={this.props.onFormSubmit} />
+            <EditSolicitationForm solicitation={solicitation} filter={filter} hideModal={this.props.onHideModal} updateSolicitation={this.props.onSolicitationUpdate} />
           </Dialog>
         </Content>
       </div>
@@ -126,7 +129,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  onFormSubmit:values => dispatch(hideModal())
+  onHideModal:values => dispatch(hideModal()),
+  onSolicitationUpdate:(solicitation, filter) => dispatch(updateSolicitationData(solicitation, filter))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditSolicitationModal))

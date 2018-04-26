@@ -6,6 +6,7 @@ import usersByUsersFilter from './usersByUsersFilter'
 import foundSolicitationsFilter from './foundSolicitationsFilter'
 //import cbSolicitationsFilter from './cbSolicitationsFilter'
 import solicitationsByFilter from './solicitationsByFilter'
+import solicitation from './solicitation'
 // import usersLst from './table'
 //import foundReviewProposalsFilter from './reviewProposals/foundReviewProposalsFilter'
 //import reviewProposalsByFilter from './reviewProposals/reviewProposalsByFilter'
@@ -24,6 +25,7 @@ const usersApp = combineReducers({
   foundSolicitationsFilter,
 //  cbSolicitationsFilter,
   solicitationsByFilter,
+  solicitation,
   //foundReviewProposalsFilter,
   //reviewProposalsByFilter
   searchFilter,

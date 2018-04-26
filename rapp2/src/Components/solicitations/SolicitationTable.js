@@ -21,12 +21,8 @@ const customStyles = {
   }
 };
 
-const SolicitationTable = ({
-  solicitations,
-  onAddSolicitation,
-  onEditSolicitation,
-  onDeleteSolicitation
-}) => {
+const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation, onDeleteSolicitation, solicitationsFilter}) =>  {
+
   // const handleAddSolicitationClick = () => {
   //   this.setState({modalIsOpen: true});
   // }
@@ -44,15 +40,17 @@ const SolicitationTable = ({
   };
 
   const actionsFormatter = (cell, row, rowIndex, formatExtraData) => {
-    const onEditClicked = rowData => {
-      console.log("Edit: " + JSON.stringify(rowData));
-      onEditSolicitation(rowData);
+
+    const onEditClicked = (rowData) => {
+      console.log('Edit: ' + JSON.stringify(rowData));
+      console.log('s^^^^^^^^^^^^^^^ SolicitationTable solicitationsFilter: ' + JSON.stringify(solicitationsFilter));
+      onEditSolicitation(rowData, solicitationsFilter);
       // return onEdit(rowData);
     };
 
-    const onDeleteClicked = rowData => {
-      console.log("Delete: " + rowData.ASSIGNED_RESPONSE_ID);
-      onDeleteSolicitation(rowData);
+    const onDeleteClicked = (rowData) => {
+      console.log('Delete: ' + rowData.ASSIGNED_RESPONSE_ID);
+      onDeleteSolicitation(rowData, solicitationsFilter);
       // return onDelete(rowData);
     };
     return (
@@ -95,93 +93,79 @@ const SolicitationTable = ({
   {
     /*
     const Table = () => (
-    */
-  }
+    */}
 
-  const columns = [
-    {
-      dataField: "SOLICITATION_NUMBER",
-      text: "Solicitation Number",
-      sort: true,
-      headerStyle: {
-      width: "260px"
-      }
-    },
-    {
-      dataField: "FISCAL_YEAR",
-      text: "Fiscal Year",
-      sort: true,
-      headerStyle: {
-      width: "80px"
-      }
-    },
-    {
-      dataField: "TITLE",
-      text: "Solicitation Title",
-      sort: true,
-      filter: textFilter()
-    },
-    {
-      dataField: "",
-      text: "Actions",
-      formatter: actionsFormatter,
-      formatExtraData: {},
-      headerStyle: {
-        width: "5em"
-      }
-    }
-  ];
-  const defaultSorted = [
-    {
-      dataField: "name",
-      order: "desc"
-    }
-  ];
+    const columns = [{
+      dataField: 'SOLICITATION_NUMBER',
+        text: 'Solicitation Number',
+        sort: true,
+        headerStyle: {
+           width: '260px'
+        }
+      }, {
+        dataField: 'FISCAL_YEAR',
+        text: 'Fiscal Year',
+        sort: true,
+        headerStyle: {
+           width: '80px'
+        }
+      }, {
+        dataField: 'TITLE',
+        text: 'Solicitation Title',
+        sort: true,
+        filter: textFilter()
+      }, {
+        dataField: '',
+        text: 'Actions',
+        formatter: actionsFormatter,
+        formatExtraData: {
+        },
+        headerStyle: {
+           width: '5em'
+        }
 
-  const options = {
-    paginationSize: 5,
-    pageStartIndex: 1,
-    // alwaysShowAllBtns: true, // Always show next and previous button
-    withFirstAndLast: true, // Hide the going to First and Last page button
-    // hideSizePerPage: true, // Hide the sizePerPage dropdown always
-    hidePageListOnlyOnePage: true, // Hide the pagination list when only one page
-    firstPageText: "First",
-    prePageText: "Back",
-    nextPageText: "Next",
-    lastPageText: "Last",
-    nextPageTitle: "First page",
-    prePageTitle: "Pre page",
-    firstPageTitle: "Next page",
-    lastPageTitle: "Last page",
-    sizePerPageList: [
-      {
-        text: "10",
-        value: 10
-      },
-      {
-        text: "20",
-        value: 20
-      },
-      {
-        text: "50",
-        value: 50
-      },
-      {
-        text: "1000",
-        value: 1000
-      }
-    ]
-  };
+    }];
+    const defaultSorted = [{
+    dataField: 'name',
+    order: 'desc'
+}];
 
-  return (
-    <div>
-      <div className="row no-gutters">
-  <div className="col">
-<span className="totalRecord">Total number of Records: {solicitations.length}</span>
-</div>
-        <div className="col text-right">
-          <button className="btn btn-link colorBg" onClick={() => onAddClicked()}>
-            <i className="fa fa-plus" aria-hidden="true" /> Add Solicitation
+
+    const options = {
+      paginationSize: 5,
+      pageStartIndex: 1,
+      // alwaysShowAllBtns: true, // Always show next and previous button
+       withFirstAndLast: true, // Hide the going to First and Last page button
+      // hideSizePerPage: true, // Hide the sizePerPage dropdown always
+       hidePageListOnlyOnePage: true, // Hide the pagination list when only one page
+      firstPageText: 'First',
+      prePageText: 'Back',
+      nextPageText: 'Next',
+      lastPageText: 'Last',
+      nextPageTitle: 'First page',
+      prePageTitle: 'Pre page',
+      firstPageTitle: 'Next page',
+      lastPageTitle: 'Last page',
+      sizePerPage: 15,
+      hideSizePerPage: true, //Hide size per page dropdown until bootstrap4 issues resolved in react-bootstrap-table-next
+      sizePerPageList: [{
+        text: '15', value: 15
+      }, {
+        text: '20', value: 20
+      }, {
+        text: '50', value: 50
+      }, {
+        text: '1000', value: 1000
+      }]
+    };
+
+
+    return (
+      <div>
+        <div className="row mb-3">
+          <div className="col text-right">
+          <button className="btn btn-primary" onClick={() => onAddClicked()} >
+            <i className="fa fa-plus" aria-hidden="true"></i> Add Solicitation
           </button>
 </div>
         </div>
