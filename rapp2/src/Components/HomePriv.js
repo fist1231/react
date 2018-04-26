@@ -239,9 +239,11 @@ class HomePriv extends Component {
           <div className="col-md-4">
             <div className="row">
               <div className="col">
-                <div className="homePanel">
-                  <HomeTabs />
-                </div>
+              <div className="homePanelBox">
+                <h4>Proposals Submitted</h4>
+                <HorizontalBar data={data} />
+                {/* <Bar data={data} /> */}
+              </div>
               </div>
             </div>
 
@@ -296,11 +298,10 @@ class HomePriv extends Component {
             </div>
             <div className="row">
               <div className="col">
-                <div className="homePanelBox">
-                  <h4>Proposals Submitted</h4>
-                  <HorizontalBar data={data} />
-                  {/* <Bar data={data} /> */}
-                </div>
+              <div className="homePanelBox">
+                <HomeTabs />
+              </div>
+
               </div>
             </div>
           </div>

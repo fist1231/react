@@ -636,6 +636,7 @@ label {
 .dataTableContainer table thead.ui-datatable-thead th.ui-state-active {
     background-color: #535e6c;
     color: #ffffff;
+    font-weight: 400;
 }
 .ui-datatable tbody > tr.ui-widget-content.ui-datatable-even{
   background-color: rgba(0,0,0,0.03);
