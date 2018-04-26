@@ -6,6 +6,8 @@ import { editProposal, hideModal } from '../../actions/modal/modalActions'
 import ModalX from './ModalX';
 import styled from 'styled-components';
 import AddSolicitationForm from '../forms/formik/AddSolicitationForm';
+import { addSolicitationData } from '../../actions/solicitationActions'
+
 
 const Overlay = styled.div`
   position: fixed;
@@ -15,7 +17,7 @@ const Overlay = styled.div`
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 1000;
+  ${'' /* z-index: 1000; */}
   background-color: rgba(0, 0, 0, 0.65);
 `;
 
@@ -25,7 +27,7 @@ const Content = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 10000;
+  ${'' /* z-index: 10000; */}
   overflow: auto;
   text-align: center;
   overflow-scrolling: touch;
@@ -49,7 +51,7 @@ const Dialog = styled.div`
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
-  max-width: 520px;
+  max-width: 760px;
   cursor: default;
 `;
 
@@ -82,6 +84,8 @@ render() {
   const { dispatch, modal } = this.props
   console.log('###---### modal=' + JSON.stringify(modal))
   const solicitation = modal.modalProps.solicitation
+  const filter = modal.modalProps.filter
+
 
   // const handleConfirm = (isConfirmed) => () => {
   //   // hideModal();
@@ -109,7 +113,7 @@ render() {
             <div className="modal-header">
                 <h3 className="modal-title">Create Solicitation</h3>
             </div>
-            <AddSolicitationForm hideModal={this.props.onFormSubmit} />
+            <AddSolicitationForm hideModal={this.props.onFormSubmit} filter={filter} addSolicitation={this.props.onSolicitationCreate} />
           </Dialog>
         </Content>
       </div>
@@ -126,7 +130,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  onFormSubmit:values => dispatch(hideModal())
+  onFormSubmit:values => dispatch(hideModal()),
+  onSolicitationCreate:(solicitation, filter) => dispatch(addSolicitationData(solicitation, filter))
+
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddSolicitationModal))
