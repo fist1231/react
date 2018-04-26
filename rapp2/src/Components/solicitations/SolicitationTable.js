@@ -53,7 +53,7 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
 
     const onDeleteClicked = (rowData) => {
       console.log('Delete: ' + rowData.ASSIGNED_RESPONSE_ID);
-      onDeleteSolicitation(rowData);
+      onDeleteSolicitation(rowData, solicitationsFilter);
       // return onDelete(rowData);
     }
     return (

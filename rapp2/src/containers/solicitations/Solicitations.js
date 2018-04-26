@@ -41,7 +41,7 @@ class Solicitations extends React.Component {
     return (
       <div className="container-fluid">
         {/*<Search value={foundSolicitationsFilter} onChange={this.handleChange}  />*/}
-        <Search value={foundSolicitationsFilter} onChange={this.props.onSearchChange}  />
+        <Search searchFilter={foundSolicitationsFilter} onChange={this.props.onSearchChange}  />
         <SolicitationTable solicitations={dataSource} onAddSolicitation={this.props.onAddSolicitation} onEditSolicitation={this.props.onEditSolicitation} onDeleteSolicitation={this.props.onDeleteSolicitation} solicitationsFilter={foundSolicitationsFilter} />
       </div>
     );

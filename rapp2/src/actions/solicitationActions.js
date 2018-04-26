@@ -13,6 +13,8 @@ export const RECEIVE_UPDATE_SOLICITATION = 'RECEIVE_UPDATE_SOLICITATION'
 export const REQUEST_ADD_SOLICITATION = 'REQUEST_ADD_SOLICITATION'
 export const RECEIVE_ADD_SOLICITATION = 'RECEIVE_ADD_SOLICITATION'
 
+export const REQUEST_DELETE_SOLICITATION = 'REQUEST_DELETE_SOLICITATION'
+export const RECEIVE_DELETE_SOLICITATION = 'RECEIVE_DELETE_SOLICITATION'
 
 export const SEARCH_SOLICITATIONS_FILTER = 'SEARCH_SOLICITATIONS_FILTER'
 export const CB_SOLICITATIONS_FILTER = 'CB_SOLICITATIONS_FILTER'
@@ -76,6 +78,24 @@ export const receiveAddSolicitation = (solicitation="{}", solicitationsFilter, j
   solicitation,
   result: json, //[{solicitation_id:1001, ...}]
   error: json?undefined:"error-1",
+  receivedAt: Date.now()
+})
+
+export const requestDeleteSolicitation = (solicitation, solicitationsFilter) => ({
+  type: REQUEST_DELETE_SOLICITATION,
+  solicitationsFilter,
+  solicitation,
+  result: undefined,
+  error: undefined,
+  receivedAt: undefined
+})
+
+export const receiveDeleteSolicitation = (solicitation="{}", solicitationsFilter, json) => ({
+  type: RECEIVE_DELETE_SOLICITATION,
+  solicitationsFilter,
+  solicitation,
+  result: json, //[{solicitation_id:1001, ...}]
+  error: json?undefined:"error-2",
   receivedAt: Date.now()
 })
 
@@ -264,27 +284,30 @@ export const updateSolicitationData = (solicitation, solicitationsFilter) => (di
 
 const addGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatch => {
   console.log('++++++++++ addGraphQLSolicitation solicitation = ' + JSON.stringify(solicitation));
+
+  var reviewDate = solicitation.reviewDate?solicitation.reviewDate:null;
+
   fetch(`${config.solicitations_address}graphql`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     // body: JSON.stringify({ query: `{ solicitationsById (filter: "${solicitationsFilter.searchText}") { SOLICITATION_ID, SOLICITATION_NUMBER, PUBLICATION_APPROVAL, FISCAL_YEAR, OMNIBUS_NUMBER, TITLE, REVIEW_DATE, SELECTION_DATE, RELEASE_DATE, CLOSE_DATE, ANNOUNCEMENT_TYPE, CONTAINER_TYPE, AUTHORIZED_BY, WITHDRAWAL_REASON, WITHDRAWAL_DATE, WITHDRAWN_BY } }` }),
 
     body: JSON.stringify({ query: `mutation { addSolicitation (
-      SOLICITATION_ID: "${solicitation.id}",
+      SOLICITATION_ID: "",
       SOLICITATION_NUMBER: "${solicitation.solNumber}",
       PUBLICATION_APPROVAL: ${solicitation.pubApproval},
       FISCAL_YEAR: ${solicitation.year},
       OMNIBUS_NUMBER: "${solicitation.omnibus}",
       TITLE: "${solicitation.title}",
-      REVIEW_DATE: ${solicitation.reviewDate?solicitation.reviewDate:null},
-      SELECTION_DATE: ${solicitation.selectionDate?solicitation.selectionDate:null},
+      REVIEW_DATE: ${solicitation.reviewDate?"\""+solicitation.reviewDate+"\"":null},
+      SELECTION_DATE: ${solicitation.selectionDate?"\""+solicitation.selectionDate+"\"":null},
       RELEASE_DATE: "${solicitation.releaseDate}",
       CLOSE_DATE: "${solicitation.closeDate}",
       ANNOUNCEMENT_TYPE: "${solicitation.announcementType}",
       CONTAINER_TYPE: "${solicitation.containerType}",
       AUTHORIZED_BY: "${solicitation.authorizedBy}",
       WITHDRAWAL_REASON: "${solicitation.withdrawalReason}",
-      WITHDRAWAL_DATE: ${solicitation.withdrawalDate?solicitation.withdrawalDate:null},
+      WITHDRAWAL_DATE: ${solicitation.withdrawalDate?"\""+solicitation.withdrawalDate+"\"":null},
       WITHDRAWN_BY: "${solicitation.withdrawnBy}"
     )
             {
@@ -333,8 +356,6 @@ const addGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatch =
 
 }
 
-
-
 const addSolicitation = (solicitation, solicitationsFilter) => dispatch => {
   dispatch(requestAddSolicitation(solicitation))
   return dispatch(addGraphQLSolicitation(solicitation, solicitationsFilter));
@@ -343,4 +364,58 @@ const addSolicitation = (solicitation, solicitationsFilter) => dispatch => {
 export const addSolicitationData = (solicitation, solicitationsFilter) => (dispatch) => {
   console.log('xxxxxxx => starting addSolicitationData')
   return dispatch(addSolicitation(solicitation, solicitationsFilter))
+}
+
+
+const deleteGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatch => {
+  console.log('++++++++++ deleteGraphQLSolicitation solicitation = ' + JSON.stringify(solicitation));
+  console.log('++++++++++ deleteGraphQLSolicitation solicitationsFilter = ' + JSON.stringify(solicitationsFilter));
+  fetch(`${config.solicitations_address}graphql`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    // body: JSON.stringify({ query: `{ solicitationsById (filter: "${solicitationsFilter.searchText}") { SOLICITATION_ID, SOLICITATION_NUMBER, PUBLICATION_APPROVAL, FISCAL_YEAR, OMNIBUS_NUMBER, TITLE, REVIEW_DATE, SELECTION_DATE, RELEASE_DATE, CLOSE_DATE, ANNOUNCEMENT_TYPE, CONTAINER_TYPE, AUTHORIZED_BY, WITHDRAWAL_REASON, WITHDRAWAL_DATE, WITHDRAWN_BY } }` }),
+
+    body: JSON.stringify({ query: `mutation { deleteSolicitation ( _id: "${solicitation._id}" )
+            {
+              id,
+              result,
+              error
+            }
+        }`
+    }),
+  })
+    .then(res => {
+      const jsn = res.json();
+      // console.log('++++++++++ updateGraphQLSolicitation res.json() = ' + JSON.stringify(jsn));
+      return jsn;
+    })
+    .then(res => {
+      // console.log('++++++++++ updateGraphQLSolicitation res JSON = ' + JSON.stringify(res));
+      //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
+//      return res.data.solicitations;
+      return res.data.deleteSolicitation;
+    })
+    .then(res => {
+      // console.log('res JSON = ' + JSON.stringify(res));
+      //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
+      console.log('*********************** = ' + JSON.stringify(res) );
+      dispatch(receiveDeleteSolicitation(solicitation, res));
+
+      // dispatch(getGraphQLResult(solicitationsFilter)); // Re-fetch list of solicitations after update
+      console.log('*********************** updateGraphQLSolicitation filter = ' + JSON.stringify(solicitationsFilter) );
+      dispatch(fetchSolicitationsIfNeeded(solicitationsFilter)); // Re-fetch list of solicitations after update
+      return res;
+    });
+
+}
+
+
+const deleteSolicitation = (solicitation, solicitationsFilter) => dispatch => {
+  dispatch(requestDeleteSolicitation(solicitation))
+  return dispatch(deleteGraphQLSolicitation(solicitation, solicitationsFilter));
+}
+
+export const deleteSolicitationData = (solicitation, solicitationsFilter) => (dispatch) => {
+  console.log('xxxxxxx => starting deleteSolicitationData; solicitationsFilter='+JSON.stringify(solicitationsFilter))
+  return dispatch(deleteSolicitation(solicitation, solicitationsFilter))
 }

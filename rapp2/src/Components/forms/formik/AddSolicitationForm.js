@@ -8,7 +8,27 @@ import Toggle from 'material-ui/Toggle';
 import DatePicker from 'material-ui/DatePicker';
 import AutoCompleteField from '../html/AutoCompleteField';
 
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
+
 const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
+
+  const announcementTypeItems = [
+    <MenuItem key={1} value="NRA" primaryText="NRA" />,
+    <MenuItem key={2} value="AO" primaryText="AO" />,
+    <MenuItem key={3} value="CAN" primaryText="CAN" />,
+    <MenuItem key={4} value="AN" primaryText="AN" />,
+    <MenuItem key={5} value="RFI" primaryText="RFI" />,
+    <MenuItem key={6} value="OTHER" primaryText="OTHER" />,
+  ];
+
+
+  const containerTypeItems = [
+    <MenuItem key={1} value="Standalone" primaryText="Standalone" />,
+    <MenuItem key={2} value="Omnibus" primaryText="Omnibus" />,
+    <MenuItem key={3} value="Program Element" primaryText="Program Element" />,
+  ];
 
   const styles = {
     block: {
@@ -71,6 +91,14 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
       setFieldValue(field, searchText);
     };
 
+    const _handleATypeChange = (event, index, value) => {
+      setFieldValue('announcementType', value);
+    };
+
+    const _handleCTypeChange = (event, index, value) => {
+      setFieldValue('containerType', value);
+    };
+
     return (
     <MuiThemeProvider>
       <form onSubmit={handleSubmit}>
@@ -78,18 +106,6 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
           <div className="row">
             <div className="col">
               <div className="container-fluid text-left">
-                <div className="form-group">
-                  <TextField
-                        hintText="Id"
-                        floatingLabelText="Solicitation Id"
-                        name="id"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.id}
-                        errorText={errors.id && touched.id && <div>{errors.id}</div>}
-                    />
-                </div>
                 <div className="form-group">
                   <TextField
                         hintText="Number"
@@ -138,15 +154,19 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <TextField
-                        hintText="Omnibus"
-                        floatingLabelText="Omnibus Number"
-                        name="omnibus"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.omnibus}
+                    <AutoCompleteField
+                      dataSource={['0619OMNI', 'NNH017ZNRA1211O', 'NNH1405041O', 'NASA2012', 'OMNI12NNMSN', 'OMNI15SOLNN1111']}
+                      hintText="Omnibus"
+                      floatingLabelText="Omnibus Number"
+                      name="omnibus"
+                      className=""
+                      onChange={handleChange}
+                      onUpdateInput={(searchText, dataSource, params) => _handleAutoUpdateChange(searchText, dataSource, params, "omnibus")}
+                      onBlur={handleBlur}
+                      value={values.containerType}
+                      errorText={ errors.omnibus && touched.omnibus && <div>{errors.omnibus}</div> }
                     />
+
                 </div>
                 <div className="form-group">
                   <TextField
@@ -190,13 +210,6 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                   />
 
                 </div>
-              </div>
-
-            </div>
-            <div className="col">
-
-              <div className="container-fluid text-left">
-
                 <div className="form-group">
                   <DatePicker
                     hintText="Release Date" container="inline"
@@ -211,8 +224,15 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                     value={values.releaseDate?moment(`${values.releaseDate}`).toDate():undefined}
                     errorText={errors.releaseDate && touched.releaseDate && <div>{errors.releaseDate}</div>}
                   />
-
                 </div>
+
+              </div>
+
+            </div>
+            <div className="col">
+
+              <div className="container-fluid text-left">
+
                 <div className="form-group">
                   <DatePicker
                     hintText="Close Date" container="inline"
@@ -230,16 +250,15 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
 
                 </div>
                 <div className="form-group">
-                  <TextField
-                        hintText="Announcement Type"
-                        floatingLabelText="Announcement Type"
-                        name="announcementType"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.announcementType}
-                        errorText={errors.announcementType && touched.announcementType && <div>{errors.announcementType}</div>}
-                    />
+                  <SelectField
+                    value={values.announcementType}
+                    onChange={_handleATypeChange}
+                    floatingLabelText="Announcement Type"
+                    floatingLabelStyle={{}}
+                    errorText={errors.announcementType && touched.announcementType && <div>{errors.announcementType}</div>}
+                  >
+                    {announcementTypeItems}
+                  </SelectField>
 {/*
                   <input
                     type="text"
@@ -267,18 +286,15 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                     />
 */}
 
-                    <AutoCompleteField
-                      dataSource={['uno', 'dos', 'tres', 'quatro', 'sinco']}
-                      hintText="Container"
-                      floatingLabelText="Container Type"
-                      name="containerType"
-                      className=""
-                      onChange={handleChange}
-                      onUpdateInput={(searchText, dataSource, params) => _handleAutoUpdateChange(searchText, dataSource, params, "containerType")}
-                      onBlur={handleBlur}
+                    <SelectField
                       value={values.containerType}
-                      errorText={ errors.containerType && touched.containerType && <div>{errors.containerType}</div> }
-                    />
+                      onChange={_handleCTypeChange}
+                      floatingLabelText="Container Type"
+                      floatingLabelStyle={{}}
+                      errorText={errors.containerType && touched.containerType && <div>{errors.containerType}</div>}
+                    >
+                      {containerTypeItems}
+                    </SelectField>
 
                 </div>
                 <div className="form-group">
@@ -618,7 +634,6 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
 
   const AddSolicitation = withFormik({
     mapPropsToValues: props => ({
-      id: '',
       solNumber: '',
       pubApproval: 0,
       year: undefined,
@@ -636,7 +651,6 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
       withdrawnBy: ''
     }),
     validationSchema: Yup.object().shape({
-      id: Yup.string().required("Solicitation Id is required!"),
       solNumber: Yup.string().required("Solicitation Number is required!"),
       pubApproval: Yup.number().required("Publication Approval is required!").positive("Publication Approval is wrong!").integer("Publication Approval is bad!"),
       year: Yup.string().required("Fiscal Year is required!"),
