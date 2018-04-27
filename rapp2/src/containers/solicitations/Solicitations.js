@@ -8,8 +8,17 @@ import { addSolicitation, editSolicitation, deleteSolicitation, hideModal } from
 import config from '../../../config/config.json'
 import { solicitationsMock } from '../../../config/MockData.js'
 import { withRouter } from 'react-router-dom'
+import HelpDrawer from '../../components/drawer/HelpDrawer'
+import HelpButton from '../../components/drawer/HelpButton'
+import SolicitationsHelpContent from '../../components/drawer/SolicitationsHelp'
+
 
 class Solicitations extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {...this.state, open: false};
+  }
 
   componentDidMount() {
     //const selectedSolicitationsFilter = {searchText: , isOpenOnly: false}
@@ -31,6 +40,8 @@ class Solicitations extends React.Component {
   //   this.props.dispatch(fetchSolicitationsIfNeeded(nextSolicitationsFilter))
   // }
 
+  handleToggle = () => this.setState({...this.state, open: !this.state.open});
+
   render() {
 
     const { foundSolicitationsFilter, solicitationsTable, isFetching, lastUpdated } = this.props
@@ -42,7 +53,11 @@ class Solicitations extends React.Component {
       <div className="container-fluid">
         {/*<Search value={foundSolicitationsFilter} onChange={this.handleChange}  />*/}
         <Search searchFilter={foundSolicitationsFilter} onChange={this.props.onSearchChange}  />
+        <HelpButton buttonText={"Get Help"} buttonClick={this.handleToggle} />
         <SolicitationTable solicitations={dataSource} onAddSolicitation={this.props.onAddSolicitation} onEditSolicitation={this.props.onEditSolicitation} onDeleteSolicitation={this.props.onDeleteSolicitation} solicitationsFilter={foundSolicitationsFilter} />
+        <HelpDrawer toggled={this.state.open} onToggleChange={this.handleToggle}>
+          <SolicitationsHelpContent />
+        </HelpDrawer>
       </div>
     );
   }

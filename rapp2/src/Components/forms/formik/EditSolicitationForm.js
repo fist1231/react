@@ -307,7 +307,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                   <DatePicker
                     hintText="Withdrawal Date" container="inline"
                     formatDate={() => moment(`${values.withdrawalDate}`).format('MM/DD/YYYY')}
-                    name="releaseDate"
+                    name="withdrawalDate"
                     floatingLabelText="Withdrawal Date"
                     className=""
                     onChange={(e, val) => _handleDateChange(e, val, "withdrawalDate")}

@@ -8,15 +8,10 @@ import {OverlayPanel} from 'primereact/components/overlaypanel/OverlayPanel';
 import {ContextMenu} from 'primereact/components/contextmenu/ContextMenu';
 import {Button} from 'primereact/components/button/Button';
 import {Dropdown} from 'primereact/components/dropdown/Dropdown';
-
-// primereact/components/autocomplete/AutoComplete.css
-
-
-
 import styled from 'styled-components';
 import { Route } from 'react-router-dom'
-
 import ReactTooltip from 'react-tooltip'
+
 
 class ReviewProposalsRPTable extends Component {
 

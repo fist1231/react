@@ -27,7 +27,7 @@ const Content = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  ${'' /* z-index: 10000; */}
+  z-index: 5;
   overflow: auto;
   text-align: center;
   overflow-scrolling: touch;
@@ -64,7 +64,8 @@ const Body = styled.div`
 `;
 
 const onOverlayClick = () => {
-  hideModal();
+  console.log('### onOverlayClick=')
+  // hideModal();
 };
 
 const onDialogClick = event => {
@@ -108,7 +109,8 @@ render() {
   return (
       <div>
         <Overlay />
-        <Content onClick={() => dispatch(hideModal())}>
+        {/* <Content onClick={() => dispatch(hideModal())}> */}
+        <Content>
           <Dialog onClick={onDialogClick}>
             <div className="modal-header">
                 <h3 className="modal-title">Create Solicitation</h3>

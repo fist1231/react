@@ -8,9 +8,17 @@ import config from '../../../config/config.json'
 import { usersMock } from '../../../config/MockData.js'
 import { withRouter } from 'react-router-dom'
 import Search from '../../components/search/Search'
+import HelpDrawer from '../../components/drawer/HelpDrawer'
+import HelpButton from '../../components/drawer/HelpButton'
+import UsersHelpContent from '../../components/drawer/UsersHelp'
+
 
 class UsersTableView extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {...this.state, open: false};
+  }
 
   componentDidMount() {
     const { dispatch, selectedUsersFilter } = this.props
@@ -24,17 +32,19 @@ class UsersTableView extends Component {
     }
   }
 
-handleChange = nextUsersFilter => {
-  this.props.dispatch(selectUsersFilter(nextUsersFilter))
-}
+  handleChange = nextUsersFilter => {
+    this.props.dispatch(selectUsersFilter(nextUsersFilter))
+  }
 
-handleRefreshClick = e => {
-  e.preventDefault()
+  handleRefreshClick = e => {
+    e.preventDefault()
 
-  const { dispatch, selectedUsersFilter } = this.props
-  dispatch(invalidateUsersFilter(selectedUsersFilter))
-  dispatch(fetchUsersIfNeeded(selectedUsersFilter))
-}
+    const { dispatch, selectedUsersFilter } = this.props
+    dispatch(invalidateUsersFilter(selectedUsersFilter))
+    dispatch(fetchUsersIfNeeded(selectedUsersFilter))
+  }
+
+  handleToggle = () => this.setState({...this.state, open: !this.state.open});
 
   render() {
 
@@ -78,7 +88,11 @@ handleRefreshClick = e => {
           <div className="col">
 
                 <Search searchFilter={selectedUsersFilter} onChange={this.props.onSearchChange}  />
+                <HelpButton buttonText={"Get Help"} buttonClick={this.handleToggle} />
                 <UsersTable usersLst={dataSource} />
+                <HelpDrawer toggled={this.state.open} onToggleChange={this.handleToggle}>
+                  <UsersHelpContent />
+                </HelpDrawer>
 {/*
 
                 <hr />

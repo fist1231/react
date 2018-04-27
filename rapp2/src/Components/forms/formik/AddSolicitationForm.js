@@ -8,6 +8,8 @@ import Toggle from 'material-ui/Toggle';
 import DatePicker from 'material-ui/DatePicker';
 import AutoCompleteField from '../html/AutoCompleteField';
 import AutoComplete from 'material-ui/AutoComplete';
+import {IconButton} from "material-ui";
+import ActionDateRange from 'material-ui/svg-icons/action/date-range';
 import { announcementTypeItems, containerTypeItems, omnibusAutocomplete } from './FormHelper'
 import SelectField from 'material-ui/SelectField';
 
@@ -92,7 +94,7 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                 <div className="form-group">
                   <TextField
                         hintText="Number"
-                        floatingLabelText="Solicitation Number"
+                        floatingLabelText="Solicitation Number *"
                         name="solNumber"
                         className=""
                         onChange={handleChange}
@@ -126,7 +128,7 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                     hintText="Fiscal Year" openToYearSelection={true} container="inline"
                     formatDate={() => moment(`${values.year}-01.01`).format('YYYY')}
                     autoOk={false}
-                    floatingLabelText="Fiscal Year"
+                    floatingLabelText="Fiscal Year *"
                     name="year"
                     className=""
                     onChange={_handleYearChange}
@@ -155,7 +157,7 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                 <div className="form-group">
                   <TextField
                         hintText="Title"
-                        floatingLabelText="Solicitation Title"
+                        floatingLabelText="Solicitation Title *"
                         name="title"
                         className=""
                         onChange={handleChange}
@@ -166,7 +168,7 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                 </div>
                 <div className="form-group">
                   <DatePicker
-                    hintText="Review Date" container="inline"
+                    hintText="Review Date"
                     formatDate={() => moment(`${values.reviewDate}`).format('MM/DD/YYYY')}
                     name="reviewDate"
                     floatingLabelText="Review Date"
@@ -199,7 +201,7 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                     hintText="Release Date" container="inline"
                     formatDate={() => moment(`${values.releaseDate}`).format('MM/DD/YYYY')}
                     name="releaseDate"
-                    floatingLabelText="Release Date"
+                    floatingLabelText="Release Date *"
                     className=""
                     onChange={(e, val) => _handleDateChange(e, val, "releaseDate")}
                     // onChange={_handleYearChange}
@@ -219,10 +221,10 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
 
                 <div className="form-group">
                   <DatePicker
-                    hintText="Close Date" container="inline"
+                    hintText="Close Date *" container="inline"
                     formatDate={() => moment(`${values.closeDate}`).format('MM/DD/YYYY')}
                     name="closeDate"
-                    floatingLabelText="Close Date"
+                    floatingLabelText="Close Date *"
                     className=""
                     onChange={(e, val) => _handleDateChange(e, val, "closeDate")}
                     // onChange={_handleYearChange}
@@ -237,7 +239,7 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                   <SelectField
                     value={values.announcementType}
                     onChange={_handleATypeChange}
-                    floatingLabelText="Announcement Type"
+                    floatingLabelText="Announcement Type *"
                     floatingLabelStyle={{}}
                     errorText={errors.announcementType && touched.announcementType && <div>{errors.announcementType}</div>}
                   >
@@ -273,7 +275,7 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                     <SelectField
                       value={values.containerType}
                       onChange={_handleCTypeChange}
-                      floatingLabelText="Container Type"
+                      floatingLabelText="Container Type *"
                       floatingLabelStyle={{}}
                       errorText={errors.containerType && touched.containerType && <div>{errors.containerType}</div>}
                     >
@@ -304,10 +306,11 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                     />
                 </div>
                 <div className="form-group">
+
                   <DatePicker
                     hintText="Withdrawal Date" container="inline"
                     formatDate={() => moment(`${values.withdrawalDate}`).format('MM/DD/YYYY')}
-                    name="releaseDate"
+                    name="withdrawalDate"
                     floatingLabelText="Withdrawal Date"
                     className=""
                     onChange={(e, val) => _handleDateChange(e, val, "withdrawalDate")}

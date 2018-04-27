@@ -8,8 +8,16 @@ import wait from '../../../public/wait2.gif'
 import config from '../../../config/config.json'
 import { reviewProposalsMock } from '../../../config/MockData.js'
 import { withRouter } from 'react-router-dom'
+import HelpDrawer from '../../components/drawer/HelpDrawer'
+import HelpButton from '../../components/drawer/HelpButton'
+import ReviewProposalsHelpContent from '../../components/drawer/ReviewProposalsHelp'
 
 class ReviewProposalsView extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {...this.state, open: false};
+  }
 
   componentDidMount() {
     const { dispatch, searchFilter } = this.props
@@ -45,6 +53,8 @@ class ReviewProposalsView extends Component {
     dispatch(fetchReviewProposalsIfNeeded(searchFilter))
   }
 
+  handleToggle = () => this.setState({...this.state, open: !this.state.open});
+
   render() {
 
     const { searchFilter, reviewProposalsTable, isFetching, lastUpdated, previewDetails } = this.props
@@ -55,7 +65,13 @@ class ReviewProposalsView extends Component {
     return (
       <div>
           {dataSource .length > 0 ? (
-          <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} />
+            <div>
+              <HelpButton buttonText={"Get Help"} buttonClick={this.handleToggle} />
+              <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} />
+              <HelpDrawer toggled={this.state.open} onToggleChange={this.handleToggle}>
+                <ReviewProposalsHelpContent />
+              </HelpDrawer>
+            </div>
         ) : (
           <h2>Wait ...</h2>
         )}
