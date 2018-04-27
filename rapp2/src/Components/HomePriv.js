@@ -229,14 +229,10 @@ class HomePriv extends Component {
     // console.log('~~~~state=' + JSON.stringify(this.state));
     return (
       <div className="container-fluid">
-        <div className="row">
-          <div className="col">
-            <h1>Welcome to NSPIRES Doe, John</h1>
-          </div>
-        </div>
 
-        <div className="row">
-          <div className="col-md-4">
+
+        <div className="row mt-3">
+          <div className="col-md-5">
             <div className="row">
               <div className="col">
               <div className="homePanelBox">
@@ -268,24 +264,15 @@ class HomePriv extends Component {
 
             <div className="row">
               <div className="col">
-                <div className="homePanelBox">
-                  <h4>
-                    Proposal Management{" "}
-                    <span className="float-right homePanelLink">
-                      <Link to="/reviewProposals">
-                        <i className="fa fa-file-text-o" aria-hidden="true" />view
-                      </Link>
-                    </span>
-                  </h4>
-                  <div className="memberTableContainer">
-                    <Proposals data={this.state.proposalsData} />
-                  </div>
-                </div>
+              <div className="homePanelBox">
+                <HomeTabs />
+              </div>
+
               </div>
             </div>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-5">
             <div className="row">
               <div className="col">
                 <div className="homePanelBox">
@@ -299,7 +286,17 @@ class HomePriv extends Component {
             <div className="row">
               <div className="col">
               <div className="homePanelBox">
-                <HomeTabs />
+                <h4>
+                  Proposal Management{" "}
+                  <span className="float-right homePanelLink">
+                    <Link to="/reviewProposals">
+                      <i className="fa fa-file-text-o" aria-hidden="true" />view
+                    </Link>
+                  </span>
+                </h4>
+                <div className="memberTableContainer">
+                  <Proposals data={this.state.proposalsData} />
+                </div>
               </div>
 
               </div>
@@ -309,7 +306,8 @@ class HomePriv extends Component {
           <div className="col-md-2 homeSideInfo">
             <div className="loginInfo">
               <p>Last Login:</p>
-              <p>Jun 01, 2016 10:24 EDT</p>
+                <p>Welcome to Doe, John</p>
+              <p>03/20/2018 10:24 EDT</p>
             </div>
             <h3>NSPIRES Home</h3>
 

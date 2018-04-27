@@ -47,7 +47,7 @@ const MainNav = (propsy, location) => (
               <Menubar model={items}/>
         */}
     <div className="row">
-  <div className="col-md-9">
+  <div className="col-md-12">
           <Nav tabs className="mainNav">
             <NavItem>
               <NavLink activeclassname='active' tag={RRNavLink} to="/" exact>Home</NavLink>
@@ -66,22 +66,7 @@ const MainNav = (propsy, location) => (
             </NavItem>
           </Nav>
           </div>
-  <div className="col-md-3">
 
-         <div className="input-group mt-2">
-
-         <div id="custom-search-input">
-            <div className="input-group">
-                <input type="text" className="form-control" placeholder="Search" />
-                <span className="input-group-btn">
-                    <button className="btn btn-info" type="button">
-                        <i className="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-        </div>
-         </div>
-     </div>
         </div>
 
 
