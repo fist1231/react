@@ -64,12 +64,14 @@ const fetchUsers = usersFilter => dispatch => {
 }
 */
 
-const fetchUsers = (usersFilter="{searchText:'', isOpenOnly:false}") => dispatch => {
+const fetchUsers = (usersFilter) => dispatch => {
   dispatch(requestUsers(usersFilter))
   // return fetch(`${config.users_address}nress/users`)
   //return Observable.ajax(`${config.users_address}nress/users`)
    // return Observable.ajax(`${config.users_address}nress/users`)
-   return Observable.ajax(`${config.users_gateway_address}nress/users`)
+   // return Observable.ajax(`${config.users_gateway_address}nress/users`)
+   var searchTerm = usersFilter.searchText?"/"+usersFilter.searchText:"";
+   return Observable.ajax(`${config.users_gateway_address}nress/search${searchTerm}`)
     .map(response => {
 //      console.log('RESPONSE = ' + response);
 //      console.log('response = ' + JSON.stringify(response.response));

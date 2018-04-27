@@ -125,10 +125,6 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
         }
 
     }];
-    const defaultSorted = [{
-    dataField: 'name',
-    order: 'desc'
-}];
 
 
     const options = {
@@ -159,6 +155,10 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
       }]
     };
 
+    const defaultSorted = [{
+      dataField: 'TITLE', // if dataField is not match to any column you defined, it will be ignored.
+      order: 'asc' // desc or asc
+    }];
 
     return (
       <div>
@@ -182,6 +182,7 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
           striped
           hover
           condensed
+          defaultSorted={defaultSorted}
         />
         </div>
         </div>

@@ -5,7 +5,7 @@ import 'react-table/react-table.css'
 
 
 
-const DisplayTable = ({ usersLst, onUserClick }) => (
+const UsersTable = ({ usersLst, onUserClick }) => (
   <div>
 
     <div className="tableHeader">
@@ -19,7 +19,16 @@ const DisplayTable = ({ usersLst, onUserClick }) => (
     <ReactTable
       className="-striped -highlight"
       data={usersLst}
-      defaultPageSize={10}
+      pageSizeOptions={[15, 25, 50, 100]}
+      defaultPageSize={15}
+      minRows={0}
+      sorted={[{ // the sorting model for the table
+          id: 'LAST_NAME',
+          desc: false
+        }, {
+          id: 'FIRST_NAME',
+          desc: false
+      }]}
       SubComponent={(row) => {
         // console.log('+++++++ row='+JSON.stringify(row)) ;
         return <div  style={{ padding: "10px" }} className="userDetail">
@@ -124,8 +133,8 @@ const DisplayTable = ({ usersLst, onUserClick }) => (
   </div>
 );
 
-DisplayTable.propTypes = {
+UsersTable.propTypes = {
   users: PropTypes.array
 }
 
-export default DisplayTable;
+export default UsersTable;

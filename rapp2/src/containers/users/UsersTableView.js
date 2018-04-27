@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { selectUsersFilter, fetchUsersIfNeeded, invalidateUsersFilter } from '../actions/tableActions'
-import Picker from '../components/Picker'
-import DisplayTable from '../components/Table'
-import config from '../../config/config.json'
-import { usersMock } from '../../config/MockData.js'
+import { selectUsersFilter, fetchUsersIfNeeded, invalidateUsersFilter } from '../../actions/tableActions'
+import Picker from '../../components/picker/Picker'
+import UsersTable from '../../components/users/UsersTable'
+import config from '../../../config/config.json'
+import { usersMock } from '../../../config/MockData.js'
 import { withRouter } from 'react-router-dom'
-import Search from '../components/solicitations/Search'
+import Search from '../../components/search/Search'
 
-class UsersTable extends Component {
+class UsersTableView extends Component {
 
 
   componentDidMount() {
@@ -53,11 +53,6 @@ handleRefreshClick = e => {
 
     return (
       <div className="container-fluid">
-      <div className="row">
-      <div className="col">
-      <h1>Users</h1>
-      </div>
-      </div>
 {/*
         <Picker value={selectedUsersFilter}
                 onChange={this.handleChange}
@@ -76,13 +71,14 @@ handleRefreshClick = e => {
           }
         </p>
 */}
-        {isEmpty
-          ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-          : <div className="row">
+        {/* {isEmpty
+          // ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
+          ? <h2>Loading...</h2> : */}
+        <div className="row">
           <div className="col">
 
-                {/*<Search value={selectedUsersFilter} onChange={this.props.onSearchChange}  />*/}
-                <DisplayTable usersLst={dataSource} />
+                <Search searchFilter={selectedUsersFilter} onChange={this.props.onSearchChange}  />
+                <UsersTable usersLst={dataSource} />
 {/*
 
                 <hr />
@@ -94,7 +90,7 @@ handleRefreshClick = e => {
                 */}
                 </div>
             </div>
-        }
+        {/* } */}
       </div>
     );
   }
@@ -124,7 +120,7 @@ const mapDispatchToProps = dispatch => ({
   onSearchChange:filter => dispatch(selectUsersFilter(filter)),
 })
 
-UsersTable.propTypes = {
+UsersTableView.propTypes = {
   selectedUsersFilter: PropTypes.string.isRequired,
   usersTable: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
@@ -133,4 +129,4 @@ UsersTable.propTypes = {
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersTable));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersTableView));

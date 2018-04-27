@@ -2,13 +2,15 @@ import React from "react";
 import { withFormik } from "formik";
 import Yup from "yup";
 import moment from 'moment';
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 import DatePicker from 'material-ui/DatePicker';
-
 import AutoCompleteField from '../html/AutoCompleteField';
+import AutoComplete from 'material-ui/AutoComplete';
+import { announcementTypeItems, containerTypeItems, omnibusAutocomplete } from './FormHelper'
+import SelectField from 'material-ui/SelectField';
+
 
 const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, filter }) => {
 
@@ -72,6 +74,14 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
       setFieldValue(field, searchText);
     };
 
+    const _handleATypeChange = (event, index, value) => {
+      setFieldValue('announcementType', value);
+    };
+
+    const _handleCTypeChange = (event, index, value) => {
+      setFieldValue('containerType', value);
+    };
+
     return (
     <MuiThemeProvider>
       <form onSubmit={handleSubmit}>
@@ -79,18 +89,6 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
           <div className="row">
             <div className="col">
               <div className="container-fluid text-left">
-                <div className="form-group">
-                  <TextField
-                        hintText="Id"
-                        floatingLabelText="Solicitation Id"
-                        name="id"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.id}
-                        errorText={errors.id && touched.id && <div>{errors.id}</div>}
-                    />
-                </div>
                 <div className="form-group">
                   <TextField
                         hintText="Number"
@@ -139,15 +137,20 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                   />
                 </div>
                 <div className="form-group">
-                  <TextField
-                        hintText="Omnibus"
-                        floatingLabelText="Omnibus Number"
-                        name="omnibus"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.omnibus}
-                    />
+                  <AutoComplete
+                      dataSource={omnibusAutocomplete}
+                      filter={AutoComplete.caseInsensitiveFilter}
+                      hintText="Omnibus"
+                      floatingLabelText="Omnibus Number"
+                      name="omnibus"
+                      className=""
+                      onChange={handleChange}
+                      onUpdateInput={(searchText, dataSource, params) => _handleAutoUpdateChange(searchText, dataSource, params, "omnibus")}
+                      onBlur={handleBlur}
+                      value={values.containerType}
+                      errorText={ errors.omnibus && touched.omnibus && <div>{errors.omnibus}</div> }
+                  />
+
                 </div>
                 <div className="form-group">
                   <TextField
@@ -191,13 +194,6 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                   />
 
                 </div>
-              </div>
-
-            </div>
-            <div className="col">
-
-              <div className="container-fluid text-left">
-
                 <div className="form-group">
                   <DatePicker
                     hintText="Release Date" container="inline"
@@ -214,6 +210,13 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                   />
 
                 </div>
+              </div>
+
+            </div>
+            <div className="col">
+
+              <div className="container-fluid text-left">
+
                 <div className="form-group">
                   <DatePicker
                     hintText="Close Date" container="inline"
@@ -231,16 +234,15 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
 
                 </div>
                 <div className="form-group">
-                  <TextField
-                        hintText="Announcement Type"
-                        floatingLabelText="Announcement Type"
-                        name="announcementType"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.announcementType}
-                        errorText={errors.announcementType && touched.announcementType && <div>{errors.announcementType}</div>}
-                    />
+                  <SelectField
+                    value={values.announcementType}
+                    onChange={_handleATypeChange}
+                    floatingLabelText="Announcement Type"
+                    floatingLabelStyle={{}}
+                    errorText={errors.announcementType && touched.announcementType && <div>{errors.announcementType}</div>}
+                  >
+                    {announcementTypeItems}
+                  </SelectField>
 {/*
                   <input
                     type="text"
@@ -268,18 +270,15 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     />
 */}
 
-                    <AutoCompleteField
-                      dataSource={['uno', 'dos', 'tres', 'quatro', 'sinco']}
-                      hintText="Container"
-                      floatingLabelText="Container Type"
-                      name="containerType"
-                      className=""
-                      onChange={handleChange}
-                      onUpdateInput={(searchText, dataSource, params) => _handleAutoUpdateChange(searchText, dataSource, params, "containerType")}
-                      onBlur={handleBlur}
+                    <SelectField
                       value={values.containerType}
-                      errorText={ errors.containerType && touched.containerType && <div>{errors.containerType}</div> }
-                    />
+                      onChange={_handleCTypeChange}
+                      floatingLabelText="Container Type"
+                      floatingLabelStyle={{}}
+                      errorText={errors.containerType && touched.containerType && <div>{errors.containerType}</div>}
+                    >
+                      {containerTypeItems}
+                    </SelectField>
 
                 </div>
                 <div className="form-group">
@@ -367,6 +366,11 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
         JSON.stringify(values, null, 2)
     );
     console.log('+++++++ doSubmit EditSolicitationForm filter = ' + JSON.stringify(filter));
+    values.year = parseInt(moment(`${values.year}-01.01`).format('YYYY'));
+    console.log(
+      "...........updated modal values: " +
+        JSON.stringify(values, null, 2)
+    );
     updateSolicitation(values, filter);
     hideModal();
     // e.preventDefault();
@@ -379,7 +383,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
       solNumber: solicitation.SOLICITATION_NUMBER,
       pubApproval: solicitation.PUBLICATION_APPROVAL,
       year: solicitation.FISCAL_YEAR?solicitation.FISCAL_YEAR:undefined,
-      omnibus: solicitation.OMNIBUS_NUMBER?solicitation.OMNIBUS_NUMBER:undefined,
+      omnibus: solicitation.OMNIBUS_NUMBER?solicitation.OMNIBUS_NUMBER:'',
       title: solicitation.TITLE,
       reviewDate: solicitation.REVIEW_DATE?solicitation.REVIEW_DATE:undefined,
       selectionDate: solicitation.SELECTION_DATE?solicitation.SELECTION_DATE:undefined,
@@ -387,15 +391,14 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
       closeDate: solicitation.CLOSE_DATE?solicitation.CLOSE_DATE:undefined,
       announcementType: solicitation.ANNOUNCEMENT_TYPE,
       containerType: solicitation.CONTAINER_TYPE,
-      authorizedBy: solicitation.AUTHORIZED_BY?solicitation.AUTHORIZED_BY:undefined,
-      withdrawalReason: solicitation.WITHDRAWAL_REASON?solicitation.WITHDRAWAL_REASON:undefined,
+      authorizedBy: solicitation.AUTHORIZED_BY?solicitation.AUTHORIZED_BY:'',
+      withdrawalReason: solicitation.WITHDRAWAL_REASON?solicitation.WITHDRAWAL_REASON:'',
       withdrawalDate: solicitation.WITHDRAWAL_DATE?solicitation.WITHDRAWAL_DATE:undefined,
-      withdrawnBy: solicitation.WITHDRAWN_BY?solicitation.WITHDRAWN_BY:undefined
+      withdrawnBy: solicitation.WITHDRAWN_BY?solicitation.WITHDRAWN_BY:''
     }),
     validationSchema: Yup.object().shape({
-      id: Yup.string().required("Solicitation Id is required!"),
       solNumber: Yup.string().required("Solicitation Number is required!"),
-      pubApproval: Yup.string().required("Publication Approval is required!"),
+      pubApproval: Yup.number().required("Publication Approval is required!").positive("Publication Approval is wrong!").integer("Publication Approval is bad!"),
       year: Yup.string().required("Fiscal Year is required!"),
       title: Yup.string().required("Title is required!"),
       closeDate: Yup.string().required("Close Date is required!"),
