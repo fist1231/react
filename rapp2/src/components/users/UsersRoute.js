@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import UsersList from '../containers/UsersList'
-import UsersTable from '../containers/UsersTable'
+import UsersList from '../../containers/UsersList'
+import UsersTable from '../../containers/UsersTable'
 
 const UsersRoute = () => (
   <Switch>

@@ -7,28 +7,11 @@ import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 import DatePicker from 'material-ui/DatePicker';
 import AutoCompleteField from '../html/AutoCompleteField';
-
+import AutoComplete from 'material-ui/AutoComplete';
+import { announcementTypeItems, containerTypeItems, omnibusAutocomplete } from './FormHelper'
 import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-
 
 const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
-
-  const announcementTypeItems = [
-    <MenuItem key={1} value="NRA" primaryText="NRA" />,
-    <MenuItem key={2} value="AO" primaryText="AO" />,
-    <MenuItem key={3} value="CAN" primaryText="CAN" />,
-    <MenuItem key={4} value="AN" primaryText="AN" />,
-    <MenuItem key={5} value="RFI" primaryText="RFI" />,
-    <MenuItem key={6} value="OTHER" primaryText="OTHER" />,
-  ];
-
-
-  const containerTypeItems = [
-    <MenuItem key={1} value="Standalone" primaryText="Standalone" />,
-    <MenuItem key={2} value="Omnibus" primaryText="Omnibus" />,
-    <MenuItem key={3} value="Program Element" primaryText="Program Element" />,
-  ];
 
   const styles = {
     block: {
@@ -154,8 +137,9 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                   />
                 </div>
                 <div className="form-group">
-                    <AutoCompleteField
-                      dataSource={['0619OMNI', 'NNH017ZNRA1211O', 'NNH1405041O', 'NASA2012', 'OMNI12NNMSN', 'OMNI15SOLNN1111']}
+                    <AutoComplete
+                      dataSource={omnibusAutocomplete}
+                      filter={AutoComplete.caseInsensitiveFilter}
                       hintText="Omnibus"
                       floatingLabelText="Omnibus Number"
                       name="omnibus"

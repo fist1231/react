@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { disableUser, initUsers } from '../actions'
-import Users from '../components/Users'
+import { disableUser, initUsers } from '../../actions'
+import Users from '../../components/users/Users'
 import { withRouter } from 'react-router-dom'
 
 //import $ from 'jquery';
@@ -31,7 +31,7 @@ const mapDispatchToProps = {
 
 
 
-class UsersList extends Component {
+class UsersListView extends Component {
 
   // constructor() {
   //   super();

@@ -9,5 +9,5 @@
   "solicitations_address_3": "http://192.168.1.208:30334/",
   "review_proposals_address": "http://127.0.0.1:3335/",
   "review_proposals_address1": "http://172.17.6.8:3335/",
-  "live_data": true
+  "live_data": false
 }

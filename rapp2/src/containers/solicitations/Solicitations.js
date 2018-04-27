@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import Search from '../../components/solicitations/Search'
+import Search from '../../components/search/Search'
 import SolicitationTable from '../../components/solicitations/SolicitationTable'
 import { connect } from 'react-redux'
 import { searchSolicitationsFilter, fetchSolicitationsIfNeeded, invalidateSolicitationsFilter } from '../../actions/solicitationActions'

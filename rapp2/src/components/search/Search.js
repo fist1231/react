@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 const Search = ({ searchFilter, onChange }) => (
   <div>
-    {console.log('################ searchFilter='+ JSON.stringify(searchFilter))}
     <form>
       <div className="form-row mt-2">
         <div className="col-md-8 offset-md-2">

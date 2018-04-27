@@ -8,8 +8,8 @@ import Main from './components/Main'
 // import Users from './components/Users'
 import Header from './components/header'
 import Footer from './components/footer'
-import UsersList from './containers/UsersList'
-import UsersTable from './containers/UsersTable'
+import UsersList from './containers/users/UsersListView'
+import UsersTable from './containers/users/UsersTableView'
 import ModalRoot from './components/modals/ModalRoot'
 import NoMatch from './NoMatch';
 

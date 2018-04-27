@@ -7,6 +7,7 @@ import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 import DatePicker from 'material-ui/DatePicker';
 import AutoCompleteField from '../html/AutoCompleteField';
+import AutoComplete from 'material-ui/AutoComplete';
 import { announcementTypeItems, containerTypeItems, omnibusAutocomplete } from './FormHelper'
 import SelectField from 'material-ui/SelectField';
 
@@ -136,8 +137,9 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                   />
                 </div>
                 <div className="form-group">
-                  <AutoCompleteField
+                  <AutoComplete
                       dataSource={omnibusAutocomplete}
+                      filter={AutoComplete.caseInsensitiveFilter}
                       hintText="Omnibus"
                       floatingLabelText="Omnibus Number"
                       name="omnibus"
