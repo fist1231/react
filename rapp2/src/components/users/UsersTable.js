@@ -22,7 +22,7 @@ const UsersTable = ({ usersLst, onUserClick }) => (
       pageSizeOptions={[15, 25, 50, 100]}
       defaultPageSize={15}
       minRows={0}
-      sorted={[{ // the sorting model for the table
+      defaultSorted={[{ // the sorting model for the table
           id: 'LAST_NAME',
           desc: false
         }, {
