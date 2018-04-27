@@ -235,23 +235,54 @@ const updateGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatc
     headers: { 'Content-Type': 'application/json' },
     // body: JSON.stringify({ query: `{ solicitationsById (filter: "${solicitationsFilter.searchText}") { SOLICITATION_ID, SOLICITATION_NUMBER, PUBLICATION_APPROVAL, FISCAL_YEAR, OMNIBUS_NUMBER, TITLE, REVIEW_DATE, SELECTION_DATE, RELEASE_DATE, CLOSE_DATE, ANNOUNCEMENT_TYPE, CONTAINER_TYPE, AUTHORIZED_BY, WITHDRAWAL_REASON, WITHDRAWAL_DATE, WITHDRAWN_BY } }` }),
 
-    body: JSON.stringify({ query: `mutation { updateSolicitation ( _id: "${solicitation._id}", TITLE: "${solicitation.title}")
+    body: JSON.stringify({ query: `mutation { updateSolicitation (
+         _id: "${solicitation._id}",
+         SOLICITATION_ID: "${solicitation.id}",
+         SOLICITATION_NUMBER: "${solicitation.solNumber}",
+         PUBLICATION_APPROVAL: ${solicitation.pubApproval},
+         FISCAL_YEAR: ${solicitation.year},
+         OMNIBUS_NUMBER: "${solicitation.omnibus}",
+         TITLE: "${solicitation.title}",
+         REVIEW_DATE: ${solicitation.reviewDate?"\""+solicitation.reviewDate+"\"":null},
+         SELECTION_DATE: ${solicitation.selectionDate?"\""+solicitation.selectionDate+"\"":null},
+         RELEASE_DATE: "${solicitation.releaseDate}",
+         CLOSE_DATE: "${solicitation.closeDate}",
+         ANNOUNCEMENT_TYPE: "${solicitation.announcementType}",
+         CONTAINER_TYPE: "${solicitation.containerType}",
+         AUTHORIZED_BY: "${solicitation.authorizedBy}",
+         WITHDRAWAL_REASON: "${solicitation.withdrawalReason}",
+         WITHDRAWAL_DATE: ${solicitation.withdrawalDate?"\""+solicitation.withdrawalDate+"\"":null},
+         WITHDRAWN_BY: "${solicitation.withdrawnBy}"
+       )
             {
               _id,
               SOLICITATION_ID,
               SOLICITATION_NUMBER,
-              TITLE
+              PUBLICATION_APPROVAL,
+              FISCAL_YEAR,
+              OMNIBUS_NUMBER,
+              TITLE,
+              REVIEW_DATE,
+              SELECTION_DATE,
+              RELEASE_DATE,
+              CLOSE_DATE,
+              ANNOUNCEMENT_TYPE,
+              CONTAINER_TYPE,
+              AUTHORIZED_BY,
+              WITHDRAWAL_REASON,
+              WITHDRAWAL_DATE,
+              WITHDRAWN_BY
             }
         }`
     }),
   })
     .then(res => {
       const jsn = res.json();
-      // console.log('++++++++++ updateGraphQLSolicitation res.json() = ' + JSON.stringify(jsn));
+      console.log('++++++++++ updateGraphQLSolicitation res.json() = ' + JSON.stringify(jsn));
       return jsn;
     })
     .then(res => {
-      // console.log('++++++++++ updateGraphQLSolicitation res JSON = ' + JSON.stringify(res));
+      console.log('++++++++++ updateGraphQLSolicitation res JSON = ' + JSON.stringify(res));
       //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
 //      return res.data.solicitations;
       return res.data.updateSolicitation;
