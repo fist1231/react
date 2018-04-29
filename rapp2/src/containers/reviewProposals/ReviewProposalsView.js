@@ -64,7 +64,7 @@ class ReviewProposalsView extends Component {
     const dataSource = isLiveData?reviewProposalsTable:reviewProposalsMock();
     return (
       <div>
-          {dataSource .length > 0 ? (
+          {(dataSource?dataSource.length:0) > 0 ? (
             <div>
               <HelpButton buttonText={"Get Help"} buttonClick={this.handleToggle} />
               <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} />

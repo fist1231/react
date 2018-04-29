@@ -51,7 +51,7 @@ const Dialog = styled.div`
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
-  max-width: 760px;
+  max-width: 1040px;
   cursor: default;
 `;
 
