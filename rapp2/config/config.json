@@ -1,5 +1,6 @@
 {
-  "users_gateway_address": "http://127.0.0.1:3330/",
+  "gateway_address": "http://127.0.0.1:3330/",
+  "users_gateway_address": "http://192.168.56.1:3330/",
   "users_gateway_address1": "http://172.17.6.8:3330/",
   "users_address_prod": "http://192.168.56.1:30333/",
   "users_address_local": "http://172.17.6.8:3333/",

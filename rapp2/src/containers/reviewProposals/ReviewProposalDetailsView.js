@@ -46,10 +46,11 @@ class ReviewProposalDetailsView extends Component {
     } )
     console.log('^^^^^^^^^^^^match.params.id='+JSON.stringify(reviewProposalsMock().find(prp => (prp.ASSIGNED_RESPONSE_ID === match.params.id))))
     const isLiveData = config.live_data;
+    const isFetchingSource = isLiveData?isFetching:false;
     const dataSource = isLiveData?proposal[0]:reviewProposalsMock().find(prp => (prp.ASSIGNED_RESPONSE_ID === match.params.id));
     return (
       <div>
-          <ReviewProposalDetails proposal={dataSource} isLoading={isFetching} />
+          <ReviewProposalDetails proposal={dataSource} isLoading={isFetchingSource} />
       </div>
     );
   }

@@ -8,8 +8,11 @@ import Toggle from 'material-ui/Toggle';
 import DatePicker from 'material-ui/DatePicker';
 import AutoCompleteField from '../html/AutoCompleteField';
 import AutoComplete from 'material-ui/AutoComplete';
+import {IconButton} from "material-ui";
+import ActionDateRange from 'material-ui/svg-icons/action/date-range';
 import { announcementTypeItems, containerTypeItems, omnibusAutocomplete } from './FormHelper'
 import SelectField from 'material-ui/SelectField';
+import { DateField } from '../../../components/forms/html/DateField'
 
 const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
 
@@ -19,6 +22,7 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
     },
     toggle: {
       marginBottom: 16,
+      position: 'relative',      
     },
     thumbOff: {
       backgroundColor: '#ffcccc',
@@ -55,16 +59,16 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
       setFieldValue('pubApproval', isInputChecked?1:0);
     };
 
-    const _handleYearChange = (event, value) => {
-      // console.log('~~~~~~~~~~~~~ _handleYearChange='+value);
-      setFieldValue('year', value);
-    };
+    // const _handleYearChange = (event, value) => {
+    //   // console.log('~~~~~~~~~~~~~ _handleYearChange='+value);
+    //   setFieldValue('year', value);
+    // };
 
-    const _handleDateChange = (event, value, field) => {
-      // console.log('~~~~~~~~~~~~~ _handleDateChange='+value);
-      // console.log('~~~~~~~~~~~~~ _handleDateChange field='+field);
-      setFieldValue(field, value);
-    };
+    // const _handleDateChange = (event, value, field) => {
+    //   // console.log('~~~~~~~~~~~~~ _handleDateChange='+value);
+    //   // console.log('~~~~~~~~~~~~~ _handleDateChange field='+field);
+    //   setFieldValue(field, value);
+    // };
 
     const _handleAutoUpdateChange = (searchText, dataSource, params, field) => {
       // console.log('~~~~~~~~~~~~~ _handleAutoUpdateChange searchText='+searchText);
@@ -82,80 +86,21 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
       setFieldValue('containerType', value);
     };
 
+
     return (
     <MuiThemeProvider>
       <form onSubmit={handleSubmit}>
         <div className="modal-body">
           <div className="row">
+
+            {/* ########################Column #1 ########################### */}
             <div className="col">
               <div className="container-fluid text-left">
-                <div className="form-group">
-                  <TextField
-                        hintText="Number"
-                        floatingLabelText="Solicitation Number"
-                        name="solNumber"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.solNumber}
-                        errorText={errors.solNumber && touched.solNumber && <div>{errors.solNumber}</div>}
-                    />
-                </div>
-                <div className="form-group">
-                  <Toggle
-                    label="Publication Approval"
-                    labelPosition="right"
-                    name="pubApproval"
-                    // defaultToggled={values.pubApproval===1}
-                    // toggled={values.pubApproval===1}
-                    toggled={(values.pubApproval==1)?true:false}
-                    onToggle={_handleToggle}
-                    className=""
-                    onChange={handleChange}
-                    // onChange={console.log('ello r' + event.target.value)}
-                    // onChange={(event) => {console.log('ello r: '+ event.target.value); this.setState(name: event.target.value);}}
-                    onBlur={handleBlur}
-                    style={styles.toggle}
-                    errorText={errors.pubApproval && touched.pubApproval && <div>{errors.pubApproval}</div>}
-                    // valueLink={values.pubApproval}
-                  />
 
-                </div>
-                <div className="form-group">
-                  <DatePicker
-                    hintText="Fiscal Year" openToYearSelection={true} container="inline"
-                    formatDate={() => moment(`${values.year}-01.01`).format('YYYY')}
-                    autoOk={false}
-                    floatingLabelText="Fiscal Year"
-                    name="year"
-                    className=""
-                    onChange={_handleYearChange}
-                    onBlur={handleBlur}
-                    // value={values.year}
-                    value={values.year?moment(`${values.year}-01.01`).toDate():undefined}
-                    errorText={errors.year && touched.year && <div>{errors.year}</div>}
-                  />
-                </div>
-                <div className="form-group">
-                    <AutoComplete
-                      dataSource={omnibusAutocomplete}
-                      filter={AutoComplete.caseInsensitiveFilter}
-                      hintText="Omnibus"
-                      floatingLabelText="Omnibus Number"
-                      name="omnibus"
-                      className=""
-                      onChange={handleChange}
-                      onUpdateInput={(searchText, dataSource, params) => _handleAutoUpdateChange(searchText, dataSource, params, "omnibus")}
-                      onBlur={handleBlur}
-                      value={values.containerType}
-                      errorText={ errors.omnibus && touched.omnibus && <div>{errors.omnibus}</div> }
-                    />
-
-                </div>
                 <div className="form-group">
                   <TextField
                         hintText="Title"
-                        floatingLabelText="Solicitation Title"
+                        floatingLabelText="Solicitation Title *"
                         name="title"
                         className=""
                         onChange={handleChange}
@@ -164,80 +109,25 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                         errorText={errors.title && touched.title && <div>{errors.title}</div>}
                     />
                 </div>
-                <div className="form-group">
-                  <DatePicker
-                    hintText="Review Date" container="inline"
-                    formatDate={() => moment(`${values.reviewDate}`).format('MM/DD/YYYY')}
-                    name="reviewDate"
-                    floatingLabelText="Review Date"
-                    className=""
-                    onChange={(e, val) => _handleDateChange(e, val, "reviewDate")}
-                    // onChange={_handleYearChange}
-                    onBlur={handleBlur}
-                    // value={values.year}
-                    value={values.reviewDate?moment(`${values.reviewDate}`).toDate():undefined}
-                  />
-                </div>
-                <div className="form-group">
-                  <DatePicker
-                    hintText="Selection Date" container="inline"
-                    formatDate={() => moment(`${values.selectionDate}`).format('MM/DD/YYYY')}
-                    name="selectionDate"
-                    floatingLabelText="Selection Date"
-                    className=""
-                    onChange={(e, val) => _handleDateChange(e, val, "selectionDate")}
-                    // onChange={_handleYearChange}
-                    onBlur={handleBlur}
-                    // value={values.year}
-                    value={values.selectionDate?moment(`${values.selectionDate}`).toDate():undefined}
-                    errorText={errors.selectionDate && touched.selectionDate && <div>{errors.selectionDate}</div>}
-                  />
-
-                </div>
-                <div className="form-group">
-                  <DatePicker
-                    hintText="Release Date" container="inline"
-                    formatDate={() => moment(`${values.releaseDate}`).format('MM/DD/YYYY')}
-                    name="releaseDate"
-                    floatingLabelText="Release Date"
-                    className=""
-                    onChange={(e, val) => _handleDateChange(e, val, "releaseDate")}
-                    // onChange={_handleYearChange}
-                    onBlur={handleBlur}
-                    // value={values.year}
-                    value={values.releaseDate?moment(`${values.releaseDate}`).toDate():undefined}
-                    errorText={errors.releaseDate && touched.releaseDate && <div>{errors.releaseDate}</div>}
-                  />
-                </div>
-
-              </div>
-
-            </div>
-            <div className="col">
-
-              <div className="container-fluid text-left">
 
                 <div className="form-group">
-                  <DatePicker
-                    hintText="Close Date" container="inline"
-                    formatDate={() => moment(`${values.closeDate}`).format('MM/DD/YYYY')}
-                    name="closeDate"
-                    floatingLabelText="Close Date"
-                    className=""
-                    onChange={(e, val) => _handleDateChange(e, val, "closeDate")}
-                    // onChange={_handleYearChange}
-                    onBlur={handleBlur}
-                    // value={values.year}
-                    value={values.closeDate?moment(`${values.closeDate}`).toDate():undefined}
-                    errorText={errors.closeDate && touched.closeDate && <div>{errors.closeDate}</div>}
-                  />
-
+                  <TextField
+                        hintText="Number"
+                        floatingLabelText="Solicitation Number *"
+                        name="solNumber"
+                        className=""
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.solNumber}
+                        errorText={errors.solNumber && touched.solNumber && <div>{errors.solNumber}</div>}
+                    />
                 </div>
+
                 <div className="form-group">
                   <SelectField
                     value={values.announcementType}
                     onChange={_handleATypeChange}
-                    floatingLabelText="Announcement Type"
+                    floatingLabelText="Announcement Type *"
                     floatingLabelStyle={{}}
                     errorText={errors.announcementType && touched.announcementType && <div>{errors.announcementType}</div>}
                   >
@@ -256,6 +146,7 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                   {errors.announcementType && touched.announcementType && <div>{errors.announcementType}</div>}
 */}
                 </div>
+
                 <div className="form-group">
 {/*
                   <TextField
@@ -269,18 +160,236 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                         errorText={errors.containerType && touched.containerType && <div>{errors.containerType}</div>}
                     />
 */}
-
-                    <SelectField
+                  <SelectField
                       value={values.containerType}
                       onChange={_handleCTypeChange}
-                      floatingLabelText="Container Type"
+                      floatingLabelText="Container Type *"
                       floatingLabelStyle={{}}
                       errorText={errors.containerType && touched.containerType && <div>{errors.containerType}</div>}
                     >
                       {containerTypeItems}
                     </SelectField>
-
                 </div>
+
+                <div className="form-group">
+                  <DateField
+                    hintText="Fiscal Year"
+                    formatDate={() => moment(`${values.year}-01.01`).format('YYYY')}
+                    name="year"
+                    floatingLabelText="Fiscal Year *"
+                    className=""
+                    onBlur={handleBlur}
+                    value={values.year?moment(`${values.year}-01.01`).toDate():undefined}
+                    errorText={errors.year && touched.year && <div>{errors.year}</div>}
+                    onClearClick={e => setFieldValue("year", undefined)}
+                    setFieldValue={setFieldValue}
+                    autoOk={false}
+                    openToYearSelection={true}
+                    container="inline"
+                  />
+
+                {/*
+                  <DatePicker
+                    hintText="Fiscal Year" openToYearSelection={true} container="inline"
+                    formatDate={() => moment(`${values.year}-01.01`).format('YYYY')}
+                    name="year"
+                    floatingLabelText="Fiscal Year *"
+                    className=""
+                    onChange={_handleYearChange}
+                    onBlur={handleBlur}
+                    // value={values.year}
+                    value={values.year?moment(`${values.year}-01.01`).toDate():undefined}
+                    errorText={errors.year && touched.year && <div>{errors.year}</div>}
+                    autoOk={false}
+                  />
+ */}
+                </div>
+
+              </div>
+            </div>
+
+            {/* ########################Column #2 ########################### */}
+
+            <div className="col">
+              <div className="container-fluid text-left">
+
+                <div className="form-group">
+                  <DateField
+                    hintText="Release Date" container="inline"
+                    formatDate={() => moment(`${values.releaseDate}`).format('MM/DD/YYYY')}
+                    name="releaseDate"
+                    floatingLabelText="Release Date *"
+                    className=""
+                    onChange={(e, val) => _handleDateChange(e, val, "releaseDate")}
+                    onBlur={handleBlur}
+                    value={values.releaseDate?moment(`${values.releaseDate}`).toDate():undefined}
+                    errorText={errors.releaseDate && touched.releaseDate && <div>{errors.releaseDate}</div>}
+                    onClearClick={e => setFieldValue("releaseDate", undefined)}
+                    setFieldValue={setFieldValue}
+                  />
+
+  {/*
+                  <DatePicker
+                    hintText="Release Date" container="inline"
+                    formatDate={() => moment(`${values.releaseDate}`).format('MM/DD/YYYY')}
+                    name="releaseDate"
+                    floatingLabelText="Release Date *"
+                    className=""
+                    onChange={(e, val) => _handleDateChange(e, val, "releaseDate")}
+                    // onChange={_handleYearChange}
+                    onBlur={handleBlur}
+                    // value={values.year}
+                    value={values.releaseDate?moment(`${values.releaseDate}`).toDate():undefined}
+                    errorText={errors.releaseDate && touched.releaseDate && <div>{errors.releaseDate}</div>}
+                  />
+  */}
+                </div>
+
+                <div className="form-group">
+                  <DateField
+                    hintText="Close Date *" container="inline"
+                    formatDate={() => moment(`${values.closeDate}`).format('MM/DD/YYYY')}
+                    name="closeDate"
+                    floatingLabelText="Close Date *"
+                    className=""
+                    onChange={(e, val) => _handleDateChange(e, val, "closeDate")}
+                    onBlur={handleBlur}
+                    value={values.closeDate?moment(`${values.closeDate}`).toDate():undefined}
+                    errorText={errors.closeDate && touched.closeDate && <div>{errors.closeDate}</div>}
+                    onClearClick={e => setFieldValue("closeDate", undefined)}
+                    setFieldValue={setFieldValue}
+                  />
+
+{/*
+                  <DatePicker
+                    hintText="Close Date *" container="inline"
+                    formatDate={() => moment(`${values.closeDate}`).format('MM/DD/YYYY')}
+                    name="closeDate"
+                    floatingLabelText="Close Date *"
+                    className=""
+                    onChange={(e, val) => _handleDateChange(e, val, "closeDate")}
+                    // onChange={_handleYearChange}
+                    onBlur={handleBlur}
+                    // value={values.year}
+                    value={values.closeDate?moment(`${values.closeDate}`).toDate():undefined}
+                    errorText={errors.closeDate && touched.closeDate && <div>{errors.closeDate}</div>}
+                  />
+ */}
+                </div>
+
+                <div className="form-group">
+                  <DateField
+                    hintText="Review Date"
+                    formatDate={() => moment(`${values.reviewDate}`).format('MM/DD/YYYY')}
+                    name="reviewDate"
+                    floatingLabelText="Review Date"
+                    className=""
+                    onBlur={handleBlur}
+                    value={values.reviewDate?moment(`${values.reviewDate}`).toDate():undefined}
+                    errorText={errors.reviewDate && touched.reviewDate && <div>{errors.reviewDate}</div>}
+                    onClearClick={e => setFieldValue("reviewDate", undefined)}
+                    setFieldValue={setFieldValue}
+                  />
+  {/*
+                    <div className="row mt-3">
+                      <div className="col-md-9">
+                        <DatePicker
+                          hintText="Review Date"
+                          formatDate={() => moment(`${values.reviewDate}`).format('MM/DD/YYYY')}
+                          name="reviewDate"
+                          floatingLabelText="Review Date"
+                          className=""
+                          onChange={(e, val) => _handleDateChange(e, val, "reviewDate")}
+                          // onChange={_handleYearChange}
+                          onBlur={handleBlur}
+                          // value={values.year}
+                          value={values.reviewDate?moment(`${values.reviewDate}`).toDate():undefined}
+                        />
+                      </div>
+                      <div className="col-md-1">
+                        <i className="fa fa-times" onClick={e => setFieldValue('reviewDate', undefined)} style={{position:'absolute', bottom:'12px'}} />
+                      </div>
+                  </div>
+  */}
+                </div>
+
+                <div className="form-group">
+                  <DateField
+                    hintText="Selection Date" container="inline"
+                    formatDate={() => moment(`${values.selectionDate}`).format('MM/DD/YYYY')}
+                    name="selectionDate"
+                    floatingLabelText="Selection Date"
+                    className=""
+                    onChange={(e, val) => _handleDateChange(e, val, "selectionDate")}
+                    onBlur={handleBlur}
+                    value={values.selectionDate?moment(`${values.selectionDate}`).toDate():undefined}
+                    errorText={errors.selectionDate && touched.selectionDate && <div>{errors.selectionDate}</div>}
+                    onClearClick={e => setFieldValue("selectionDate", undefined)}
+                    setFieldValue={setFieldValue}
+                  />
+
+  {/*
+                  <DatePicker
+                    hintText="Selection Date" container="inline"
+                    formatDate={() => moment(`${values.selectionDate}`).format('MM/DD/YYYY')}
+                    name="selectionDate"
+                    floatingLabelText="Selection Date"
+                    className=""
+                    onChange={(e, val) => _handleDateChange(e, val, "selectionDate")}
+                    // onChange={_handleYearChange}
+                    onBlur={handleBlur}
+                    // value={values.year}
+                    value={values.selectionDate?moment(`${values.selectionDate}`).toDate():undefined}
+                    errorText={errors.selectionDate && touched.selectionDate && <div>{errors.selectionDate}</div>}
+                  />
+  */}
+                </div>
+
+                <div className="form-group">
+                  <Toggle
+                    label="Publication Approval"
+                    labelPosition="right"
+                    name="pubApproval"
+                    // defaultToggled={values.pubApproval===1}
+                    // toggled={values.pubApproval===1}
+                    toggled={(values.pubApproval==1)?true:false}
+                    onToggle={_handleToggle}
+                    className=""
+                    onChange={handleChange}
+                    // onChange={console.log('ello r' + event.target.value)}
+                    // onChange={(event) => {console.log('ello r: '+ event.target.value); this.setState(name: event.target.value);}}
+                    onBlur={handleBlur}
+                    style={styles.toggle}
+                    errorText={errors.pubApproval && touched.pubApproval && <div>{errors.pubApproval}</div>}
+                    // valueLink={values.pubApproval}
+                  />
+                </div>
+
+              </div>
+            </div>
+
+            {/* ########################Column #3 ########################### */}
+
+            <div className="col">
+              <div className="container-fluid text-left">
+
+                <div className="form-group">
+                    <AutoComplete
+                      dataSource={omnibusAutocomplete}
+                      filter={AutoComplete.caseInsensitiveFilter}
+                      hintText="Omnibus"
+                      floatingLabelText="Omnibus Number"
+                      name="omnibus"
+                      className=""
+                      onChange={handleChange}
+                      onUpdateInput={(searchText, dataSource, params) => _handleAutoUpdateChange(searchText, dataSource, params, "omnibus")}
+                      onBlur={handleBlur}
+                      value={values.omnibus}
+                      searchText={values.omnibus}
+                      errorText={ errors.omnibus && touched.omnibus && <div>{errors.omnibus}</div> }
+                    />
+                </div>
+
                 <div className="form-group">
                   <TextField
                         hintText="Authorized By"
@@ -292,6 +401,7 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                         value={values.authorizedBy}
                     />
                 </div>
+
                 <div className="form-group">
                   <TextField
                         hintText="Reason"
@@ -303,11 +413,27 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                         value={values.withdrawalReason}
                     />
                 </div>
+
                 <div className="form-group">
+                  <DateField
+                    hintText="Withdrawal Date" container="inline"
+                    formatDate={() => moment(`${values.withdrawalDate}`).format('MM/DD/YYYY')}
+                    name="withdrawalDate"
+                    floatingLabelText="Withdrawal Date"
+                    className=""
+                    onChange={(e, val) => _handleDateChange(e, val, "withdrawalDate")}
+                    onBlur={handleBlur}
+                    value={values.withdrawalDate?moment(`${values.withdrawalDate}`).toDate():undefined}
+                    errorText={errors.withdrawalDate && touched.withdrawalDate && <div>{errors.withdrawalDate}</div>}
+                    onClearClick={e => setFieldValue("withdrawalDate", undefined)}
+                    setFieldValue={setFieldValue}
+                  />
+
+{/*
                   <DatePicker
                     hintText="Withdrawal Date" container="inline"
                     formatDate={() => moment(`${values.withdrawalDate}`).format('MM/DD/YYYY')}
-                    name="releaseDate"
+                    name="withdrawalDate"
                     floatingLabelText="Withdrawal Date"
                     className=""
                     onChange={(e, val) => _handleDateChange(e, val, "withdrawalDate")}
@@ -317,7 +443,9 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                     value={values.withdrawalDate?moment(`${values.withdrawalDate}`).toDate():undefined}
                     errorText={errors.withdrawalDate && touched.withdrawalDate && <div>{errors.withdrawalDate}</div>}
                   />
+ */}
                 </div>
+
                 <div className="form-group">
                   <TextField
                         hintText="Withdrawn By"
@@ -329,9 +457,10 @@ const AddSolicitationForm = ({ hideModal, addSolicitation, filter }) => {
                         value={values.withdrawnBy}
                     />
                 </div>
-              </div>
 
+              </div>
             </div>
+
           </div>
         </div>
 

@@ -4,44 +4,50 @@ import Yup from "yup";
 import { withRouter, Redirect } from "react-router-dom";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from "material-ui/TextField";
+import {brown500, cyan500, lime500, teal600, pink300} from 'material-ui/styles/colors';
+
+const muiTheme = getMuiTheme({
+  textField: {
+    textColor: pink300,
+    hintColor: pink300,
+    floatingLabelColor: pink300,
+    // disabledTextColor: palette.disabledColor,
+    // errorColor: red500,
+    focusColor: pink300,
+    // backgroundColor: pink300,
+    // borderColor: palette.borderColor,
+  },
+});
 
 const LoginForm = ({ history, hideModal, authenticate }) => {
   const styles = {
+    floatingLabelStyle: {
+      color: "#999",
+      fontSize: "1.06em",
+      fontWeight: "400",
+      top: "35px"
+    },
+    floatingLabelFocusStyle: {
+      color: "#2d5a96",
+      top: "38px"
+    },
 
-  floatingLabelStyle: {
-color: "#999",
-fontSize:"1.06em",
-fontWeight:"400",
-top: "35px"
+    underlineFocusStyle: {
+      borderColor: "#2d5a96"
+    },
+    underlineStyle: {
+      borderColor: "#8a8a8a"
+    },
+    errorStyle: {
+      color: "#f4433"
+    },
 
-},
-floatingLabelFocusStyle: {
-color: "#2d5a96",
-top: "38px"
-
-},
-
-underlineFocusStyle: {
-borderColor: "#2d5a96"
-
-},
-underlineStyle: {
-borderColor: "#8a8a8a"
-
-},
-errorStyle: {
-color: "#f4433"
-
-},
-
-errorText: {
-color: "#f4433"
-
-},
-
-
-
+    errorText: {
+      color: "#f4433"
+    }
   };
 
   const innerForm = (props, hdMod) => {
@@ -59,7 +65,7 @@ color: "#f4433"
     } = props;
 
     return (
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <form onSubmit={handleSubmit}>
         <div className="modal-body">
               <div className="container text-left">
@@ -71,13 +77,9 @@ color: "#f4433"
                         hintText="nress"
                         floatingLabelText="Username"
                         name="username"
-                        className="loginInput"
+                        className="floatInput"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        underlineStyle={styles.underlineStyle}
-                        underlineFocusStyle={styles.underlineFocusStyle}
                         value={values.username}
                         errorText={errors.username && touched.username && <div>{errors.username}</div>}
                     />

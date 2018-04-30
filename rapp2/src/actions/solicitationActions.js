@@ -162,9 +162,31 @@ return dispatch(getGraphQLResult(solicitationsFilter));
 
 const getGraphQLResult = solicitationsFilter => dispatch => {
   fetch(`${config.solicitations_address}graphql`, {
+  // fetch(`${config.gateway_address}graphql`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: `{ solicitationsById (filter: "${solicitationsFilter.searchText}") { _id, SOLICITATION_ID, SOLICITATION_NUMBER, PUBLICATION_APPROVAL, FISCAL_YEAR, OMNIBUS_NUMBER, TITLE, REVIEW_DATE, SELECTION_DATE, RELEASE_DATE, CLOSE_DATE, ANNOUNCEMENT_TYPE, CONTAINER_TYPE, AUTHORIZED_BY, WITHDRAWAL_REASON, WITHDRAWAL_DATE, WITHDRAWN_BY } }` }),
+    body: JSON.stringify({ query: `{
+      solicitationsById (filter: "${solicitationsFilter.searchText}") {
+        _id,
+        SOLICITATION_ID,
+        SOLICITATION_NUMBER,
+        PUBLICATION_APPROVAL,
+        FISCAL_YEAR,
+        OMNIBUS_NUMBER,
+        TITLE,
+        REVIEW_DATE,
+        SELECTION_DATE,
+        RELEASE_DATE,
+        CLOSE_DATE,
+        ANNOUNCEMENT_TYPE,
+        CONTAINER_TYPE,
+        AUTHORIZED_BY,
+        WITHDRAWAL_REASON,
+        WITHDRAWAL_DATE,
+        WITHDRAWN_BY
+      }
+    }`
+  }),
     //body: JSON.stringify({ query: '{ solicitations { id, acronym, title } }' }),
   })
   // .then(res => res.json())
