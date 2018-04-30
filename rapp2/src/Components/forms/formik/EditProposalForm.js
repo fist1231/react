@@ -17,89 +17,192 @@ const EditProposalForm = ({ proposal, hideModal }) => {
       <form onSubmit={handleSubmit}>
         <div className="modal-body">
           <div className="container-fluid text-left">
-            <div className="form-group">
-              <label htmlFor="id">Id</label>
+            <div className="form-group row">
 
-              <input
-                type="text"
-                name="id"
-                className="form-control"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.id}
-                size="20"
-              />
-              {errors.id && touched.id && <div>{errors.id}</div>}
+            <label
+             htmlFor="id"
+             className={
+               errors.id && touched.id
+                 ? "col-sm-5 col-form-label error"
+                 : "col-sm-5 col-form-label"
+             }
+           >
+             Id*
+           </label>
+
+           <div className="col-sm-7">
+             <input
+               type="text"
+               name="id"
+               className={
+                 errors.id && touched.id
+                   ? "form-control error"
+                   : "form-control"
+               }
+               onChange={handleChange}
+               onBlur={handleBlur}
+               value={values.id}
+               size="20"
+             />
+             {errors.id &&
+               touched.id && (
+                 <div className="invalid-feedback">{errors.id}</div>
+               )}
+           </div>
             </div>
-            <div className="form-group">
-              <label htmlFor="id">Proposal Number</label>
+             <div className="form-group row">
+             <label
+              htmlFor="pnumber"
+              className={
+                errors.pnumber && touched.pnumber
+                  ? "col-sm-5 col-form-label error"
+                  : "col-sm-5 col-form-label"
+              }
+            >
+              Proposal Number*
+            </label>
 
+            <div className="col-sm-7">
               <input
                 type="text"
                 name="pnumber"
-                className="form-control"
+                className={
+                  errors.pnumber && touched.pnumber
+                    ? "form-control error"
+                    : "form-control"
+                }
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.pnumber}
                 size="20"
               />
-              {errors.pnumber && touched.pnumber && <div>{errors.pnumber}</div>}
-            </div>
-            <div className="form-group">
-              <label htmlFor="id">Sequence Number</label>
 
-              <input
-                type="text"
-                name="seq"
-                className="form-control"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.seq}
-                size="10"
-              />
-              {errors.seq && touched.seq && <div>{errors.seq}</div>}
+              {errors.pnumber &&
+                touched.pnumber && (
+                  <div className="invalid-feedback">{errors.pnumber}</div>
+                )}
             </div>
-            <div className="form-group">
-              <label htmlFor="id">State</label>
-
-              <input
-                type="text"
-                name="pstate"
-                className="form-control"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.pstate}
-                size="10"
-              />
-              {errors.pstate && touched.pstate && <div>{errors.pstate}</div>}
             </div>
-            <div className="form-group">
-              <label htmlFor="id">First Name</label>
+            <div className="form-group row">
+             <label
+               htmlFor="seq"
+               className={
+                 errors.seq && touched.seq
+                   ? "col-sm-5 col-form-label error"
+                   : "col-sm-5 col-form-label"
+               }
+             >
+               Sequence Number*
+             </label>
+             <div className="col-sm-7">
+               <input
+                 type="text"
+                 name="seq"
+                 className={
+                   errors.seq && touched.seq
+                     ? "form-control error"
+                     : "form-control"
+                 }
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 value={values.seq}
+                 size="10"
+               />
 
-              <input
-                type="text"
-                name="fname"
-                className="form-control"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.fname}
-                size="20"
-              />
-              {errors.fname && touched.fname && <div>{errors.fname}</div>}
-            </div>
-            <div className="form-group">
-              <label htmlFor="id">Last Name</label>
+               {errors.seq &&
+                 touched.seq && (
+                   <div className="invalid-feedback">{errors.seq}</div>
+                 )}
+             </div>
+           </div>
+           <div className="form-group row">
+             <label
+               htmlFor="pstate"
+               className={
+                 errors.pstate && touched.pstate
+                   ? "col-sm-5 col-form-label error"
+                   : "col-sm-5 col-form-label"
+               }
+             >
+               State*
+             </label>
+             <div className="col-sm-7">
+               <input
+                 type="text"
+                 name="pstate"
+                 className={
+                   errors.pstate && touched.pstate
+                     ? "form-control error"
+                     : "form-control"
+                 }
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 value={values.pstate}
+                 size="10"
+               />
+               {errors.pstate &&
+                 touched.pstate && (
+                   <div className="invalid-feedback">{errors.pstate}</div>
+                 )}
+             </div>
+           </div>
+           <div className="form-group row">
+           <label
+             htmlFor="fname"
+             className={
+               errors.pname && touched.pname
+                 ? "col-sm-5 col-form-label error"
+                 : "col-sm-5 col-form-label"
+             }
+           >First Name*</label>
+             <div className="col-sm-7">
+               <input
+                 type="text"
+                 name="fname"
+                 className={
+                   errors.pname && touched.pname
+                     ? "form-control error"
+                     : "form-control"
+                 }
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 value={values.fname}
+                 size="20"
+               />
+               {errors.fname &&
+                 touched.fname && (
+                   <div className="invalid-feedback">{errors.fname}</div>
+                 )}
+             </div>
+           </div>
+            <div className="form-group row">
+            <label
+                          htmlFor="lname"
+                          className={
+                            errors.lname && touched.lname
+                              ? "col-sm-5 col-form-label error"
+                              : "col-sm-5 col-form-label"
+                          }
+                        >Last Name</label>
+            <div className="col-sm-7">
+                          <input
+                            type="text"
+                            className={
+                              errors.lname && touched.lname
+                                ? "form-control error"
+                                : "form-control"
+                            }
+                            name="lname"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.lname}
+                            size="20"
+                          />
+                          {errors.lname && touched.lname && <div className="invalid-feedback">{errors.lname}</div>}
+                          </div>
 
-              <input
-                type="text"
-                className="form-control"
-                name="lname"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.lname}
-                size="20"
-              />
-              {errors.lname && touched.lname && <div>{errors.lname}</div>}
+
+
             </div>
           </div>
         </div>

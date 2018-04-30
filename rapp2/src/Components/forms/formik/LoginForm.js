@@ -8,41 +8,39 @@ import TextField from "material-ui/TextField";
 
 const LoginForm = ({ history, hideModal, authenticate }) => {
   const styles = {
-    errorStyle: {
-   color: "#333"
 
- },
-    block: {
-      maxWidth: 250
-    },
-    toggle: {
-      marginBottom: 16
-    },
-    thumbOff: {
-      backgroundColor: "#ffcccc"
-    },
-    underlineStyle: {
-  borderColor: "#000",
+  floatingLabelStyle: {
+color: "#999",
+fontSize:"1.06em",
+fontWeight:"400",
+top: "35px"
+
 },
-    underlineFocusStyle: {
-    borderColor: "#000",
-    },
-    floatingLabelFocusStyle: {
-   color: "red",
-   fontSize:"2em"
- },
-    trackOff: {
-      backgroundColor: "#ff9d9d"
-    },
-    thumbSwitched: {
-      backgroundColor: "red"
-    },
-    trackSwitched: {
-      backgroundColor: "#ff9d9d"
-    },
-    labelStyle: {
-      color: "red"
-    }
+floatingLabelFocusStyle: {
+color: "#2d5a96",
+top: "38px"
+
+},
+
+underlineFocusStyle: {
+borderColor: "#2d5a96"
+
+},
+underlineStyle: {
+borderColor: "#8a8a8a"
+
+},
+errorStyle: {
+color: "#f4433"
+
+},
+
+errorText: {
+color: "#f4433"
+
+},
+
+
 
   };
 
@@ -64,63 +62,76 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
     <MuiThemeProvider>
       <form onSubmit={handleSubmit}>
         <div className="modal-body">
-          <div className="row">
-            <div className="col">
               <div className="container text-left">
-                <div className="form-group">
+              <h2>Member Login</h2>
+              <div className="container loginInputContainer">
+<div className="inputWrapper">
+
                   <TextField
                         hintText="nress"
                         floatingLabelText="Username"
-                        underlineStyle={styles.underlineStyle}
-                        underlineFocusStyle={styles.underlineFocusStyle}
                         name="username"
-                        className="floatInput"
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        className="loginInput"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                         errorStyle={styles.errorStyle}
+                        floatingLabelStyle={styles.floatingLabelStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        underlineStyle={styles.underlineStyle}
+                        underlineFocusStyle={styles.underlineFocusStyle}
                         value={values.username}
                         errorText={errors.username && touched.username && <div>{errors.username}</div>}
                     />
-                  </div>
-                  <div className="form-group">
+
+</div>
+<div className="inputWrapper">
                     <TextField
                       hintText="nress"
                       floatingLabelText="Password"
                       name="pwd"
                       type="password"
-                      className=""
                       onChange={handleChange}
                       onBlur={handleBlur}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                      underlineStyle={styles.underlineStyle}
+                      underlineFocusStyle={styles.underlineFocusStyle}
                       value={values.pwd}
                       errorText={
                         errors.pwd && touched.pwd && <div>{errors.pwd}</div>
                       }
                     />
-                  </div>
-                </div>
-              </div>
-            </div>
+</div>
+  </div>
+
+  <div className="container">
+                <button
+                  className="btn btn-primary btn-block"
+                  icon="fa-close"
+                  disabled={isSubmitting}
+                >
+                  Log In
+                </button>
+                          <button
+                            type="reset"
+                            className="btn btn-secondary btn-block"
+                            icon="fa-close"
+                            onClick={() => hideModal()}
+                          >
+                            Cancel
+                          </button>
+                            <p className="small mt-1 text-right"><a href="#">Forgot your Username/Password?</a></p>
+                          </div>
+    </div>
+
+
+
+
+
+
           </div>
 
-          <div className="modal-footer">
-          <button
-            type="reset"
-            className="btn btn-secondary"
-            icon="fa-close"
-            onClick={() => hideModal()}
-          >
-            Cancel
-          </button>
-
-                  <button
-                    className="btn btn-primary "
-                    icon="fa-close"
-                    disabled={isSubmitting}
-                  >
-                    Log In
-                  </button>
-
+          <div className="modal-footer loginPopFooter text-center">
+              <p className="small mt-1 w-100"><a href="#">Create a New Account.</a></p>
 
 
 

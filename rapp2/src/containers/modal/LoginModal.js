@@ -65,10 +65,7 @@ class LoginModal extends Component {
           closeModal={this.props.closeModal}
           authenticate={this.props.authenticate}
         >
-          <div className="modal-header">
-
-              <h3 className="modal-title">Member Login</h3>
-          </div>
+        
 
           <LoginForm hideModal={this.props.closeModal} authenticate={this.props.authenticate} />
         </Modal>

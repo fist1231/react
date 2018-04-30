@@ -11,7 +11,7 @@ const UsersTable = ({ usersLst, onUserClick }) => (
     <div className="tableHeader">
     <div className="row">
     <div className="col">
-  Total number of Records: {usersLst.length}
+  <span className="totalNumber">Total Records: {usersLst.length}</span>
     </div>
 </div>
     </div>

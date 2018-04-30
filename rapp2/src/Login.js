@@ -171,7 +171,15 @@ class Login extends Component {
                 </Link>
               </li>
               <li>
-                <i className="fa fa-user-circle" /> Welcome, John D.
+                <div className="expandSearch">
+<form>
+                  <input
+                    type="search"
+                    placeholder="Search"
+                    className="searchPub"
+                  />
+                  </form>
+                </div>
               </li>
             </ul>
           </div>

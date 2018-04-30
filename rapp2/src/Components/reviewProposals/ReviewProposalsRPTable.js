@@ -184,7 +184,7 @@ class ReviewProposalsRPTable extends Component {
       <div>
       <div>
 
-          <div className="form-row mt-2">
+          <div className="form-row mt-2 mb-2">
             <div className="col-md-8 offset-md-2">
               <div className="search searchfilter">
                 <span className="fa fa-search"></span>
@@ -242,28 +242,33 @@ class ReviewProposalsRPTable extends Component {
           </DataTable>
 
 
-        <OverlayPanel ref={(el) => {this.state.preView = {op: el, rData: null};}}>
-          <div className="container-fluid" style={{backgroundColor:'#fff'}}>
+          <OverlayPanel ref={(el) => {this.state.preView = {op: el, rData: null};}} className="overlayPanel">
+
+
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Id</label>
-              <div className="col-sm-10">
-                <label className="col-sm-2 col-form-label">{this.props.previewFlag.previewDetails?this.props.previewFlag.previewDetails.ASSIGNED_RESPONSE_ID:''}</label>
+                <div className="col-6 text-right">Id:</div>
+                <div className="col-6">
+                {this.props.previewFlag.previewDetails?this.props.previewFlag.previewDetails.ASSIGNED_RESPONSE_ID:''}
+                </div>
               </div>
-            </div>
-            <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Number</label>
-              <div className="col-sm-10">
-                <label className="col-sm-2 col-form-label">{this.props.previewFlag.previewDetails?this.props.previewFlag.previewDetails.RESPONSE_NUMBER:''}</label>
+              <div className="form-group row">
+                  <div className="col-6 text-right">Number:</div>
+                <div className="col-6">
+                {this.props.previewFlag.previewDetails?this.props.previewFlag.previewDetails.RESPONSE_NUMBER:''}
+                </div>
               </div>
-            </div>
-            <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Seq Number</label>
-              <div className="col-sm-10">
-                <label className="col-sm-2 col-form-label">{this.props.previewFlag.previewDetails?this.props.previewFlag.previewDetails.RESPONSE_SEQ_NUMBER:''}</label>
+
+              <div className="form-group row">
+                <div className="col-6 text-right">Seq Number:</div>
+                <div className="col-6">
+              {this.props.previewFlag.previewDetails?this.props.previewFlag.previewDetails.RESPONSE_SEQ_NUMBER:''}
+                </div>
               </div>
-            </div>
-          </div>
-        </OverlayPanel>
+
+
+
+
+          </OverlayPanel>
         <ReactTooltip />
         </div>
     </div>

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Search = ({ searchFilter, onChange }) => (
   <div>
     <form>
-      <div className="form-row mt-2">
+      <div className="form-row mt-2 mb-2">
         <div className="col-md-8 offset-md-2">
           <div className="form-inline">
             <div className="col">

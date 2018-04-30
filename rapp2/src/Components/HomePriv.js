@@ -306,7 +306,7 @@ class HomePriv extends Component {
           <div className="col-md-2 homeSideInfo">
             <div className="loginInfo">
               <p>Last Login:</p>
-                <p>doeJohn</p>
+                <p><i className="fa fa-user-circle" /> doeJohn</p>
               <small>03/20/2018 10:24 EDT</small>
             </div>
             <h3>NSPIRES Home</h3>

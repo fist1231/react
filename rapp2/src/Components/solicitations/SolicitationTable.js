@@ -55,11 +55,11 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
     };
     return (
       <div>
-        <a className="tableAction" onClick={() => onEditClicked(row)}>
-          <i className="fa fa-edit" />
+        <a className="tableActionEdit" onClick={() => onEditClicked(row)}>
+          <i className="fa fa-pencil" />
         </a>
         <span>&nbsp;&nbsp;</span>
-        <a className="tableAction" onClick={() => onDeleteClicked(row)}>
+        <a className="tableActionDelete" onClick={() => onDeleteClicked(row)}>
           <i className="fa fa-times" />
         </a>
       </div>
@@ -100,14 +100,14 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
         text: 'Solicitation Number',
         sort: true,
         headerStyle: {
-           width: '260px'
+           width: '250px'
         }
       }, {
         dataField: 'FISCAL_YEAR',
         text: 'Fiscal Year',
         sort: true,
         headerStyle: {
-           width: '80px'
+           width: '120px'
         }
       }, {
         dataField: 'TITLE',
@@ -162,14 +162,21 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
 
     return (
       <div>
-        <div className="row mb-3">
-          <div className="col text-right">
-            Total records: {solicitations?solicitations.length:'0'}
-          <button className="btn btn-primary" onClick={() => onAddClicked()} >
-            <i className="fa fa-plus" aria-hidden="true"></i> Add Solicitation
-          </button>
-</div>
-        </div>
+      <div className="tableHeader">
+      <div className="row">
+      <div className="col pt-1">
+      <span className="totalNumber">Total Records: {solicitations?solicitations.length:'0'}</span>
+      </div>
+      <div className="col text-right">
+      <button className="btn btn-link" onClick={() => onAddClicked()} >
+        <i className="fa fa-plus" aria-hidden="true"></i> Add Solicitation
+      </button>
+
+      </div>
+      </div>
+      </div>
+
+
 <div className="row">
 <div className="col">
 <div className="dataTableContainer">

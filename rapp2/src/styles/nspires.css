@@ -5,6 +5,7 @@ body {
   padding: 0;
   background-color: #f9fafb;
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+
 }
 
 h1 {
@@ -65,6 +66,7 @@ a {
   background-color: #2d5a96;
   padding: 10px 20px;
   border-bottom: 1px solid rgb(204, 204, 204);
+  border-radius: 0;
 }
 
 .modal-body, .modal-footer {
@@ -73,18 +75,42 @@ a {
 
 .modal-body {
   background-color: #f9fafb;
+  font-size: 0.9em;
 }
-
+.modal-body .btn{
+  font-size: inherit;
+}
 .modal-footer {
   background-color: #eee;
   border-top: 1px solid #ccc;
 }
+.loginPopFooter{
 
+}
+.loginPopHeader{
+  border: 0;
+  background-color: transparent;
+}
+.inputWrapper{
+  height:72px;
+}
+.inputWrapper label, .inputWrapper input,.inputWrapper div{
+  font-family: "Open Sans" !important;
+}
+.loginInputContainer{
+  height:180px;
+}
 .modal-title {
   color: #fff;
   font-size: 1.1em;
   font-weight: 400;
   line-height: 1;
+}
+.loginBrand {
+  background: url(../images/nspiresLogoSmall.svg) no-repeat transparent;
+  width: 150px;
+  height: 50px;
+  background-size: 120px 50px;
 }
 
 h3.modal-title {
@@ -369,7 +395,6 @@ h3.modal-title {
 
 label {
   font-weight: 600;
-  font-size: 0.9em;
 }
 
 .btn {
@@ -520,7 +545,36 @@ label {
   padding: .4em .5em;
   border-color: #cacaca;
 }
-
+.ui-paginator .ui-paginator-page, .ui-paginator .ui-paginator-pages, .ui-paginator .ui-paginator-next, .ui-paginator .ui-paginator-last, .ui-paginator .ui-paginator-first, .ui-paginator .ui-paginator-prev, .ui-paginator .ui-paginator-current {
+    padding: .25rem .6rem;
+}
+.ui-paginator .ui-dropdown {
+      min-width: 4em;
+      margin-left: .375em;
+      padding: .25rem .6rem;
+}
+.ui-paginator a.ui-paginator-page {
+  color: #2D5A96;
+}
+.ui-paginator a.ui-paginator-next, .ui-paginator a.ui-paginator-last, .ui-paginator a.ui-paginator-first,.ui-paginator a.ui-paginator-prev{
+  color: #2D5A96;
+}
+.ui-dropdown .ui-dropdown-trigger {
+    padding-top: 0.5em;
+}
+.ui-paginator .ui-paginator-page.ui-state-active {
+    background: #5a759a !important;
+    border-color: transparent !important;
+}
+.ui-paginator .ui-paginator-page.ui-state-active:hover{
+    color: #fff !important;
+}
+.overlayPanel{
+  background-color: rgba(0, 0, 0, 0.8);
+  color:#fff;
+  width: 280px;
+  border-radius: .6em;
+}
 .searchfilter {
   margin-top: 0.6em;
   margin-bottom: 0.6em;
@@ -648,27 +702,69 @@ label {
     background-color: #dbeee9;
     color: #000;
 }
+.RPTableContainer div a.btn-link{
+  text-decoration: underline;
+}
 
 .dataTableContainer tbody.ui-datatable-hoverable-rows > tr.ui-widget-content:not(.ui-state-highlight):hover {
     cursor: pointer;
     background: rgba(209,222,234,0.6);
 }
-.colorBg{
-  color: #2d5a96;
-}
 .react-bs-table .table-bordered>thead>tr:first-child>td, .react-bs-table .table-bordered>thead>tr:first-child>th {
   border-bottom-width: 0;
 }
+.colorBg{
+  color: #2d5a96;
+}
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.dropup .caret, .navbar-fixed-bottom .dropdown .caret {
+    content: "";
+    border-top: 0;
+    border-bottom: 4px dashed;
+    border-bottom: 4px solid\9;
+}
+
+.react-bootstrap-table th .order > .dropdown > .caret {
+  color: #999;
+}
+
+.react-bootstrap-table th .order > .dropup > .caret {
+    margin: 10px 0;
+    color: #999;
+}
+.react-bootstrap-table-page-btns-ul{
+  font-size: 0.8em;
+}
+.react-bootstrap-table-page-btns-ul .page-link{
+  padding: .35rem .6rem;
+  color: #2D5A96;
+}
+.react-bootstrap-table-page-btns-ul .page-item.active .page-link {
+    z-index: 0;
+    color: #fff;
+    background-color: #5a759a;
+    border-color: transparent;
+}
 
 .table-hover tbody tr:hover {
-  background-color: rgba(209,222,234,0.6) !important;
+    background-color: rgba(209,222,234,0.6) !important;
 }
 .table thead th {
     vertical-align: bottom;
     border-bottom: 1px solid #bbb;
 }
-.table-bordered td, .table-bordered th {
-    border: 1px solid #ddd;
+.table-bordered td{
+    border: 1px solid #ccc;
 }
 .table-bordered th {
     border: 1px solid #bbb;
@@ -691,7 +787,6 @@ label {
   position: relative;
 }
 
-
 .ui-inputtext::placeholder {
   color: #999 !important;
   opacity: 1;
@@ -700,7 +795,15 @@ label {
 .ui-paginator .ui-paginator-page.ui-state-active {
   background: #535e6c;
 }
-
+.propDetail{
+  box-shadow: 1px 1px 1px #e2e2e2;
+}
+.propDetail .card-header{
+  background-color: #c4cfde;
+  color: #002648;
+  font-weight: 600;
+  font-size: 1.1em;
+}
 .table td, .table th {
   padding: .4em .5em;
   font-size: 0.9em;
@@ -710,6 +813,14 @@ label {
   padding: .4em .5em;
   color: #fff;
   font-size: .9em;
+}
+.tableHeader .btn-link{
+  color: #fff;
+  text-decoration: underline;
+}
+.tableHeader .btn-link:hover{
+  color: #fff;
+  text-decoration: none;
 }
 .totalNumber{
   padding-left:15px;
@@ -818,12 +929,23 @@ label {
 .ui-widget-content .ui-cell-data a:hover {
   text-decoration: normal;
 }
-
-.ui-widget-content .ui-cell-data a.tableAction {
-  color: #535e6c;
+a.tableActionEdit,a.tableActionDelete {
   cursor: pointer;
   font-size: 1.2em;
 }
+a.tableActionEdit {
+  color: #5e84b8 !important;
+}
+a.tableActionDelete {
+  color: #d46c6c !important;
+}
+a.tableActionDelete:hover {
+  color: red !important;
+}
+a.tableActionEdit:hover {
+  color: #144280 !important;
+}
+
 .ui-widget-content .ui-cell-data a.tableActionDelete {
     color: #666;
 }
@@ -843,6 +965,7 @@ label {
   margin-top: .25rem;
   font-size: 80%;
   color: #dc3545;
+  display: block;
 }
 
 input.error {
