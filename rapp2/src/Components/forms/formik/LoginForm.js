@@ -4,47 +4,67 @@ import Yup from "yup";
 import { withRouter, Redirect } from "react-router-dom";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from "material-ui/TextField";
+import {brown500, cyan500, lime500, teal600, pink300} from 'material-ui/styles/colors';
+
+const muiTheme = getMuiTheme({
+  textField: {
+    textColor: pink300,
+    hintColor: pink300,
+    floatingLabelColor: pink300,
+    // disabledTextColor: palette.disabledColor,
+    // errorColor: red500,
+    focusColor: pink300,
+    // backgroundColor: pink300,
+    // borderColor: palette.borderColor,
+  },
+});
 
 const LoginForm = ({ history, hideModal, authenticate }) => {
-  const styles = {
-    errorStyle: {
-   color: "#333"
+const styles = {
+  errorStyle: {
+    color: "gray"
+  },
+  block: {
+    maxWidth: 250
+  },
+  toggle: {
+    marginBottom: 16
+  },
+  thumbOff: {
+    backgroundColor: "#ffcccc"
+  },
+  underlineStyle: {
+    borderColor: "#000"
+  },
+  underlineFocusStyle: {
+    borderColor: "#000"
+  },
+  floatingLabelFocusStyle: {
+    color: "orange",
+    // fontSize: "2em"
+  },
+  floatingLabelShrinkStyle: {
+    color: "blue",
+    // fontSize: "2em"
+  },
+  trackOff: {
+    backgroundColor: "#ff9d9d"
+  },
+  thumbSwitched: {
+    // backgroundColor: "red"
+  },
+  trackSwitched: {
+    backgroundColor: "#ff9d9d"
+  },
+  floatingLabelStyle: {
+    // color: "red"
+    color: "orange"
+  }
+};
 
- },
-    block: {
-      maxWidth: 250
-    },
-    toggle: {
-      marginBottom: 16
-    },
-    thumbOff: {
-      backgroundColor: "#ffcccc"
-    },
-    underlineStyle: {
-  borderColor: "#000",
-},
-    underlineFocusStyle: {
-    borderColor: "#000",
-    },
-    floatingLabelFocusStyle: {
-   color: "red",
-   fontSize:"2em"
- },
-    trackOff: {
-      backgroundColor: "#ff9d9d"
-    },
-    thumbSwitched: {
-      backgroundColor: "red"
-    },
-    trackSwitched: {
-      backgroundColor: "#ff9d9d"
-    },
-    labelStyle: {
-      color: "red"
-    }
-
-  };
 
   const innerForm = (props, hdMod) => {
     const {
@@ -61,7 +81,7 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
     } = props;
 
     return (
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <form onSubmit={handleSubmit}>
         <div className="modal-body">
           <div className="row">
@@ -75,10 +95,8 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
                         underlineFocusStyle={styles.underlineFocusStyle}
                         name="username"
                         className="floatInput"
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                         errorStyle={styles.errorStyle}
                         value={values.username}
                         errorText={errors.username && touched.username && <div>{errors.username}</div>}
                     />
