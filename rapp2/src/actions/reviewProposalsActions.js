@@ -107,9 +107,34 @@ return dispatch(getGraphQLResult(reviewProposalsFilter));
 
 const getGraphQLResult = reviewProposalsFilter => dispatch => {
   fetch(`${config.review_proposals_address}graphql`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: `{ reviewProposalsSearch (filter: "${reviewProposalsFilter.searchText}") { ASSIGNED_RESPONSE_ID, FIRST_NAME, LAST_NAME, RESPONSE_NUMBER, RESPONSE_SEQ_NUMBER, PSTATE } }` }),
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: `{ reviewProposalsSearch (filter: "${reviewProposalsFilter.searchText}") {
+          ASSIGNED_RESPONSE_ID,
+          GENERATED_STATUS,
+          PANEL_ID,
+          ACRONYM,
+          RESPONSE_NUMBER,
+          RESPONSE_SEQ_NUMBER,
+          NSPIRES_USER_ID,
+          FIRST_NAME,
+          LAST_NAME,
+          EVALUATION_FORM_ID,
+          QUESTIONNAIRE,
+          EVALUATION_STATUS,
+          GRADE,
+          SCORING_METHOD_ID,
+          PANEL_PROPOSAL_ID,
+          PSTATE,
+          p_first_name,
+          p_last_name,
+          s_first_name,
+          s_last_name,
+          np_first_name,
+          np_last_name
+        }
+      }`
+    }),
     //body: JSON.stringify({ query: '{ solicitations { id, acronym, title } }' }),
   })
   // .then(res => res.json())

@@ -22,7 +22,7 @@ const Footer = () => (
 
         <ul className="footerInfo">
         <li>Curator: NASA Research and Education Support Services</li>
-        <li>NASA Official: Darth Vader</li>
+        <li>NASA Official: Name Goes Here</li>
       </ul>
         </div>
         <div className="col-3">

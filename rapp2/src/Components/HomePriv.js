@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import HomeCalendar from "./calendar/HomeCalendar";
 
 import { HorizontalBar } from "react-chartjs-2";
-// import {Bar} from 'react-chartjs-2'
+import {Bar} from 'react-chartjs-2'
 import HomeTabs from "./homeTabs";
 
 const Users = props => {
@@ -113,13 +113,13 @@ const Proposals = props => {
       sort: true
     },
     {
-      dataField: "PSTATE",
-      text: "Status",
+      dataField: "LAST_NAME",
+      text: "PI",
       sort: true
     },
     {
-      dataField: "LAST_NAME",
-      text: "PI",
+      dataField: "ACRONYM",
+      text: "Panel",
       sort: true
     }
   ];
@@ -149,31 +149,96 @@ const Proposals = props => {
 };
 
 const data = {
-  labels: [
-    "Apr 18",
-    "Mar 18",
-    "Feb 18",
-    "Jan 18",
-    "Dec 17",
-    "Nov 17",
-    "Oct 17",
-    "Sep 17",
-    "Aug 17",
-    "Jul 17",
-    "Jun 17"
-  ],
+  // labels: ["Apr", "Mar", "Feb", "Jan", "Dec", "Nov", "Oct", "Sep", "Aug", "Jul", "Jun"],
   datasets: [
     {
-      label: "Proposals Submitted in 2017/2018",
+      label: '5-Year Average',
+      type:'line',
+      borderWidth: 1,
+      fill: false,
+      lineTension: 0.2,
+      borderColor: '#EC932F',
+      backgroundColor: '#EC932F',
+      pointBorderColor: '#EC932F',
+      pointBackgroundColor: '#EC932F',
+      pointHoverBackgroundColor: '#EC932F',
+      pointHoverBorderColor: '#EC932F',
+      data: [603, 1011, 1105, 1151, 1258, 1307, 721, 935, 681, 555, 1109],
+    },
+    {
+      label: "2018",
       backgroundColor: "#d6e9f9",
       borderColor: "#7bb3e3",
       borderWidth: 1,
       hoverBackgroundColor: "#0275d8",
       hoverBorderColor: "#0275d8",
-      data: [752, 1466, 1538, 1129, 528, 1735, 911, 1318, 1100, 906, 1501]
-    }
+      data: [752, 1466, 1538, 1129, 1528, 1735, 911, 1318, 1100, 906, 1501],
+    },
+    {
+      label: "2017",
+      backgroundColor: "#ffc0cb",
+      borderColor: "#ff1493",
+      borderWidth: 1,
+      hoverBackgroundColor: "#800080",
+      hoverBorderColor: "#4B0082",
+      data: [552, 1266, 1138, 1290, 1328, 1535, 861, 1118, 780, 806, 1201],
+    },
   ]
 };
+
+const plugins = [{
+    afterDraw: (chartInstance, easing) => {
+        const ctx = chartInstance.chart.ctx;
+        ctx.fillText("", 100, 100);
+    }
+}];
+
+const options = {
+  responsive: true,
+  tooltips: {
+    mode: 'label'
+  },
+  elements: {
+    line: {
+      fill: false
+    }
+  },
+  scales: {
+    xAxes: [
+      {
+        display: true,
+        position: 'left',
+        gridLines: {
+          display: false
+        },
+        labels: ["Apr", "Mar", "Feb", "Jan", "Dec", "Nov", "Oct", "Sep", "Aug", "Jul", "Jun"]
+      }
+    ],
+    yAxes: [
+      {
+        display: true,
+        position: 'left',
+        id: 'y-axis-1',
+        gridLines: {
+          display: true
+        },
+        labels: {
+          show: true
+        }
+      }
+    ]
+  }
+};
+
+const legendOptions = {
+  "display": true,
+  "position": "top",
+  "fullWidth": true,
+  "reverse": true,
+  "labels": {
+    "fontColor": "rgb(255, 99, 132)"
+  }
+}
 
 class HomePriv extends Component {
   getDelayedData(data, delayInMilliseconds) {
@@ -189,14 +254,14 @@ class HomePriv extends Component {
         case "usersData": {
           this.setState({
             ...this.state,
-            usersData: usersMock().slice(0, 3)
+            usersData: usersMock().slice(0, 5)
           });
           break;
         }
         case "proposalsData": {
           this.setState({
             ...this.state,
-            proposalsData: reviewProposalsMock().slice(0, 3)
+            proposalsData: reviewProposalsMock().slice(0, 5)
           });
           break;
         }
@@ -236,9 +301,9 @@ class HomePriv extends Component {
             <div className="row">
               <div className="col">
               <div className="homePanelBox">
-                <h4>Proposals Submitted</h4>
-                <HorizontalBar data={data} />
-                {/* <Bar data={data} /> */}
+                <h4>Proposals Submitted By Month</h4>
+                {/* <HorizontalBar data={data} options={options} plugins={plugins} /> */}
+                <Bar data={data} options={options} plugins={plugins} legend={legendOptions} />
               </div>
               </div>
             </div>
@@ -276,7 +341,7 @@ class HomePriv extends Component {
             <div className="row">
               <div className="col">
                 <div className="homePanelBox">
-                  <h4>Events Calendar</h4>
+                  <h4>Drag And Drop Events Calendar</h4>
                   <div className="calendarContainer">
                     <HomeCalendar />
                   </div>
