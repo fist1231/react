@@ -214,8 +214,8 @@ class ReviewProposalsRPTable extends Component {
             className="dataTableContainer"
             value={this.state.proposals}
             paginator={true}
-            rows={20}
-            rowsPerPageOptions={[10,20,50]}
+            rows={15}
+            rowsPerPageOptions={[15,30,50,100]}
             resizableColumns={true}
             columnResizeMode="fit"
             responsive={true}
@@ -233,6 +233,7 @@ class ReviewProposalsRPTable extends Component {
             <Column field="PSTATE" header="Response Status" sortable={true} editor={this.statusEditor} editorValidator={this.requiredValidator} className="statusCol" />
             <Column field="FIRST_NAME" header="First name" sortable={true} editor={this.firstNameEditor} editorValidator={this.requiredValidator} />
             <Column field="LAST_NAME" header="Last name" sortable={true}  editor={this.lastNameEditor} editorValidator={this.requiredValidator} />
+            <Column field="ACRONYM" header="Panel" sortable={true} />
             <Column field="" body={actionsTemplate} header="" sortable={false} style={{width: '6em'}} />
           </DataTable>
 

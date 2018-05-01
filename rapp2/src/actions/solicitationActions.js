@@ -38,7 +38,7 @@ export const requestSolicitations = (solicitationsFilter) => ({
   receivedAt: undefined
 })
 
-export const receiveSolicitations = (solicitationsFilter="{searchText:'a', isOpenOnly:false}", json) => ({
+export const receiveSolicitations = (solicitationsFilter="{searchText:'', isOpenOnly:false}", json) => ({
   type: RECEIVE_SOLICITATIONS,
   solicitationsFilter,
   solicitationsTable: json, //[{id:1001, name:"zhoppa-1001"}],
@@ -99,7 +99,7 @@ export const receiveDeleteSolicitation = (solicitation="{}", solicitationsFilter
   receivedAt: Date.now()
 })
 
-const fetchSolicitations = (solicitationsFilter={searchText:'a', isOpenOnly:false}) => dispatch => {
+const fetchSolicitations = (solicitationsFilter={searchText:'', isOpenOnly:false}) => dispatch => {
   dispatch(requestSolicitations(solicitationsFilter))
   // return fetch(`https://www.reddit.com/r/${subreddit}.json`)
   //return Observable.ajax('http://192.168.1.208:30334/nress/solicitations')
@@ -161,8 +161,8 @@ return dispatch(getGraphQLResult(solicitationsFilter));
 
 
 const getGraphQLResult = solicitationsFilter => dispatch => {
-  fetch(`${config.solicitations_address}graphql`, {
-  // fetch(`${config.gateway_address}graphql`, {
+  // fetch(`${config.solicitations_address}graphql`, {
+  fetch(`${config.gateway_address}graphql`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query: `{
@@ -251,8 +251,9 @@ export const fetchSolicitationsIfNeeded = solicitationsFilter => (dispatch, getS
 }
 
 const updateGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatch => {
-  // console.log('++++++++++ updateGraphQLSolicitation solicitation = ' + JSON.stringify(solicitation));
-  fetch(`${config.solicitations_address}graphql`, {
+  console.log('++++++++++ updateGraphQLSolicitation solicitation = ' + JSON.stringify(solicitation));
+  // fetch(`${config.solicitations_address}graphql`, {
+  fetch(`${config.gateway_address}graphql`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     // body: JSON.stringify({ query: `{ solicitationsById (filter: "${solicitationsFilter.searchText}") { SOLICITATION_ID, SOLICITATION_NUMBER, PUBLICATION_APPROVAL, FISCAL_YEAR, OMNIBUS_NUMBER, TITLE, REVIEW_DATE, SELECTION_DATE, RELEASE_DATE, CLOSE_DATE, ANNOUNCEMENT_TYPE, CONTAINER_TYPE, AUTHORIZED_BY, WITHDRAWAL_REASON, WITHDRAWAL_DATE, WITHDRAWN_BY } }` }),
@@ -300,11 +301,11 @@ const updateGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatc
   })
     .then(res => {
       const jsn = res.json();
-      console.log('++++++++++ updateGraphQLSolicitation res.json() = ' + JSON.stringify(jsn));
+      // console.log('++++++++++ updateGraphQLSolicitation res.json() = ' + JSON.stringify(jsn));
       return jsn;
     })
     .then(res => {
-      console.log('++++++++++ updateGraphQLSolicitation res JSON = ' + JSON.stringify(res));
+      // console.log('++++++++++ updateGraphQLSolicitation res JSON = ' + JSON.stringify(res));
       //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
 //      return res.data.solicitations;
       return res.data.updateSolicitation;
@@ -312,11 +313,11 @@ const updateGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatc
     .then(res => {
       // console.log('res JSON = ' + JSON.stringify(res));
       //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
-      console.log('*********************** = ' + JSON.stringify(res) );
+      // console.log('*********************** = ' + JSON.stringify(res) );
       dispatch(receiveUpdateSolicitation(solicitation, res));
 
       // dispatch(getGraphQLResult(solicitationsFilter)); // Re-fetch list of solicitations after update
-      console.log('*********************** updateGraphQLSolicitation filter = ' + JSON.stringify(solicitationsFilter) );
+      // console.log('*********************** updateGraphQLSolicitation filter = ' + JSON.stringify(solicitationsFilter) );
       dispatch(fetchSolicitationsIfNeeded(solicitationsFilter)); // Re-fetch list of solicitations after update
       return res;
     });
@@ -340,7 +341,8 @@ const addGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatch =
 
   var reviewDate = solicitation.reviewDate?solicitation.reviewDate:null;
 
-  fetch(`${config.solicitations_address}graphql`, {
+  // fetch(`${config.solicitations_address}graphql`, {
+    fetch(`${config.gateway_address}graphql`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     // body: JSON.stringify({ query: `{ solicitationsById (filter: "${solicitationsFilter.searchText}") { SOLICITATION_ID, SOLICITATION_NUMBER, PUBLICATION_APPROVAL, FISCAL_YEAR, OMNIBUS_NUMBER, TITLE, REVIEW_DATE, SELECTION_DATE, RELEASE_DATE, CLOSE_DATE, ANNOUNCEMENT_TYPE, CONTAINER_TYPE, AUTHORIZED_BY, WITHDRAWAL_REASON, WITHDRAWAL_DATE, WITHDRAWN_BY } }` }),
@@ -421,9 +423,10 @@ export const addSolicitationData = (solicitation, solicitationsFilter) => (dispa
 
 
 const deleteGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatch => {
-  console.log('++++++++++ deleteGraphQLSolicitation solicitation = ' + JSON.stringify(solicitation));
-  console.log('++++++++++ deleteGraphQLSolicitation solicitationsFilter = ' + JSON.stringify(solicitationsFilter));
-  fetch(`${config.solicitations_address}graphql`, {
+  // console.log('++++++++++ deleteGraphQLSolicitation solicitation = ' + JSON.stringify(solicitation));
+  // console.log('++++++++++ deleteGraphQLSolicitation solicitationsFilter = ' + JSON.stringify(solicitationsFilter));
+  // fetch(`${config.solicitations_address}graphql`, {
+    fetch(`${config.gateway_address}graphql`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     // body: JSON.stringify({ query: `{ solicitationsById (filter: "${solicitationsFilter.searchText}") { SOLICITATION_ID, SOLICITATION_NUMBER, PUBLICATION_APPROVAL, FISCAL_YEAR, OMNIBUS_NUMBER, TITLE, REVIEW_DATE, SELECTION_DATE, RELEASE_DATE, CLOSE_DATE, ANNOUNCEMENT_TYPE, CONTAINER_TYPE, AUTHORIZED_BY, WITHDRAWAL_REASON, WITHDRAWAL_DATE, WITHDRAWN_BY } }` }),
@@ -451,11 +454,11 @@ const deleteGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatc
     .then(res => {
       // console.log('res JSON = ' + JSON.stringify(res));
       //console.log('res.data = ' + JSON.stringify(res.data.solicitationsById));
-      console.log('*********************** = ' + JSON.stringify(res) );
+      // console.log('*********************** = ' + JSON.stringify(res) );
       dispatch(receiveDeleteSolicitation(solicitation, res));
 
       // dispatch(getGraphQLResult(solicitationsFilter)); // Re-fetch list of solicitations after update
-      console.log('*********************** updateGraphQLSolicitation filter = ' + JSON.stringify(solicitationsFilter) );
+      // console.log('*********************** updateGraphQLSolicitation filter = ' + JSON.stringify(solicitationsFilter) );
       dispatch(fetchSolicitationsIfNeeded(solicitationsFilter)); // Re-fetch list of solicitations after update
       return res;
     });

@@ -50,7 +50,7 @@ const MainNav = (propsy, location) => (
   <div className="col-md-12">
           <Nav tabs className="mainNav">
             <NavItem>
-              <NavLink activeclassname='active' tag={RRNavLink} to="/" exact>Home</NavLink>
+              <NavLink activeclassname='active' tag={RRNavLink} to="/" exact>Dashboard</NavLink>
             </NavItem>
             <NavItem>
               <NavLink activeclassname='active' tag={RRNavLink} to="/usersTable">Users</NavLink>

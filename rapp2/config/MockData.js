@@ -7,7 +7,7 @@ var dte = new Date();
 export const usersMock = () => {
   var rows = [];
   for(var i=0; i<numrows; i++) {
-    rows.push({ _id: `0000${i}`, NSPIRES_USER_ID: `0000${i}`, USERNAME: `User name-${i}`, FIRST_NAME: `Firstname${i}`, LAST_NAME: `Lastname${i}`, REGISTRATION_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}` });
+    rows.push({ _id: `0000${i}`, NSPIRES_USER_ID: `0000${i}`, USERNAME: `alexis${i}`, FIRST_NAME: `Aristotl${String.fromCharCode(97 + i)}`, LAST_NAME: `Maximinus${String.fromCharCode(97 + i)}`, REGISTRATION_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}` });
   }
   return rows;
 
@@ -19,9 +19,9 @@ export const usersMock = () => {
 export const solicitationsMock = () => {
   var rows = [];
   for(var i=0; i<numrows; i++) {
-    rows.push({ _id: `9000${i}`, SOLICITATION_ID: `0000${i}`, SOLICITATION_NUMBER: `Number-${i}`, PUBLICATION_APPROVAL: 1, FISCAL_YEAR: `${1990+i}`,
+    rows.push({ _id: `9000${i}`, SOLICITATION_ID: `0000${i}`, SOLICITATION_NUMBER: `NN60SPG2015A${i}`, PUBLICATION_APPROVAL: 1, FISCAL_YEAR: `${1990+i}`,
     OMNIBUS_NUMBER: `OmniNumber ${i}`,
-    TITLE: `Title ${i}`,
+    TITLE: `Cassini Data Analysis and Participating Scientists ${i}`,
     REVIEW_DATE: '',
     // REVIEW_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
     SELECTION_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
@@ -46,7 +46,30 @@ export const reviewProposalsMock = () => {
 
   var rows = [];
   for(var i=0; i<numrows; i++) {
-    rows.push({ ASSIGNED_RESPONSE_ID: `000000${i}`, FIRST_NAME: `First-${i}`, LAST_NAME: `Last-${i}`, RESPONSE_NUMBER: `Number${i}`, RESPONSE_SEQ_NUMBER: `Seq-${i}`, PSTATE: `Status${i}` });
+    rows.push({
+      ASSIGNED_RESPONSE_ID: `000000${i}`,
+      GENERATED_STATUS: `GENERATED_STATUS`,
+      PANEL_ID: `999999${i}`,
+      ACRONYM: `In-Space Propul ${i}`,
+      RESPONSE_NUMBER: `11-11NIAC-100${i}`,
+      RESPONSE_SEQ_NUMBER: `${i}`,
+      NSPIRES_USER_ID: `id001${i}`,
+      FIRST_NAME: `Robert${String.fromCharCode(97 + i)}`,
+      LAST_NAME: `Baggi${String.fromCharCode(97 + i)}`,
+      EVALUATION_FORM_ID: `formid456${i}`,
+      QUESTIONNAIRE: `questionnaire ${i}`,
+      EVALUATION_STATUS: `status ${i}`,
+      GRADE: `grade ${i}`,
+      SCORING_METHOD_ID: `smid0012${i}`,
+      PANEL_PROPOSAL_ID: `propid987${i}`,
+      PSTATE: `Submitted`,
+      p_first_name: `p_first_name${i}`,
+      p_last_name: `p_last_name${i}`,
+      s_first_name: `s_first_name${i}`,
+      s_last_name: `s_last_name${i}`,
+      np_first_name: `np_first_name${i}`,
+      np_last_name: `np_last_name${i}`
+    });
   }
   return rows;
 
