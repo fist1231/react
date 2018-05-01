@@ -71,7 +71,7 @@ const fetchUsers = (usersFilter) => dispatch => {
    // return Observable.ajax(`${config.users_address}nress/users`)
    // return Observable.ajax(`${config.users_gateway_address}nress/users`)
    var searchTerm = usersFilter.searchText?"/"+usersFilter.searchText:"";
-   return Observable.ajax(`${config.users_gateway_address}nress/search${searchTerm}`)
+   return Observable.ajax(`${config.gateway_address}nress/search${searchTerm}`)
     .map(response => {
 //      console.log('RESPONSE = ' + response);
 //      console.log('response = ' + JSON.stringify(response.response));
