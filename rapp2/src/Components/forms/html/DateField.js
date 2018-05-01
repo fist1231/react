@@ -12,8 +12,9 @@ export const DateField = ({hintText, formatDate, name, floatingLabelText, classN
     setFieldValue(field, value);
   };
 
-  return <div className="row mt-3">
-    <div className="col-md-9">
+  return <div>
+
+    <div className="" style={{ position:'relative' }}>
       <DatePicker
         hintText={hintText}
         formatDate={formatDate}
@@ -28,10 +29,13 @@ export const DateField = ({hintText, formatDate, name, floatingLabelText, classN
         openToYearSelection={openToYearSelection}
         container={container}
       />
+
+      <div className="">
+        <i className="fa fa-remove" data-tip={tipText} onClick={onClearClick} style={{ position:'absolute',color:"#ccc",   top: '40px',
+      height: '20px',    left: '220px' }} />
+      </div>
     </div>
-    <div className="col-md-1">
-      <i className="fa fa-times" data-tip={tipText} onClick={onClearClick} style={{ position:'absolute', bottom:'13px' }} />
-    </div>
+
     <ReactTooltip />
   </div>
 }

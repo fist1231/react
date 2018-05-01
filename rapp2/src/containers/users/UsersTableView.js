@@ -88,7 +88,7 @@ class UsersTableView extends Component {
           <div className="col">
 
                 <Search searchFilter={selectedUsersFilter} onChange={this.props.onSearchChange}  />
-                <HelpButton buttonText={"Get Help"} buttonClick={this.handleToggle} />
+                <HelpButton buttonText={"Help"} buttonClick={this.handleToggle} />
                 <UsersTable usersLst={dataSource} />
                 <HelpDrawer toggled={this.state.open} onToggleChange={this.handleToggle}>
                   <UsersHelpContent />

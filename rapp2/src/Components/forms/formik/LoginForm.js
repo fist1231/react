@@ -4,47 +4,40 @@ import Yup from "yup";
 import { withRouter, Redirect } from "react-router-dom";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from "material-ui/styles/baseThemes/darkBaseTheme";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
 import TextField from "material-ui/TextField";
-import {brown500, cyan500, lime500, teal600, pink300} from 'material-ui/styles/colors';
+import {
+  brown500,
+  cyan500,
+  lime500,
+  teal600,
+  pink300
+} from "material-ui/styles/colors";
 
 const muiTheme = getMuiTheme({
   textField: {
-    textColor: pink300,
-    hintColor: pink300,
-    floatingLabelColor: pink300,
+    textColor: "#000",
+    hintColor: "#736d6d",
+    floatingLabelColor: "#6d6d6d",
     // disabledTextColor: palette.disabledColor,
-    // errorColor: red500,
-    focusColor: pink300,
+    errorColor: "#f44336",
+    focusColor: "#2d5a96",
     // backgroundColor: pink300,
-    // borderColor: palette.borderColor,
-  },
+    borderColor: "#6d6d6d",
+    fontSize: "1em",
+  }
 });
 
 const LoginForm = ({ history, hideModal, authenticate }) => {
   const styles = {
     floatingLabelStyle: {
-      color: "#999",
       fontSize: "1.06em",
-      fontWeight: "400",
-      top: "35px"
-    },
-    floatingLabelFocusStyle: {
-      color: "#2d5a96",
-      top: "38px"
-    },
-
-    underlineFocusStyle: {
-      borderColor: "#2d5a96"
-    },
-    underlineStyle: {
-      borderColor: "#8a8a8a"
+      fontWeight: "400"
     },
     errorStyle: {
       color: "#f4433"
     },
-
     errorText: {
       color: "#f4433"
     }
@@ -65,78 +58,76 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
     } = props;
 
     return (
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <form onSubmit={handleSubmit}>
-        <div className="modal-body">
-              <div className="container text-left">
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <form onSubmit={handleSubmit}>
+          <div className="modal-body">
+            <div className="container text-left">
               <h2>Member Login</h2>
               <div className="container loginInputContainer">
-<div className="inputWrapper">
-
+                <div className="inputWrapper">
                   <TextField
-                        hintText="nress"
-                        floatingLabelText="Username"
-                        name="username"
-                        className="floatInput"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.username}
-                        errorText={errors.username && touched.username && <div>{errors.username}</div>}
-                    />
+                    hintText="nress"
+                    floatingLabelText="Username"
+                    name="username"
+                    className="floatInput"
+                    onChange={handleChange}
+                    floatingLabelStyle={styles.floatingLabelStyle}
+                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                    onBlur={handleBlur}
+                    value={values.username}
+                    errorText={
+                      errors.username &&
+                      touched.username && <div>{errors.username}</div>
+                    }
+                  />
+                </div>
+                <div className="inputWrapper">
+                  <TextField
+                    hintText="nress"
+                    floatingLabelText="Password"
+                    name="pwd"
+                    type="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    floatingLabelStyle={styles.floatingLabelStyle}
+                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                    value={values.pwd}
+                    errorText={
+                      errors.pwd && touched.pwd && <div>{errors.pwd}</div>
+                    }
+                  />
+                </div>
+              </div>
 
-</div>
-<div className="inputWrapper">
-                    <TextField
-                      hintText="nress"
-                      floatingLabelText="Password"
-                      name="pwd"
-                      type="password"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      floatingLabelStyle={styles.floatingLabelStyle}
-                      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                      underlineStyle={styles.underlineStyle}
-                      underlineFocusStyle={styles.underlineFocusStyle}
-                      value={values.pwd}
-                      errorText={
-                        errors.pwd && touched.pwd && <div>{errors.pwd}</div>
-                      }
-                    />
-</div>
-  </div>
-
-  <div className="container">
+              <div className="container">
                 <button
-                  className="btn btn-primary btn-block"
+                  className="btn btn-primary btn-block mb-3"
                   icon="fa-close"
                   disabled={isSubmitting}
                 >
                   Log In
                 </button>
-                          <button
-                            type="reset"
-                            className="btn btn-secondary btn-block"
-                            icon="fa-close"
-                            onClick={() => hideModal()}
-                          >
-                            Cancel
-                          </button>
-                            <p className="small mt-1 text-right"><a href="#">Forgot your Username/Password?</a></p>
-                          </div>
-    </div>
-
-
-
-
-
-
+                <button
+                  type="reset"
+                  className="btn btn-secondary btn-block"
+                  icon="fa-close"
+                  onClick={() => hideModal()}
+                >
+                  Cancel
+                </button>
+                <p className="small mt-1 text-right">
+                  <span className="staticLink">
+                    forgot your username/password?
+                  </span>
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="modal-footer loginPopFooter text-center">
-              <p className="small mt-1 w-100"><a href="#">Create a New Account.</a></p>
-
-
-
+            <p className="small mt-1 w-100">
+              <span className="staticLink">Create a New Account.</span>
+            </p>
           </div>
         </form>
       </MuiThemeProvider>

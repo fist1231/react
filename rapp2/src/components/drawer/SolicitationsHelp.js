@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const SolicitationsHelpContent = () => (
-  <ol style={{margin:'10px'}}>
+  <ol>
     <li>Search by Soliciation Title</li>
     <li>Fully functional CRUD operations: Add, Update and Delete Solicitation</li>
     <li>Live data from MongoDB Solicitations collection</li>

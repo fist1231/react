@@ -51,13 +51,16 @@ class Solicitations extends React.Component {
 
     return (
       <div className="container-fluid">
+      <div className="row"><div className="col">
         {/*<Search value={foundSolicitationsFilter} onChange={this.handleChange}  />*/}
         <Search searchFilter={foundSolicitationsFilter} onChange={this.props.onSearchChange}  />
-        <HelpButton buttonText={"Get Help"} buttonClick={this.handleToggle} />
+        <HelpButton buttonText={"Help"} buttonClick={this.handleToggle} />
         <SolicitationTable solicitations={dataSource} onAddSolicitation={this.props.onAddSolicitation} onEditSolicitation={this.props.onEditSolicitation} onDeleteSolicitation={this.props.onDeleteSolicitation} solicitationsFilter={foundSolicitationsFilter} />
         <HelpDrawer toggled={this.state.open} onToggleChange={this.handleToggle}>
           <SolicitationsHelpContent />
         </HelpDrawer>
+        </div>
+        </div>
       </div>
     );
   }

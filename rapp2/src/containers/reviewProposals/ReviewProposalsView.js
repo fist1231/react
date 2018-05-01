@@ -66,11 +66,13 @@ class ReviewProposalsView extends Component {
       <div>
           {(dataSource?dataSource.length:0) > 0 ? (
             <div>
-              <HelpButton buttonText={"Get Help"} buttonClick={this.handleToggle} />
+
+              <div className="helpRwLocation"><HelpButton buttonText={"Help"} buttonClick={this.handleToggle} /></div>
               <ReviewProposalsList reviewProposals={dataSource} searchFilter={searchFilter} onSearchChange={this.props.onSearchChange} onEditProposal={this.props.onEditProposal} onPreview={this.props.onPreview} previewFlag={previewDetails} onDeleteProposal={this.props.onDelete} />
               <HelpDrawer toggled={this.state.open} onToggleChange={this.handleToggle}>
                 <ReviewProposalsHelpContent />
               </HelpDrawer>
+
             </div>
         ) : (
           <h2>Wait ...</h2>

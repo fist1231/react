@@ -16,27 +16,47 @@ const EditProposalForm = ({ proposal, hideModal }) => {
     return (
       <form onSubmit={handleSubmit}>
         <div className="modal-body">
-          <div className="container-fluid text-left">
-            <div className="form-group">
-              <label htmlFor="id">Proposal Number: </label>
-              <label htmlFor="id">{values.pnumber}</label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="id">Sequence Number: </label>
-              <label htmlFor="id">{values.seq}</label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="id">State: </label>
-              <label htmlFor="id">{values.pstate}</label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="id">First Name: </label>
-              <label htmlFor="id">{values.fname}</label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="id">Last Name</label>
-              <label htmlFor="id">{values.lname}</label>
-            </div>
+        <p className="alert alert-danger text-left ">
+            Are you sure you want to delete this proposal?
+          </p>
+          <div className="container text-left">
+            <table className="table table-striped">
+              <thead />
+              <tbody>
+                <tr>
+                  <td width="40%">
+                    <label htmlFor="id">Proposal Number: </label>
+                  </td>
+                  <td>{values.pnumber}</td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <label htmlFor="id">Sequence Number: </label>
+                  </td>
+                  <td>{values.seq}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <label htmlFor="id">State: </label>
+                  </td>
+                  <td>{values.pstate}</td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <label htmlFor="id">First Name: </label>
+                  </td>
+                  <td>{values.fname}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <label htmlFor="id">Last Name</label>
+                  </td>
+                  <td>{values.lname}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <div className="modal-footer">
@@ -46,12 +66,16 @@ const EditProposalForm = ({ proposal, hideModal }) => {
               className="btn btn-secondary"
               icon="fa-close"
               onClick={() => hideModal()}
-            >Cancel</button>
+            >
+              Cancel
+            </button>
             <button
               className="btn btn-primary "
               icon="fa-close"
               disabled={isSubmitting}
-            >Delete</button>
+            >
+              Delete
+            </button>
           </div>
         </div>
       </form>

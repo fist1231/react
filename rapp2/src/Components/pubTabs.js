@@ -46,7 +46,7 @@ export default class PubTabs extends React.Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink 
+            <NavLink disabled
               className={classnames({ active: this.state.activeTab === "2" })}
               onClick={() => {
                 this.toggle("2");
@@ -71,9 +71,9 @@ export default class PubTabs extends React.Component {
                       news updates and more information.
                     </p>
                     <span className="float-right">
-                      <a href="#">
+                      <span className="staticLink">
                         <i className="fa fa-arrow-circle-right" />Continue
-                      </a>
+                      </span>
                     </span>
                   </div>
                 </div>
@@ -83,9 +83,9 @@ export default class PubTabs extends React.Component {
                     <h5 className="mt-0">News Title 2</h5>
                     <p>This is a test for Iteration 6.5 </p>
                     <span className="float-right">
-                      <a href="#">
+                      <span className="staticLink">
                         <i className="fa fa-arrow-circle-right" />Continue
-                      </a>
+                      </span>
                     </span>
                   </div>
                 </div>

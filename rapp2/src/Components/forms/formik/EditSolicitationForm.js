@@ -3,6 +3,7 @@ import { withFormik } from "formik";
 import Yup from "yup";
 import moment from 'moment';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from "material-ui/styles/getMuiTheme";
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 import DatePicker from 'material-ui/DatePicker';
@@ -12,15 +13,33 @@ import { announcementTypeItems, containerTypeItems, omnibusAutocomplete } from '
 import SelectField from 'material-ui/SelectField';
 import { DateField } from '../../../components/forms/html/DateField'
 
+const muiTheme = getMuiTheme({
+  textField: {
+    textColor: "#000",
+    hintColor: "#736d6d",
+    floatingLabelColor: "#6d6d6d",
+    // disabledTextColor: palette.disabledColor,
+    errorColor: "#f44336",
+    focusColor: "#2d5a96",
+    // backgroundColor: pink300,
+    borderColor: "#6d6d6d",
+  }
+});
+
+
 
 const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, filter }) => {
 
   const styles = {
+    floatingLabelStyle: {
+      fontSize: "1.06em",
+      fontWeight: "400"
+    },
     block: {
       maxWidth: 250,
     },
     toggle: {
-      marginBottom: 16,
+      paddingTop:30,
     },
     thumbOff: {
       backgroundColor: '#ffcccc',
@@ -34,9 +53,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
     trackSwitched: {
       backgroundColor: '#ff9d9d',
     },
-    labelStyle: {
-      color: 'red',
-    },
+
   };
 
   const innerForm = (props, hdMod) => {
@@ -84,13 +101,14 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
     };
 
     return (
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <form onSubmit={handleSubmit}>
         <div className="modal-body">
+          <div className="container text-left modalForm">
           <div className="row">
-            <div className="col">
-              <div className="container-fluid text-left">
-                <div className="form-group">
+                <div className="col-md-6 col-sm-6">
+
+                <div className="inputWrapper">
                   <TextField
                         hintText="Number"
                         floatingLabelText="Solicitation Number *"
@@ -98,11 +116,12 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                         className=""
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        floatingLabelStyle={styles.floatingLabelStyle}
                         value={values.solNumber}
                         errorText={errors.solNumber && touched.solNumber && <div>{errors.solNumber}</div>}
                     />
                 </div>
-                <div className="form-group">
+              <div className="inputWrapper">
                   <Toggle
                     label="Publication Approval"
                     labelPosition="right"
@@ -111,7 +130,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     // toggled={values.pubApproval===1}
                     toggled={(values.pubApproval==1)?true:false}
                     onToggle={_handleToggle}
-                    className=""
+                    className="toggeleUi"
                     onChange={handleChange}
                     // onChange={console.log('ello r' + event.target.value)}
                     // onChange={(event) => {console.log('ello r: '+ event.target.value); this.setState(name: event.target.value);}}
@@ -122,7 +141,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                   />
 
                 </div>
-                <div className="form-group">
+                <div className="inputWrapper">
                   <DateField
                     hintText="Fiscal Year"
                     formatDate={() => moment(`${values.year}-01.01`).format('YYYY')}
@@ -130,6 +149,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     floatingLabelText="Fiscal Year *"
                     className=""
                     onBlur={handleBlur}
+                    floatingLabelStyle={styles.floatingLabelStyle}
                     value={values.year?moment(`${values.year}-01.01`).toDate():undefined}
                     errorText={errors.year && touched.year && <div>{errors.year}</div>}
                     onClearClick={e => setFieldValue("year", undefined)}
@@ -156,7 +176,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
  */}
 
                 </div>
-                <div className="form-group">
+                <div className="inputWrapper">
                   <AutoComplete
                       dataSource={omnibusAutocomplete}
                       filter={AutoComplete.caseInsensitiveFilter}
@@ -167,13 +187,14 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                       onChange={handleChange}
                       onUpdateInput={(searchText, dataSource, params) => _handleAutoUpdateChange(searchText, dataSource, params, "omnibus")}
                       onBlur={handleBlur}
+                      floatingLabelStyle={styles.floatingLabelStyle}
                       value={values.omnibus}
                       searchText={values.omnibus}
                       errorText={ errors.omnibus && touched.omnibus && <div>{errors.omnibus}</div> }
                   />
 
                 </div>
-                <div className="form-group">
+                <div className="inputWrapper">
                   <TextField
                         hintText="Title"
                         floatingLabelText="Solicitation Title *"
@@ -181,11 +202,12 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                         className=""
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        floatingLabelStyle={styles.floatingLabelStyle}
                         value={values.title}
                         errorText={errors.title && touched.title && <div>{errors.title}</div>}
                     />
                 </div>
-                <div className="form-group">
+                <div className="inputWrapper">
                   <DateField
                     hintText="Review Date"
                     formatDate={() => moment(`${values.reviewDate}`).format('MM/DD/YYYY')}
@@ -193,6 +215,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     floatingLabelText="Review Date"
                     className=""
                     onBlur={handleBlur}
+                    floatingLabelStyle={styles.floatingLabelStyle}
                     value={values.reviewDate?moment(`${values.reviewDate}`).toDate():undefined}
                     errorText={errors.reviewDate && touched.reviewDate && <div>{errors.reviewDate}</div>}
                     onClearClick={e => setFieldValue("reviewDate", undefined)}
@@ -216,7 +239,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
  */}
 
                 </div>
-                <div className="form-group">
+                  <div className="inputWrapper">
                   <DateField
                     hintText="Selection Date"
                     formatDate={() => moment(`${values.selectionDate}`).format('MM/DD/YYYY')}
@@ -225,6 +248,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     className=""
                     onChange={(e, val) => _handleDateChange(e, val, "selectionDate")}
                     onBlur={handleBlur}
+                    floatingLabelStyle={styles.floatingLabelStyle}
                     value={values.selectionDate?moment(`${values.selectionDate}`).toDate():undefined}
                     errorText={errors.selectionDate && touched.selectionDate && <div>{errors.selectionDate}</div>}
                     onClearClick={e => setFieldValue("selectionDate", undefined)}
@@ -249,7 +273,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
  */}
 
                 </div>
-                <div className="form-group">
+                  <div className="inputWrapper">
                   <DateField
                     hintText="Release Date"
                     formatDate={() => moment(`${values.releaseDate}`).format('MM/DD/YYYY')}
@@ -258,6 +282,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     className=""
                     onChange={(e, val) => _handleDateChange(e, val, "releaseDate")}
                     onBlur={handleBlur}
+                    floatingLabelStyle={styles.floatingLabelStyle}
                     value={values.releaseDate?moment(`${values.releaseDate}`).toDate():undefined}
                     errorText={errors.releaseDate && touched.releaseDate && <div>{errors.releaseDate}</div>}
                     onClearClick={e => setFieldValue("releaseDate", undefined)}
@@ -282,14 +307,12 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
  */}
 
                 </div>
-              </div>
+
 
             </div>
-            <div className="col">
+            <div className="col-md-6 col-sm-6">
 
-              <div className="container-fluid text-left">
-
-                <div className="form-group">
+                <div className="inputWrapper">
                   <DateField
                     hintText="Close Date"
                     formatDate={() => moment(`${values.closeDate}`).format('MM/DD/YYYY')}
@@ -298,6 +321,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     className=""
                     onChange={(e, val) => _handleDateChange(e, val, "closeDate")}
                     onBlur={handleBlur}
+                      floatingLabelStyle={styles.floatingLabelStyle}
                     value={values.closeDate?moment(`${values.closeDate}`).toDate():undefined}
                     errorText={errors.closeDate && touched.closeDate && <div>{errors.closeDate}</div>}
                     onClearClick={e => setFieldValue("closeDate", undefined)}
@@ -322,7 +346,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
  */}
 
                 </div>
-                <div className="form-group">
+              <div className="inputWrapper">
                   <SelectField
                     value={values.announcementType}
                     onChange={_handleATypeChange}
@@ -345,7 +369,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                   {errors.announcementType && touched.announcementType && <div>{errors.announcementType}</div>}
 */}
                 </div>
-                <div className="form-group">
+              <div className="inputWrapper">
 {/*
                   <TextField
                         hintText="Container Type"
@@ -370,7 +394,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     </SelectField>
 
                 </div>
-                <div className="form-group">
+            <div className="inputWrapper">
                   <TextField
                         hintText="Authorized By"
                         floatingLabelText="Authorized By"
@@ -381,7 +405,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                         value={values.authorizedBy}
                     />
                 </div>
-                <div className="form-group">
+              <div className="inputWrapper">
                   <TextField
                         hintText="Reason"
                         floatingLabelText="Withdrawal Reason"
@@ -392,7 +416,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                         value={values.withdrawalReason}
                     />
                 </div>
-                <div className="form-group">
+              <div className="inputWrapper">
                   <DateField
                     hintText="Withdrawal Date"
                     formatDate={() => moment(`${values.withdrawalDate}`).format('MM/DD/YYYY')}
@@ -408,7 +432,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     container="inline"
                   />
 
-{/* 
+{/*
                   <DatePicker
                     hintText="Withdrawal Date" container="inline"
                     formatDate={() => moment(`${values.withdrawalDate}`).format('MM/DD/YYYY')}
@@ -425,7 +449,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
  */}
 
                 </div>
-                <div className="form-group">
+              <div className="inputWrapper">
                   <TextField
                         hintText="Withdrawn By"
                         floatingLabelText="Withdrawn By"
@@ -438,10 +462,9 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                 </div>
               </div>
 
-            </div>
           </div>
         </div>
-
+</div>
         <div className="modal-footer">
           <div className="btnContainer">
             <button

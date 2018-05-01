@@ -111,7 +111,6 @@ render() {
             <div className="modal-header">
                 <h3 className="modal-title">Delete Proposal? {proposal.RESPONSE_NUMBER}-{proposal.RESPONSE_SEQ_NUMBER}</h3>
             </div>
-            <p>Are you sure you want to delete this proposal?</p>
             <DeleteProposalForm proposal={proposal} hideModal={this.props.onFormSubmit} />
           </Dialog>
         </Content>

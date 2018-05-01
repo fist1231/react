@@ -84,8 +84,21 @@ a {
   background-color: #eee;
   border-top: 1px solid #ccc;
 }
-.loginPopFooter{
+.modal-body p {
+  font-size: 1em;
+}
+.modal-body .table td, .modal-body .table th {
+  font-size: 1em;
+}
 
+.modalForm label{
+  font-weight: 400;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-size: 1em;
+}
+.tableData::before{
+  content: ":";
+  margin-right: 5px;
 }
 .loginPopHeader{
   border: 0;
@@ -243,6 +256,12 @@ h3.modal-title {
 .homePanelLink a{
   color:#014c8c;
 }
+.staticLink{
+  color: #2D5A96;
+}
+.staticLink600{
+  font-weight: 600;
+}
 .badge{
   background-color: #0275d8;
 }
@@ -268,6 +287,17 @@ h3.modal-title {
 }
 
 .homeTabs .nav-link{
+  background-color: #666;
+  border-color: #c5c5c5 #c5c5c5 #ddd;
+  font-size: 0.95em;
+  color:#ccc !important;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-top-right-radius: .1rem;
+  border-top-left-radius: .1rem;
+}
+.homeTabs .nav-link.disabled{
   background-color: #666;
   border-color: #c5c5c5 #c5c5c5 #ddd;
   font-size: 0.95em;
@@ -605,7 +635,7 @@ label {
 }
 
 .ReactTable .rt-thead.-header {
-  background-color: #c4cfde;
+  background-color: #d3dbe6;
   box-shadow: none;
   color: #000;
 }
@@ -626,7 +656,7 @@ label {
   font-weight: 600;
 }
 .ReactTable.-highlight .rt-tbody .rt-tr:not(.-padRow):hover {
-    background: rgba(209,222,234,0.6);
+    background: #e6f4f9;
 }
 .ReactTable .rt-thead .rt-th.-sort-asc, .ReactTable .rt-thead .rt-td.-sort-asc {
     box-shadow: inset 0 3px 0 0 #48ac81;
@@ -675,13 +705,13 @@ label {
   font-weight: 600;
 }
 .dataTableContainer table th{
-  background-color: #c4cfde;
+  background-color: #d3dbe6;
   color: #002648;
   font-weight: 600;
   text-align: center;
 }
 .dataTableContainer table thead.ui-datatable-thead th{
-  background-color: #c4cfde;
+  background-color: #d3dbe6;
   color: #002648;
   font-weight: 600;
   text-align: center;
@@ -708,7 +738,7 @@ label {
 
 .dataTableContainer tbody.ui-datatable-hoverable-rows > tr.ui-widget-content:not(.ui-state-highlight):hover {
     cursor: pointer;
-    background: rgba(209,222,234,0.6);
+    background: #e6f4f9;
 }
 .react-bs-table .table-bordered>thead>tr:first-child>td, .react-bs-table .table-bordered>thead>tr:first-child>th {
   border-bottom-width: 0;
@@ -757,7 +787,7 @@ label {
 }
 
 .table-hover tbody tr:hover {
-    background-color: rgba(209,222,234,0.6) !important;
+    background-color: #e6f4f9 !important;
 }
 .table thead th {
     vertical-align: bottom;
@@ -799,7 +829,7 @@ label {
   box-shadow: 1px 1px 1px #e2e2e2;
 }
 .propDetail .card-header{
-  background-color: #c4cfde;
+  background-color: #d3dbe6;
   color: #002648;
   font-weight: 600;
   font-size: 1.1em;

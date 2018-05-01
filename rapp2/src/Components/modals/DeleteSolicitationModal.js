@@ -50,7 +50,7 @@ const Dialog = styled.div`
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
-  max-width: 520px;
+  max-width: 70%;
   cursor: default;
 `;
 

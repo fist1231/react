@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const ReviewProposalsHelpContent = () => (
-  <ol style={{margin:'10px'}}>
+  <ol>
     <li>Search by all columns data</li>
     <li>Reorder rows by dragging first icon of each row</li>
     <li>Quick preview by mouse-over the 'eye' icon</li>

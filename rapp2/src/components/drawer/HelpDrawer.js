@@ -5,6 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import 'font-awesome/css/font-awesome.min.css';
+import './drawer.css'
 
 export default class HelpDrawer extends Component {
 
@@ -23,9 +25,10 @@ export default class HelpDrawer extends Component {
     return (
       <div>
         <MuiThemeProvider>
-          <Drawer width={350} openSecondary={true} open={this.props.toggled} >
+          <Drawer width={350} openSecondary={true} open={this.props.toggled} className="usageTipsContainer">
             <AppBar
               title="Usage Tips"
+              className="usageTips"
               onLeftIconButtonClick={this.handleClick}
               iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             />
