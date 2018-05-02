@@ -53,6 +53,9 @@ const MainNav = (propsy, location) => (
               <NavLink activeclassname='active' tag={RRNavLink} to="/" exact>Dashboard</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink activeclassname='active' tag={RRNavLink} to="/calendar">Calendar</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink activeclassname='active' tag={RRNavLink} to="/usersTable">Users</NavLink>
             </NavItem>
             <NavItem>

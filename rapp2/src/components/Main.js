@@ -7,6 +7,7 @@ import ReviewProposals from '../containers/reviewProposals/ReviewProposalsView'
 import ReviewProposalDetailsView from '../containers/reviewProposals/ReviewProposalDetailsView';
 import HomePriv from './HomePriv'
 import NoMatch from '../NoMatch'
+import HomeCalendar from '../components/calendar/HomeCalendar'
 
 
 // The Main component renders one of the three provided
@@ -20,6 +21,7 @@ const Main = () => (
   <div>
     <Switch>
       <Route path='/' exact component={HomePriv} />
+      <Route path='/calendar' component={HomeCalendar}/>
       <Route path='/users' component={UsersList}/>
       <Route path='/usersTable' component={UsersTable}/>
 {/*      <Route path='/solicitations'><Solicitations solicitations={SOLICITATIONS} /></Route> */}
