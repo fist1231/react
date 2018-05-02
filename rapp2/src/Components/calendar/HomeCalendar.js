@@ -78,8 +78,11 @@ class HomeCalendar extends React.Component {
   render() {
     return (
       <div>
-
-        <div className="helpRwLocation"><HelpButton buttonText={"Help"} buttonClick={this.handleToggle} /></div>
+          {this.props.windowMode? ''
+           : (
+            <div className="helpRwLocation"><HelpButton buttonText={"Help"} buttonClick={this.handleToggle} /></div>
+          )
+          }
           <DnDCalendar
             defaultDate={new Date()}
             defaultView="month"
