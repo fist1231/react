@@ -11,6 +11,8 @@ import { withRouter } from 'react-router-dom'
 import HelpDrawer from '../../components/drawer/HelpDrawer'
 import HelpButton from '../../components/drawer/HelpButton'
 import ReviewProposalsHelpContent from '../../components/drawer/ReviewProposalsHelp'
+import { RingLoader, GridLoader, FadeLoader } from "react-spinners";
+
 
 class ReviewProposalsView extends Component {
 
@@ -75,7 +77,9 @@ class ReviewProposalsView extends Component {
 
             </div>
         ) : (
-          <h2>Wait ...</h2>
+          <div className="row">
+            <div className="col-md-5 offset-md-3 text-center loader"><FadeLoader color={"#0275d8"} loading={true} /></div>
+          </div>
         )}
         {/*}
         {

@@ -1,11 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
+import { RingLoader, GridLoader, FadeLoader } from "react-spinners";
+
 
 const ReviewProposalDetails = ({ proposal, isLoading }) => (
   <div className="container-fluid">
     {isLoading ? (
-      <h2>Loading...</h2>
+      <div className="row">
+        <div className="col-md-5 offset-md-3 text-center loader"><FadeLoader color={"#0275d8"} loading={true} /></div>
+      </div>
     ) : (
       <div>
         <div className="col-md-8 offset-md-2 mt-3">
@@ -129,7 +133,7 @@ const ReviewProposalDetails = ({ proposal, isLoading }) => (
     )}
     <div className="container mt-3">
       <div className="row">
-        <div className="col-md-12 text-center">
+        <div className="col-md-12">
           <Link to="/reviewProposals">
             <i className="fa fa-chevron-left" aria-hidden="true" /> Back to list
           </Link>

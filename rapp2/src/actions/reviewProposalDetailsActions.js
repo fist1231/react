@@ -45,7 +45,7 @@ const fetchReviewProposalDetails = reviewProposalId => dispatch => {
 
 const getGraphQLResult = reviewProposalId => dispatch => {
   console.log('************ getGraphQLResult reviewProposalId=' + reviewProposalId);
-  fetch(`${config.review_proposals_address}graphql`, {
+  fetch(`${config.gateway_address}graphql`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: `{ reviewProposalById (id: "${reviewProposalId}") {
