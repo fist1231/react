@@ -13,15 +13,15 @@ import PubTabs from "./pubTabs";
 const styles = {
   slideContainer: {
     backgroundImage: `url(${img1})`,
-    height: "400px"
+    height: "80vh"
   },
   slideContainer2: {
     backgroundImage: `url(${img2})`,
-    height: "400px"
+    height: "80vh"
   },
   slideContainer3: {
     backgroundImage: `url(${img3})`,
-    height: "400px"
+    height: "80vh"
   }
 };
 
@@ -30,9 +30,9 @@ const Home = () => (
     <div className="container-fluid p-0">
       <Carousel interval={5000} showThumbs={false} showStatus={false} infiniteLoop autoPlay>
         <div style={styles.slideContainer} className="slideStyle">
+        <div className="container">
           <div className="row no-gutters">
-            <div className="col-md-5" />
-            <div className="col-md-7">
+            <div className="col-md-12">
               <div className="slideText">
                 <h2>Welcome to NSPIRES</h2>
                 <p>
@@ -43,13 +43,14 @@ const Home = () => (
                 </p>
                 <a className="btn btn-primary bannerBtn">Learn More</a>
               </div>
+              </div>
             </div>
           </div>
         </div>
         <div style={styles.slideContainer2} className="slideStyle">
+<div className="container">
           <div className="row no-gutters">
-            <div className="col-md-5" />
-            <div className="col-md-7">
+            <div className="col-md-12">
               <div className="slideText">
                 <h2>Solicitations</h2>
                 <p>
@@ -64,20 +65,19 @@ const Home = () => (
                 <a className="btn btn-primary bannerBtn">Search Now</a>
               </div>
             </div>
+            </div>
           </div>
         </div>
         <div style={styles.slideContainer3} className="slideStyle">
+        <div className="container">
           <div className="row no-gutters">
-            <div className="col-md-5" />
-            <div className="col-md-7">
+            <div className="col-md-12">
               <div className="slideText">
                 <h2>Getting Started</h2>
                 <p>
                   To submit a research proposal to NASA, individuals and the
                   organizations with which they are affiliated must be
                   registered in NSPIRES. Individuals may register at any time.
-                </p>
-                <p>
                   Organizations are required to have a valid registration with
                   the System for Award Management (SAM) before they can register
                   in NSPIRES. See Registration Information for more details on
@@ -86,13 +86,25 @@ const Home = () => (
                 <a className="btn btn-primary bannerBtn">Go Now</a>
               </div>
             </div>
+            </div>
           </div>
         </div>
       </Carousel>
 
-      <div className="puTabsContainer mt-3">
+      {/*<div className="puTabsContainer mt-3">
         <PubTabs />
-      </div>
+      </div>*/}
+
+      <div className="container mt-4">
+        <section className="text-center">
+        <div className="row">
+          <div className="col">
+      <h2 className="homeText">This site facilitates the search for NASA research opportunities.</h2>
+</div>
+</div>
+        </section>
+        </div>
+
       <div className="container">
         <section className="text-center">
           <div className="featureContainer">
@@ -186,11 +198,11 @@ const Home = () => (
         <section className="tableContainer">
           <div className="row">
             <div className="col">
-              <h3 className="text-center">
+              <h4 className="text-center">
                 Solicitations with NOI/Proposals Due in the Next 30 days
-              </h3>
+              </h4>
               <table className="table puTable">
-                <thead className="bg-primary">
+                <thead>
                   <tr>
                     <th scope="col">Solicitation Title</th>
                     <th scope="col">Solicitation #</th>

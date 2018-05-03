@@ -4,6 +4,14 @@ import Modal from 'react-modal';
 import LoginForm from '../../Components/forms/formik/LoginForm'
 
 const customStyles = {
+  overlay: {
+     position: 'fixed',
+     top: 0,
+     left: 0,
+     right: 0,
+     bottom: 0,
+     backgroundColor: 'rgba(0, 0, 0, 0.6)'
+   },
   content : {
     top                   : '50%',
     left                  : '50%',
@@ -65,7 +73,7 @@ class LoginModal extends Component {
           closeModal={this.props.closeModal}
           authenticate={this.props.authenticate}
         >
-        
+
 
           <LoginForm hideModal={this.props.closeModal} authenticate={this.props.authenticate} />
         </Modal>

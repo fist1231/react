@@ -882,30 +882,38 @@ label {
   }
 }
 .slideText{
-  text-align: left;
+  text-align: center;
     margin-left: 3rem;
     margin-right: 5rem;
-    margin-top: 4rem;
+    margin-top: 17vh;
 }
 
 .slideText h2{
   color:#fff;
-  font-size: 2.3em;
+  font-size: 2.5em;
   text-shadow: 2px 2px 4px #333;
+  font-weight: 400;
 }
 .slideText p{
-  color:#fff;
-  font-size: 1em;
+  color: #fff;
+  font-size: 1.2em;
   text-shadow: 2px 2px 4px #333;
+  font-weight: 400;
+}
+h2.homeText{
+  font-weight: 600;
+  color:#666
 }
 @media (max-width: 768px){
   .slideStyle{
     height: 250px !important;
+    display: none;
 }
 }
 .puTable th{
-  color:#fff;
-  font-weight:400;
+  color:#222;
+  font-weight:600;
+  background-color: #ddd;
 }
 .puTable td{
   color:#000;
@@ -913,8 +921,8 @@ label {
 .puTable td, .puTable th {
     border-top: 1px solid #ddd;
 }
-.tableContainer h3{
-  font-size: 1.5em;
+.tableContainer h4{
+  font-size: 1.2em;
 }
 .tableContainer {
   margin-top: 4rem;
@@ -1108,4 +1116,7 @@ label.error {
 }
 #custom-search-input .form-control {
     padding: .2rem .75rem;
+}
+.carousel.carousel-slider {
+    box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
 }
