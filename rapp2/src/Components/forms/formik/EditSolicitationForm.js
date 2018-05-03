@@ -1,17 +1,21 @@
 import React from "react";
 import { withFormik } from "formik";
 import Yup from "yup";
-import moment from 'moment';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import moment from "moment";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
-import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
-import DatePicker from 'material-ui/DatePicker';
-import AutoCompleteField from '../html/AutoCompleteField';
-import AutoComplete from 'material-ui/AutoComplete';
-import { announcementTypeItems, containerTypeItems, omnibusAutocomplete } from './FormHelper'
-import SelectField from 'material-ui/SelectField';
-import { DateField } from '../../../components/forms/html/DateField'
+import TextField from "material-ui/TextField";
+import Toggle from "material-ui/Toggle";
+import DatePicker from "material-ui/DatePicker";
+import AutoCompleteField from "../html/AutoCompleteField";
+import AutoComplete from "material-ui/AutoComplete";
+import {
+  announcementTypeItems,
+  containerTypeItems,
+  omnibusAutocomplete
+} from "./FormHelper";
+import SelectField from "material-ui/SelectField";
+import { DateField } from "../../../components/forms/html/DateField";
 
 const muiTheme = getMuiTheme({
   textField: {
@@ -22,38 +26,39 @@ const muiTheme = getMuiTheme({
     errorColor: "#f44336",
     focusColor: "#2d5a96",
     // backgroundColor: pink300,
-    borderColor: "#6d6d6d",
+    borderColor: "#6d6d6d"
   }
 });
 
-
-
-const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, filter }) => {
-
+const EditSolicitationForm = ({
+  solicitation,
+  hideModal,
+  updateSolicitation,
+  filter
+}) => {
   const styles = {
     floatingLabelStyle: {
-      fontSize: "1.06em",
+      fontSize: "1em",
       fontWeight: "400"
     },
     block: {
-      maxWidth: 250,
+      maxWidth: 250
     },
     toggle: {
-      paddingTop:30,
+      paddingTop: 30
     },
     thumbOff: {
-      backgroundColor: '#ffcccc',
+      backgroundColor: "#ffcccc"
     },
     trackOff: {
-      backgroundColor: '#ff9d9d',
+      backgroundColor: "#ff9d9d"
     },
     thumbSwitched: {
-      backgroundColor: 'red',
+      backgroundColor: "red"
     },
     trackSwitched: {
-      backgroundColor: '#ff9d9d',
-    },
-
+      backgroundColor: "#ff9d9d"
+    }
   };
 
   const innerForm = (props, hdMod) => {
@@ -70,7 +75,7 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
 
     const _handleToggle = (event, isInputChecked) => {
       // console.log('~~~~~~~~~~~~~ selectChoice='+isInputChecked);
-      setFieldValue('pubApproval', isInputChecked?1:0);
+      setFieldValue("pubApproval", isInputChecked ? 1 : 0);
     };
 
     // const _handleYearChange = (event, value) => {
@@ -93,73 +98,85 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
     };
 
     const _handleATypeChange = (event, index, value) => {
-      setFieldValue('announcementType', value);
+      setFieldValue("announcementType", value);
     };
 
     const _handleCTypeChange = (event, index, value) => {
-      setFieldValue('containerType', value);
+      setFieldValue("containerType", value);
     };
 
     return (
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <form onSubmit={handleSubmit}>
-        <div className="modal-body">
-          <div className="container text-left modalForm">
-          <div className="row">
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <form onSubmit={handleSubmit}>
+          <div className="modal-body">
+            <div className="container text-left modalForm">
+              <div className="row">
                 <div className="col-md-6 col-sm-6">
-
-                <div className="inputWrapper">
-                  <TextField
-                        hintText="Number"
-                        floatingLabelText="Solicitation Number *"
-                        name="solNumber"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        value={values.solNumber}
-                        errorText={errors.solNumber && touched.solNumber && <div>{errors.solNumber}</div>}
+                  <div className="inputWrapper">
+                    <TextField
+                      hintText="Number"
+                      floatingLabelText="Solicitation Number *"
+                      name="solNumber"
+                      className=""
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      value={values.solNumber}
+                      errorText={
+                        errors.solNumber &&
+                        touched.solNumber && <div>{errors.solNumber}</div>
+                      }
                     />
-                </div>
-              <div className="inputWrapper">
-                  <Toggle
-                    label="Publication Approval"
-                    labelPosition="right"
-                    name="pubApproval"
-                    // defaultToggled={values.pubApproval===1}
-                    // toggled={values.pubApproval===1}
-                    toggled={(values.pubApproval==1)?true:false}
-                    onToggle={_handleToggle}
-                    className="toggeleUi"
-                    onChange={handleChange}
-                    // onChange={console.log('ello r' + event.target.value)}
-                    // onChange={(event) => {console.log('ello r: '+ event.target.value); this.setState(name: event.target.value);}}
-                    onBlur={handleBlur}
-                    style={styles.toggle}
-                    errorText={errors.pubApproval && touched.pubApproval && <div>{errors.pubApproval}</div>}
-                    // valueLink={values.pubApproval}
-                  />
+                  </div>
+                  <div className="inputWrapper">
+                    <Toggle
+                      label="Publication Approval"
+                      labelPosition="right"
+                      name="pubApproval"
+                      // defaultToggled={values.pubApproval===1}
+                      // toggled={values.pubApproval===1}
+                      toggled={values.pubApproval == 1 ? true : false}
+                      onToggle={_handleToggle}
+                      className="toggleUi"
+                      onChange={handleChange}
+                      // onChange={console.log('ello r' + event.target.value)}
+                      // onChange={(event) => {console.log('ello r: '+ event.target.value); this.setState(name: event.target.value);}}
+                      onBlur={handleBlur}
+                      style={styles.toggle}
+                      errorText={
+                        errors.pubApproval &&
+                        touched.pubApproval && <div>{errors.pubApproval}</div>
+                      }
+                      // valueLink={values.pubApproval}
+                    />
+                  </div>
+                  <div className="inputWrapper">
+                    <DateField
+                      hintText="Fiscal Year"
+                      formatDate={() =>
+                        moment(`${values.year}-01.01`).format("YYYY")
+                      }
+                      name="year"
+                      floatingLabelText="Fiscal Year *"
+                      className=""
+                      onBlur={handleBlur}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      value={
+                        values.year
+                          ? moment(`${values.year}-01.01`).toDate()
+                          : undefined
+                      }
+                      errorText={
+                        errors.year && touched.year && <div>{errors.year}</div>
+                      }
+                      onClearClick={e => setFieldValue("year", undefined)}
+                      setFieldValue={setFieldValue}
+                      autoOk={false}
+                      openToYearSelection={true}
+                      container="inline"
+                    />
 
-                </div>
-                <div className="inputWrapper">
-                  <DateField
-                    hintText="Fiscal Year"
-                    formatDate={() => moment(`${values.year}-01.01`).format('YYYY')}
-                    name="year"
-                    floatingLabelText="Fiscal Year *"
-                    className=""
-                    onBlur={handleBlur}
-                    floatingLabelStyle={styles.floatingLabelStyle}
-                    value={values.year?moment(`${values.year}-01.01`).toDate():undefined}
-                    errorText={errors.year && touched.year && <div>{errors.year}</div>}
-                    onClearClick={e => setFieldValue("year", undefined)}
-                    setFieldValue={setFieldValue}
-                    autoOk={false}
-                    openToYearSelection={true}
-                    container="inline"
-                  />
-
-{/*
+                    {/*
                   <DatePicker
                     hintText="Fiscal Year" openToYearSelection={true} container="inline"
                     formatDate={() => moment(`${values.year}-01.01`).format('YYYY')}
@@ -174,10 +191,9 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     errorText={errors.year && touched.year && <div>{errors.year}</div>}
                   />
  */}
-
-                </div>
-                <div className="inputWrapper">
-                  <AutoComplete
+                  </div>
+                  <div className="inputWrapper">
+                    <AutoComplete
                       dataSource={omnibusAutocomplete}
                       filter={AutoComplete.caseInsensitiveFilter}
                       hintText="Omnibus"
@@ -185,45 +201,66 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                       name="omnibus"
                       className=""
                       onChange={handleChange}
-                      onUpdateInput={(searchText, dataSource, params) => _handleAutoUpdateChange(searchText, dataSource, params, "omnibus")}
+                      onUpdateInput={(searchText, dataSource, params) =>
+                        _handleAutoUpdateChange(
+                          searchText,
+                          dataSource,
+                          params,
+                          "omnibus"
+                        )
+                      }
                       onBlur={handleBlur}
                       floatingLabelStyle={styles.floatingLabelStyle}
                       value={values.omnibus}
                       searchText={values.omnibus}
-                      errorText={ errors.omnibus && touched.omnibus && <div>{errors.omnibus}</div> }
-                  />
-
-                </div>
-                <div className="inputWrapper">
-                  <TextField
-                        hintText="Title"
-                        floatingLabelText="Solicitation Title *"
-                        name="title"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        value={values.title}
-                        errorText={errors.title && touched.title && <div>{errors.title}</div>}
+                      errorText={
+                        errors.omnibus &&
+                        touched.omnibus && <div>{errors.omnibus}</div>
+                      }
                     />
-                </div>
-                <div className="inputWrapper">
-                  <DateField
-                    hintText="Review Date"
-                    formatDate={() => moment(`${values.reviewDate}`).format('MM/DD/YYYY')}
-                    name="reviewDate"
-                    floatingLabelText="Review Date"
-                    className=""
-                    onBlur={handleBlur}
-                    floatingLabelStyle={styles.floatingLabelStyle}
-                    value={values.reviewDate?moment(`${values.reviewDate}`).toDate():undefined}
-                    errorText={errors.reviewDate && touched.reviewDate && <div>{errors.reviewDate}</div>}
-                    onClearClick={e => setFieldValue("reviewDate", undefined)}
-                    setFieldValue={setFieldValue}
-                    container="inline"
-                  />
+                  </div>
+                  <div className="inputWrapper">
+                    <TextField
+                      hintText="Title"
+                      floatingLabelText="Solicitation Title *"
+                      name="title"
+                      className=""
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      value={values.title}
+                      errorText={
+                        errors.title &&
+                        touched.title && <div>{errors.title}</div>
+                      }
+                    />
+                  </div>
+                  <div className="inputWrapper">
+                    <DateField
+                      hintText="Review Date"
+                      formatDate={() =>
+                        moment(`${values.reviewDate}`).format("MM/DD/YYYY")
+                      }
+                      name="reviewDate"
+                      floatingLabelText="Review Date"
+                      className=""
+                      onBlur={handleBlur}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      value={
+                        values.reviewDate
+                          ? moment(`${values.reviewDate}`).toDate()
+                          : undefined
+                      }
+                      errorText={
+                        errors.reviewDate &&
+                        touched.reviewDate && <div>{errors.reviewDate}</div>
+                      }
+                      onClearClick={e => setFieldValue("reviewDate", undefined)}
+                      setFieldValue={setFieldValue}
+                      container="inline"
+                    />
 
-{/*
+                    {/*
                   <DatePicker
                     hintText="Review Date" container="inline"
                     formatDate={() => moment(`${values.reviewDate}`).format('MM/DD/YYYY')}
@@ -237,26 +274,40 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     value={values.reviewDate?moment(`${values.reviewDate}`).toDate():undefined}
                   />
  */}
-
-                </div>
+                  </div>
                   <div className="inputWrapper">
-                  <DateField
-                    hintText="Selection Date"
-                    formatDate={() => moment(`${values.selectionDate}`).format('MM/DD/YYYY')}
-                    name="selectionDate"
-                    floatingLabelText="Selection Date"
-                    className=""
-                    onChange={(e, val) => _handleDateChange(e, val, "selectionDate")}
-                    onBlur={handleBlur}
-                    floatingLabelStyle={styles.floatingLabelStyle}
-                    value={values.selectionDate?moment(`${values.selectionDate}`).toDate():undefined}
-                    errorText={errors.selectionDate && touched.selectionDate && <div>{errors.selectionDate}</div>}
-                    onClearClick={e => setFieldValue("selectionDate", undefined)}
-                    setFieldValue={setFieldValue}
-                    container="inline"
-                  />
+                    <DateField
+                      hintText="Selection Date"
+                      formatDate={() =>
+                        moment(`${values.selectionDate}`).format("MM/DD/YYYY")
+                      }
+                      name="selectionDate"
+                      floatingLabelText="Selection Date"
+                      className=""
+                      onChange={(e, val) =>
+                        _handleDateChange(e, val, "selectionDate")
+                      }
+                      onBlur={handleBlur}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      value={
+                        values.selectionDate
+                          ? moment(`${values.selectionDate}`).toDate()
+                          : undefined
+                      }
+                      errorText={
+                        errors.selectionDate &&
+                        touched.selectionDate && (
+                          <div>{errors.selectionDate}</div>
+                        )
+                      }
+                      onClearClick={e =>
+                        setFieldValue("selectionDate", undefined)
+                      }
+                      setFieldValue={setFieldValue}
+                      container="inline"
+                    />
 
-{/*
+                    {/*
                   <DatePicker
                     hintText="Selection Date" container="inline"
                     formatDate={() => moment(`${values.selectionDate}`).format('MM/DD/YYYY')}
@@ -271,26 +322,38 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     errorText={errors.selectionDate && touched.selectionDate && <div>{errors.selectionDate}</div>}
                   />
  */}
-
-                </div>
+                  </div>
                   <div className="inputWrapper">
-                  <DateField
-                    hintText="Release Date"
-                    formatDate={() => moment(`${values.releaseDate}`).format('MM/DD/YYYY')}
-                    name="releaseDate"
-                    floatingLabelText="Release Date *"
-                    className=""
-                    onChange={(e, val) => _handleDateChange(e, val, "releaseDate")}
-                    onBlur={handleBlur}
-                    floatingLabelStyle={styles.floatingLabelStyle}
-                    value={values.releaseDate?moment(`${values.releaseDate}`).toDate():undefined}
-                    errorText={errors.releaseDate && touched.releaseDate && <div>{errors.releaseDate}</div>}
-                    onClearClick={e => setFieldValue("releaseDate", undefined)}
-                    setFieldValue={setFieldValue}
-                    container="inline"
-                  />
+                    <DateField
+                      hintText="Release Date"
+                      formatDate={() =>
+                        moment(`${values.releaseDate}`).format("MM/DD/YYYY")
+                      }
+                      name="releaseDate"
+                      floatingLabelText="Release Date *"
+                      className=""
+                      onChange={(e, val) =>
+                        _handleDateChange(e, val, "releaseDate")
+                      }
+                      onBlur={handleBlur}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      value={
+                        values.releaseDate
+                          ? moment(`${values.releaseDate}`).toDate()
+                          : undefined
+                      }
+                      errorText={
+                        errors.releaseDate &&
+                        touched.releaseDate && <div>{errors.releaseDate}</div>
+                      }
+                      onClearClick={e =>
+                        setFieldValue("releaseDate", undefined)
+                      }
+                      setFieldValue={setFieldValue}
+                      container="inline"
+                    />
 
-{/*
+                    {/*
                   <DatePicker
                     hintText="Release Date" container="inline"
                     formatDate={() => moment(`${values.releaseDate}`).format('MM/DD/YYYY')}
@@ -305,31 +368,38 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     errorText={errors.releaseDate && touched.releaseDate && <div>{errors.releaseDate}</div>}
                   />
  */}
-
+                  </div>
                 </div>
-
-
-            </div>
-            <div className="col-md-6 col-sm-6">
-
-                <div className="inputWrapper">
-                  <DateField
-                    hintText="Close Date"
-                    formatDate={() => moment(`${values.closeDate}`).format('MM/DD/YYYY')}
-                    name="closeDate"
-                    floatingLabelText="Close Date *"
-                    className=""
-                    onChange={(e, val) => _handleDateChange(e, val, "closeDate")}
-                    onBlur={handleBlur}
+                <div className="col-md-6 col-sm-6">
+                  <div className="inputWrapper">
+                    <DateField
+                      hintText="Close Date"
+                      formatDate={() =>
+                        moment(`${values.closeDate}`).format("MM/DD/YYYY")
+                      }
+                      name="closeDate"
+                      floatingLabelText="Close Date *"
+                      className=""
+                      onChange={(e, val) =>
+                        _handleDateChange(e, val, "closeDate")
+                      }
+                      onBlur={handleBlur}
                       floatingLabelStyle={styles.floatingLabelStyle}
-                    value={values.closeDate?moment(`${values.closeDate}`).toDate():undefined}
-                    errorText={errors.closeDate && touched.closeDate && <div>{errors.closeDate}</div>}
-                    onClearClick={e => setFieldValue("closeDate", undefined)}
-                    setFieldValue={setFieldValue}
-                    container="inline"
-                  />
+                      value={
+                        values.closeDate
+                          ? moment(`${values.closeDate}`).toDate()
+                          : undefined
+                      }
+                      errorText={
+                        errors.closeDate &&
+                        touched.closeDate && <div>{errors.closeDate}</div>
+                      }
+                      onClearClick={e => setFieldValue("closeDate", undefined)}
+                      setFieldValue={setFieldValue}
+                      container="inline"
+                    />
 
-{/*
+                    {/*
                   <DatePicker
                     hintText="Close Date" container="inline"
                     formatDate={() => moment(`${values.closeDate}`).format('MM/DD/YYYY')}
@@ -344,19 +414,23 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     errorText={errors.closeDate && touched.closeDate && <div>{errors.closeDate}</div>}
                   />
  */}
-
-                </div>
-              <div className="inputWrapper">
-                  <SelectField
-                    value={values.announcementType}
-                    onChange={_handleATypeChange}
-                    floatingLabelText="Announcement Type *"
-                    floatingLabelStyle={{}}
-                    errorText={errors.announcementType && touched.announcementType && <div>{errors.announcementType}</div>}
-                  >
-                    {announcementTypeItems}
-                  </SelectField>
-{/*
+                  </div>
+                  <div className="inputWrapper">
+                    <SelectField
+                      value={values.announcementType}
+                      onChange={_handleATypeChange}
+                      floatingLabelText="Announcement Type *"
+                      floatingLabelStyle={{}}
+                      errorText={
+                        errors.announcementType &&
+                        touched.announcementType && (
+                          <div>{errors.announcementType}</div>
+                        )
+                      }
+                    >
+                      {announcementTypeItems}
+                    </SelectField>
+                    {/*
                   <input
                     type="text"
                     className="form-control"
@@ -368,9 +442,9 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                   />
                   {errors.announcementType && touched.announcementType && <div>{errors.announcementType}</div>}
 */}
-                </div>
-              <div className="inputWrapper">
-{/*
+                  </div>
+                  <div className="inputWrapper">
+                    {/*
                   <TextField
                         hintText="Container Type"
                         floatingLabelText="Container Type"
@@ -388,51 +462,70 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                       onChange={_handleCTypeChange}
                       floatingLabelText="Container Type *"
                       floatingLabelStyle={{}}
-                      errorText={errors.containerType && touched.containerType && <div>{errors.containerType}</div>}
+                      errorText={
+                        errors.containerType &&
+                        touched.containerType && (
+                          <div>{errors.containerType}</div>
+                        )
+                      }
                     >
                       {containerTypeItems}
                     </SelectField>
-
-                </div>
-            <div className="inputWrapper">
-                  <TextField
-                        hintText="Authorized By"
-                        floatingLabelText="Authorized By"
-                        name="authorizedBy"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.authorizedBy}
+                  </div>
+                  <div className="inputWrapper">
+                    <TextField
+                      hintText="Authorized By"
+                      floatingLabelText="Authorized By"
+                      name="authorizedBy"
+                      className=""
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.authorizedBy}
                     />
-                </div>
-              <div className="inputWrapper">
-                  <TextField
-                        hintText="Reason"
-                        floatingLabelText="Withdrawal Reason"
-                        name="withdrawalReason"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.withdrawalReason}
+                  </div>
+                  <div className="inputWrapper">
+                    <TextField
+                      hintText="Reason"
+                      floatingLabelText="Withdrawal Reason"
+                      name="withdrawalReason"
+                      className=""
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.withdrawalReason}
                     />
-                </div>
-              <div className="inputWrapper">
-                  <DateField
-                    hintText="Withdrawal Date"
-                    formatDate={() => moment(`${values.withdrawalDate}`).format('MM/DD/YYYY')}
-                    name="withdrawalDate"
-                    floatingLabelText="Withdrawal Date"
-                    className=""
-                    onChange={(e, val) => _handleDateChange(e, val, "withdrawalDate")}
-                    onBlur={handleBlur}
-                    value={values.withdrawalDate?moment(`${values.withdrawalDate}`).toDate():undefined}
-                    errorText={errors.withdrawalDate && touched.withdrawalDate && <div>{errors.withdrawalDate}</div>}
-                    onClearClick={e => setFieldValue("withdrawalDate", undefined)}
-                    setFieldValue={setFieldValue}
-                    container="inline"
-                  />
+                  </div>
+                  <div className="inputWrapper">
+                    <DateField
+                      hintText="Withdrawal Date"
+                      formatDate={() =>
+                        moment(`${values.withdrawalDate}`).format("MM/DD/YYYY")
+                      }
+                      name="withdrawalDate"
+                      floatingLabelText="Withdrawal Date"
+                      className=""
+                      onChange={(e, val) =>
+                        _handleDateChange(e, val, "withdrawalDate")
+                      }
+                      onBlur={handleBlur}
+                      value={
+                        values.withdrawalDate
+                          ? moment(`${values.withdrawalDate}`).toDate()
+                          : undefined
+                      }
+                      errorText={
+                        errors.withdrawalDate &&
+                        touched.withdrawalDate && (
+                          <div>{errors.withdrawalDate}</div>
+                        )
+                      }
+                      onClearClick={e =>
+                        setFieldValue("withdrawalDate", undefined)
+                      }
+                      setFieldValue={setFieldValue}
+                      container="inline"
+                    />
 
-{/*
+                    {/*
                   <DatePicker
                     hintText="Withdrawal Date" container="inline"
                     formatDate={() => moment(`${values.withdrawalDate}`).format('MM/DD/YYYY')}
@@ -447,46 +540,48 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
                     errorText={errors.withdrawalDate && touched.withdrawalDate && <div>{errors.withdrawalDate}</div>}
                   />
  */}
-
-                </div>
-              <div className="inputWrapper">
-                  <TextField
-                        hintText="Withdrawn By"
-                        floatingLabelText="Withdrawn By"
-                        name="withdrawnBy"
-                        className=""
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.withdrawnBy}
+                  </div>
+                  <div className="inputWrapper">
+                    <TextField
+                      hintText="Withdrawn By"
+                      floatingLabelText="Withdrawn By"
+                      name="withdrawnBy"
+                      className=""
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.withdrawnBy}
                     />
+                  </div>
                 </div>
               </div>
-
+            </div>
           </div>
-        </div>
-</div>
-        <div className="modal-footer">
-          <div className="btnContainer">
-            <button
-              type="reset"
-              className="btn btn-secondary"
-              icon="fa-close"
-              onClick={() => hideModal()}
-            >
-              Cancel
-            </button>
-            <button
-              className="btn btn-primary "
-              icon="fa-close"
-              disabled={isSubmitting}
-            >
-              Save
-            </button>
+          <div className="modal-footer">
+            {" "}
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6">
+                  <button
+                    type="reset"
+                    className="btn btn-secondary w-100"
+                    onClick={() => hideModal()}
+                  ><i className="fa fa-ban" aria-hidden="true" />
+                    Cancel
+                  </button>
+                </div>{" "}
+                <div className="col-md-6">
+                  <button
+                    className="btn btn-primary w-100"
+                    disabled={isSubmitting}
+                  ><i className="fa fa-floppy-o" aria-hidden="true" />
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-
-      </form>
-    </MuiThemeProvider>
+        </form>
+      </MuiThemeProvider>
     );
   };
 
@@ -495,11 +590,12 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
       "...........submitted modal with values: " +
         JSON.stringify(values, null, 2)
     );
-    console.log('+++++++ doSubmit EditSolicitationForm filter = ' + JSON.stringify(filter));
-    values.year = parseInt(moment(`${values.year}-01.01`).format('YYYY'));
     console.log(
-      "...........updated modal values: " +
-        JSON.stringify(values, null, 2)
+      "+++++++ doSubmit EditSolicitationForm filter = " + JSON.stringify(filter)
+    );
+    values.year = parseInt(moment(`${values.year}-01.01`).format("YYYY"));
+    console.log(
+      "...........updated modal values: " + JSON.stringify(values, null, 2)
     );
     updateSolicitation(values, filter);
     hideModal();
@@ -512,23 +608,38 @@ const EditSolicitationForm = ({ solicitation, hideModal, updateSolicitation, fil
       id: solicitation.SOLICITATION_ID,
       solNumber: solicitation.SOLICITATION_NUMBER,
       pubApproval: solicitation.PUBLICATION_APPROVAL,
-      year: solicitation.FISCAL_YEAR?solicitation.FISCAL_YEAR:undefined,
-      omnibus: solicitation.OMNIBUS_NUMBER?solicitation.OMNIBUS_NUMBER:'',
+      year: solicitation.FISCAL_YEAR ? solicitation.FISCAL_YEAR : undefined,
+      omnibus: solicitation.OMNIBUS_NUMBER ? solicitation.OMNIBUS_NUMBER : "",
       title: solicitation.TITLE,
-      reviewDate: solicitation.REVIEW_DATE?solicitation.REVIEW_DATE:undefined,
-      selectionDate: solicitation.SELECTION_DATE?solicitation.SELECTION_DATE:undefined,
-      releaseDate: solicitation.RELEASE_DATE?solicitation.RELEASE_DATE:undefined,
-      closeDate: solicitation.CLOSE_DATE?solicitation.CLOSE_DATE:undefined,
+      reviewDate: solicitation.REVIEW_DATE
+        ? solicitation.REVIEW_DATE
+        : undefined,
+      selectionDate: solicitation.SELECTION_DATE
+        ? solicitation.SELECTION_DATE
+        : undefined,
+      releaseDate: solicitation.RELEASE_DATE
+        ? solicitation.RELEASE_DATE
+        : undefined,
+      closeDate: solicitation.CLOSE_DATE ? solicitation.CLOSE_DATE : undefined,
       announcementType: solicitation.ANNOUNCEMENT_TYPE,
       containerType: solicitation.CONTAINER_TYPE,
-      authorizedBy: solicitation.AUTHORIZED_BY?solicitation.AUTHORIZED_BY:'',
-      withdrawalReason: solicitation.WITHDRAWAL_REASON?solicitation.WITHDRAWAL_REASON:'',
-      withdrawalDate: solicitation.WITHDRAWAL_DATE?solicitation.WITHDRAWAL_DATE:undefined,
-      withdrawnBy: solicitation.WITHDRAWN_BY?solicitation.WITHDRAWN_BY:''
+      authorizedBy: solicitation.AUTHORIZED_BY
+        ? solicitation.AUTHORIZED_BY
+        : "",
+      withdrawalReason: solicitation.WITHDRAWAL_REASON
+        ? solicitation.WITHDRAWAL_REASON
+        : "",
+      withdrawalDate: solicitation.WITHDRAWAL_DATE
+        ? solicitation.WITHDRAWAL_DATE
+        : undefined,
+      withdrawnBy: solicitation.WITHDRAWN_BY ? solicitation.WITHDRAWN_BY : ""
     }),
     validationSchema: Yup.object().shape({
       solNumber: Yup.string().required("Solicitation Number is required!"),
-      pubApproval: Yup.number().required("Publication Approval is required!").positive("Publication Approval is wrong!").integer("Publication Approval is bad!"),
+      pubApproval: Yup.number()
+        .required("Publication Approval is required!")
+        .positive("Publication Approval is wrong!")
+        .integer("Publication Approval is bad!"),
       year: Yup.string().required("Fiscal Year is required!"),
       title: Yup.string().required("Title is required!"),
       closeDate: Yup.string().required("Close Date is required!"),

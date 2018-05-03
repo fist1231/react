@@ -13,13 +13,14 @@ import InfoDialog from '../../containers/modal/InfoDialog'
 import HelpDrawer from '../../components/drawer/HelpDrawer'
 import HelpButton from '../../components/drawer/HelpButton'
 import ReviewProposalsHelpContent from '../../components/drawer/CalendarHelp'
+import './calendar.css'
 
 
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 const DnDCalendar = withDragAndDrop(Calendar);
 
-const fullModeStyle = { height: "100vh", width: "100vh", padding: "5em 2em 10em 2em" };
-const windowModeStyle = { height: "38vh" };
+const fullModeStyle = { height: "100vh", width: "100%", padding: "1em 2em 2em 2em" };
+const windowModeStyle = { height: "370px" };
 
 class HomeCalendar extends React.Component {
 
@@ -77,10 +78,10 @@ class HomeCalendar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container" style={{position:'relative'}}>
           {this.props.windowMode? ''
            : (
-            <div className="helpRwLocation"><HelpButton buttonText={"Help"} buttonClick={this.handleToggle} /></div>
+            <div className="helpRwLocation calendarHelp"><HelpButton buttonText={"Help"} className={"test"} buttonClick={this.handleToggle} /></div>
           )
           }
           <DnDCalendar

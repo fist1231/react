@@ -1,6 +1,7 @@
 .nspiresHeader {
   background-color: #2d5a96;
   padding: .15rem 1rem;
+  padding-bottom: 0;
 }
 .navbar-brand {
   background: url(../images/nspiresLogo.png) no-repeat transparent;

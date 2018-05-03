@@ -107,6 +107,9 @@ a {
 .inputWrapper{
   height:72px;
 }
+.floatInput{
+  width:100% !important;
+}
 .inputWrapper label, .inputWrapper input,.inputWrapper div{
   font-family: "Open Sans" !important;
 }
@@ -258,6 +261,7 @@ h3.modal-title {
 }
 .staticLink{
   color: #2D5A96;
+  font-size: .9em;
 }
 .staticLink600{
   font-weight: 600;
@@ -525,7 +529,7 @@ label {
 }
 
 .calendarContainer {
-  height: 420px;
+  height: 100%;
   font-size: .9em;
 }
 
@@ -535,7 +539,7 @@ label {
   border-radius: 3px;
   color: #222;
   cursor: pointer;
-  font-size: 1em;
+  font-size: .9em;
 }
 
 .calendarContainer .rbc-today {
@@ -562,7 +566,6 @@ label {
 }
 
 .ui-datatable th.ui-sortable-column:not(.ui-state-active):hover {
-  background: #c6d6ea;
   border-color: #cacaca;
 }
 
@@ -635,7 +638,7 @@ label {
 }
 
 .ReactTable .rt-thead.-header {
-  background-color: #d3dbe6;
+  background-color: #e3e3e3;
   box-shadow: none;
   color: #000;
 }
@@ -644,7 +647,9 @@ label {
   color: #000;
 }
 .ReactTable .rt-thead .rt-th {
-  color: #002648;
+  color: #505050;
+  padding-top: .7em;
+  padding-bottom: .7em;
 }
 .ReactTable .rt-tbody .rt-tr-group {
     border-bottom: 1px solid #cccc;
@@ -705,17 +710,19 @@ label {
   font-weight: 600;
 }
 .dataTableContainer table th{
-  background-color: #d3dbe6;
-  color: #002648;
+  background-color: #e3e3e3;
+  color: #505050;
   font-weight: 600;
   text-align: center;
 }
 .dataTableContainer table thead.ui-datatable-thead th{
-  background-color: #d3dbe6;
-  color: #002648;
+  background-color: #e3e3e3;
+  color: #505050;
   font-weight: 600;
   text-align: center;
   border-right: 1px solid #bbb;
+  padding-top: .7em;
+  padding-bottom: .7em;
 }
 .dataTableContainer table thead.ui-datatable-thead th.ui-state-active {
     background-color: #535e6c;
@@ -829,8 +836,8 @@ label {
   box-shadow: 1px 1px 1px #e2e2e2;
 }
 .propDetail .card-header{
-  background-color: #d3dbe6;
-  color: #002648;
+  background-color: #e3e3e3;
+  color: #224b81;
   font-weight: 600;
   font-size: 1.1em;
 }

@@ -62,8 +62,8 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="container text-left">
-              <h2>Member Login</h2>
-              <div className="container loginInputContainer">
+              <h2><i className="fa fa-user-circle" /> Member Login</h2>
+              <div className="loginInputContainer">
                 <div className="inputWrapper">
                   <TextField
                     hintText="nress"
@@ -87,6 +87,7 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
                     floatingLabelText="Password"
                     name="pwd"
                     type="password"
+                    className="floatInput"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     floatingLabelStyle={styles.floatingLabelStyle}
@@ -99,7 +100,7 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
                 </div>
               </div>
 
-              <div className="container">
+              <div>
                 <button
                   className="btn btn-primary btn-block mb-3"
                   icon="fa-close"
@@ -115,8 +116,8 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
                 >
                   Cancel
                 </button>
-                <p className="small mt-1 text-right">
-                  <span className="staticLink">
+                <p className="mt-1 text-right">
+                  <span className="staticLink ">
                     forgot your username/password?
                   </span>
                 </p>
@@ -125,7 +126,7 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
           </div>
 
           <div className="modal-footer loginPopFooter text-center">
-            <p className="small mt-1 w-100">
+            <p className="mt-1 w-100">
               <span className="staticLink">Create a New Account.</span>
             </p>
           </div>

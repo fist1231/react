@@ -8,7 +8,7 @@ const ReviewProposalDetails = ({ proposal, isLoading }) => (
       <h2>Loading...</h2>
     ) : (
       <div>
-        <div className="col-md-8 offset-md-2 mt-5">
+        <div className="col-md-8 offset-md-2 mt-3">
           <div className="card propDetail">
             <h5 className="card-header">Review Proposal Details</h5>
             <div className="card-body ">

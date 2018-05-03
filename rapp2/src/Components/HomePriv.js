@@ -224,7 +224,7 @@ class HomePriv extends Component {
                     </span>
                   </h4>
 
-                  <div className="memberTableContainer">
+                  <div className="dataTableContainer">
                     <Solicitations data={this.state.solicitationsData} />
                   </div>
                 </div>
@@ -271,7 +271,7 @@ class HomePriv extends Component {
                     </Link>
                   </span>
                 </h4>
-                <div className="memberTableContainer">
+                <div className="dataTableContainer">
                   <Proposals data={this.state.proposalsData} />
                 </div>
               </div>
@@ -283,7 +283,7 @@ class HomePriv extends Component {
           <div className="col-md-2 homeSideInfo">
             <div className="loginInfo">
               <p>Last Login:</p>
-                <p><i className="fa fa-user-circle" /> doeJohn</p>
+                <p><i className="fa fa-user-circle" /> nress</p>
               <small>03/20/2018 10:24 EDT</small>
             </div>
             <h3>NSPIRES Home</h3>

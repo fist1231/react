@@ -60,22 +60,29 @@ const EditProposalForm = ({ proposal, hideModal }) => {
           </div>
         </div>
         <div className="modal-footer">
-          <div className="btnContainer">
+          <div className="container">
+            <div className="row">
+            <div className="col-md-6">
             <button
               type="reset"
-              className="btn btn-secondary"
+              className="btn btn-secondary w-100"
               icon="fa-close"
               onClick={() => hideModal()}
-            >
+            ><i className="fa fa-ban" aria-hidden="true"></i>
               Cancel
             </button>
+            </div>
+            <div className="col-md-6">
             <button
-              className="btn btn-primary "
-              icon="fa-close"
+              className="btn btn-primary w-100"
+
               disabled={isSubmitting}
             >
+            <i className="fa fa-times" aria-hidden="true"></i>
               Delete
             </button>
+            </div>
+            </div>
           </div>
         </div>
       </form>

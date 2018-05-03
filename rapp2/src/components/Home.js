@@ -28,7 +28,7 @@ const styles = {
 const Home = () => (
   <div>
     <div className="container-fluid p-0">
-      <Carousel interval={5000} showThumbs={false} infiniteLoop autoPlay>
+      <Carousel interval={5000} showThumbs={false} showStatus={false} infiniteLoop autoPlay>
         <div style={styles.slideContainer} className="slideStyle">
           <div className="row no-gutters">
             <div className="col-md-5" />

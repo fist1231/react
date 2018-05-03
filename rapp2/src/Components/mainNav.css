@@ -1,6 +1,7 @@
 .mainNavContainer {
   background-color: #252931;
   border-bottom: 1px solid #252931;
+  border-top: 1px solid #111;
 }
 .nav {
   -ms-flex-wrap: wrap;
