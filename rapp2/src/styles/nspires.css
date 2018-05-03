@@ -225,6 +225,16 @@ h3.modal-title {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
+.featureContainer .card{
+  border-radius: .25rem;
+  box-shadow: 1px 1px 1px #e2e2e2;
+}
+.featureContainer h3{
+  font-size: 1.4em;
+}
+.featureContainer p{
+  font-size: 1em;
+}
 .list-group-item.active {
   font-size: 0.9em;
   background-color: #d6e9f9;

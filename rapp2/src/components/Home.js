@@ -95,7 +95,7 @@ const Home = () => (
         <PubTabs />
       </div>*/}
 
-      <div className="container mt-4">
+      <div className="container mt-5">
         <section className="text-center">
         <div className="row">
           <div className="col">
@@ -111,34 +111,39 @@ const Home = () => (
             <div className="row">
               <div className="col-md-4">
                 <div className="">
-                  <div className="flip-container">
-                    <div className="flipper">
-                      <div className="front">
+                  <div>
+                    <div>
+                      <div className="card">
+                      <div className="card-body">
                         <h3>
                           <i className="fa fa-file-text-o" aria-hidden="true" />{" "}
                           Solicitations
                         </h3>
+
                         <p>
                           Search for and view open, closed, past, and future
                           NASA research announcements.{" "}
                         </p>
+                        <a href="#">Learn More </a>
+                        </div>
+
                       </div>
-                      <div className="back">
+                      {/*<div className="back">
                         <p className="mt-4">
                           The full text of the solicitation announcements can be
                           viewed and downloaded.{" "}
                         </p>
-                        <a href="#">Learn More </a>
-                      </div>
+
+                      </div>*/}
                     </div>
                   </div>
                 </div>
               </div>
               <div className="col-md-4">
-                <div className="flip-container">
-                  <div className="flipper">
-                    <div className="front">
-                      {" "}
+                <div>
+                  <div>
+                    <div className="card">
+                        <div className="card-body">
                       <h3>
                         <i className="fa fa-power-off" aria-hidden="true" />{" "}
                         Getting Started
@@ -147,25 +152,29 @@ const Home = () => (
                         Individuals and the organizations with which they are
                         affiliated must be registered in NSPIRES.
                       </p>
+                      <a href="#">Learn More </a>
+                      </div>
+
                     </div>
-                    <div className="back">
+                    {/*  <div className="back">
                       <p className="mt-2">
                         Individuals may register at any time. Organizations are
                         required to have a valid registration with the System
                         for Award Management (SAM) before they can register in
                         NSPIRES.
                       </p>
-                      <a href="#">Learn More </a>
-                    </div>
+
+                    </div>*/}
                   </div>
                 </div>
               </div>
 
               <div className="col-md-4">
 
-                  <div className="flip-container">
-                    <div className="flipper">
-                      <div className="front">
+                  <div>
+                    <div>
+                      <div className="card">
+                        <div className="card-body">
                         <h3>
                           <i
                             className="fa fa-question-circle"
@@ -177,8 +186,11 @@ const Home = () => (
                           If you need help or have any questions regarding the
                           NSPIRES website, please contact us.
                         </p>
+                          <a href="#">Learn More </a>
+                        </div>
+
                       </div>
-                      <div className="back">
+                    {/*  <div className="back">
                         <ul className="linkPub">
                           <li>Operating Hours: Mon - Fri: 9am - 5pm (EST)</li>
                           <li>Phone Number: (202) 479-9376</li>
@@ -186,7 +198,7 @@ const Home = () => (
                             E-mail: <a href="#">nspires-help@nasaprs.com</a>
                           </li>
                         </ul>
-                      </div>
+                      </div>*/}
                     </div>
                   </div>
 
