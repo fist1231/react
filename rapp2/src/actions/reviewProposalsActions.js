@@ -106,7 +106,8 @@ return dispatch(getGraphQLResult(reviewProposalsFilter));
 
 
 const getGraphQLResult = reviewProposalsFilter => dispatch => {
-  fetch(`${config.review_proposals_address}graphql`, {
+  // fetch(`${config.review_proposals_address}graphql`, {
+  fetch(`${config.gateway_address}graphql`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: `{ reviewProposalsSearch (filter: "${reviewProposalsFilter.searchText}") {
