@@ -9,12 +9,17 @@ import 'rxjs/add/operator/map';
 
 import { map } from 'rxjs/operator/map';
 import config from '../../config/config.json'
+import axios from 'axios';
 
 
 export const REQUEST_USERS = 'REQUEST_USERS'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const SELECT_USERS_FILTER = 'SELECT_USERS_FILTER'
 export const INVALIDATE_USERS_FILTER = 'INVALIDATE_USERS_FILTER'
+
+export const REQUEST_UPDATE_USER = 'REQUEST_UPDATE_USER'
+export const RECEIVE_UPDATE_USER = 'RECEIVE_UPDATE_USER'
+
 
 export const selectUsersFilter = usersFilter => ({
   type: SELECT_USERS_FILTER,
@@ -40,6 +45,26 @@ export const receiveUsers = (usersFilter="{searchText:'', isOpenOnly:false}", js
   usersTable: json, //[{id:1001, name:"zhoppa-1001"}],
   receivedAt: Date.now()
 })
+
+
+export const requestUpdateUser = (user, usersFilter) => ({
+  type: REQUEST_UPDATE_USER,
+  usersFilter,
+  user,
+  result: undefined,
+  error: undefined,
+  receivedAt: undefined
+})
+
+export const receiveUpdateUser = (user="{}", usersFilter, json) => ({
+  type: RECEIVE_UPDATE_USER,
+  usersFilter,
+  user,
+  result: json,
+  error: json?undefined:"error-user1",
+  receivedAt: Date.now()
+})
+
 
 const buildArray = json => {
   return [{id:1001, name:"u1001"}, {id:1002, name:"u1002"}, {id:1003, name:"u1003"}]
@@ -108,4 +133,32 @@ export const fetchUsersIfNeeded = usersFilter => (dispatch, getState) => {
   if (shouldFetchUsers(getState(), usersFilter)) {
     return dispatch(fetchUsers(usersFilter))
   }
+}
+
+const updateObservableUser = (user, usersFilter) => dispatch => {
+// async function updateObservableUser(user, usersFilter, dispatch) {
+   // var searchTerm = usersFilter.searchText?"/"+usersFilter.searchText:"";
+   axios.put(`${config.gateway_address}nress/users/${user._id}`, { user })
+    .then(function (response) {
+      console.log('----------- here comes response ------------');
+      console.log(response);
+      dispatch(receiveUpdateUser(user));
+      dispatch(fetchUsers(usersFilter));
+
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+
+
+const updateUser = (user, usersFilter) => dispatch => {
+  dispatch(requestUpdateUser(user))
+  return dispatch(updateObservableUser(user, usersFilter));
+}
+
+export const updateUserData = (user, usersFilter) => (dispatch) => {
+  console.log('xxxxxxx => starting updateUserData; usersFilter='+JSON.stringify(usersFilter))
+  return dispatch(updateUser(user, usersFilter))
 }

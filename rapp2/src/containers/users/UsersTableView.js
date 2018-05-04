@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { selectUsersFilter, fetchUsersIfNeeded, invalidateUsersFilter } from '../../actions/tableActions'
+import { selectUsersFilter, fetchUsersIfNeeded, invalidateUsersFilter, updateUserData } from '../../actions/tableActions'
 import Picker from '../../components/picker/Picker'
 import UsersTable from '../../components/users/UsersTable'
 import config from '../../../config/config.json'
@@ -89,7 +89,7 @@ class UsersTableView extends Component {
 
                 <Search searchFilter={selectedUsersFilter} onChange={this.props.onSearchChange}  />
                 <HelpButton buttonText={"Help"} buttonClick={this.handleToggle} />
-                <UsersTable usersLst={dataSource} />
+                <UsersTable usersLst={dataSource} filter={selectedUsersFilter}  onEditUser={this.props.onEditUser} />
                 <HelpDrawer toggled={this.state.open} onToggleChange={this.handleToggle}>
                   <UsersHelpContent />
                 </HelpDrawer>
@@ -132,6 +132,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   dispatch,
   onSearchChange:filter => dispatch(selectUsersFilter(filter)),
+  onEditUser:(user, filter) => dispatch(updateUserData(user, filter)),
 })
 
 UsersTableView.propTypes = {

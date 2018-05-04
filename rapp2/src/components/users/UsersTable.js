@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
+import EditUserForm from '../forms/formik/EditUserForm';
 
 
 
-const UsersTable = ({ usersLst, onUserClick }) => (
+const UsersTable = ({ usersLst, onUserClick, filter, onEditUser }) => (
   <div>
 
     <div className="tableHeader">
@@ -32,58 +33,7 @@ const UsersTable = ({ usersLst, onUserClick }) => (
       SubComponent={(row) => {
         // console.log('+++++++ row='+JSON.stringify(row)) ;
         return <div  style={{ padding: "10px" }} className="userDetail">
-
-          <table className="table table-bordered dataTable">
-  <thead>
-    <tr>
-      <th scope="col" width="20%">Label</th>
-      <th scope="col">Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td className="rowLabel">Full name:</td>
-      <td>{row.original.SALUTATION} {row.original.FIRST_NAME} {row.original.MIDDLE_INITIAL} {row.original.LAST_NAME} {row.original.SUFFIX}</td>
-    </tr>
-    <tr>
-      <td className="rowLabel">ID:</td>
-      <td>{row.original._id}</td>
-    </tr>
-    <tr>
-      <td className="rowLabel">User ID:</td>
-      <td>{row.original.NSPIRES_USER_ID}</td>
-    </tr>
-
-    <tr>
-      <td className="rowLabel">Created by:</td>
-      <td>{row.original.CREATION_PATH}</td>
-    </tr>
-    <tr>
-      <td className="rowLabel">Activated on:</td>
-      <td>{row.original.ACTIVATIONTIME}</td>
-    </tr>
-
-    <tr>
-      <td className="rowLabel">Challenge question:</td>
-      <td>{row.original.CHALLENGE_QUESTION}</td>
-    </tr>
-
-    <tr>
-      <td className="rowLabel">Sysefus id:</td>
-      <td>{row.original.SYSEFUS_ID}</td>
-    </tr>
-
-    <tr>
-      <td className="rowLabel">Demographics data id:</td>
-      <td>{row.original.DEM_DATA_ID}</td>
-    </tr>
-
-
-  </tbody>
-</table>
-
-
-
+          <EditUserForm user={row.original} filter={filter} updateUser={onEditUser} />
         </div>}
       }
       columns={[
