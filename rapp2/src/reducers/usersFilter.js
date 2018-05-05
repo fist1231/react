@@ -1,6 +1,6 @@
 import {
   SELECT_USERS_FILTER
-} from '../actions/tableActions'
+} from '../actions/userActions'
 
 
 const usersFilter = (state = {searchText:'', isOpenOnly:false}, action) => {

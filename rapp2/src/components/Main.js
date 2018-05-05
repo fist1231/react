@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import UsersList from '../containers/users/UsersListView'
 import UsersTable from '../containers/users/UsersTableView'
-import Solicitations from '../containers/solicitations/Solicitations'
+import Solicitations from '../containers/solicitations/SolicitationsView'
 import ReviewProposals from '../containers/reviewProposals/ReviewProposalsView'
 import ReviewProposalDetailsView from '../containers/reviewProposals/ReviewProposalDetailsView';
 import HomePriv from './HomePriv'

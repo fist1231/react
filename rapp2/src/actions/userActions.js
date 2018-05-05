@@ -136,9 +136,20 @@ export const fetchUsersIfNeeded = usersFilter => (dispatch, getState) => {
 }
 
 const updateObservableUser = (user, usersFilter) => dispatch => {
+  console.log('------------- updateObservableUser user='+ JSON.stringify(user));
+  const usr = {
+    _id: user._id,
+    NSPIRES_USER_ID: user.id,
+    FIRST_NAME: user.firstName,
+    LAST_NAME: user.lastName,
+    USERNAME: user.username,
+    REGISTRATION_DATE: user.registrationlDate
+  }
+  console.log('------------- updateObservableUser usr='+ JSON.stringify(usr));
+
 // async function updateObservableUser(user, usersFilter, dispatch) {
    // var searchTerm = usersFilter.searchText?"/"+usersFilter.searchText:"";
-   axios.put(`${config.gateway_address}nress/users/${user._id}`, { user })
+   axios.put(`${config.gateway_address}nress/users/${user._id}`, { user: usr })
     .then(function (response) {
       console.log('----------- here comes response ------------');
       console.log(response);

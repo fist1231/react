@@ -2,7 +2,7 @@
 import {
   SELECT_USERS_FILTER, INVALIDATE_USERS_FILTER,
   REQUEST_USERS, RECEIVE_USERS
-} from '../actions/tableActions'
+} from '../actions/userActions'
 // import usersLst from './table'
 
 

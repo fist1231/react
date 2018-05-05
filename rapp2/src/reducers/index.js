@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import users from './users'
+import user from './user'
 import usersFilter from './usersFilter'
 import selectedUsersFilter from './selectedUsersFilter'
 import usersByUsersFilter from './usersByUsersFilter'
@@ -19,6 +20,7 @@ import auth from './auth'
 
 const usersApp = combineReducers({
   users,
+  user,
   usersFilter,
   selectedUsersFilter,
   usersByUsersFilter,

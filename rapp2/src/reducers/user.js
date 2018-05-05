@@ -1,6 +1,6 @@
 import {
   REQUEST_UPDATE_USER, RECEIVE_UPDATE_USER
-} from '../actions/tableActions'
+} from '../actions/userActions'
 
 
 const user = (state = {

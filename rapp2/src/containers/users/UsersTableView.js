@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { selectUsersFilter, fetchUsersIfNeeded, invalidateUsersFilter, updateUserData } from '../../actions/tableActions'
+import { selectUsersFilter, fetchUsersIfNeeded, invalidateUsersFilter, updateUserData } from '../../actions/userActions'
 import Picker from '../../components/picker/Picker'
 import UsersTable from '../../components/users/UsersTable'
 import config from '../../../config/config.json'

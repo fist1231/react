@@ -13,7 +13,7 @@ import HelpButton from '../../components/drawer/HelpButton'
 import SolicitationsHelpContent from '../../components/drawer/SolicitationsHelp'
 
 
-class Solicitations extends React.Component {
+class SolicitationsView extends React.Component {
 
   constructor(props) {
     super(props);
@@ -94,12 +94,12 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-Solicitations.propTypes = {
+SolicitationsView.propTypes = {
    solicitations: PropTypes.array
 }
 
 //export default Solicitations;
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Solicitations));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SolicitationsView));
 
 {/*
 const Solicitations = () => (
