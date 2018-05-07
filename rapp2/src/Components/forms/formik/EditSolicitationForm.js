@@ -16,6 +16,8 @@ import {
 } from "./FormHelper";
 import SelectField from "material-ui/SelectField";
 import { DateField } from "../../../components/forms/html/DateField";
+import ReactQuill, { Quill, Mixin, Toolbar } from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const muiTheme = getMuiTheme({
   textField: {
@@ -29,6 +31,7 @@ const muiTheme = getMuiTheme({
     borderColor: "#6d6d6d"
   }
 });
+
 
 const EditSolicitationForm = ({
   solicitation,
@@ -105,13 +108,36 @@ const EditSolicitationForm = ({
       setFieldValue("containerType", value);
     };
 
+    const _handleWithdrawalReasonChange = (value) => {
+      setFieldValue("withdrawalReason", value);
+    }
+
+
+    var tb_modules: {
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block'],
+        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+        ['clean']                                         // remove formatting button
+      ],
+    }
+
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="container text-left modalForm">
               <div className="row">
-                <div className="col-md-6 col-sm-6">
+                <div className="col-sm-3">
                   <div className="inputWrapper">
                     <TextField
                       hintText="Number"
@@ -220,6 +246,7 @@ const EditSolicitationForm = ({
                     />
                   </div>
                   <div className="inputWrapper">
+
                     <TextField
                       hintText="Title"
                       floatingLabelText="Solicitation Title *"
@@ -234,6 +261,7 @@ const EditSolicitationForm = ({
                         touched.title && <div>{errors.title}</div>
                       }
                     />
+
                   </div>
                   <div className="inputWrapper">
                     <DateField
@@ -370,7 +398,7 @@ const EditSolicitationForm = ({
  */}
                   </div>
                 </div>
-                <div className="col-md-6 col-sm-6">
+                <div className="col-sm-3">
                   <div className="inputWrapper">
                     <DateField
                       hintText="Close Date"
@@ -484,17 +512,6 @@ const EditSolicitationForm = ({
                     />
                   </div>
                   <div className="inputWrapper">
-                    <TextField
-                      hintText="Reason"
-                      floatingLabelText="Withdrawal Reason"
-                      name="withdrawalReason"
-                      className=""
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.withdrawalReason}
-                    />
-                  </div>
-                  <div className="inputWrapper">
                     <DateField
                       hintText="Withdrawal Date"
                       formatDate={() =>
@@ -553,6 +570,35 @@ const EditSolicitationForm = ({
                     />
                   </div>
                 </div>
+                <div className="col-md-6">
+                  <label className="col-md-6 col-form-label">Reason for Withdrawal</label>
+
+                      <ReactQuill
+                        name="withdrawalReason"
+                        value={values.withdrawalReason}
+                        theme="snow"
+                        onChange={_handleWithdrawalReasonChange}
+                        style={{height: '300px'}}
+                        errorText={
+                          errors.withdrawalReason &&
+                          touched.withdrawalReason && <div>{errors.withdrawalReason}</div>
+                        }
+                        modules={EditSolicitationForm.modules}
+                        // formats={EditSolicitationForm.formats}
+                      />
+
+                    {/* <TextField
+                      hintText="Reason"
+                      floatingLabelText="Withdrawal Reason"
+                      name="withdrawalReason"
+                      className=""
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.withdrawalReason}
+                    /> */}
+
+
+                </div>
               </div>
             </div>
           </div>
@@ -610,7 +656,7 @@ const EditSolicitationForm = ({
       pubApproval: solicitation.PUBLICATION_APPROVAL,
       year: solicitation.FISCAL_YEAR ? solicitation.FISCAL_YEAR : undefined,
       omnibus: solicitation.OMNIBUS_NUMBER ? solicitation.OMNIBUS_NUMBER : "",
-      title: solicitation.TITLE,
+      title: decodeURI(solicitation.TITLE),
       reviewDate: solicitation.REVIEW_DATE
         ? solicitation.REVIEW_DATE
         : undefined,
@@ -627,7 +673,7 @@ const EditSolicitationForm = ({
         ? solicitation.AUTHORIZED_BY
         : "",
       withdrawalReason: solicitation.WITHDRAWAL_REASON
-        ? solicitation.WITHDRAWAL_REASON
+        ? decodeURI(solicitation.WITHDRAWAL_REASON)
         : "",
       withdrawalDate: solicitation.WITHDRAWAL_DATE
         ? solicitation.WITHDRAWAL_DATE
@@ -666,5 +712,41 @@ const EditSolicitationForm = ({
 
   return <EditSolicitation />;
 };
+
+EditSolicitationForm.modules = {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+    ['blockquote', 'code-block'],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+    [{ 'direction': 'rtl' }],                         // text direction
+    // [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    [{ 'font': [] }],
+    [{ 'align': [] }],
+    ['clean']                                         // remove formatting button
+  ]
+
+}
+
+EditSolicitationForm.formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "image",
+  "color",
+  "direction"
+];
 
 export default EditSolicitationForm;

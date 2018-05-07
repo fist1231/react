@@ -39,6 +39,20 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
     // return onEdit(rowData);
   };
 
+  const titleFormatter = (cell, row, rowIndex, formatExtraData) => {
+    // console.log('------------ row='+JSON.stringify(row))
+    return (
+        <span dangerouslySetInnerHTML={{__html: decodeURI(row.TITLE)}}></span>
+    );
+  };
+
+  const wrFormatter = (cell, row, rowIndex, formatExtraData) => {
+    // console.log('------------ row='+JSON.stringify(row))
+    return (
+        <span dangerouslySetInnerHTML={{__html: decodeURI(row.WITHDRAWAL_REASON)}}></span>
+    );
+  };
+
   const actionsFormatter = (cell, row, rowIndex, formatExtraData) => {
 
     const onEditClicked = (rowData) => {
@@ -113,7 +127,13 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
         dataField: 'TITLE',
         text: 'Solicitation Title',
         sort: true,
-        filter: textFilter()
+        filter: textFilter(),
+        formatter: titleFormatter,
+      }, {
+        dataField: 'WITHDRAWAL_REASON',
+        text: 'Reason for Withdrawal',
+        sort: true,
+        formatter: wrFormatter,
       }, {
         dataField: '',
         text: 'Actions',

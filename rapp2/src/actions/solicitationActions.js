@@ -265,7 +265,7 @@ const updateGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatc
          PUBLICATION_APPROVAL: ${solicitation.pubApproval},
          FISCAL_YEAR: ${solicitation.year},
          OMNIBUS_NUMBER: "${solicitation.omnibus}",
-         TITLE: "${solicitation.title}",
+         TITLE: "${encodeURI(solicitation.title)}",
          REVIEW_DATE: ${solicitation.reviewDate?"\""+solicitation.reviewDate+"\"":null},
          SELECTION_DATE: ${solicitation.selectionDate?"\""+solicitation.selectionDate+"\"":null},
          RELEASE_DATE: "${solicitation.releaseDate}",
@@ -273,7 +273,7 @@ const updateGraphQLSolicitation = (solicitation, solicitationsFilter) => dispatc
          ANNOUNCEMENT_TYPE: "${solicitation.announcementType}",
          CONTAINER_TYPE: "${solicitation.containerType}",
          AUTHORIZED_BY: "${solicitation.authorizedBy}",
-         WITHDRAWAL_REASON: "${solicitation.withdrawalReason}",
+         WITHDRAWAL_REASON: "${encodeURI(solicitation.withdrawalReason)}",
          WITHDRAWAL_DATE: ${solicitation.withdrawalDate?"\""+solicitation.withdrawalDate+"\"":null},
          WITHDRAWN_BY: "${solicitation.withdrawnBy}"
        )

@@ -51,7 +51,7 @@ const Dialog = styled.div`
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
-  max-width: 760px;
+  max-width: 1200px;
   cursor: default;
 `;
 
@@ -110,7 +110,7 @@ render() {
         <Content onClick={() => dispatch(hideModal())}>
           <Dialog onClick={onDialogClick}>
             <div className="modal-header">
-                <h3 className="modal-title">Edit Solicitation: {solicitation.TITLE}</h3>
+                <h3 className="modal-title">Edit Solicitation: {decodeURI(solicitation.TITLE)}</h3>
             </div>
             <EditSolicitationForm solicitation={solicitation} filter={filter} hideModal={this.props.onHideModal} updateSolicitation={this.props.onSolicitationUpdate} />
           </Dialog>
