@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import Modal from "react-modal";
 // import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 // import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
@@ -219,6 +220,14 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
 };
 
 // Modal.setAppElement('body');
+
+SolicitationTable.propTypes = {
+  solicitations: PropTypes.array,
+  onAddSolicitation: PropTypes.func,
+  onEditSolicitation: PropTypes.func,
+  onDeleteSolicitation: PropTypes.func,
+  solicitationsFilter: PropTypes.object
+}
 
 export default SolicitationTable;
 

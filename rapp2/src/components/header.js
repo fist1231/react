@@ -1,5 +1,5 @@
 import React from 'react'
-import ico from '../../public/favicon.ico'
+// import ico from '../../public/favicon.ico'
 import {TabMenu} from 'primereact/components/tabmenu/TabMenu';
 import {Menubar} from 'primereact/components/menubar/Menubar';
 import {InputText} from 'primereact/components/inputtext/InputText';

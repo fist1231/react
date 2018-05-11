@@ -4,7 +4,7 @@ import ReviewProposalDetails from '../../components/reviewProposals/ReviewPropos
 import { connect } from 'react-redux'
 import { getReviewProposalDetails, fetchReviewProposalDetailsIfNeeded, invalidateReviewProposalDetails } from '../../actions/reviewProposalDetailsActions'
 import { editProposal, hideModal, deleteProposal } from '../../actions/modal/modalActions'
-import wait from '../../../public/wait2.gif'
+// import wait from '../../../public/wait2.gif'
 import config from '../../../config/config.json'
 import { reviewProposalsMock } from '../../../config/MockData.js'
 import { withRouter } from 'react-router-dom'

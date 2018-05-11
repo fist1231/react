@@ -2,12 +2,12 @@ import React from 'react'
 import moment from 'moment';
 
 const numrows = 100;
-var dte = new Date();
+var dte = moment();
 
 export const usersMock = () => {
   var rows = [];
   for(var i=0; i<numrows; i++) {
-    rows.push({ _id: `0000${i}`, NSPIRES_USER_ID: `0000${i}`, USERNAME: `alexis${i}`, FIRST_NAME: `Aristotl${String.fromCharCode(97 + i)}`, LAST_NAME: `Maximinus${String.fromCharCode(97 + i)}`, REGISTRATION_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}` });
+    rows.push({ _id: `0000${i}`, NSPIRES_USER_ID: `0000${i}`, USERNAME: `alexis${i}`, FIRST_NAME: `Aristotl${String.fromCharCode(97 + i)}`, LAST_NAME: `Maximinus${String.fromCharCode(97 + i)}`, REGISTRATION_DATE: `${dte.subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}` });
   }
   return rows;
 
@@ -24,14 +24,14 @@ export const solicitationsMock = () => {
     TITLE: `Cassini Data Analysis and Participating Scientists ${i}`,
     REVIEW_DATE: '',
     // REVIEW_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
-    SELECTION_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
-    RELEASE_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
-    CLOSE_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
+    SELECTION_DATE: `${dte.subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
+    RELEASE_DATE: `${dte.subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
+    CLOSE_DATE: `${dte.subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
     ANNOUNCEMENT_TYPE: `Type-${i}`,
     CONTAINER_TYPE: `Container type-${i}`,
     AUTHORIZED_BY: `Authorized by ${i}`,
     WITHDRAWAL_REASON: `TReason number ${i}`,
-    // WITHDRAWAL_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
+    // WITHDRAWAL_DATE: `${moment(dte.subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
     WITHDRAWAL_DATE: '',
     WITHDRAWN_BY: `Withdrawer ${i}` });
   }
