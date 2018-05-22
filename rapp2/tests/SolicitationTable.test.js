@@ -2,6 +2,10 @@ import React from "react";
 import { mount } from "enzyme";
 import SolicitationsTable from "../src/components/solicitations/SolicitationTable";
 
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import { searchSolicitationsFilter, fetchSolicitationsIfNeeded, invalidateSolicitationsFilter } from '../src/actions/solicitationActions'
+
 const solcitiations = [ {"_id":"5accf4b8e3b132da65c9f4f6","SOLICITATION_ID":"DEE9FD68A6FC2B49B2C885EF62D089B4","SOLICITATION_NUMBER":"TEST111",
 "PUBLICATION_APPROVAL":0,"FISCAL_YEAR":2015,"OMNIBUS_NUMBER":"","TITLE":"test",
 "REVIEW_DATE":"2018-04-10T17:30:32.990Z","SELECTION_DATE":"2018-04-10T17:30:32.990Z",
@@ -40,6 +44,11 @@ describe("SolicitationsTable", () => {
 
     const divs = solicitationsTable().find("div");
     expect(divs.length).toBeGreaterThan(0);
+
+    const budgetData = solicitationsTable().find("BUDGETSP2016");
+    console.log('~~~~~~~~~~~~~ budgetData = ' + budgetData);
+    expect(budgetData.length).toBeGreaterThan(0);
+
   });
 
 });

@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom'
 import Search from '../../components/search/Search'
 import HelpDrawer from '../../components/drawer/HelpDrawer'
 import HelpButton from '../../components/drawer/HelpButton'
-import UsersHelpContent from '../../components/drawer/UsersHelp'
+import UsersHelpContent from '../../components/drawer/UsersHelpSrv'
 
 
 class UsersTableView extends Component {

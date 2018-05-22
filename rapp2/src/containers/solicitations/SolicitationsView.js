@@ -10,7 +10,7 @@ import { solicitationsMock } from '../../../config/MockData.js'
 import { withRouter } from 'react-router-dom'
 import HelpDrawer from '../../components/drawer/HelpDrawer'
 import HelpButton from '../../components/drawer/HelpButton'
-import SolicitationsHelpContent from '../../components/drawer/SolicitationsHelp'
+import SolicitationsHelpContent from '../../components/drawer/SolicitationsHelpSrv'
 
 
 class SolicitationsView extends React.Component {

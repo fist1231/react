@@ -10,7 +10,7 @@ import { reviewProposalsMock } from '../../../config/MockData.js'
 import { withRouter } from 'react-router-dom'
 import HelpDrawer from '../../components/drawer/HelpDrawer'
 import HelpButton from '../../components/drawer/HelpButton'
-import ReviewProposalsHelpContent from '../../components/drawer/ReviewProposalsHelp'
+import ReviewProposalsHelpContent from '../../components/drawer/ReviewProposalsHelpSrv'
 import { RingLoader, GridLoader, FadeLoader } from "react-spinners";
 
 
