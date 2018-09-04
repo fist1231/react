@@ -206,8 +206,7 @@ class HomePriv extends Component {
             <div className="row">
               <div className="col">
               <div className="homePanelBox">
-                <h4>Proposals Submitted By Month</h4>
-                <ProposalsChart />
+                <HomeTabs />
               </div>
               </div>
             </div>
@@ -234,7 +233,8 @@ class HomePriv extends Component {
             <div className="row">
               <div className="col">
               <div className="homePanelBox">
-                <HomeTabs />
+                <h4>Proposals Submitted By Month</h4>
+                <ProposalsChart />
               </div>
 
               </div>
