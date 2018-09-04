@@ -15,6 +15,8 @@ import NoMatch from './NoMatch';
 
 import { Switch, Route } from 'react-router-dom'
 
+import MenuAppBar from './components/MenuAppBar'
+
 if (process.env.NODE_ENV !== 'production') {
    console.log('Looks like we are in development mode!');
 }
@@ -39,7 +41,7 @@ const App = () => (
   <div>
     {console.log('~~~~~~~~~~~~ in da App ~~~~~~~~~~~~')}
     <div className="pageWrapper">
-      <Header />
+      <MenuAppBar />
       <MainNav />
       <Main />
     </div>
