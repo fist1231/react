@@ -96,7 +96,7 @@ const LoginForm = ({ history, hideModal, authenticate, stepNum, previousStep, ne
                     >
                       <div className="row">
                         <div className="col">
-                          <i className="fa fa-user-secret fa-lg" aria-hidden="true">&nbsp;&nbsp;</i>
+                          <i className="fa fa-user fa-lg" aria-hidden="true">&nbsp;&nbsp;</i>
                           Hi {uName}
                         </div>
                         <div className="col">

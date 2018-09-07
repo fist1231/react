@@ -215,7 +215,7 @@ class HomePriv extends Component {
               <div className="col">
                 <div className="homePanelBox">
                   <h4>
-                    Solicitation Management{" "}
+                    Solicitations{" "}
                     <span className="float-right homePanelLink">
                       <Link to="/solicitations">
                         <i className="fa fa-file-text-o" aria-hidden="true" />view
@@ -233,7 +233,7 @@ class HomePriv extends Component {
             <div className="row">
               <div className="col">
               <div className="homePanelBox">
-                <h4>Proposals Submitted By Month</h4>
+                <h4>Submitted Proposals</h4>
                 <ProposalsChart />
               </div>
 
@@ -246,7 +246,7 @@ class HomePriv extends Component {
               <div className="col">
                 <div className="homePanelBox">
                   <h4>
-                    Drag And Drop Events Calendar
+                    Events Calendar
                     <span className="float-right homePanelLink">
                       <Link to="/calendar">
                         <i className="fa fa-file-text-o" aria-hidden="true" />view
@@ -264,7 +264,7 @@ class HomePriv extends Component {
               <div className="col">
               <div className="homePanelBox">
                 <h4>
-                  Proposal Management{" "}
+                  Proposals{" "}
                   <span className="float-right homePanelLink">
                     <Link to="/reviewProposals">
                       <i className="fa fa-file-text-o" aria-hidden="true" />view
