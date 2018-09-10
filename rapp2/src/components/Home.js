@@ -27,6 +27,8 @@ const styles = {
 
 const Home = () => (
   <div>
+  <div >
+  <div className="wrapperImage">
     <div className="container-fluid p-0">
       <Carousel interval={5000} showThumbs={false} showStatus={false} infiniteLoop autoPlay>
         <div style={styles.slideContainer} className="slideStyle">
@@ -94,8 +96,9 @@ const Home = () => (
       {/*<div className="puTabsContainer mt-3">
         <PubTabs />
       </div>*/}
-
-      <div className="container mt-5">
+</div>
+</div>
+      <div className="container mt-2 pt-1">
         <section className="text-center">
         <div className="row">
           <div className="col">
