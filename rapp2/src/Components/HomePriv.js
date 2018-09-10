@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import RGL, { WidthProvider } from "react-grid-layout";
 import {
   usersMock,
   solicitationsMock,
@@ -13,6 +14,11 @@ import { Link } from "react-router-dom";
 import HomeCalendar from "./calendar/HomeCalendar";
 import ProposalsChart from "./charts/ProposalsChart";
 import HomeTabs from "./homeTabs";
+import "react-grid-layout/css/styles.css"
+import "react-resizable/css/styles.css"
+
+const ReactGridLayout = WidthProvider(RGL);
+const originalLayout = getFromLS("origLayout");
 
 const Users = props => {
   const columns = [
@@ -146,6 +152,16 @@ const Proposals = props => {
 };
 
 class HomePriv extends Component {
+
+  static defaultProps = {
+    className: "layout",
+    items: 5,
+    rowHeight: 102,
+   // onLayoutChange: function() {console.log('#### onLayoutChange222');},
+    cols: 4
+  };
+
+
   getDelayedData(data, delayInMilliseconds) {
     setTimeout(() => {
       switch (data) {
@@ -182,10 +198,23 @@ class HomePriv extends Component {
     this.users = new Array();
     this.solicitations = new Array();
     this.proposals = new Array();
+    
+    // const layout = this.generateLayout();
+    var layout = getFromLS("origLayout");
+        console.log('layout='+layout);
+
+    if(!layout) {
+
+      console.log('calling genLayout');
+      layout = genLayout();
+        console.log('layout='+layout);
+    }
+
     this.state = {
       usersData: this.users,
       solicitationsData: this.solicitations,
-      proposalsData: this.proposals
+      proposalsData: this.proposals,
+      layout
     };
   }
 
@@ -195,58 +224,18 @@ class HomePriv extends Component {
     this.getDelayedData("proposalsData", 2000);
   }
 
-  render() {
-    // console.log('~~~~state=' + JSON.stringify(this.state));
-    return (
-      <div className="container-fluid">
 
-
-        <div className="row mt-3">
-          <div className="col-md-5">
-            <div className="row">
-              <div className="col">
-              <div className="homePanelBox">
-                <HomeTabs />
-              </div>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col">
+  generateDOM() {
+    return [
+      <div key={"0"}>
+        <div className="homePanelBox">
+          <HomeTabs />
+        </div>
+      </div>,
+      <div key={"1"}>
                 <div className="homePanelBox">
                   <h4>
-                    Solicitations{" "}
-                    <span className="float-right homePanelLink">
-                      <Link to="/solicitations">
-                        <i className="fa fa-file-text-o" aria-hidden="true" />view
-                      </Link>
-                    </span>
-                  </h4>
-
-                  <div className="dataTableContainer">
-                    <Solicitations data={this.state.solicitationsData} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col">
-              <div className="homePanelBox">
-                <h4>Submitted Proposals</h4>
-                <ProposalsChart />
-              </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-5">
-            <div className="row">
-              <div className="col">
-                <div className="homePanelBox">
-                  <h4>
-                    Events Calendar
+                    Events Calendar{" "}
                     <span className="float-right homePanelLink">
                       <Link to="/calendar">
                         <i className="fa fa-file-text-o" aria-hidden="true" />view
@@ -254,14 +243,28 @@ class HomePriv extends Component {
                     </span>
 
                   </h4>
-                  <div className="calendarContainer">
+                  <div className="dataTableContainer">
                     <HomeCalendar windowMode={true} />
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
+      </div>,
+      <div key={"2"}>
+        <div className="homePanelBox">
+          <h4>
+            Solicitations{" "}
+            <span className="float-right homePanelLink">
+              <Link to="/solicitations">
+                <i className="fa fa-file-text-o" aria-hidden="true" />view
+              </Link>
+            </span>
+          </h4>
+
+          <div className="dataTableContainer">
+            <Solicitations data={this.state.solicitationsData} />
+          </div>
+        </div>
+      </div>,
+      <div key={"3"}>
               <div className="homePanelBox">
                 <h4>
                   Proposals{" "}
@@ -275,12 +278,117 @@ class HomePriv extends Component {
                   <Proposals data={this.state.proposalsData} />
                 </div>
               </div>
-
+      </div>,
+      <div key={"4"}>
+              <div className="homePanelBox">
+                <h4>Submitted Proposals</h4>
+                <ProposalsChart />
               </div>
-            </div>
+      </div>,
+    ];
+  }
+
+
+/*
+  generateLayout() {
+    const p = this.props;
+    return _.map(new Array(p.items), function(item, i) {
+      // const y = _.result(p, "y") || Math.ceil(Math.random() * 4) + 1;
+      const y = 4;
+      console.log(` ${i}: [ ${(i * 2) % 4}, ${Math.floor(i / 2) * y}, 2, ${y} ]`);
+      return {
+        x: (i * 2) % 4,
+        y: Math.floor(i / 2) * y,
+        w: 2,
+        h: y,
+        i: i.toString()
+      };
+    });
+  }
+*/
+  generateLayout() {
+    const layt = 
+    [
+      {
+        x: 0,
+        y: 0,
+        w: 2,
+        h: 3,
+        i: "0",
+        minH: 3
+      },
+      {
+        x: 2,
+        y: 0,
+        w: 2,
+        h: 4,
+        i: "1",
+        minH: 4
+      },
+      {
+        x: 0,
+        y: 3,
+        w: 2,
+        h: 3,
+        i: "2",
+        minH: 3
+      },
+      {
+        x: 2,
+        y: 4,
+        w: 2,
+        h: 3,
+        i: "3",
+        minH: 3
+      },
+      {
+        x: 0,
+        y: 5,
+        w: 2,
+        h: 4,
+        i: "4",
+        minH: 4
+      }
+    ];
+    return layt;
+  }
+
+
+  onLayoutChange(layout) {
+    console.log('onLayoutChange called');
+    saveToLS("origLayout", layout);
+    this.setState({
+      ...this.state,
+      layout
+    });
+    // console.log('~~~~state=' + JSON.stringify(this.state));
+
+    // this.props.onLayoutChange(layout);
+
+  }
+
+  render() {
+    // console.log('~~~~state=' + JSON.stringify(this.state));
+    return (
+      <div className="container-fluid">
+
+        <div className="row">
+
+          <div className="col-md-10">
+            <ReactGridLayout
+              layout={this.state.layout}
+              onLayoutChange={(layout) =>
+                this.onLayoutChange(layout)
+              }
+              {...this.props}
+            >
+              {this.generateDOM()}
+            </ReactGridLayout>
           </div>
 
+
           <div className="col-md-2 homeSideInfo">
+
             <div className="loginInfo">
               <p>Last Login:</p>
                 <p><i className="fa fa-user-circle" /> nress</p>
@@ -313,11 +421,90 @@ class HomePriv extends Component {
                 <i className="fa fa-external-link-square" />NASA Web Sites
               </a>
             </h3>
+
           </div>
+
         </div>
+
+
       </div>
     );
   }
 }
 
 export default HomePriv;
+
+function getFromLS(key) {
+   console.log('getFromLS called with key='+key);
+
+  let ls = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem("rgl-8")) || {};
+    } catch (e) {
+      /*Ignore*/
+    }
+  }
+  return ls[key];
+}
+
+function saveToLS(key, value) {
+    console.log('saveToLS called with key='+key+'; value='+value);
+
+  if (global.localStorage) {
+    global.localStorage.setItem(
+      "rgl-8",
+      JSON.stringify({
+        [key]: value
+      })
+    );
+  }
+}
+
+function  genLayout() {
+  console.log('genLayout called');
+    const layt = 
+    [
+      {
+        x: 0,
+        y: 0,
+        w: 2,
+        h: 3,
+        i: "0",
+        minH: 3
+      },
+      {
+        x: 2,
+        y: 0,
+        w: 2,
+        h: 4,
+        i: "1",
+        minH: 4
+      },
+      {
+        x: 0,
+        y: 3,
+        w: 2,
+        h: 3,
+        i: "2",
+        minH: 3
+      },
+      {
+        x: 2,
+        y: 4,
+        w: 2,
+        h: 3,
+        i: "3",
+        minH: 3
+      },
+      {
+        x: 0,
+        y: 5,
+        w: 2,
+        h: 4,
+        i: "4",
+        minH: 4
+      }
+    ];
+    return layt;
+  }
