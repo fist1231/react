@@ -130,6 +130,26 @@ class ReviewProposalsRPTable extends Component {
   }
 
 
+  rNumSort(event, column) {
+      event.field = "RESPONSE_SEQ_NUMBER";
+      column.sort((a,b) => {
+          var num1 = parseInt(a.RESPONSE_SNUMBER);
+          var num2 = parseInt(b.RESPONSE_NUMBER);
+          var seq1 = parseInt(a.RESPONSE_SEQ_NUMBER);
+          var seq2 = parseInt(b.RESPONSE_SEQ_NUMBER);
+          if(num1<num1) {
+            return (event.order==1?1:-1);
+          } else if(num1>num2) {
+            return (event.order==1?-1:1);
+          } else {
+            if(seq1<seq2) return (event.order==1?1:-1);
+            if(seq1>seq2) return (event.order==1?-1:1);
+            return 0;
+          }
+      });
+      return column;
+  }
+
 
   render() {
 
@@ -156,6 +176,31 @@ class ReviewProposalsRPTable extends Component {
         <span>&nbsp;&nbsp;</span>
         <Link to={lnk}>{rowData.RESPONSE_NUMBER}-{rowData.RESPONSE_SEQ_NUMBER}</Link>
       </div>;
+    }
+
+    var pST = (rowData, column) => {
+      switch(rowData.PSTATE) {
+          case 'PENDING_STATUS':
+              return 'Pending'
+              break;
+          case 'SUBMITTED_STATUS':
+              return 'Submitted'
+              break;
+          case 'WITHDRAWN_STATUS':
+              return 'Withdrawn'
+              break;
+          case 'RETURNED_STATUS':
+              return 'Returned'
+              break;
+          case 'DECLINED_STATUS':
+              return 'Declined'
+              break;
+          case 'SELECTED_STATUS':
+              return 'Selected'
+              break;
+          default:
+              return 'Unknown'
+      }
     }
 
 
@@ -229,8 +274,8 @@ class ReviewProposalsRPTable extends Component {
             onSelectionChange={(e) => this.setState({selectedProposal: e.data})}
           >
             <Column field="a" rowReorder={true} style={{width: '2em'}} />
-            <Column field="RESPONSE_NUMBER" body={nT} header="Response Number" sortable={true} />
-            <Column field="PSTATE" header="Response Status" sortable={true} editor={this.statusEditor} editorValidator={this.requiredValidator} className="statusCol" />
+            <Column field="RESPONSE_NUMBER" body={nT} header="Response Number" sortable="custom" sortFunction={(e, lst) => this.rNumSort(e, this.state.proposals)} />
+            <Column field="PSTATE" body={pST} header="Response Status" sortable={true} editor={this.statusEditor} editorValidator={this.requiredValidator} className="statusCol" />
             <Column field="FIRST_NAME" header="First name" sortable={true} editor={this.firstNameEditor} editorValidator={this.requiredValidator} />
             <Column field="LAST_NAME" header="Last name" sortable={true}  editor={this.lastNameEditor} editorValidator={this.requiredValidator} />
             <Column field="ACRONYM" header="Panel" sortable={true} />
