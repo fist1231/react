@@ -113,7 +113,25 @@ a {
   font-family: "Open Sans" !important;
 }
 .loginInputContainer{
-  height:130px;
+  display: block;
+  min-height:160px;
+}
+.loginInputBox{
+  height: auto;
+}
+.loginModalBody{
+    padding:30px 40px;
+    padding-bottom: 40px;
+
+}
+.userNameDisplay{
+  min-height: 24px;
+  display: block;
+  font-size:1.1em;
+  color: #888;
+}
+.userNameDisplay a{ 
+  color: #888;
 }
 .modal-title {
   color: #fff;
@@ -405,6 +423,12 @@ h3.modal-title {
 }
 .wrapperImage {
   min-height: calc(100vh - 170px);
+}
+
+@media (max-width: 767px) {
+  .wrapperImage {
+  min-height: 0;
+}
 }
 
 .list-group-item{

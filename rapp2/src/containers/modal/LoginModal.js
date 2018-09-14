@@ -26,7 +26,7 @@ const customStyles = {
     display: 'inline-block',
     verticalAlign: 'middle',
     boxSizing: 'border-box',
-    maxWidth: '350px',
+    maxWidth: '460px',
     cursor: 'default'
   }
 };

@@ -60,7 +60,7 @@ const LoginForm = ({ history, hideModal, authenticate, stepNum, previousStep, ne
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <form onSubmit={handleSubmit}>
-          <div className="modal-body">
+          <div className="modal-body loginModalBody">
             <div className="container text-left">
               <h2><i className="fa fa-user-circle" /> Member Login</h2>
 
@@ -68,9 +68,11 @@ const LoginForm = ({ history, hideModal, authenticate, stepNum, previousStep, ne
               <div className="loginInputContainer">
                 {/*console.log('%%%%%%%%%%%%%%% stepNum x = ' + stepNum)*/}
                 {(stepNum === "1") ? (
-                  <div className="inputWrapper">
+                  <div className="loginInputBox">
+                  <div className="userNameDisplay"> 
+                    </div>
                     <TextField
-                      hintText="nress"
+                      hintText=""
                       floatingLabelText="Username"
                       name="username"
                       className="floatInput"
@@ -85,28 +87,30 @@ const LoginForm = ({ history, hideModal, authenticate, stepNum, previousStep, ne
                         touched.username && <div>{errors.username}</div>
                       }
                     />
+                  <p className="text-right">
+                  <span className="staticLink ">
+                    <a href="#">Forgot your username?</a>
+                  </span>
+                </p>
                   </div>
+
                   ) : (
-                  <div className="inputWrapper">
-                    <button
-                      className="btn btn-outline-info"
-                      icon="fa-close"
-                      type="reset"
+                  <div className="loginInputBox">
+                   <div className="userNameDisplay"> 
+                    
+
+                    <a
+                      href="#"
                       onClick={() => previousStep()}
                     >
-                      <div className="row">
-                        <div className="col">
-                          <i className="fa fa-user fa-lg" aria-hidden="true">&nbsp;&nbsp;</i>
-                          Hi {uName}
-                        </div>
-                        <div className="col">
-                          <span className="fa fa-eject fa-xs" aria-hidden="true"></span>
-                        </div>
-                      </div>
-                    </button>
+                 <i className="fa fa-arrow-circle-left" aria-hidden="true"></i>
+{uName}
+                    </a>
+                   
+                    </div>
              
                     <TextField
-                      hintText="nress"
+                      hintText=""
                       floatingLabelText="Enter your password"
                       name="pwd"
                       type="password"
@@ -121,13 +125,18 @@ const LoginForm = ({ history, hideModal, authenticate, stepNum, previousStep, ne
                         errors.pwd && touched.pwd && <div>{errors.pwd}</div>
                       }
                     />
+                     <p className="text-right">
+                  <span className="staticLink ">
+                    Forgot your password?
+                  </span>
+                </p>
                   </div>
                 )}
               </div>
 
-              <div>
+          
                 <button
-                  className="btn btn-primary btn-block mb-3"
+                  className="btn btn-primary btn-block mb-2"
                   icon="fa-close"
                   disabled={isSubmitting}
                 >
@@ -141,12 +150,7 @@ const LoginForm = ({ history, hideModal, authenticate, stepNum, previousStep, ne
                 >
                   Cancel
                 </button>
-                <p className="mt-1 text-right">
-                  <span className="staticLink ">
-                    forgot your username/password?
-                  </span>
-                </p>
-              </div>
+            
             </div>
           </div>
 
