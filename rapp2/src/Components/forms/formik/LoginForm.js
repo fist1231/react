@@ -29,7 +29,7 @@ const muiTheme = getMuiTheme({
   }
 });
 
-const LoginForm = ({ history, hideModal, authenticate }) => {
+const LoginForm = ({ history, hideModal, authenticate, stepNum, previousStep, nextStep, uName }) => {
   const styles = {
     floatingLabelStyle: {
       fontSize: "1.06em",
@@ -60,53 +60,87 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <form onSubmit={handleSubmit}>
-          <div className="modal-body">
+          <div className="modal-body loginModalBody">
             <div className="container text-left">
               <h2><i className="fa fa-user-circle" /> Member Login</h2>
+
+    
               <div className="loginInputContainer">
-                <div className="inputWrapper">
-                  <TextField
-                    hintText="nress"
-                    floatingLabelText="Username"
-                    name="username"
-                    className="floatInput"
-                    onChange={handleChange}
-                    floatingLabelStyle={styles.floatingLabelStyle}
-                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                    onBlur={handleBlur}
-                    value={values.username}
-                    errorText={
-                      errors.username &&
-                      touched.username && <div>{errors.username}</div>
-                    }
-                  />
-                </div>
-                <div className="inputWrapper">
-                  <TextField
-                    hintText="nress"
-                    floatingLabelText="Password"
-                    name="pwd"
-                    type="password"
-                    className="floatInput"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    floatingLabelStyle={styles.floatingLabelStyle}
-                    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                    value={values.pwd}
-                    errorText={
-                      errors.pwd && touched.pwd && <div>{errors.pwd}</div>
-                    }
-                  />
-                </div>
+                {/*console.log('%%%%%%%%%%%%%%% stepNum x = ' + stepNum)*/}
+                {(stepNum === "1") ? (
+                  <div className="loginInputBox">
+                  <div className="userNameDisplay"> 
+                    </div>
+                    <TextField
+                      hintText=""
+                      floatingLabelText="Username"
+                      name="username"
+                      className="floatInput"
+                      onChange={handleChange}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                      onBlur={handleBlur}
+                      value={values.username}
+                      ref={input => input && input.focus()}
+                      errorText={
+                        errors.username &&
+                        touched.username && <div>{errors.username}</div>
+                      }
+                    />
+                  <p className="text-right">
+                  <span className="staticLink ">
+                    <a href="#">Forgot your username?</a>
+                  </span>
+                </p>
+                  </div>
+
+                  ) : (
+                  <div className="loginInputBox">
+                   <div className="userNameDisplay"> 
+                    
+
+                    <a
+                      href="#"
+                      onClick={() => previousStep()}
+                    >
+                 <i className="fa fa-arrow-circle-left" aria-hidden="true"></i>
+{uName}
+                    </a>
+                   
+                    </div>
+             
+                    <TextField
+                      hintText=""
+                      floatingLabelText="Enter your password"
+                      name="pwd"
+                      type="password"
+                      className="floatInput"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      floatingLabelStyle={styles.floatingLabelStyle}
+                      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                      value={values.pwd}
+                      ref={input => input && input.focus()}
+                      errorText={
+                        errors.pwd && touched.pwd && <div>{errors.pwd}</div>
+                      }
+                    />
+                     <p className="text-right">
+                  <span className="staticLink ">
+                    Forgot your password?
+                  </span>
+                </p>
+                  </div>
+                )}
               </div>
 
-              <div>
+          
                 <button
-                  className="btn btn-primary btn-block mb-3"
+                  className="btn btn-primary btn-block mb-2"
                   icon="fa-close"
                   disabled={isSubmitting}
                 >
-                  Log In
+                  Next
                 </button>
                 <button
                   type="reset"
@@ -116,12 +150,7 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
                 >
                   Cancel
                 </button>
-                <p className="mt-1 text-right">
-                  <span className="staticLink ">
-                    forgot your username/password?
-                  </span>
-                </p>
-              </div>
+            
             </div>
           </div>
 
@@ -142,8 +171,20 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
         JSON.stringify(values, null, 2)
     );
 
-    if (values.username == "nress" && values.pwd == "nress") {
-      authenticate(values.username, values.pwd);
+
+    // if (values.username === "nress" && stepNum === "1") {
+    if (stepNum === "1") {
+      //authenticate(values.username, values.pwd);
+      nextStep(values.username);
+
+      // localStorage.setItem('loggedIn', true);
+      // localStorage.setItem('username', 'Nress');
+      // history.push("/");
+      // hideModal();
+    } else if (values.username === "nress" && values.pwd === "nress" && stepNum === "2") {
+      authenticate(uName, values.pwd);
+      // nextStep(values.username);
+      // console.log('%%%%%%%%%%%%%%% stepNum after = ' + stepNum);
 
       // localStorage.setItem('loggedIn', true);
       // localStorage.setItem('username', 'Nress');
@@ -151,37 +192,73 @@ const LoginForm = ({ history, hideModal, authenticate }) => {
       // hideModal();
     } else {
       setErrors({
-        username: "Invalid Username or Password",
+        username: "Invalid Username or Password step",
         pwd: "Invalid Username or Password"
       });
     }
     // e.preventDefault();
+
   };
+  
+  let Login;
 
-  const Login = withFormik({
-    mapPropsToValues: props => ({
-      username: "",
-      pwd: ""
-    }),
-    validationSchema: Yup.object().shape({
-      username: Yup.string().required("Username is required!"),
-      pwd: Yup.string().required("Password is required!")
-    }),
-    handleSubmit: (values, { setSubmitting, setErrors }) => {
-      doSubmit(values, hideModal, setErrors);
-      setSubmitting(false);
-      // {
-      //   setTimeout(() => {
-      //     alert(JSON.stringify(values, null, 2));
-      //     setSubmitting(false);
-      //   }, 1000);
-    },
-    // handleChange: (values, { setSubmitting }) => {
-    //   console.log('^^^^^^^^^^^values='+values);
-    // },
-    displayName: "SolicitationEdit" // helps with React DevTools
-  })(innerForm);
+  if (stepNum === "1") {
+    Login = withFormik({
+      mapPropsToValues: props => ({
+        username: "",
+        pwd: ""
+      }),
+      validationSchema: Yup.object().shape({
+        username: Yup.string().required("Username is required!")
+//        pwd: Yup.string().required("Password is required!")
+      }),
+      handleSubmit: (values, { setSubmitting, setErrors }) => {
+        if (values.usernamr === "" && stepNum === "2") {
+          values.username = uName;
+        }
+        doSubmit(values, hideModal, setErrors, stepNum);
+        setSubmitting(false);
+        // {
+        //   setTimeout(() => {
+        //     alert(JSON.stringify(values, null, 2));
+        //     setSubmitting(false);
+        //   }, 1000);
+      },
+      // handleChange: (values, { setSubmitting }) => {
+      //   console.log('^^^^^^^^^^^values='+values);
+      // },
+      displayName: "LoginFormUsername" // helps with React DevTools
+    })(innerForm);
 
+  } else {
+    Login = withFormik({
+      mapPropsToValues: props => ({
+        username: "",
+        pwd: ""
+      }),
+      validationSchema: Yup.object().shape({
+  //      username: Yup.string().required("Username is required!"),
+        pwd: Yup.string().required("Password is required!")
+      }),
+      handleSubmit: (values, { setSubmitting, setErrors }) => {
+        if (values.username === "" && stepNum === "2") {
+          values.username = uName;
+        }
+        doSubmit(values, hideModal, setErrors, stepNum);
+        setSubmitting(false);
+        // {
+        //   setTimeout(() => {
+        //     alert(JSON.stringify(values, null, 2));
+        //     setSubmitting(false);
+        //   }, 1000);
+      },
+      // handleChange: (values, { setSubmitting }) => {
+      //   console.log('^^^^^^^^^^^values='+values);
+      // },
+      displayName: "LoginFormUsername" // helps with React DevTools
+    })(innerForm);
+
+  }
   return <Login />;
 };
 

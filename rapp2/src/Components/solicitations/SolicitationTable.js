@@ -128,11 +128,11 @@ const SolicitationTable = ({solicitations, onAddSolicitation, onEditSolicitation
         dataField: 'TITLE',
         text: 'Solicitation Title',
         sort: true,
-        filter: textFilter(),
+//        filter: textFilter(),
         formatter: titleFormatter,
       }, {
         dataField: 'WITHDRAWAL_REASON',
-        text: 'Reason for Withdrawal',
+        text: 'Solicitation Notes',
         sort: true,
         formatter: wrFormatter,
       }, {

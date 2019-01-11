@@ -26,7 +26,7 @@ const customStyles = {
     display: 'inline-block',
     verticalAlign: 'middle',
     boxSizing: 'border-box',
-    maxWidth: '350px',
+    maxWidth: '460px',
     cursor: 'default'
   }
 };
@@ -72,10 +72,19 @@ class LoginModal extends Component {
           contentLabel={this.props.contentLabel}
           closeModal={this.props.closeModal}
           authenticate={this.props.authenticate}
+          nextStep={this.props.nextStep}
+          previousStep={this.props.previousStep}
+          stepNum={this.props.stepNum}
+          uName={this.props.uname}
         >
 
 
-          <LoginForm hideModal={this.props.closeModal} authenticate={this.props.authenticate} />
+          <LoginForm hideModal={this.props.closeModal} 
+                     authenticate={this.props.authenticate} 
+                     stepNum={this.props.stepNum} 
+                     previousStep={this.props.previousStep} 
+                     nextStep={this.props.nextStep}
+                     uName={this.props.uName} />
         </Modal>
       </div>
     );

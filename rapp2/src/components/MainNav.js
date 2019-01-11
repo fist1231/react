@@ -62,7 +62,7 @@ const MainNav = (propsy, location) => (
               <NavLink activeclassname='active' tag={RRNavLink} to="/solicitations">Solicitations</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink activeclassname='active' tag={RRNavLink} to="/reviewProposals">Review Proposals</NavLink>
+              <NavLink activeclassname='active' tag={RRNavLink} to="/reviewProposals">Proposals</NavLink>
             </NavItem>
             <NavItem>
               <NavLink activeclassname='active' disabled href="#">Selections</NavLink>

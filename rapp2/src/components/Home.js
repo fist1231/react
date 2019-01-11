@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import img1 from "../images/image1.jpg";
 import img2 from "../images/image2.jpg";
 import img3 from "../images/image3.jpg";
+import img4 from "../images/image4.jpg";
+import img5 from "../images/image5.jpg";
 
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -22,11 +24,21 @@ const styles = {
   slideContainer3: {
     backgroundImage: `url(${img3})`,
     height: "80vh"
+  },
+  slideContainer4: {
+    backgroundImage: `url(${img4})`,
+    height: "80vh"
+  },
+  slideContainer5: {
+    backgroundImage: `url(${img5})`,
+    height: "80vh"
   }
 };
 
 const Home = () => (
   <div>
+  <div>
+  <div className="wrapperImage">
     <div className="container-fluid p-0">
       <Carousel interval={5000} showThumbs={false} showStatus={false} infiniteLoop autoPlay>
         <div style={styles.slideContainer} className="slideStyle">
@@ -68,7 +80,52 @@ const Home = () => (
             </div>
           </div>
         </div>
+
         <div style={styles.slideContainer3} className="slideStyle">
+        <div className="container">
+          <div className="row no-gutters">
+            <div className="col-md-12">
+              <div className="slideText">
+                <h2>Getting Started</h2>
+                <p>
+                  To submit a research proposal to NASA, individuals and the
+                  organizations with which they are affiliated must be
+                  registered in NSPIRES. Individuals may register at any time.
+                  Organizations are required to have a valid registration with
+                  the System for Award Management (SAM) before they can register
+                  in NSPIRES. See Registration Information for more details on
+                  user and organization registration.{" "}
+                </p>
+                <a className="btn btn-primary bannerBtn">Go Now</a>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={styles.slideContainer4} className="slideStyle">
+        <div className="container">
+          <div className="row no-gutters">
+            <div className="col-md-12">
+              <div className="slideText">
+                <h2>Solicitations</h2>
+                <p>
+                  Search for and view open, closed, past, and future NASA
+                  research announcements. The full text of the solicitation
+                  announcements can be viewed and downloaded. Solicitations and
+                  selected proposals for years prior to NSPIRES implementation,
+                  January 1, 2005, were posted manually; therefore, some
+                  postings for years 2000-2004 may not be as complete as those
+                  posted through the NSPIRES system from 2005 to the present.
+                </p>
+                <a className="btn btn-primary bannerBtn">Go Now</a>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={styles.slideContainer5} className="slideStyle">
         <div className="container">
           <div className="row no-gutters">
             <div className="col-md-12">
@@ -94,8 +151,9 @@ const Home = () => (
       {/*<div className="puTabsContainer mt-3">
         <PubTabs />
       </div>*/}
-
-      <div className="container mt-5">
+</div>
+</div>
+      <div className="container mt-2 pt-1">
         <section className="text-center">
         <div className="row">
           <div className="col">
@@ -207,7 +265,7 @@ const Home = () => (
           </div>
         </section>
 
-        <section className="tableContainer">
+        <section className="tableContainer test222">
           <div className="row">
             <div className="col">
               <h4 className="text-center">

@@ -51,7 +51,7 @@ class AppPub extends Component {
     return (
   <div>
     {console.log('~~~~~~~~~~~~ ### in da AppPub ### ~~~~~~~~~~~~')}
-    <div className="pageWrapper">
+    
       <Header />
       { loggedIn ?
         (
@@ -63,7 +63,6 @@ class AppPub extends Component {
           <Home />
         )
       }
-    </div>
     <Footer />
     <ModalRoot />
   </div>

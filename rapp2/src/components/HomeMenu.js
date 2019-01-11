@@ -44,7 +44,7 @@ class HomeMenu extends Component {
           <Link to='/users' onClick={this.login} onClick={() => this.closeMenu()}>Users</Link>
           <Link to='/usersTable' onClick={this.login} onClick={() => this.closeMenu()}>Users Table</Link>
           <Link to='/solicitations' onClick={this.login} onClick={() => this.closeMenu()}>Solicitations</Link>
-          <Link to='/reviewProposals' onClick={this.login} onClick={() => this.closeMenu()}>Review Proposals</Link>
+          <Link to='/reviewProposals' onClick={this.login} onClick={() => this.closeMenu()}>Proposals</Link>
         </Menu>
     );
   }

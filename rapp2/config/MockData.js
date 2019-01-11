@@ -18,6 +18,7 @@ export const usersMock = () => {
 
 export const solicitationsMock = () => {
   var rows = [];
+  var dte2 = moment();
   for(var i=0; i<numrows; i++) {
     rows.push({ _id: `9000${i}`, SOLICITATION_ID: `0000${i}`, SOLICITATION_NUMBER: `NN60SPG2015A${i}`, PUBLICATION_APPROVAL: 1, FISCAL_YEAR: `${1990+i}`,
     OMNIBUS_NUMBER: `OmniNumber ${i}`,
@@ -25,8 +26,8 @@ export const solicitationsMock = () => {
     REVIEW_DATE: '',
     // REVIEW_DATE: `${moment((dte).toString()).subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
     SELECTION_DATE: `${dte.subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
-    RELEASE_DATE: `${dte.subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
-    CLOSE_DATE: `${dte.subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
+    RELEASE_DATE: `${dte2.subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
+    CLOSE_DATE: `${dte2.subtract(i, 'months').subtract(i, 'days').format("MM/DD/YYYY")}`,
     ANNOUNCEMENT_TYPE: `Type-${i}`,
     CONTAINER_TYPE: `Container type-${i}`,
     AUTHORIZED_BY: `Authorized by ${i}`,

@@ -79,24 +79,36 @@ class HomeCalendar extends React.Component {
   render() {
     return (
       <div className="container" style={{position:'relative'}}>
-          {this.props.windowMode? ''
-           : (
-            <div className="helpRwLocation calendarHelp"><HelpButton buttonText={"Help"} className={"test"} buttonClick={this.handleToggle} /></div>
+        {console.log('windowMode=' + this.props.windowMode)}
+        { this.props.windowMode? (
+                <DnDCalendar
+                  defaultDate={new Date()}
+                  defaultView="month"
+                  events={this.state.events}
+                  onEventDrop={this.onEventDrop}
+                  onEventResize={this.onEventResize}
+                  resizable
+                  style={this.props.windowMode?windowModeStyle:fullModeStyle}
+                />
+          ) : (
+                  <div>
+                   <div className="helpRwLocation calendarHelp"><HelpButton buttonText={"Help"} className={"test"} buttonClick={this.handleToggle} /></div>
+                    <DnDCalendar
+                      defaultDate={new Date()}
+                      defaultView="month"
+                      events={this.state.events}
+                      onEventDrop={this.onEventDrop}
+                      onEventResize={this.onEventResize}
+                      resizable
+                      style={this.props.windowMode?windowModeStyle:fullModeStyle}
+                    />
+                    <HelpDrawer toggled={this.state.helpOpen} onToggleChange={this.handleToggle}>
+                      <ReviewProposalsHelpContent />
+                    </HelpDrawer>
+                    <InfoDialog infoText={this.infoText} isOpen={this.state.infoOpen} onClose={this.handleInfoClose} />
+                  </div>
           )
-          }
-          <DnDCalendar
-            defaultDate={new Date()}
-            defaultView="month"
-            events={this.state.events}
-            onEventDrop={this.onEventDrop}
-            onEventResize={this.onEventResize}
-            resizable
-            style={this.props.windowMode?windowModeStyle:fullModeStyle}
-          />
-          <HelpDrawer toggled={this.state.helpOpen} onToggleChange={this.handleToggle}>
-            <ReviewProposalsHelpContent />
-          </HelpDrawer>
-        <InfoDialog infoText={this.infoText} isOpen={this.state.infoOpen} onClose={this.handleInfoClose} />
+        }
       </div>
     )
   }

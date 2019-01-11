@@ -18,7 +18,7 @@ import HomeCalendar from '../components/calendar/HomeCalendar'
 const Main = () => (
   <div>
   <main>
-  <div>
+  <div> 
     <Switch>
       <Route path='/' exact component={HomePriv} />
       <Route path='/calendar' component={HomeCalendar}/>

@@ -23,7 +23,9 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      stepNum: "1",
+      uname: ""
     };
 
     this.openModal = this.openModal.bind(this);
@@ -32,7 +34,7 @@ class Login extends Component {
   }
 
   openModal() {
-    this.setState({ modalIsOpen: true });
+    this.setState({ modalIsOpen: true, stepNum: "1" });
     console.log("000000000 openModal = " + this.state.modalIsOpen);
   }
 
@@ -42,7 +44,7 @@ class Login extends Component {
   }
 
   closeModal() {
-    this.setState({ modalIsOpen: false });
+    this.setState({ modalIsOpen: false, stepNum: "1", uname: "" });
   }
 
   componentDidMount() {
@@ -72,6 +74,7 @@ class Login extends Component {
     // });
   };
 
+
   authenticate = (username, pwd) => {
     console.log("######### authenticate: " + username + "; " + pwd);
 
@@ -90,6 +93,18 @@ class Login extends Component {
     //    history.push("/");
     //   // return <Redirect to={{ pathname: "/AppPrivate" }} />
     // });
+  };
+
+  nextStep = (username) => {
+    console.log("######### nextStep: " + username );
+    const { dispatch, auth, history } = this.props;
+    this.setState({ modalIsOpen: true, stepNum: "2", uname: username });
+  };
+
+  previousStep = (username) => {
+    console.log("######### previousStep: " + username );
+    const { dispatch, auth, history } = this.props;
+    this.setState({ modalIsOpen: true, stepNum: "1", uname: username });
   };
 
   logout = () => {
@@ -191,7 +206,11 @@ class Login extends Component {
           onRequestClose={this.closeModal}
           contentLabel="Example Modal"
           closeModal={this.closeModal}
+          nextStep={this.nextStep}
+          previousStep={this.previousStep}
           authenticate={this.authenticate}
+          stepNum={this.state.stepNum}
+          uName={this.state.uname}
         />
       </div>
     );
