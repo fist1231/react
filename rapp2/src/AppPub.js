@@ -46,13 +46,13 @@ class AppPub extends Component {
 
   render() {
     const { dispatch, loggedIn } = this.props
-
+    const showDrwr = loggedIn?true:false;
     console.log('apppub------------> loggedIn? ' + loggedIn);
     return (
   <div>
     {console.log('~~~~~~~~~~~~ ### in da AppPub ### ~~~~~~~~~~~~')}
     
-      <Header />
+      <Header showDrawer={showDrwr} />
       { loggedIn ?
         (
           <div>

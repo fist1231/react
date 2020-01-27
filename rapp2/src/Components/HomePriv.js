@@ -391,7 +391,7 @@ class HomePriv extends Component {
 
             <div className="loginInfo">
               <p>Last Login:</p>
-                <p><i className="fa fa-user-circle" /> nress</p>
+                <p><i className="fa fa-user-circle" /> {localStorage.getItem("username")}</p>
               <small>03/20/2018 10:24 EDT</small>
             </div>
             <h3>NSPIRES Home</h3>

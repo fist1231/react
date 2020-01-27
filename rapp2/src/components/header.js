@@ -26,7 +26,15 @@ const items=[
             {label: 'Selections', icon: 'fas fa-check'}
         ];
 
+const isIn = (props) => {
+  const { dispatch, loggedIn } = this.props;
+
+  console.log('header jan xxx--> loggedIn? ' + loggedIn);
+
+}
+
 const Header = (props) => (
+
   <div>
   {/*
       <Menubar model={items}>
@@ -37,7 +45,7 @@ const Header = (props) => (
   <div className="nspiresHeader">
     <div className="container-fluid">
 
-      <MenuAppBar />
+      {/*<MenuAppBar showDrawer={props.showDrawer} /> */}
 
       <div className="row">
 
@@ -45,10 +53,10 @@ const Header = (props) => (
             <a className="navbar-brand" href="#"></a>
         </div>
         <div className="col ">
-        <div className="">
-          <Login />
-</div>
+          <div className="">
+            <Login />
           </div>
+        </div>
         <div className="col col-auto">
           <div className="nasaLogo float-right">
           </div>

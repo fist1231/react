@@ -79,9 +79,9 @@ class Login extends Component {
     console.log("######### authenticate: " + username + "; " + pwd);
 
     const { dispatch, auth, history } = this.props;
-    const authen = { loggedIn: "true", username: "Local" };
+    const authen = { loggedIn: "true", username: username };
     localStorage.setItem("loggedIn", true);
-    localStorage.setItem("username", "Local");
+    localStorage.setItem("username", username);
 
     dispatch(setAuthOn());
     history.push("/");

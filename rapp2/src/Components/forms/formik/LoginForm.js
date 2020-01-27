@@ -181,7 +181,7 @@ const LoginForm = ({ history, hideModal, authenticate, stepNum, previousStep, ne
       // localStorage.setItem('username', 'Nress');
       // history.push("/");
       // hideModal();
-    } else if (values.username === "nress" && values.pwd === "nress" && stepNum === "2") {
+    } else if (((values.username === "nress" && values.pwd === "nress") || (values.username === "nasa" && values.pwd === "nasa")) && stepNum === "2") {
       authenticate(uName, values.pwd);
       // nextStep(values.username);
       // console.log('%%%%%%%%%%%%%%% stepNum after = ' + stepNum);

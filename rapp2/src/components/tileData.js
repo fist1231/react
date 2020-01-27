@@ -11,8 +11,18 @@ import SendIcon from '@material-ui/icons/Send';
 import MailIcon from '@material-ui/icons/Mail';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReportIcon from '@material-ui/icons/Report';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import { NavLink as RRNavLink, Link } from 'react-router-dom'
+
+const logout = () => {
+  // const { dispatch, auth, history } = this.props;
+  const authen = { loggedIn: "false", username: "" };
+  localStorage.setItem("loggedIn", false);
+  localStorage.setItem("username", "");
+  // dispatch(setAuthOff());
+  // history.push("/");
+};
 
 export const mailFolderListItems = (
   <div>
@@ -69,6 +79,12 @@ export const otherMailFolderListItems = (
         <ReportIcon />
       </ListItemIcon>
       <ListItemText primary="Notifications" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <ExitToAppIcon />
+      </ListItemIcon>
+      <Link to="/" onClick={logout}>Logout</Link>
     </ListItem>
   </div>
 );

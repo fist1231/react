@@ -49,7 +49,7 @@
   "scripts": {
     "watch": "webpack --watch",
     "start": "react-scripts start",
-    "dev": "webpack-dev-server --config webpack.dev.js --mode development --port 3000 --host 0.0.0.0",
+    "dev": "webpack-dev-server --config webpack.dev.js --mode development --port 3900 --host 0.0.0.0",
     "build": "webpack --config webpack.prod.js --mode production -p",
     "test": "jest --verbose",
     "test:watch": "jest --watch",
