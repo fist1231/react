@@ -45,7 +45,9 @@ sudo ufw status
 
 systemctl status nginx
 ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
-Out: //give you your public IP address: ec2_1: 172.31.28.227
+Out: 
+//give you your public IP address: ec2_1: /*172.31.28.227*/
+Instead 
 
 sudo nano /etc/nginx/sites-available/demo
 /*
@@ -77,6 +79,32 @@ sudo nano /etc/nginx/sites-available/demo
         }
 */
 
+/*
+    server {
+        listen 5555 ssl;
+        listen [::]:5555 ssl;
+
+        server_name localhost;
+        root /home/stislin/rapp2;
+
+        # This fixes react router reload non root url 404 error on ssl nginx
+        location / {
+               try_files $uri $uri/ /index.html?$query_string;
+        }
+
+        # was supposed to fix http->https redirect error, but not working
+        # 400 Bad Request. The plain HTTP request was sent to HTTPS port. nginx/1.14.2
+        # ssl off;
+        ssl_certificate /home/stislin/nginx/certs/nginx-selfsigned.crt;
+        ssl_certificate_key /home/stislin/nginx/certs/nginx-selfsigned.key;
+        ssl_dhparam /home/stislin/nginx/certs/dhparam.pem;
+
+    }
+
+*/
+
+sudo /opt/nginx/sbin/nginx -s reload
+
 sudo ln -s /etc/nginx/sites-available/demo /etc/nginx/sites-enabled/
 sudo nano /etc/nginx/nginx.conf
 Uncomment:
@@ -85,6 +113,14 @@ server_names_hash_bucket_size 64;
 sudo nginx -t
 
 sudo systemctl restart nginx
+
+Open aws port:
+1. network & security -> security groups -> create security groups:
+http; tcp; 5555; demo_name
+2. Instances, select instance, actions-> Networking -> Chnage security groups - add demo groups
+
+
+
 
 
 

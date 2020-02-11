@@ -4,9 +4,7 @@ import config from '../../../config/config.json'
 import axios from 'axios';
 
 
-
-
-class SolicitationsHelpSrv extends Component {
+class CalendarHelpSrv extends Component {
 
   constructor(props) {
     super(props);
@@ -20,15 +18,15 @@ class SolicitationsHelpSrv extends Component {
 
   helpItems = () => {
     axios
-      .get(`${config.gateway_address}help/search/SOLICITATIONS`)
+      .get(`${config.gateway_address}help/search/CALENDAR`)
       .then(response => {
-        // console.log('********** SolicitationsHelpSrv: users help result:' + JSON.stringify(response.data.items));
+        // console.log('********** CalendarHelpSrv: calendar help result:' + JSON.stringify(response.data.items));
         // response.json(response.data);
         this.setState({helpIts: response.data.map((x) => x.dh_text)});
         // response.data.items;
       })
       .catch(error => {
-        console.log('********** SolicitationsHelpSrv: users help error:' + error);
+        console.log('********** CalendarHelpSrv: calendar help error:' + error);
       });
   }
 
@@ -45,4 +43,4 @@ class SolicitationsHelpSrv extends Component {
 
 }
 
-export default SolicitationsHelpSrv;
+export default CalendarHelpSrv;

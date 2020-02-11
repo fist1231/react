@@ -12,7 +12,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import InfoDialog from '../../containers/modal/InfoDialog'
 import HelpDrawer from '../../components/drawer/HelpDrawer'
 import HelpButton from '../../components/drawer/HelpButton'
-import ReviewProposalsHelpContent from '../../components/drawer/CalendarHelp'
+import CalendarHelpContent from '../../components/drawer/CalendarHelpSrv'
 import './calendar.css'
 
 
@@ -79,7 +79,6 @@ class HomeCalendar extends React.Component {
   render() {
     return (
       <div className="container" style={{position:'relative'}}>
-        {console.log('windowMode=' + this.props.windowMode)}
         { this.props.windowMode? (
                 <DnDCalendar
                   defaultDate={new Date()}
@@ -103,7 +102,7 @@ class HomeCalendar extends React.Component {
                       style={this.props.windowMode?windowModeStyle:fullModeStyle}
                     />
                     <HelpDrawer toggled={this.state.helpOpen} onToggleChange={this.handleToggle}>
-                      <ReviewProposalsHelpContent />
+                      <CalendarHelpContent />
                     </HelpDrawer>
                     <InfoDialog infoText={this.infoText} isOpen={this.state.infoOpen} onClose={this.handleInfoClose} />
                   </div>

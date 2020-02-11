@@ -18,11 +18,11 @@ class UsersHelpSrv extends Component {
 
   helpItems = () => {
     axios
-      .get(`${config.gateway_address}help/users`)
+      .get(`${config.gateway_address}help/search/USERS`)
       .then(response => {
         console.log('********** UsersHelpSrv: users help result:' + JSON.stringify(response.data.items));
-        // response.json(response.data);
-        this.setState({helpIts: response.data.items});
+        response.json(response.data);
+        this.setState({helpIts: response.data.map((x) => x.dh_text)});
         // response.data.items;
       })
       .catch(error => {

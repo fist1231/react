@@ -18,11 +18,12 @@ class ReviewProposalsHelpSrv extends Component {
 
   helpItems = () => {
     axios
-      .get(`${config.gateway_address}help/reviews`)
+      .get(`${config.gateway_address}help/search/REVIEWS`)
       .then(response => {
-        console.log('********** ReviewProposalsHelpSrv: users help result:' + JSON.stringify(response.data.items));
+        // console.log('********** ReviewProposalsHelpSrv: users help result:' + JSON.stringify(response.data));
         // response.json(response.data);
-        this.setState({helpIts: response.data.items});
+        // console.log(`reviewItems: ${JSON.stringify(response.data.map((x) => x.dh_text))}`)
+        this.setState({helpIts: response.data.map((x) => x.dh_text)});
         // response.data.items;
       })
       .catch(error => {
